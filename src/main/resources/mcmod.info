@@ -1,0 +1,18 @@
+[
+{
+  "modid": "lilcritters",
+  "name": "Lil Critters Mod",
+  "description": "A ZAWA mod addon, aiming to add some ambiance with little critters.",
+  "version": "0.0.1.1-beta2",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Mnesikos"],
+  "credits": "My lovely team of model and texture artists: Ailments concentrate, Bolcko, cheetahman123444, CodaBear1552, HobbitNerdYouTube, Jaz, LukeChange, Mr. Mubbs",
+  "logoFile": "",
+  "screenshots": [],
+  "requiredMods": ["forge", "zawa"],
+  "dependencies": ["forge", "zawa"],
+  "useDependencyInformation": "true"
+}
+]

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lilcrittersgroup",
+  "ingredients": [
+    {
+      "item":"lilcritters:rodent_kibble"
+    },
+    {
+      "item":"minecraft:potion"
+    }
+  ],
+  "result": {
+    "item": "lilcritters:rodent_vial",
+    "count": 1
+  }
+}

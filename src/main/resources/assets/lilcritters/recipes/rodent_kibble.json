@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lilcrittersgroup",
+  "pattern": [
+    "! A",
+    " % ",
+    "G T"
+  ],
+  "key": {
+    "!": [
+      {"item": "minecraft:beef"},
+      {"item": "minecraft:chicken"},
+      {"item": "minecraft:porkchop"},
+      {"item": "minecraft:mutton"},
+      {"item": "minecraft:rabbit"}
+    ],
+    "A": [
+      {"item": "minecraft:wheat_seeds"},
+      {"item": "minecraft:beetroot_seeds"},
+      {"item": "minecraft:pumpkin_seeds"},
+      {"item": "minecraft:melon_seeds"}
+    ],
+    "%": [
+      {"item": "zawa:kibble"}
+    ],
+    "T": [
+      {"item": "minecraft:apple"},
+      {"item": "minecraft:carrot"},
+      {"item": "minecraft:melon"}
+    ],
+    "G": [
+      {"item": "lilcritters:acorn"},
+      {"item": "lilcritters:pine_cone"}
+    ]
+  },
+  "result": {
+    "item": "lilcritters:rodent_kibble"
+  }
+}

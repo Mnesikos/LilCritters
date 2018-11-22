@@ -1,0 +1,26 @@
+{
+  "squirrel.ambient": {
+    "category": "ambient",
+    "subtitle": "sound.lilcritters.subtitle.squirrel.bark",
+    "sounds": [
+      {"name": "lilcritters:squirrel_bark1", "stream": true},
+      {"name": "lilcritters:squirrel_bark2", "stream": true},
+      {"name": "lilcritters:squirrel_bark3", "stream": true},
+      {"name": "lilcritters:squirrel_bark4", "stream": true},
+      {"name": "lilcritters:squirrel_bark5", "stream": true},
+      {"name": "lilcritters:squirrel_bark6", "stream": true},
+      {"name": "lilcritters:squirrel_bark7", "stream": true},
+      {"name": "lilcritters:squirrel_bark8", "stream": true}
+    ]
+  },
+  "squirrel.hurt": {
+    "category": "ambient",
+    "subtitle": "sound.lilcritters.subtitle.squirrel.hurt",
+    "sounds": [
+      {"name": "lilcritters:squirrel_hurt1", "stream": true},
+      {"name": "lilcritters:squirrel_hurt2", "stream": true},
+      {"name": "lilcritters:squirrel_hurt3", "stream": true},
+      {"name": "lilcritters:squirrel_hurt4", "stream": true}
+    ]
+  }
+}
