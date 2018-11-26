@@ -92,7 +92,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	public void onLivingUpdate() {
 		if(this.heldFood == null) {
 			EntityItem targetFood = this.getNearbyFood();
-			if(targetFood != null) {
+			if(targetFood != null && !targetFood.isDead && targetFood.getItem().getCount() >= 1) {
 				this.getLookHelper().setLookPositionWithEntity(targetFood, 10.0F, (float)this.getVerticalFaceSpeed());
 				this.getNavigator().tryMoveToEntityLiving(targetFood, 1.0D);
 				if (this.getDistanceSq(targetFood) < 9.0D)
