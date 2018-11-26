@@ -25,8 +25,7 @@ public class RenderBoxTurtle extends RenderLivingZAWA<EntityBoxTurtle> {
 
     @Override
     protected void preRenderCallback(EntityBoxTurtle entity, float partialTickTime) {
-        float scale = 0.7F + (entity.getGender() == Gender.FEMALE ? 0.02f : 0f) +
-                (float)entity.getSizeMultiplier() * (entity.getEntityWorld().rand.nextInt(1) == 0 ? 0.01f : -0.01f);
+        float scale = 0.7F + (entity.getGender() == Gender.FEMALE ? 0.02f : 0f) + (float)entity.getSizeMultiplier() * 0.01f;
         GlStateManager.scale(scale, scale, scale);
         GlStateManager.translate(0.0F, -0.01F * scale, 0.0F);
         super.preRenderCallback(entity, partialTickTime);

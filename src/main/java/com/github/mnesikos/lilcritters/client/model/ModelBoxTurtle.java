@@ -246,6 +246,8 @@ public class ModelBoxTurtle extends BookwormModelBase {
                     }
 
                     if (BookwormUtils.isEntityMoving(turtle)) {
+                    	globalDegree = 11.0F;
+                    	globalSpeed = 13.0F;
                         this.shell.rotationPointY = (float) -Math.abs((Math.sin(limbSwing * (0.2f * globalSpeed) + 1.0F) * limbSwingAmount * (0.2f * globalHeight))) + 20.0f;
                         this.neck.rotateAngleX = 1f * limbSwingAmount * (0.04f * globalDegree) * MathHelper.cos(limbSwing * (0.4f * globalSpeed) + 0f) + -0.1F;
                         this.head.rotateAngleX = -1f * limbSwingAmount * (0.02f * globalDegree) * MathHelper.cos(limbSwing * (0.4f * globalSpeed) + 0f) + 0.2F;

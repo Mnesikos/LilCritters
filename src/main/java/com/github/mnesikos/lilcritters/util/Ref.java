@@ -7,5 +7,5 @@ public class Ref {
 	public static final String ACCEPTED_VERSIONS = "[1.12.2]";
 	public static final String CLIENT_PROXY = "com.github.mnesikos.lilcritters.proxy.ClientProxy";
 	public static final String SERVER_PROXY = "com.github.mnesikos.lilcritters.proxy.ServerProxy";
-    public static final String DEPENDS = "required-before:zawa@[1.12.2-1.4.0,);";
+    public static final String DEPENDS = "required-after:zawa@[1.12.2-1.4.0,);";
 }
