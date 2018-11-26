@@ -3,8 +3,6 @@ package com.github.mnesikos.lilcritters.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import org.zawamod.entity.core.AnimalData;
 import org.zawamod.entity.core.BreedItems;
 import org.zawamod.entity.core.IMultiSpeciesEntity;
@@ -24,15 +22,16 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSpeciesEntity {
-	public boolean isSquirrelSitting;
+	private boolean isSquirrelSitting;
 	private int sitTicks;
-	public ItemStack heldFood;
+	private ItemStack heldFood = ItemStack.EMPTY;
 
 	public EntityTreeSquirrel(World world) {
 		super(world, 0.30D);
@@ -60,6 +59,25 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		this.tasks.addTask(4, new EntityAITempt(this, 1.25D, ModItems.PINE_CONE, true));
 	}
 	
+	public void setSquirrelSitting(boolean b) {
+		this.isSquirrelSitting = b;
+	}
+    
+    public void writeEntityToNBT(NBTTagCompound tagCompound)
+    {
+        super.writeEntityToNBT(tagCompound);
+        tagCompound.setTag("HeldFood", this.getHeldFood().writeToNBT(new NBTTagCompound()));
+    }
+    
+    public void readEntityFromNBT(NBTTagCompound tagCompund)
+    {
+        super.readEntityFromNBT(tagCompund);
+        if((NBTTagCompound) tagCompund.getTag("HeldFood") == null) 
+        	this.setHeldFood(ItemStack.EMPTY);
+        else
+        	this.setHeldFood(new ItemStack((NBTTagCompound) tagCompund.getTag("HeldFood")));
+    }
+
 	public void setSitting() {
 		this.aiSit.setSitting(true);
 	}
@@ -90,20 +108,22 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	
 	@Override
 	public void onLivingUpdate() {
-		if(this.heldFood == null) {
+		if(this.getHeldFood() == ItemStack.EMPTY) {
 			EntityItem targetFood = this.getNearbyFood();
 			if(targetFood != null && !targetFood.isDead && targetFood.getItem().getCount() >= 1) {
+				
 				this.getLookHelper().setLookPositionWithEntity(targetFood, 10.0F, (float)this.getVerticalFaceSpeed());
 				this.getNavigator().tryMoveToEntityLiving(targetFood, 1.0D);
-				if (this.getDistanceSq(targetFood) < 9.0D)
-				{
+				
+				if (this.getDistanceSq(targetFood) < 9.0D){
 					this.isSquirrelSitting = true;
 					this.aiSit.setSitting(true);
+
+					this.setHeldFood(targetFood.getItem());
 					
-					MessageSquirrelEat eat = new MessageSquirrelEat(this.getEntityId(), targetFood.getItem().getItem() == ModItems.ACORN ? 0 : 1);
+					MessageSquirrelEat eat = new MessageSquirrelEat(this.getEntityId(), this.getHeldFood().writeToNBT(new NBTTagCompound()));
 					ModPacketHandler.net.sendToAll(eat);
-					
-					this.heldFood = targetFood.getItem();
+					//TODO The item the squirrel eats does not get deleted/shrunk in stack size
 					targetFood.getItem().shrink(1);
 				}
 			}
@@ -116,7 +136,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		if (sitTicks >= 60) {
 			this.isSquirrelSitting = false;
 			this.aiSit.setSitting(false);
-			this.heldFood = null;
+			this.setHeldFood(ItemStack.EMPTY);
 			sitTicks = 0;
 		}
 		super.onLivingUpdate();
@@ -187,7 +207,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 			if (stack != null && (stack.getItem() == ModItems.ACORN || stack.getItem() == ModItems.PINE_CONE) && !this.isSquirrelSitting && !this.isInWater()) {
 				this.isSquirrelSitting = true;
 				this.aiSit.setSitting(true);
-				this.heldFood = new ItemStack(stack.getItem());
+				this.setHeldFood(new ItemStack(stack.getItem()));
 				if (!player.isCreative())
 					stack.shrink(1);
 				return true;
@@ -205,14 +225,12 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		return this.isSquirrelSitting;
 	}
 
-	@Nullable
 	public void setHeldFood(ItemStack stack) {
-		this.heldFood = stack;
+		this.heldFood = stack == null ? ItemStack.EMPTY : stack;
 	}
 	
-	@Nullable
 	public ItemStack getHeldFood() {
-		return this.heldFood;
+		return this.heldFood == null ? this.heldFood = ItemStack.EMPTY : this.heldFood;
 	}
 
 	@Override

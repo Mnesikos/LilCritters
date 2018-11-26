@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -69,7 +70,7 @@ public class RenderTreeSquirrel extends RenderLivingZAWA<EntityTreeSquirrel> {
 
 		@Override
 		public void doRenderLayer(EntityTreeSquirrel entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-			if (!entity.isInvisible() && entity.getIsSitting() && entity.getHeldFood() != null && !BookwormUtils.isEntityMoving(entity)) {
+			if (!entity.isInvisible() && entity.getIsSitting() && entity.getHeldFood() != ItemStack.EMPTY && !BookwormUtils.isEntityMoving(entity)) {
 				this.item.hoverStart = 0.0f;
 				this.item.setItem(entity.getHeldFood());
 
