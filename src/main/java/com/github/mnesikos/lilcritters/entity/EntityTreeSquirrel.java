@@ -29,6 +29,15 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
+import org.zawamod.entity.core.AnimalData;
+import org.zawamod.entity.core.BreedItems;
+import org.zawamod.entity.core.IMultiSpeciesEntity;
+import org.zawamod.entity.core.SpeciesData;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+
 public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSpeciesEntity {
 	public boolean isSquirrelSitting;
 	private int sitTicks;
