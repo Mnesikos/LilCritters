@@ -1,29 +1,38 @@
 package com.github.mnesikos.lilcritters.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import org.zawamod.entity.core.AnimalData;
+import org.zawamod.entity.core.BreedItems;
+import org.zawamod.entity.core.IMultiSpeciesEntity;
+import org.zawamod.entity.core.SpeciesData;
+
 import com.github.mnesikos.lilcritters.init.ModItems;
 import com.github.mnesikos.lilcritters.init.ModSoundHandler;
+import com.github.mnesikos.lilcritters.network.MessageSquirrelEat;
+import com.github.mnesikos.lilcritters.network.ModPacketHandler;
 import com.github.mnesikos.lilcritters.util.ModFoodGroups;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAISit;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAITempt;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import org.zawamod.entity.core.AnimalData;
-import org.zawamod.entity.core.BreedItems;
-import org.zawamod.entity.core.IMultiSpeciesEntity;
-import org.zawamod.entity.core.SpeciesData;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSpeciesEntity {
-	private boolean isSquirrelSitting;
+	public boolean isSquirrelSitting;
 	private int sitTicks;
-	private ItemStack heldFood;
+	public ItemStack heldFood;
 
 	public EntityTreeSquirrel(World world) {
 		super(world, 0.30D);
@@ -50,14 +59,56 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		this.tasks.addTask(4, new EntityAITempt(this, 1.25D, ModItems.ACORN, true));
 		this.tasks.addTask(4, new EntityAITempt(this, 1.25D, ModItems.PINE_CONE, true));
 	}
+	
+	public void setSitting() {
+		this.aiSit.setSitting(true);
+	}
 
 	@Override
 	public float getEyeHeight() {
 		return this.height * 0.5F;
 	}
 
+	protected final EntityItem getNearbyNut()
+	{
+		List<EntityItem> list = this.world.<EntityItem>getEntitiesWithinAABB(EntityItem.class, this.getEntityBoundingBox().grow(8.0D));
+		double d0 = Double.MAX_VALUE;
+		EntityItem item = null;
+
+		for (EntityItem itm : list)
+		{
+			if((item.getItem().getItem() == ModItems.ACORN || item.getItem().getItem() == ModItems.PINE_CONE)) {
+				if (this.getDistanceSq(itm) < d0)
+				{
+					item = itm;
+					d0 = this.getDistanceSq(itm);
+				}
+			}
+		}
+		return item;
+	}
+	
 	@Override
 	public void onLivingUpdate() {
+		if(this.heldFood == null) {
+			EntityItem targetFood = this.getNearbyFood();
+			if(targetFood != null) {
+				this.getLookHelper().setLookPositionWithEntity(targetFood, 10.0F, (float)this.getVerticalFaceSpeed());
+				this.getNavigator().tryMoveToEntityLiving(targetFood, 1.0D);
+				if (this.getDistanceSq(targetFood) < 9.0D)
+				{
+					this.isSquirrelSitting = true;
+					this.aiSit.setSitting(true);
+					
+					MessageSquirrelEat eat = new MessageSquirrelEat(this.getEntityId(), targetFood.getItem().getItem() == ModItems.ACORN ? 0 : 1);
+					ModPacketHandler.net.sendToAll(eat);
+					
+					this.heldFood = targetFood.getItem();
+					targetFood.getItem().shrink(1);
+				}
+			}
+		}
+		
 		if (isSquirrelSitting) {
 			sitTicks++;
 		}
@@ -154,6 +205,12 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		return this.isSquirrelSitting;
 	}
 
+	@Nullable
+	public void setHeldFood(ItemStack stack) {
+		this.heldFood = stack;
+	}
+	
+	@Nullable
 	public ItemStack getHeldFood() {
 		return this.heldFood;
 	}

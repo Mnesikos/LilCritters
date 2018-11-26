@@ -4,10 +4,11 @@ import com.github.mnesikos.lilcritters.event.CrittersEventHandler;
 import com.github.mnesikos.lilcritters.init.ModBlocks;
 import com.github.mnesikos.lilcritters.init.ModEntities;
 import com.github.mnesikos.lilcritters.init.ModItems;
-
 import com.github.mnesikos.lilcritters.init.ModRecipes;
+import com.github.mnesikos.lilcritters.network.ModPacketHandler;
 import com.github.mnesikos.lilcritters.util.ModFoodGroups;
 import com.github.mnesikos.lilcritters.util.Ref;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
@@ -19,7 +20,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -55,6 +58,7 @@ public class CommonProxy {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
+		ModPacketHandler.initPackets();
 		ModRecipes.init();
 		ModItems.register();
 	}
