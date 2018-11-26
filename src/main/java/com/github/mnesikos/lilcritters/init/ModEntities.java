@@ -28,7 +28,7 @@ public class ModEntities {
     public static void init() {
         int id = 1;
         EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":treesquirrel"), EntityTreeSquirrel.class, "TreeSquirrel", id++, LilCritters.instance, 80, 3, true, 0x9D8B85, 0xC35D3A);
-        EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":boxturtle"), EntityBoxTurtle.class, "BoxTurtle", id++, LilCritters.instance, 80, 3, false, 0x61380B, 0xFFBF00);
+        EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":boxturtle"), EntityBoxTurtle.class, "BoxTurtle", id++, LilCritters.instance, 80, 3, true, 0x61380B, 0xFFBF00);
 
         //EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":tufteddeer"), EntityTuftedDeer.class, "TuftedDeer", id++, LilCritters.instance, 80, 3, true, 0x977858, 0xE8E5E3);
 

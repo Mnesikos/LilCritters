@@ -17,6 +17,7 @@ import org.zawamod.entity.core.BreedItems;
 import org.zawamod.entity.core.IMultiSpeciesEntity;
 import org.zawamod.entity.core.SpeciesData;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -154,6 +155,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		return this.isSquirrelSitting;
 	}
 
+	@Nullable
 	public ItemStack getHeldFood() {
 		return this.heldFood;
 	}
