@@ -11,8 +11,8 @@
   "credits": "My lovely team of model and texture artists: Ailments concentrate, Bolcko, cheetahman123444, CodaBear1552, HobbitNerdYouTube, Jaz, LukeChange, Mr. Mubbs",
   "logoFile": "",
   "screenshots": [],
-  "requiredMods": ["forge", "zawa"],
-  "dependencies": ["forge", "zawa"],
+  "requiredMods": ["forge", "bookworm", "zawa"],
+  "dependencies": ["forge", "bookworm", "zawa"],
   "useDependencyInformation": "true"
 }
 ]

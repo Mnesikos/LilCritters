@@ -8,24 +8,30 @@ and this project adheres to
 
 ## [Unreleased]
 ### Added
-- BOX TURTLES WOOHOO!! Modeled and textured by Mr. Mubbs!
 - This CHANGELOG file.
+- Italian localization, big thank you to Manu's Projects on Discord!!
+- BOX TURTLES WOOHOO!! Modeled and textured by Mr. Mubbs!
 - Species data book support for the squirrel variants!
+- ***TODO*** Dynamic Trees compatibility for giving squirrels acorns and pine cones! (Thanks for the heads up, Sunconure11!)
 - Oak leaves now drop acorns and spruce leaves drop pine cones, as initially intended.
 - Ability for players to pick up critters by interact-clicking them with an empty hand.
 Sneaking will dismount them from your person.
 !! DO NOT exit the world before dismounting your held critters, YOU WILL LOSE THEM !!
 ### Changed
 - Squirrel size reduced slightly overall, with slight variability per squirrel.
+- ***TODO*** Squirrel variants depend on the biome they spawn in now.
+- ***TODO*** Squirrel movement animation changed!
+- Other code cleanups.
 ### Deprecated
 ### Removed
 ### Fixed
 - Squirrels now shouldn't move while in their eating pose... "shouldn't" being the keyword.
 - All nuts and seeds (Pam's HarvestCraft compatibility) are registered properly as food for squirrels.
+- ***CHECK THIS*** Stay, Follow, and Wander commands should now work properly. (Thanks for the heads up, OctoTurkey!)
 ### Security
 
 ## [1.12.2-0.0.1.1-beta2] - YYYY/MM/DD
-[Unreleased]
+
 
 ## [1.12.2-0.1.0-beta1] - 2018/10/08
 First release, discord only, no changelog, what is versioning, oops?
