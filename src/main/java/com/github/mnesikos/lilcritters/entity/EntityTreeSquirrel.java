@@ -230,7 +230,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	}
 	
 	public ItemStack getHeldFood() {
-		return this.heldFood == null ? ItemStack.EMPTY : this.heldFood;
+		return this.heldFood == null ? this.heldFood = ItemStack.EMPTY : this.heldFood;
 	}
 
 	@Override
