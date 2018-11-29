@@ -7,8 +7,6 @@ item.lilcritters.roasted_acorn.name=Ghianda Arrostita
 item.lilcritters.pine_cone.name=Pigna
 item.lilcritters.rodent_kibble.name=Mangime Per Roditori
 item.lilcritters.rodent_vial.name=Fiala Per Roditori
-item.lilcritters.reptile_kibble.name=Mangime Per Rettili
-item.lilcritters.reptile_vial.name=Fiala Per Rettili
 
 entity.TreeSquirrel.name=Scoiattolo Arboricolo
 entity.BoxTurtle.name=Tartaruga Scatola

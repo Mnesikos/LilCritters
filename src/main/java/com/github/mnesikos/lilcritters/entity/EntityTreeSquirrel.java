@@ -63,16 +63,14 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		this.isSquirrelSitting = b;
 	}
     
-    public void writeEntityToNBT(NBTTagCompound tagCompound)
-    {
+    public void writeEntityToNBT(NBTTagCompound tagCompound) {
         super.writeEntityToNBT(tagCompound);
         tagCompound.setTag("HeldFood", this.getHeldFood().writeToNBT(new NBTTagCompound()));
     }
     
-    public void readEntityFromNBT(NBTTagCompound tagCompund)
-    {
+    public void readEntityFromNBT(NBTTagCompound tagCompund) {
         super.readEntityFromNBT(tagCompund);
-        if((NBTTagCompound) tagCompund.getTag("HeldFood") == null) 
+        if(tagCompund.getTag("HeldFood") == null)
         	this.setHeldFood(ItemStack.EMPTY);
         else
         	this.setHeldFood(new ItemStack((NBTTagCompound) tagCompund.getTag("HeldFood")));
@@ -87,24 +85,22 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		return this.height * 0.5F;
 	}
 
-	protected final EntityItem getNearbyNut()
+	/*protected final EntityItem getNearbyNut()
 	{
 		List<EntityItem> list = this.world.<EntityItem>getEntitiesWithinAABB(EntityItem.class, this.getEntityBoundingBox().grow(8.0D));
 		double d0 = Double.MAX_VALUE;
 		EntityItem item = null;
 
-		for (EntityItem itm : list)
-		{
+		for (EntityItem itm : list) {
 			if((item.getItem().getItem() == ModItems.ACORN || item.getItem().getItem() == ModItems.PINE_CONE)) {
-				if (this.getDistanceSq(itm) < d0)
-				{
+				if (this.getDistanceSq(itm) < d0) {
 					item = itm;
 					d0 = this.getDistanceSq(itm);
 				}
 			}
 		}
 		return item;
-	}
+	}*/
 	
 	@Override
 	public void onLivingUpdate() {
@@ -113,9 +109,9 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 			if(targetFood != null && !targetFood.isDead && targetFood.getItem().getCount() >= 1) {
 				
 				this.getLookHelper().setLookPositionWithEntity(targetFood, 10.0F, (float)this.getVerticalFaceSpeed());
-				this.getNavigator().tryMoveToEntityLiving(targetFood, 1.0D);
+				this.getNavigator().tryMoveToEntityLiving(targetFood, 1.25D);
 				
-				if (this.getDistanceSq(targetFood) < 9.0D){
+				if (this.getDistanceSq(targetFood) < 4.0D){
 					this.isSquirrelSitting = true;
 					this.aiSit.setSitting(true);
 
@@ -123,7 +119,6 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 					
 					MessageSquirrelEat eat = new MessageSquirrelEat(this.getEntityId(), this.getHeldFood().writeToNBT(new NBTTagCompound()));
 					ModPacketHandler.net.sendToAll(eat);
-					//TODO The item the squirrel eats does not get deleted/shrunk in stack size
 					targetFood.getItem().shrink(1);
 				}
 			}
@@ -204,7 +199,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	public boolean processInteract(EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.inventory.getCurrentItem();
 		if (!stack.isEmpty()) {
-			if (stack != null && (stack.getItem() == ModItems.ACORN || stack.getItem() == ModItems.PINE_CONE) && !this.isSquirrelSitting && !this.isInWater()) {
+			if (stack != null && this.isFoodItem(stack) && !this.isSquirrelSitting && !this.isInWater()) {
 				this.isSquirrelSitting = true;
 				this.aiSit.setSitting(true);
 				this.setHeldFood(new ItemStack(stack.getItem()));
@@ -234,38 +229,31 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	}
 
 	@Override
-	public void travel(float p_191986_1_, float p_191986_2_, float p_191986_3_) {
-		if (this.isSquirrelSitting) {
-			this.motionX = 0.0D;
-			this.motionY = 0.0D;
-			this.motionZ = 0.0D;
-		}
-		super.travel(p_191986_1_, p_191986_2_, p_191986_3_);
-	}
-
-	@Override
 	public boolean attackEntityFrom(DamageSource source, float f2) {
 		if (isEntityInvulnerable(source)) {
 			return false;
 		}
 		else {
 			if (this.aiSit != null) {
-				this.aiSit.setSitting(false);
+				this.aiSit.setSitting(false); // cancels sitting when attacked
 			}
 			return super.attackEntityFrom(source, f2);
 		}
 	}
 
 	@Override
-	public void fall(float distance, float damageMultiplier) {}
+	public void fall(float distance, float damageMultiplier) {} // no fall damage for these guys
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return ModSoundHandler.SQUIRREL_AMBIENT;
+		if (this.rand.nextInt(10) == 0) // 1/10th the amount of noise
+			return ModSoundHandler.SQUIRREL_AMBIENT;
+		else
+			return null;
 	}
 
 	@Override
-	protected float getSoundVolume() {
+	protected float getSoundVolume() { // does this even do anything, I notice no difference
 		return 0.1F;
 	}
 

@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.github.mnesikos.lilcritters.items.CrittersItemBase;
 import com.github.mnesikos.lilcritters.items.ItemCrittersFood;
-import com.github.mnesikos.lilcritters.items.ItemCrittersSpawnEgg;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -26,10 +25,6 @@ public class ModItems {
 	public static final Item RODENT_KIBBLE = new CrittersItemBase("rodent_kibble");
 	@GameRegistry.ObjectHolder("lilcritters:rodent_vial")
 	public static final Item RODENT_VIAL = new CrittersItemBase("rodent_vial");
-	@GameRegistry.ObjectHolder("lilcritters:reptile_kibble")
-	public static final Item REPTILE_KIBBLE = new CrittersItemBase("reptile_kibble");
-	@GameRegistry.ObjectHolder("lilcritters:reptile_vial")
-	public static final Item REPTILE_VIAL = new CrittersItemBase("reptile_vial");
 
 	public static void register() {
 		OreDictionary.registerOre("cropAcorn", ACORN);

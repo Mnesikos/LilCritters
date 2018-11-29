@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Ref.MODID, name = Ref.NAME, version = Ref.VERSION, acceptedMinecraftVersions = Ref.ACCEPTED_VERSIONS,
-		dependencies = Ref.DEPENDS)
+		updateJSON = Ref.UPDATE_JSON, dependencies = Ref.DEPENDS)
 public class LilCritters {
 	@Mod.Instance
 	public static LilCritters instance;

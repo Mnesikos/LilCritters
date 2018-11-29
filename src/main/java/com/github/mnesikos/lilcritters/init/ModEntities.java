@@ -13,6 +13,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -38,6 +39,8 @@ public class ModEntities {
 
             //EntityRegistry.addSpawn(EntityTuftedDeer.class, LilCrittersConfig.spawns.tuftedDeer.spawnChance, LilCrittersConfig.spawns.tuftedDeer.minGroup, LilCrittersConfig.spawns.tuftedDeer.maxGroup, EnumCreatureType.CREATURE, getAllBiomesOf(BiomeDictionary.Type.HILLS, BiomeDictionary.Type.FOREST));
         }
+
+        LootTableList.register(EntityBoxTurtle.LOOT);
     }
 
     private static Biome[] getAllBiomesOf(BiomeDictionary.Type... type) {

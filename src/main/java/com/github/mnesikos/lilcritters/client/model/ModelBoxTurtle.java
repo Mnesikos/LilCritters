@@ -225,12 +225,12 @@ public class ModelBoxTurtle extends BookwormModelBase {
             super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
             this.reset();
 
-            float globalSpeed = 10f;
-            float globalDegree = 10f;
-            float globalHeight = 1f;
+            float globalSpeed = 6.0f;
+            float globalDegree = 2.0f;
+            float globalHeight = 4.0f;
             if (this.isChild) {
-                globalSpeed = 1f;
-                globalDegree = 1f;
+                globalSpeed = 2f;
+                globalDegree = 2f;
                 globalHeight = 1f;
             }
 
@@ -241,24 +241,28 @@ public class ModelBoxTurtle extends BookwormModelBase {
 
                 if (!turtle.isRiding()) {
                     if (turtle.isInWater()) {
-                        limbSwing = (float)entity.ticksExisted;
-                        limbSwingAmount = 1.0F;
+                        limbSwing = (float)entity.ticksExisted / 10F;
+                        limbSwingAmount = 0.1F;
                     }
 
-                    if (BookwormUtils.isEntityMoving(turtle)) {
-                        this.shell.rotationPointY = (float) -Math.abs((Math.sin(limbSwing * (0.2f * globalSpeed) + 1.0F) * limbSwingAmount * (0.2f * globalHeight))) + 19.7f;
-                        this.neck.rotateAngleX = 1f * limbSwingAmount * (0.04f * globalDegree) * MathHelper.cos(limbSwing * (0.4f * globalSpeed) + 0f) + -0.1F;
-                        this.head.rotateAngleX = -1f * limbSwingAmount * (0.02f * globalDegree) * MathHelper.cos(limbSwing * (0.4f * globalSpeed) + 0f) + 0.2F;
-                        this.tail.rotateAngleX = -1f * limbSwingAmount * (0.04f * globalDegree) * MathHelper.cos(limbSwing * (0.4f * globalSpeed) + 0f) + -0.28F;
+                    if (BookwormUtils.isEntityMoving(turtle) || turtle.isInWater()) {
+                        // TODO this pretty broken when the turtle is smacked/on a lead
+                        this.shell.rotationPointY = (float) -Math.abs((Math.sin(limbSwing * (0.5f * globalSpeed) + 1.0F) * limbSwingAmount * (0.5f * globalHeight))) + 19.7f;
+                        this.neck.rotateAngleX = 1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + -0.1F;
+                        this.head.rotateAngleX = -1f * limbSwingAmount * (0.05f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0.2F;
+                        this.tail.rotateAngleX = -1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + -0.28F;
 
-                        this.frontLeftLeg.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.2f * globalSpeed) + 0f) + -0.6F;
-                        this.frontLeftFoot.rotateAngleX = -1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (0.2f * globalSpeed) + 1f) + 0.5F;
-                        this.frontRightLeg.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.2f * globalSpeed) + 0f) + -0.6F;
-                        this.frontRightFoot.rotateAngleX = 1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (0.2f * globalSpeed) + 1f) + 0.5F;
-                        this.backRightLeg.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.2f * globalSpeed) + 0f) + -0.6F;
-                        this.backRightFoot.rotateAngleX = -1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (0.2f * globalSpeed) + 1f) + 0.5F;
-                        this.backLeftLeg.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.2f * globalSpeed) + 0f) + -0.6F;
-                        this.backLeftFoot.rotateAngleX = 1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (0.2f * globalSpeed) + 1f) + 0.5F;
+                        this.frontLeftLeg.rotateAngleX = 1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
+                        this.frontLeftFoot.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
+                        this.frontRightLeg.rotateAngleX = -1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
+                        this.frontRightFoot.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
+
+                        this.backRightLeg.rotateAngleX = -1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
+                        this.backRightLeg.rotateAngleZ = 1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + 0.0F;
+                        this.backRightFoot.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
+                        this.backLeftLeg.rotateAngleX = 1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
+                        this.backLeftLeg.rotateAngleZ = 1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + 0.0F;
+                        this.backLeftFoot.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
 
                     } else if (ZAWAConfig.livingAnimations && !BookwormUtils.isEntityMoving(turtle)) {
                         // TODO
@@ -274,7 +278,7 @@ public class ModelBoxTurtle extends BookwormModelBase {
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
-    protected void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+    private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
