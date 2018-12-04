@@ -5,6 +5,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
 import org.zawamod.entity.core.BreedItems;
 
@@ -13,9 +15,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ModFoodGroups {
-    public static List<Item> seeds = new ArrayList();
-    public static List<Item> nuts = new ArrayList();
-    public static List<Item> vegetation = new ArrayList();
+    private static List<Item> seeds = new ArrayList<>();
+    private static List<Item> nuts = new ArrayList<>();
+    private static List<Item> vegetation = new ArrayList<>();
 
     public static void registerFoodGroups() {
         seeds.add(Items.MELON_SEEDS);
@@ -23,31 +25,31 @@ public class ModFoodGroups {
         seeds.add(Items.WHEAT_SEEDS);
         seeds.add(Items.BEETROOT_SEEDS);
         NonNullList<ItemStack> seedDictionary = OreDictionary.getOres("listAllseed");
-        Iterator seedIterator = seedDictionary.iterator();
-        while(seedIterator.hasNext()) {
-            ItemStack stack = (ItemStack) seedIterator.next();
-            seeds.add(stack.getItem());
+        for (ItemStack stk : seedDictionary) {
+            seeds.add(stk.getItem());
         }
 
         NonNullList<ItemStack> nutDictionary = OreDictionary.getOres("listAllnut");
-        Iterator nutIterator = nutDictionary.iterator();
-        while (nutIterator.hasNext()) {
-            ItemStack stack = (ItemStack) nutIterator.next();
-            nuts.add(stack.getItem());
+        for (ItemStack stk : nutDictionary) {
+            nuts.add(stk.getItem());
+        }
+        if (Loader.isModLoaded("dynamictrees")) {
+            for (Item itm : ForgeRegistries.ITEMS.getValuesCollection()) {
+                if (itm.getRegistryName().getResourceDomain().equals("dynamictrees") &&
+                        itm.getRegistryName().getResourcePath().contains("seed")) {
+                    nuts.add(itm);
+                }
+            }
         }
 
         vegetation.add(Item.getItemFromBlock(Blocks.TALLGRASS));
         NonNullList<ItemStack> leafDictionary = OreDictionary.getOres("treeLeaves");
-        Iterator leafIterator = leafDictionary.iterator();
-        while (leafIterator.hasNext()) {
-            ItemStack stack = (ItemStack) leafIterator.next();
-            vegetation.add(stack.getItem());
+        for (ItemStack stk : leafDictionary) {
+            vegetation.add(stk.getItem());
         }
         NonNullList<ItemStack> stickDictionary = OreDictionary.getOres("stickWood");
-        Iterator stickIterator = stickDictionary.iterator();
-        while (stickIterator.hasNext()) {
-            ItemStack stack = (ItemStack) stickIterator.next();
-            vegetation.add(stack.getItem());
+        for (ItemStack stk : stickDictionary) {
+            vegetation.add(stk.getItem());
         }
     }
 

@@ -6,15 +6,6 @@ The format is based on
 and this project adheres to 
 [Forge Versioning Conventions](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
-## [Unreleased]
-### Added
-### Changed
-### Deprecated
-### Removed
-### Fixed
-### Security
-
-
 ## [1.12.2-0.0.1.1-beta2] - YYYY/MM/DD
 ### Added
 - This CHANGELOG file.
@@ -22,10 +13,10 @@ and this project adheres to
 - BOX TURTLES WOOHOO!! Modeled and textured by Mr. Mubbs!
 - Data book support for species variants.
 - Oak leaves now drop acorns and spruce leaves drop pine cones, as initially intended.
+- Squirrels will eat dropped food items, courtesy of SoggyMustache! Watch your nuts.
 - Ability for players to pick up critters by interact-clicking them with an empty hand. 
     Sneaking will dismount them from your person.
     !! DO NOT exit the world before dismounting your held critters, YOU WILL LOSE THEM !!
-- Squirrels will eat dropped food items! Watch your nuts.
 ### Changed
 - Squirrel size reduced slightly overall, with slight variability per squirrel.
 - You can now hand feed squirrels any item they consider food! 

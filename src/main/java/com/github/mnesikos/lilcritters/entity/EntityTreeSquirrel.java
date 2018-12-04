@@ -54,7 +54,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		super.initEntityAI();
 		this.aiSit = new EntityAISit(this);
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(2, this.aiSit);
+		this.tasks.addTask(0, this.aiSit);
 		this.tasks.addTask(4, new EntityAITempt(this, 1.25D, ModItems.ACORN, true));
 		this.tasks.addTask(4, new EntityAITempt(this, 1.25D, ModItems.PINE_CONE, true));
 	}
@@ -68,12 +68,12 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
         tagCompound.setTag("HeldFood", this.getHeldFood().writeToNBT(new NBTTagCompound()));
     }
     
-    public void readEntityFromNBT(NBTTagCompound tagCompund) {
-        super.readEntityFromNBT(tagCompund);
-        if(tagCompund.getTag("HeldFood") == null)
+    public void readEntityFromNBT(NBTTagCompound tagCompound) {
+        super.readEntityFromNBT(tagCompound);
+        if(tagCompound.getTag("HeldFood") == null)
         	this.setHeldFood(ItemStack.EMPTY);
         else
-        	this.setHeldFood(new ItemStack((NBTTagCompound) tagCompund.getTag("HeldFood")));
+        	this.setHeldFood(new ItemStack((NBTTagCompound) tagCompound.getTag("HeldFood")));
     }
 
 	public void setSitting() {
@@ -111,7 +111,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 				this.getLookHelper().setLookPositionWithEntity(targetFood, 10.0F, (float)this.getVerticalFaceSpeed());
 				this.getNavigator().tryMoveToEntityLiving(targetFood, 1.25D);
 				
-				if (this.getDistanceSq(targetFood) < 4.0D){
+				if (this.getDistanceSq(targetFood) < 2.0D){
 					this.isSquirrelSitting = true;
 					this.aiSit.setSitting(true);
 
@@ -164,7 +164,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	}
 
 	public List<SpeciesData> speciesData() {
-		List<SpeciesData> lst = new ArrayList();
+		List<SpeciesData> lst = new ArrayList<>();
 		lst.add(new SpeciesData("Eastern Gray", 0));
 		lst.add(new SpeciesData("Mexican Gray", 1));
 		lst.add(new SpeciesData("Eastern Fox", 2));
@@ -216,6 +216,21 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		return super.processInteract(player, hand);
 	}
 
+	@Override
+	protected boolean isMovementBlocked() {
+		return this.isSquirrelSitting || super.isMovementBlocked();
+	}
+
+	@Override
+	public void travel(float strafe, float vertical, float forward) {
+		if (this.isSquirrelSitting) {
+			this.motionX = 0.0D;
+			this.motionY = 0.0D;
+			this.motionZ = 0.0D;
+		}
+		super.travel(strafe, vertical, forward);
+	}
+
 	public boolean getIsSitting() {
 		return this.isSquirrelSitting;
 	}
@@ -246,7 +261,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		if (this.rand.nextInt(10) == 0) // 1/10th the amount of noise
+		if (this.rand.nextInt(4) == 0) // 1/4th the amount of noise
 			return ModSoundHandler.SQUIRREL_AMBIENT;
 		else
 			return null;
