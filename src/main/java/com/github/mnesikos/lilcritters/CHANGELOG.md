@@ -12,6 +12,7 @@ and this project adheres to
 - Italian localization, big thank you to Manu's Projects on Discord!!
 - BOX TURTLES WOOHOO!! Modeled and textured by Mr. Mubbs!
 - Data book support for species variants.
+- Temporary Squirrel climbing. (No idea if it actually works lol, more testing will be done for the next release.)
 - Oak leaves now drop acorns and spruce leaves drop pine cones, as initially intended.
 - Squirrels will eat dropped food items, courtesy of SoggyMustache! Watch your nuts.
 - Ability for players to pick up critters by interact-clicking them with an empty hand. 
