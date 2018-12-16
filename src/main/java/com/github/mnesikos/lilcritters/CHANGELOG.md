@@ -6,7 +6,7 @@ The format is based on
 and this project adheres to 
 [Forge Versioning Conventions](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
-## [1.12.2-0.0.1.1-beta2] - YYYY/MM/DD
+## [1.12.2-0.0.1.1-beta2] - 2018/12/16
 ### Added
 - This CHANGELOG file.
 - Italian localization, big thank you to Manu's Projects on Discord!!
