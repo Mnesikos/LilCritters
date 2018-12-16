@@ -70,7 +70,7 @@ public class EntityBoxTurtle extends EntityBase implements IMultiSpeciesEntity {
 
     @Override
     public List<SpeciesData> speciesData() {
-        List<SpeciesData> lst = new ArrayList();
+        List<SpeciesData> lst = new ArrayList<>();
         lst.add(new SpeciesData("Common", 0));
         lst.add(new SpeciesData("Desert", 1));
         lst.add(new SpeciesData("Eastern", 2));

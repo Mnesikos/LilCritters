@@ -20,7 +20,6 @@ public class LilCritters {
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		System.out.println(Ref.NAME + " is loading!");
 		PROXY.preInit(event);
 	}
 	

@@ -40,6 +40,39 @@ public class ModFoodGroups {
                     nuts.add(itm);
                 }
             }
+
+            if (Loader.isModLoaded("dynamictreesbop")) {
+                for (Item itm : ForgeRegistries.ITEMS.getValuesCollection()) {
+                    if (itm.getRegistryName().getResourceDomain().equals("dynamictreesbop") &&
+                            itm.getRegistryName().getResourcePath().contains("seed")) {
+                        nuts.add(itm);
+                    }
+                }
+            }
+            if (Loader.isModLoaded("dynamictreestc")) {
+                for (Item itm : ForgeRegistries.ITEMS.getValuesCollection()) {
+                    if (itm.getRegistryName().getResourceDomain().equals("dynamictreestc") &&
+                            itm.getRegistryName().getResourcePath().contains("seed")) {
+                        nuts.add(itm);
+                    }
+                }
+            }
+            if (Loader.isModLoaded("rustic")) {
+                for (Item itm : ForgeRegistries.ITEMS.getValuesCollection()) {
+                    if (itm.getRegistryName().getResourceDomain().equals("rustic") &&
+                            itm.getRegistryName().getResourcePath().contains("seed")) {
+                        nuts.add(itm);
+                    }
+                }
+            }
+            if (Loader.isModLoaded("dttraverse")) {
+                for (Item itm : ForgeRegistries.ITEMS.getValuesCollection()) {
+                    if (itm.getRegistryName().getResourceDomain().equals("dttraverse") &&
+                            itm.getRegistryName().getResourcePath().contains("seed")) {
+                        nuts.add(itm);
+                    }
+                }
+            }
         }
 
         vegetation.add(Item.getItemFromBlock(Blocks.TALLGRASS));
