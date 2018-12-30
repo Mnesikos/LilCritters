@@ -39,15 +39,16 @@ public class MessageSquirrelEat implements IMessage {
 		@Override
 		public IMessage onMessage(MessageSquirrelEat message, MessageContext ctx) {
 			EntityTreeSquirrel squirrel = (EntityTreeSquirrel) Minecraft.getMinecraft().player.world.getEntityByID(message.entityId);
-			
-			squirrel.setSquirrelSitting(true);
-			squirrel.setSitting();
-			
-			if(message.entitySyncDataCompound != null)
-				squirrel.setHeldFood(new ItemStack(message.entitySyncDataCompound));
-			else
-				squirrel.setHeldFood(ItemStack.EMPTY);
-			
+
+			if (squirrel != null) {
+				squirrel.setSquirrelSitting(true);
+				squirrel.setSitting();
+
+				if (message.entitySyncDataCompound != null)
+					squirrel.setHeldFood(new ItemStack(message.entitySyncDataCompound));
+				else
+					squirrel.setHeldFood(ItemStack.EMPTY);
+			}
 			return null;
 		}
 	}

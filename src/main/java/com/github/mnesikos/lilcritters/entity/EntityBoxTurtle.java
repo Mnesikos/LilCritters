@@ -1,6 +1,6 @@
 package com.github.mnesikos.lilcritters.entity;
 
-import com.github.mnesikos.lilcritters.init.ModItems;
+import com.github.mnesikos.lilcritters.util.Ref;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -8,18 +8,21 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import org.zawamod.entity.core.AnimalData;
 import org.zawamod.entity.core.BreedItems;
 import org.zawamod.entity.core.IMultiSpeciesEntity;
 import org.zawamod.entity.core.SpeciesData;
+import org.zawamod.init.ZAWAItems;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EntityBoxTurtle extends EntityBase implements IMultiSpeciesEntity {
+    public static final ResourceLocation LOOT = new ResourceLocation(Ref.MODID, "entities/box_turtle");
 
     public EntityBoxTurtle(World world) {
         super(world, 0.10D);
@@ -52,12 +55,12 @@ public class EntityBoxTurtle extends EntityBase implements IMultiSpeciesEntity {
 
     @Override
     public ItemStack setVial() {
-        return new ItemStack(ModItems.REPTILE_VIAL, 1);
+        return new ItemStack(ZAWAItems.tortoise_vial, 1);
     }
 
     @Override
     public ItemStack setTameItem() {
-        return new ItemStack(ModItems.REPTILE_KIBBLE, 1);
+        return new ItemStack(ZAWAItems.tortoise_kibble, 1);
     }
 
     @Override
@@ -67,7 +70,7 @@ public class EntityBoxTurtle extends EntityBase implements IMultiSpeciesEntity {
 
     @Override
     public List<SpeciesData> speciesData() {
-        List<SpeciesData> lst = new ArrayList();
+        List<SpeciesData> lst = new ArrayList<>();
         lst.add(new SpeciesData("Common", 0));
         lst.add(new SpeciesData("Desert", 1));
         lst.add(new SpeciesData("Eastern", 2));
@@ -108,6 +111,12 @@ public class EntityBoxTurtle extends EntityBase implements IMultiSpeciesEntity {
             return true;
         }
         return super.processInteract(player, hand);
+    }
+
+    @Nullable
+    @Override
+    protected ResourceLocation getLootTable() {
+        return LOOT;
     }
 
     @Nullable

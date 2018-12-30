@@ -105,12 +105,12 @@ public abstract class EntityBase extends ZAWABaseLand {
 
 	@Override
 	public boolean canBeLeashedTo(EntityPlayer player) {
-		return player.isCreative();
+		return player.isCreative(); // can only be leashed by players in creative mode
 	}
 
 	@Override
 	public int getTalkInterval() {
-		return 240;
+		return 240; // higher number = less talkative
 	}
 
 	@Override
@@ -118,18 +118,4 @@ public abstract class EntityBase extends ZAWABaseLand {
 
 	@Override
 	protected abstract SoundEvent getHurtSound(DamageSource damageSourceIn);
-
-	@Override
-	protected float getSoundVolume() {
-		return super.getSoundVolume();
-	}
-
-	@Override
-	protected float getSoundPitch() {
-		return super.getSoundPitch();
-	}
-
-	static {
-		//EGG_SPAWNED = EntityDataManager.createKey(EntityBase.class, DataSerializers.BOOLEAN);
-	}
 }
