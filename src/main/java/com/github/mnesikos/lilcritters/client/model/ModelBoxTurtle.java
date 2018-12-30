@@ -269,6 +269,9 @@ public class ModelBoxTurtle extends BookwormModelBase {
 
                     }
                 }
+                if (turtle.getIsHiding() && !BookwormUtils.isEntityMoving(turtle)) {
+                    
+                }
             }
         } else {
             return;

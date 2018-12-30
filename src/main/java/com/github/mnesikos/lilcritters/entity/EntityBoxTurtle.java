@@ -2,6 +2,7 @@ package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.util.Ref;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,6 +24,8 @@ import java.util.List;
 
 public class EntityBoxTurtle extends EntityBase implements IMultiSpeciesEntity {
     public static final ResourceLocation LOOT = new ResourceLocation(Ref.MODID, "entities/box_turtle");
+    private boolean isTurtleHiding;
+
 
     public EntityBoxTurtle(World world) {
         super(world, 0.10D);
@@ -50,17 +53,51 @@ public class EntityBoxTurtle extends EntityBase implements IMultiSpeciesEntity {
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 8;
+        return 2;
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (source.getTrueSource() instanceof EntityLiving) {
+            this.isTurtleHiding = true;
+        }
+        if (this.isTurtleHiding) {
+            amount *= 0.2F;
+        }
+        return super.attackEntityFrom(source, amount);
+    }
+
+    public void setTurtleHiding(boolean b) {
+        this.isTurtleHiding = b;
+    }
+
+    public boolean getIsHiding() {
+        return this.isTurtleHiding;
+    }
+
+    @Override
+    protected boolean isMovementBlocked() {
+        return this.isTurtleHiding || super.isMovementBlocked();
+    }
+
+    @Override
+    public void travel(float strafe, float vertical, float forward) {
+        if (this.isTurtleHiding) {
+            this.motionX = 0.0D;
+            this.motionY = 0.0D;
+            this.motionZ = 0.0D;
+        }
+        super.travel(strafe, vertical, forward);
     }
 
     @Override
     public ItemStack setVial() {
-        return new ItemStack(ZAWAItems.tortoise_vial, 1);
+        return new ItemStack(ZAWAItems.TORTOISE_VIAL, 1);
     }
 
     @Override
     public ItemStack setTameItem() {
-        return new ItemStack(ZAWAItems.tortoise_kibble, 1);
+        return new ItemStack(ZAWAItems.TORTOISE_KIBBLE, 1);
     }
 
     @Override

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class ModItems {
-	public static final List<Item> ITEMS = new ArrayList();
+	public static final List<Item> ITEMS = new ArrayList<>();
 
 	//public static final Item tree_squirrel_egg = new ItemCrittersSpawnEgg("tree_squirrel");
 

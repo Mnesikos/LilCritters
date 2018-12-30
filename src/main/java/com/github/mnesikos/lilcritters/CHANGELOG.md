@@ -6,6 +6,9 @@ The format is based on
 and this project adheres to 
 [Forge Versioning Conventions](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.12.2-0.0.1.2-beta3] - 2018/12/30
+- Updated to work with ZAWA 1.5.2
+
 ## [1.12.2-0.0.1.1-beta2] - 2018/12/16
 ### Added
 - This CHANGELOG file.
@@ -30,5 +33,5 @@ and this project adheres to
 
 
 ## [1.12.2-0.0.1.0-beta1] - 2018/10/08
-- First release, discord only no changelog what was versioning oops? 
+- First release, discord only, no changelog, what was versioning, oops? 
     TLDR; mess.

@@ -46,11 +46,6 @@ public abstract class EntityBase extends ZAWABaseLand {
 	}*/
 
 	@Override
-	protected boolean canDespawn() {
-		return !this.isTamed();
-	}
-
-	@Override
 	public void updateRidden() {
 		Entity entity = this.getRidingEntity();
 		if (this.isRiding() && entity.isDead) {
