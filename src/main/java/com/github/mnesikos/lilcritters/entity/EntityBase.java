@@ -36,9 +36,6 @@ public abstract class EntityBase extends ZAWABaseLand {
 		return null;
 	}
 
-	@Override
-	public abstract int getMaxSpawnedInChunk();
-
 	// might adjust this sometime
 	/*@Override
 	public boolean getCanSpawnHere() {

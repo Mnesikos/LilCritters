@@ -2,7 +2,7 @@ package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.util.Ref;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +25,7 @@ import java.util.List;
 public class EntityBoxTurtle extends EntityBase implements IMultiSpeciesEntity {
     public static final ResourceLocation LOOT = new ResourceLocation(Ref.MODID, "entities/box_turtle");
     private boolean isTurtleHiding;
+    private EntityLivingBase attacker;
 
 
     public EntityBoxTurtle(World world) {
@@ -51,15 +52,32 @@ public class EntityBoxTurtle extends EntityBase implements IMultiSpeciesEntity {
         return this.height * 0.4F;
     }
 
-    @Override
+    /*@Override
     public int getMaxSpawnedInChunk() {
         return 2;
+    }*/
+
+    @Override
+    public void onLivingUpdate() {
+        if (this.isTurtleHiding) {
+            if (this.attacker == null || this.attacker.isDead) {
+                this.isTurtleHiding = false;
+            } else {
+                if (getDistance(attacker) > 10.0D) {
+                    this.attacker = null;
+                    this.isTurtleHiding = false;
+                }
+            }
+        }
+
+        super.onLivingUpdate();
     }
 
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
-        if (source.getTrueSource() instanceof EntityLiving) {
+        if (source.getTrueSource() instanceof EntityLivingBase) {
             this.isTurtleHiding = true;
+            this.attacker = (EntityLivingBase)source.getTrueSource();
         }
         if (this.isTurtleHiding) {
             amount *= 0.2F;
