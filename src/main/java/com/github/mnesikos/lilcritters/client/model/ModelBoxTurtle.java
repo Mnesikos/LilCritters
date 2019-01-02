@@ -239,7 +239,7 @@ public class ModelBoxTurtle extends BookwormModelBase {
                 this.neck.rotateAngleX = (headPitch / (180F / (float)Math.PI)) - 0.10471975511965977F;
                 this.neck.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
 
-                if (!turtle.isRiding()) {
+                if (!turtle.isRiding() && !turtle.getIsHiding()) {
                     if (turtle.isInWater()) {
                         limbSwing = (float)entity.ticksExisted / 10F;
                         limbSwingAmount = 0.1F;
@@ -269,7 +269,18 @@ public class ModelBoxTurtle extends BookwormModelBase {
 
                     }
                 }
+                if (turtle.getIsHiding() && !BookwormUtils.isEntityMoving(turtle)) {
+                    this.reset();
+                    this.shell.setRotationPoint(0.0F, 21.1F, 0.0F);
+                    this.neck.setRotationPoint(0.0F, 0.1F, 5.0F);
+                    this.tail.setRotationPoint(0.0F, 1.0F, -1.5F);
+                    this.frontRightLeg.setRotationPoint(-2.2F, -2.3F, -2.6F);
+                    this.frontLeftLeg.setRotationPoint(2.2F, -2.3F, -2.6F);
+                    this.backRightLeg.setRotationPoint(-1.8F, -1.3F, 1.7F);
+                    this.backLeftLeg.setRotationPoint(1.8F, -1.3F, 1.7F);
+                }
             }
+
         } else {
             return;
         }

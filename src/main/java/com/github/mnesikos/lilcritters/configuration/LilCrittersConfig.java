@@ -25,7 +25,7 @@ public class LilCrittersConfig {
         /*@Config.Name("Tufted Deer")
         public final SpawnSettings tuftedDeer = new SpawnSettings(2, 1, 1);*/
         @Config.Name("Box Turtles")
-        public final SpawnSettings turtle = new SpawnSettings(3, 1, 1);
+        public final SpawnSettings turtle = new SpawnSettings(20, 1, 1);
     }
 
     public static class SpawnSettings {
