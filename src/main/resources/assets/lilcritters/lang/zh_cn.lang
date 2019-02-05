@@ -1,0 +1,16 @@
+itemGroup.lilcritters.tab=Lil的小动物
+
+config.lilcritters.title=Lil的小动物配置
+
+item.lilcritters.acorn.name=松果
+item.lilcritters.roasted_acorn.name=烤松果
+item.lilcritters.pine_cone.name=松球
+item.lilcritters.rodent_kibble.name=啮齿动物粗粮
+item.lilcritters.rodent_vial.name=啮齿动物药瓶
+
+entity.TreeSquirrel.name=松鼠
+entity.BoxTurtle.name=箱龟
+entity.TuftedDeer.name=毛冠麂
+
+sound.lilcritters.subtitle.squirrel.bark=松鼠喋喋不休
+sound.lilcritters.subtitle.squirrel.hurt=松鼠受伤了
