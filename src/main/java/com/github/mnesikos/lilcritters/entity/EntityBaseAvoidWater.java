@@ -5,8 +5,8 @@ import net.minecraft.world.World;
 
 public abstract class EntityBaseAvoidWater extends EntityBase {
 
-    public EntityBaseAvoidWater(World world, Double defaultSpeed) {
-        super(world, defaultSpeed);
+    public EntityBaseAvoidWater(World world) {
+        super(world);
     }
 
     @Override

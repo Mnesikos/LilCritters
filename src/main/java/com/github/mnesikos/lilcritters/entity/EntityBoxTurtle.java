@@ -29,7 +29,7 @@ public class EntityBoxTurtle extends EntityBase implements IMultiSpeciesEntity {
 
 
     public EntityBoxTurtle(World world) {
-        super(world, 0.10D);
+        super(world);
         setSize(0.5F, 0.4F);
     }
 
