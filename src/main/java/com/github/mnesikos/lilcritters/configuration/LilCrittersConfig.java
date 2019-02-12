@@ -7,7 +7,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Config(modid = Ref.MODID)
+@Config(modid = Ref.MODID, name = "LilCritters/" + Ref.VERSION +"/"+ Ref.MODID)
 @Config.LangKey("config.lilcritters.title")
 public class LilCrittersConfig {
     @Config.Name("Separate Natural Spawns")
@@ -17,11 +17,19 @@ public class LilCrittersConfig {
     @Config.Comment("This only works if Separate Natural Spawns is set to true. Set this to false to disable all Lil' Critters spawning.")
     public static boolean naturalSpawns = true;
 
+    @Config.Name("Tree Seed Drops")
+    @Config.Comment("Set this to false if you wish to disable acorns and pine cones from dropping from leaves.")
+    public static boolean enableTreeSeedDrops = true;
+    @Config.Name("Tree Seed Drops Chance")
+    @Config.Comment("Set this to adjust acorn and pine cone drop rates.")
+    @Config.RangeDouble(min = 0.0, max = 1.0)
+    public static double treeSeedDropsChance = 0.08;
+
     @Config.Comment("Spawns Configuration")
     public static final Spawns spawns = new Spawns();
     public static class Spawns {
         @Config.Name("Tree Squirrels")
-        public final SpawnSettings squirrel = new SpawnSettings(3, 1, 2);
+        public final SpawnSettings squirrel = new SpawnSettings(50, 1, 2);
         /*@Config.Name("Tufted Deer")
         public final SpawnSettings tuftedDeer = new SpawnSettings(2, 1, 1);*/
         @Config.Name("Box Turtles")

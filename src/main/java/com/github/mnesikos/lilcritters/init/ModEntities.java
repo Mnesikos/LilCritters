@@ -34,7 +34,7 @@ public class ModEntities {
         //EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":tufteddeer"), EntityTuftedDeer.class, "TuftedDeer", id++, LilCritters.instance, 80, 3, true, 0x977858, 0xE8E5E3);
 
         if ((ZAWAConfig.canSpawn && !LilCrittersConfig.separateNaturalSpawns) || (LilCrittersConfig.separateNaturalSpawns && LilCrittersConfig.naturalSpawns)) {
-            EntityRegistry.addSpawn(EntityTreeSquirrel.class, LilCrittersConfig.spawns.squirrel.spawnChance, LilCrittersConfig.spawns.squirrel.minGroup, LilCrittersConfig.spawns.squirrel.maxGroup, EnumCreatureType.AMBIENT, getAllBiomesOf(BiomeDictionary.Type.FOREST));
+            EntityRegistry.addSpawn(EntityTreeSquirrel.class, LilCrittersConfig.spawns.squirrel.spawnChance, LilCrittersConfig.spawns.squirrel.minGroup, LilCrittersConfig.spawns.squirrel.maxGroup, EnumCreatureType.CREATURE, getAllBiomesOf(BiomeDictionary.Type.FOREST));
             EntityRegistry.addSpawn(EntityBoxTurtle.class, LilCrittersConfig.spawns.turtle.spawnChance, LilCrittersConfig.spawns.turtle.minGroup, LilCrittersConfig.spawns.turtle.maxGroup, EnumCreatureType.CREATURE, excludeBiomes(getAllBiomesOf(BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.PLAINS), BiomeDictionary.Type.COLD));
 
             //EntityRegistry.addSpawn(EntityTuftedDeer.class, LilCrittersConfig.spawns.tuftedDeer.spawnChance, LilCrittersConfig.spawns.tuftedDeer.minGroup, LilCrittersConfig.spawns.tuftedDeer.maxGroup, EnumCreatureType.CREATURE, getAllBiomesOf(BiomeDictionary.Type.HILLS, BiomeDictionary.Type.FOREST));

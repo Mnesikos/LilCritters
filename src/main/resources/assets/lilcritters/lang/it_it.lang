@@ -1,0 +1,16 @@
+itemGroup.lilcritters.tab=Lil' Critters
+
+config.lilcritters.title=Lil' Critters Config
+
+item.lilcritters.acorn.name=Ghianda
+item.lilcritters.roasted_acorn.name=Ghianda Arrostita
+item.lilcritters.pine_cone.name=Pigna
+item.lilcritters.rodent_kibble.name=Mangime Per Roditori
+item.lilcritters.rodent_vial.name=Fiala Per Roditori
+
+entity.TreeSquirrel.name=Scoiattolo Arboricolo
+entity.BoxTurtle.name=Tartaruga Scatola
+entity.TuftedDeer.name=Cervo Dal Ciuffo
+
+sound.lilcritters.subtitle.squirrel.bark=Squittio
+sound.lilcritters.subtitle.squirrel.hurt=Scoiattolo Dolorante

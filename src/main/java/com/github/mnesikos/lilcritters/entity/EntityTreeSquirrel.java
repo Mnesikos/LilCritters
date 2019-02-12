@@ -208,7 +208,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 
 	@Override
 	public int setVariants() {
-		return 5;
+		return 7;
 	}
 
 	@Override
@@ -224,6 +224,8 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 		lst.add(new SpeciesData("Eastern Fox", 2));
 		lst.add(new SpeciesData("Eurasian Red", 3));
 		lst.add(new SpeciesData("Prevost's", 4));
+		lst.add(new SpeciesData("Forest Giant", 5));
+		lst.add(new SpeciesData("Peruvian Lightning", 6));
 		return lst;
 	}
 

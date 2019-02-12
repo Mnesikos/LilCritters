@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.soggymustache.bookworm.util.BookwormUtils;
@@ -23,6 +24,8 @@ public class RenderTreeSquirrel extends RenderLivingZAWA<EntityTreeSquirrel> {
 	private static final ResourceLocation EAST_FOX = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_3.png");
 	private static final ResourceLocation EURA_RED = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_4.png");
 	private static final ResourceLocation PREVOST = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_5.png");
+	private static final ResourceLocation FR_GIANT = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_6.png");
+	private static final ResourceLocation LIGHTNIN = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_lightning.png");
 
 	public RenderTreeSquirrel(RenderManager render) {
 		super(render, new ModelTreeSquirrel(), 0.2F);
@@ -40,7 +43,12 @@ public class RenderTreeSquirrel extends RenderLivingZAWA<EntityTreeSquirrel> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityTreeSquirrel entity) {
-		return this.getTextureOfVar(entity.getAnimalType());
+		String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName());
+		if (s != null && s.equals("Captain")) {
+			return LIGHTNIN;
+		} else {
+			return this.getTextureOfVar(entity.getAnimalType());
+		}
 	}
 
 	@Override
@@ -57,6 +65,8 @@ public class RenderTreeSquirrel extends RenderLivingZAWA<EntityTreeSquirrel> {
 				return EURA_RED;
 			case 4:
 				return PREVOST;
+			case 5:
+				return FR_GIANT;
 		}
 	}
 
