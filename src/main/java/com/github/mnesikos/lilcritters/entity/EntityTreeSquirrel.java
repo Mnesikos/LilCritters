@@ -50,7 +50,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	private static final DataParameter<Byte> CLIMBING;
 
 	public EntityTreeSquirrel(World world) {
-		super(world, 0.30D);
+		super(world);
 		setSize(0.6F, 0.6F);
 	}
 

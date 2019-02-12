@@ -16,8 +16,8 @@ public abstract class EntityBase extends ZAWABaseLand {
 	//protected static final DataParameter<Boolean> EGG_SPAWNED;
 	protected EntityAIWanderAvoidWater aiWanderAvoidWater;
 
-	public EntityBase(World world, Double defaultSpeed) {
-		super(world, defaultSpeed);
+	public EntityBase(World world) {
+		super(world);
 	}
 
 	@Override
