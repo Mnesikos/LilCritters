@@ -1,0 +1,16 @@
+itemGroup.lilcritters.tab=Lil' Critters
+
+config.lilcritters.title=Lil' Critters Configuración
+
+item.lilcritters.acorn.name=Bellota
+item.lilcritters.roasted_acorn.name=Bellota Asada
+item.lilcritters.pine_cone.name=Cono de Conífera
+item.lilcritters.rodent_kibble.name=Roedor Kibble
+item.lilcritters.rodent_vial.name=Roedor Vial
+
+entity.TreeSquirrel.name=Ardilla de Árbol
+entity.BoxTurtle.name=Tortuga de Caja
+entity.TuftedDeer.name=Ciervo Copetudo
+
+sound.lilcritters.subtitle.squirrel.bark=Gorjeo de Ardilla 
+sound.lilcritters.subtitle.squirrel.hurt=Ardilla Lastimada
