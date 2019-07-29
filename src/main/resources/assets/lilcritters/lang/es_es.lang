@@ -5,8 +5,8 @@ config.lilcritters.title=Lil' Critters Configuración
 item.lilcritters.acorn.name=Bellota
 item.lilcritters.roasted_acorn.name=Bellota Asada
 item.lilcritters.pine_cone.name=Cono de Conífera
-item.lilcritters.rodent_kibble.name=Roedor Kibble
-item.lilcritters.rodent_vial.name=Roedor Vial
+item.lilcritters.rodent_kibble.name=Croqueta de Roedor
+item.lilcritters.rodent_vial.name=Frasco para Roedor
 
 entity.TreeSquirrel.name=Ardilla de Árbol
 entity.BoxTurtle.name=Tortuga de Caja
