@@ -1,11 +1,17 @@
 package com.github.mnesikos.lilcritters.configuration;
 
 import com.github.mnesikos.lilcritters.util.Ref;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.zawamod.util.SpawnUtils;
+
+import static com.github.mnesikos.lilcritters.init.ModEntities.excludeBiomes;
+import static com.github.mnesikos.lilcritters.init.ModEntities.getAllBiomesOf;
+import static org.zawamod.util.SpawnUtils.mergeBiomes;
 
 @Config(modid = Ref.MODID, name = "LilCritters/" + Ref.VERSION +"/"+ Ref.MODID)
 @Config.LangKey("config.lilcritters.title")
@@ -29,11 +35,17 @@ public class LilCrittersConfig {
     public static final Spawns spawns = new Spawns();
     public static class Spawns {
         @Config.Name("Tree Squirrels")
-        public final SpawnSettings squirrel = new SpawnSettings(50, 1, 2);
-        /*@Config.Name("Tufted Deer")
-        public final SpawnSettings tuftedDeer = new SpawnSettings(2, 1, 1);*/
+        public final SpawnSettings tree_squirrel = new SpawnSettings(50, 1, 2, SpawnUtils.getBiomeIDS(getAllBiomesOf(BiomeDictionary.Type.FOREST)));
         @Config.Name("Box Turtles")
-        public final SpawnSettings turtle = new SpawnSettings(20, 1, 1);
+        public final SpawnSettings box_turtle = new SpawnSettings(20, 1, 1, SpawnUtils.getBiomeIDS(excludeBiomes(getAllBiomesOf(BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.PLAINS), BiomeDictionary.Type.COLD)));
+        @Config.Name("Tufted Deer")
+        public final SpawnSettings tufted_deer = new SpawnSettings(2, 1, 1, SpawnUtils.getBiomeIDS(getAllBiomesOf(BiomeDictionary.Type.HILLS, BiomeDictionary.Type.FOREST)));
+        @Config.Name("Skunks")
+        public final SpawnSettings skunk = new SpawnSettings(10, 1, 2, SpawnUtils.getBiomeIDS(getAllBiomesOf(BiomeDictionary.Type.FOREST, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.SAVANNA)));
+        @Config.Name("Opossum")
+        public final SpawnSettings opossum = new SpawnSettings(10, 1, 1, SpawnUtils.getBiomeIDS(excludeBiomes(getAllBiomesOf(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.SWAMP), BiomeDictionary.Type.COLD)));
+        /*@Config.Name("Dwarf Crocodile")
+        public final SpawnSettings dwarf_crocodile = new SpawnSettings(2, 1, 1, SpawnUtils.getBiomeIDS(mergeBiomes(getAllBiomesOf(BiomeDictionary.Type.RIVER, BiomeDictionary.Type.HOT, BiomeDictionary.Type.SAVANNA))));*/
     }
 
     public static class SpawnSettings {
@@ -43,11 +55,14 @@ public class LilCrittersConfig {
         public int minGroup;
         @Config.Name("Max Group")
         public int maxGroup;
+        @Config.Name("Spawn Biomes")
+        public String[] biomes;
 
-        SpawnSettings(int spawnChance, int minGroup, int maxGroup) {
+        SpawnSettings(int spawnChance, int minGroup, int maxGroup, String[] biomes) {
             this.spawnChance = spawnChance;
             this.minGroup = minGroup;
             this.maxGroup = maxGroup;
+            this.biomes = biomes;
         }
     }
 
