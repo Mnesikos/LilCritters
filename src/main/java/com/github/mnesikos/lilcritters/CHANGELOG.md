@@ -6,6 +6,14 @@ The format is based on
 and this project adheres to 
 [Forge Versioning Conventions](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.12.2-1.0.0.0] - 2020/03/30
+For ZAWA 2.0.1 and Bookworm 2.5.0
+### Added
+- 6 new critters! Skunks, Opossums, Tufted Deer, Small Clawed Otters, Banded Penguins, and Dwarf Crocs.
+### Changed
+- ZAWA diets have been completely rehauled for 2.0.0, including all addon animals!
+- Lots of inside changes for 2.0.0 compatibility, but the average player probably won't notice (I don't lol).
+
 ## [1.12.2-0.0.1.3-beta4] - 2019/02/12
 For ZAWA 1.5.5 and Bookworm 2.1.0
 ### Added

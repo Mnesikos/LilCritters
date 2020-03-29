@@ -8,9 +8,14 @@ item.lilcritters.pine_cone.name=松球
 item.lilcritters.rodent_kibble.name=啮齿动物粗制食物
 item.lilcritters.rodent_vial.name=啮齿动物发育瓶
 
-entity.TreeSquirrel.name=松鼠
-entity.BoxTurtle.name=箱龟
-entity.TuftedDeer.name=毛冠麂
+entity.lilcritters.treesquirrel.name=松鼠
+entity.lilcritters.boxturtle.name=箱龟
+entity.lilcritters.tufteddeer.name=毛冠麂
+entity.lilcritters.opossum.name=Opossum
+entity.lilcritters.skunk.name=Skunk
+entity.lilcritters.smallclawedotter.name=Small Clawed Otter
+entity.lilcritters.dwarfcrocodile.name=Dwarf Crocodile
+entity.lilcritters.bandedpenguin.name=Banded Penguin
 
 sound.lilcritters.subtitle.squirrel.bark=松鼠喋喋不休
 sound.lilcritters.subtitle.squirrel.hurt=松鼠受伤了

@@ -1,11 +1,10 @@
 package com.github.mnesikos.lilcritters.init;
 
-import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.render.entity.*;
-import com.github.mnesikos.lilcritters.configuration.LilCrittersConfig;
+import com.github.mnesikos.lilcritters.configuration.ConfigLC;
 import com.github.mnesikos.lilcritters.entity.*;
-import com.github.mnesikos.lilcritters.util.Ref;
 import com.google.common.collect.Lists;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -19,47 +18,74 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.zawamod.configuration.ZAWAConfig;
 import org.zawamod.util.SpawnUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class ModEntities {
 
-    public static void init() {
-        int id = 1;
-        EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":tree_squirrel"), EntityTreeSquirrel.class, "tree_squirrel", id++, LilCritters.instance, 80, 1, true, 0x9D8B85, 0xC35D3A);
-        EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":box_turtle"), EntityBoxTurtle.class, "box_turtle", id++, LilCritters.instance, 80, 1, true, 0x61380B, 0xFFBF00);
-        EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":tufted_deer"), EntityTuftedDeer.class, "tufted_deer", id++, LilCritters.instance, 80, 3, true, 0x977858, 0xE8E5E3);
-        //EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":skunk"), EntitySkunk.class, "skunk", id++, LilCritters.instance, 80, 1, true, 0x000, 0x000);
-        EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":opossum"), EntityOpossum.class, "", id++, LilCritters.instance, 80, 1, true, 0x000, 0x000);
-        /*EntityRegistry.registerModEntity(new ResourceLocation(Ref.MODID + ":dwarf_crocodile"), EntityDwarfCrocodile.class, "", id++, LilCritters.instance, 80, 1, true, 0x000, 0x000);*/
+    public static final List<EntityContainer> CONTAINERS = new ArrayList<>();
 
-        if ((ZAWAConfig.canSpawn && !LilCrittersConfig.separateNaturalSpawns) || (LilCrittersConfig.separateNaturalSpawns && LilCrittersConfig.naturalSpawns)) {
-            EntityRegistry.addSpawn(EntityTreeSquirrel.class, LilCrittersConfig.spawns.tree_squirrel.spawnChance, LilCrittersConfig.spawns.tree_squirrel.minGroup, LilCrittersConfig.spawns.tree_squirrel.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(LilCrittersConfig.spawns.tree_squirrel.biomes)}));
-            EntityRegistry.addSpawn(EntityBoxTurtle.class, LilCrittersConfig.spawns.box_turtle.spawnChance, LilCrittersConfig.spawns.box_turtle.minGroup, LilCrittersConfig.spawns.box_turtle.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(LilCrittersConfig.spawns.box_turtle.biomes)}));
-            EntityRegistry.addSpawn(EntityTuftedDeer.class, LilCrittersConfig.spawns.tufted_deer.spawnChance, LilCrittersConfig.spawns.tufted_deer.minGroup, LilCrittersConfig.spawns.tufted_deer.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(LilCrittersConfig.spawns.tufted_deer.biomes)}));
-            /*EntityRegistry.addSpawn(EntitySkunk.class, LilCrittersConfig.spawns.skunk.spawnChance, LilCrittersConfig.spawns.skunk.minGroup, LilCrittersConfig.spawns.skunk.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(LilCrittersConfig.spawns.skunk.biomes)}));*/
-            EntityRegistry.addSpawn(EntityOpossum.class, LilCrittersConfig.spawns.opossum.spawnChance, LilCrittersConfig.spawns.opossum.minGroup, LilCrittersConfig.spawns.opossum.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(LilCrittersConfig.spawns.opossum.biomes)}));
-            /*EntityRegistry.addSpawn(EntityDwarfCrocodile.class, LilCrittersConfig.spawns.dwarf_crocodile.spawnChance, LilCrittersConfig.spawns.dwarf_crocodile.minGroup, LilCrittersConfig.spawns.dwarf_crocodile.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(LilCrittersConfig.spawns.dwarf_crocodile.biomes)}));*/
+    static {
+        add(EntityBandedPenguin.class, "bandedpenguin");
+        add(EntityBoxTurtle.class, "boxturtle");
+        add(EntityDwarfCrocodile.class, "dwarfcrocodile");
+        add(EntityOpossum.class, "opossum");
+        add(EntitySkunk.class, "skunk");
+        add(EntitySmallClawedOtter.class, "smallclawedotter");
+        add(EntityTreeSquirrel.class, "treesquirrel");
+        add(EntityTuftedDeer.class, "tufteddeer");
+
+    }
+
+    private static void add(Class<? extends Entity> entityClass, String entityNameIn) {
+        CONTAINERS.add(new EntityContainer(entityClass, entityNameIn));
+    }
+
+    public static class EntityContainer {
+        public Class<? extends Entity> entityClass;
+        public String entityName;
+
+        public EntityContainer(Class<? extends Entity> EntityClass, String entityNameIn) {
+            this.entityClass = EntityClass;
+            this.entityName = entityNameIn;
+        }
+    }
+
+    public static void init() {
+        if ((ZAWAConfig.serverOptions.canSpawn && !ConfigLC.separateNaturalSpawns) || (ConfigLC.separateNaturalSpawns && ConfigLC.naturalSpawns)) {
+            EntityRegistry.addSpawn(EntityTreeSquirrel.class, ConfigLC.spawns.tree_squirrel.spawnChance, ConfigLC.spawns.tree_squirrel.minGroup, ConfigLC.spawns.tree_squirrel.maxGroup, EnumCreatureType.CREATURE,
+                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.tree_squirrel.biomes)}));
+            EntityRegistry.addSpawn(EntityBoxTurtle.class, ConfigLC.spawns.box_turtle.spawnChance, ConfigLC.spawns.box_turtle.minGroup, ConfigLC.spawns.box_turtle.maxGroup, EnumCreatureType.CREATURE,
+                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.box_turtle.biomes)}));
+            EntityRegistry.addSpawn(EntityTuftedDeer.class, ConfigLC.spawns.tufted_deer.spawnChance, ConfigLC.spawns.tufted_deer.minGroup, ConfigLC.spawns.tufted_deer.maxGroup, EnumCreatureType.CREATURE,
+                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.tufted_deer.biomes)}));
+            EntityRegistry.addSpawn(EntitySkunk.class, ConfigLC.spawns.skunk.spawnChance, ConfigLC.spawns.skunk.minGroup, ConfigLC.spawns.skunk.maxGroup, EnumCreatureType.CREATURE,
+                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.skunk.biomes)}));
+            EntityRegistry.addSpawn(EntityOpossum.class, ConfigLC.spawns.opossum.spawnChance, ConfigLC.spawns.opossum.minGroup, ConfigLC.spawns.opossum.maxGroup, EnumCreatureType.CREATURE,
+                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.opossum.biomes)}));
+            EntityRegistry.addSpawn(EntityDwarfCrocodile.class, ConfigLC.spawns.dwarf_crocodile.spawnChance, ConfigLC.spawns.dwarf_crocodile.minGroup, ConfigLC.spawns.dwarf_crocodile.maxGroup, EnumCreatureType.CREATURE,
+                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.dwarf_crocodile.biomes)}));
+            EntityRegistry.addSpawn(EntitySmallClawedOtter.class, ConfigLC.spawns.small_clawed_otter.spawnChance, ConfigLC.spawns.small_clawed_otter.minGroup, ConfigLC.spawns.small_clawed_otter.maxGroup, EnumCreatureType.CREATURE,
+                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.small_clawed_otter.biomes)}));
+            EntityRegistry.addSpawn(EntityBandedPenguin.class, ConfigLC.spawns.banded_penguin.spawnChance, ConfigLC.spawns.banded_penguin.minGroup, ConfigLC.spawns.banded_penguin.maxGroup, EnumCreatureType.CREATURE,
+                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.banded_penguin.biomes)}));
         }
 
         LootTableList.register(EntityBoxTurtle.LOOT);
-        //LootTableList.register(EntityDwarfCrocodile.LOOT);
+        LootTableList.register(EntityDwarfCrocodile.LOOT);
     }
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityTreeSquirrel.class, RenderTreeSquirrel::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityBandedPenguin.class, RenderBandedPenguin::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBoxTurtle.class, RenderBoxTurtle::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTuftedDeer.class, RenderTuftedDeer::new);
-        //RenderingRegistry.registerEntityRenderingHandler(EntitySkunk.class, RenderSkunk::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityDwarfCrocodile.class, RenderDwarfCrocodile::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityOpossum.class, RenderOpossum::new);
-        /*RenderingRegistry.registerEntityRenderingHandler(EntityDwarfCrocodile.class, RenderDwarfCrocodile::new);*/
+        RenderingRegistry.registerEntityRenderingHandler(EntitySkunk.class, RenderSkunk::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySmallClawedOtter.class, RenderSmallClawedOtter::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTreeSquirrel.class, RenderTreeSquirrel::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTuftedDeer.class, RenderTuftedDeer::new);
     }
 
     /**

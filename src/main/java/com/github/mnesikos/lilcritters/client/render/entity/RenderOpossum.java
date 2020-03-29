@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.zawamod.client.render.entity.base.RenderLivingZAWA;
+import org.zawamod.entity.core.Gender;
 
 @SideOnly(Side.CLIENT)
 public class RenderOpossum extends RenderLivingZAWA<EntityOpossum> {
@@ -20,8 +21,8 @@ public class RenderOpossum extends RenderLivingZAWA<EntityOpossum> {
 
     @Override
     protected void preRenderCallback(EntityOpossum entity, float partialTickTime) {
-        float scale = 0.5F +
-                (float)entity.getSizeMultiplier() * (entity.getEntityWorld().rand.nextInt(1) == 0 ? 0.01f : -0.01f);
+        float scale = 0.5F + (entity.getGender() == Gender.MALE ? 0.01f : 0f) +
+                (float)entity.getSizeMultiplier() * 0.01f;
         GlStateManager.scale(scale, scale, scale);
         GlStateManager.translate(0.0F, -0.46F * scale, 0.0F);
         super.preRenderCallback(entity, partialTickTime);

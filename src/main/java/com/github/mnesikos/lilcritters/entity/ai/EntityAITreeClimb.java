@@ -28,7 +28,7 @@ public class EntityAITreeClimb extends EntityAIMoveToBlock {
     @Override
     public boolean shouldExecute() {
         if (runDelay <= 0) {
-            if (ZAWAConfig.canClimb) {
+            if (ZAWAConfig.serverOptions.canClimb) {
                 return false;
 
             } else if (rand.nextInt(200) != 0) {

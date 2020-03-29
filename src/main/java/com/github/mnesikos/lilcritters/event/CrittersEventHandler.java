@@ -1,6 +1,6 @@
 package com.github.mnesikos.lilcritters.event;
 
-import com.github.mnesikos.lilcritters.configuration.LilCrittersConfig;
+import com.github.mnesikos.lilcritters.configuration.ConfigLC;
 import com.github.mnesikos.lilcritters.init.ModItems;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
@@ -21,17 +21,17 @@ public class CrittersEventHandler {
 
     @SubscribeEvent
     public void onHarvestDrops(HarvestDropsEvent event) {
-        if (LilCrittersConfig.enableTreeSeedDrops) {
+        if (ConfigLC.enableTreeSeedDrops) {
             if (event.getState() == Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK)) {
                 if (event.getWorld().rand.nextInt(12) == 0) {
                     event.getDrops().add(new ItemStack(ModItems.ACORN, 1));
-                    event.setDropChance((float)LilCrittersConfig.treeSeedDropsChance);
+                    event.setDropChance((float) ConfigLC.treeSeedDropsChance);
                 }
             }
             if (event.getState() == Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE)) {
                 if (event.getWorld().rand.nextInt(16) == 0) {
                     event.getDrops().add(new ItemStack(ModItems.PINE_CONE, 1));
-                    event.setDropChance((float)LilCrittersConfig.treeSeedDropsChance);
+                    event.setDropChance((float) ConfigLC.treeSeedDropsChance);
                 }
             }
         }

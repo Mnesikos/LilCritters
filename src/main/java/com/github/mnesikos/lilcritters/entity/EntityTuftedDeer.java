@@ -1,6 +1,6 @@
 package com.github.mnesikos.lilcritters.entity;
 
-import com.github.mnesikos.lilcritters.util.ModFoodGroups;
+import com.github.mnesikos.lilcritters.entity.base.LCBaseLand;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -8,44 +8,66 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import org.zawamod.entity.ai.EntityAIRapidEatGrass;
 import org.zawamod.entity.core.AnimalData;
 import org.zawamod.init.ZAWAItems;
 
 import javax.annotation.Nullable;
 
-public class EntityTuftedDeer extends EntityBase {
+public class EntityTuftedDeer extends LCBaseLand {
+    private EntityAIRapidEatGrass entityAIEatGrass;
+    private int timer;
+
     public EntityTuftedDeer(World world) {
         super(world);
         setSize(1.0F, 1.2F);
+        this.stepHeight = 1.0F;
+        this.speed = 1.2F;
+        this.activity = AnimalData.Activity.HASTY;
     }
 
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.24D);
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return this.isChild() ? this.height * 0.8F : (this.scale() / 100.0F) * 2.4F;
+    }
+
+    @Override
+    public boolean displayCuriosity() {
+        return false;
     }
 
     @Override
     protected void initEntityAI() {
         super.initEntityAI();
+        this.entityAIEatGrass = new EntityAIRapidEatGrass(this);
         this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(10, this.entityAIEatGrass);
     }
 
     @Override
-    public float getEyeHeight() {
-        return super.getEyeHeight();
-    }
+    protected void updateAITasks() {
+        this.timer = this.entityAIEatGrass.getEatingGrassTimer();
 
-    @Override
-    public int getMaxSpawnedInChunk() {
-        return 2;
-    }
+        if (this.getMoveHelper().isUpdating()) {
+            double d0 = this.getMoveHelper().getSpeed();
 
-    @Override
-    public ItemStack setVial() {
-        return new ItemStack(ZAWAItems.UNGULATE_VIAL, 1);
+            if (d0 >= 1.33D)
+                this.setSprinting(true);
+            else
+                this.setSprinting(false);
+
+        } else
+            this.setSprinting(false);
+
+        super.updateAITasks();
     }
 
     @Override
@@ -64,8 +86,8 @@ public class EntityTuftedDeer extends EntityBase {
     }
 
     @Override
-    public boolean isFoodItem(ItemStack stack) {
-        return ModFoodGroups.VegetationItems(stack);
+    public ItemStack setVial() {
+        return new ItemStack(ZAWAItems.UNGULATE_VIAL, 1);
     }
 
     @Override
@@ -78,6 +100,26 @@ public class EntityTuftedDeer extends EntityBase {
             fawn.setAnimalType(this.getAnimalType());
         }
         return fawn;
+    }
+
+    @Override
+    public int getMaxSpawnedInChunk() {
+        return 2;
+    }
+
+    @Override
+    public void onLivingUpdate() {
+        if (this.world.isRemote)
+            this.timer = Math.max(0, this.timer - 1);
+        super.onLivingUpdate();
+    }
+
+    @Override
+    public void handleStatusUpdate(byte id) {
+        if (id == 10)
+            this.timer = 40;
+        else
+            super.handleStatusUpdate(id);
     }
 
     @Nullable

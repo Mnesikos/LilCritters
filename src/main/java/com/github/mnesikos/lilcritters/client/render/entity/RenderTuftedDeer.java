@@ -32,10 +32,10 @@ public class RenderTuftedDeer extends RenderLivingZAWA<EntityTuftedDeer> {
 
     @Override
     protected void preRenderCallback(EntityTuftedDeer entity, float partialTickTime) {
-        float scale = 0.7F + (entity.getGender() == Gender.MALE ? 0.05f : 0f) +
-                (float)entity.getSizeMultiplier() * (entity.getEntityWorld().rand.nextInt(1) == 0 ? 0.01f : -0.01f);
+        float scale = 0.5F + (entity.getGender() == Gender.MALE ? 0.002f : 0f) +
+                (float)entity.getSizeMultiplier() * 0.01f;
         GlStateManager.scale(scale, scale, scale);
-        GlStateManager.translate(0.0F, -0.5F * scale, 0.0F);
+        GlStateManager.translate(0.0F, -0.6F * scale, 0.0F);
         super.preRenderCallback(entity, partialTickTime);
     }
 
@@ -78,10 +78,5 @@ public class RenderTuftedDeer extends RenderLivingZAWA<EntityTuftedDeer> {
                     return deer8;
             }
         }
-    }
-
-    @Override
-    public ResourceLocation getTextureOfVar(int i) {
-        return deer1;
     }
 }

@@ -19,13 +19,13 @@ import org.zawamod.client.render.entity.base.RenderLivingZAWA;
 
 @SideOnly(Side.CLIENT)
 public class RenderTreeSquirrel extends RenderLivingZAWA<EntityTreeSquirrel> {
-	private static final ResourceLocation EAS_GRAY = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_1.png");
-	private static final ResourceLocation MEX_GRAY = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_2.png");
-	private static final ResourceLocation EAST_FOX = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_3.png");
-	private static final ResourceLocation EURA_RED = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_4.png");
-	private static final ResourceLocation PREVOST = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_5.png");
-	private static final ResourceLocation FR_GIANT = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_6.png");
-	private static final ResourceLocation LIGHTNIN = new ResourceLocation(Ref.MODID + ":textures/entity/treesquirrel/tree_squirrel_lightning.png");
+	private static final ResourceLocation EAS_GRAY = new ResourceLocation(Ref.MODID + ":textures/entity/tree_squirrel/tree_squirrel_1.png");
+	private static final ResourceLocation MEX_GRAY = new ResourceLocation(Ref.MODID + ":textures/entity/tree_squirrel/tree_squirrel_2.png");
+	private static final ResourceLocation EAST_FOX = new ResourceLocation(Ref.MODID + ":textures/entity/tree_squirrel/tree_squirrel_3.png");
+	private static final ResourceLocation EURA_RED = new ResourceLocation(Ref.MODID + ":textures/entity/tree_squirrel/tree_squirrel_4.png");
+	private static final ResourceLocation PREVOST = new ResourceLocation(Ref.MODID + ":textures/entity/tree_squirrel/tree_squirrel_5.png");
+	private static final ResourceLocation FR_GIANT = new ResourceLocation(Ref.MODID + ":textures/entity/tree_squirrel/tree_squirrel_6.png");
+	private static final ResourceLocation LIGHTNIN = new ResourceLocation(Ref.MODID + ":textures/entity/tree_squirrel/tree_squirrel_lightning.png");
 
 	public RenderTreeSquirrel(RenderManager render) {
 		super(render, new ModelTreeSquirrel(), 0.2F);
@@ -35,7 +35,7 @@ public class RenderTreeSquirrel extends RenderLivingZAWA<EntityTreeSquirrel> {
 	@Override
 	protected void preRenderCallback(EntityTreeSquirrel entity, float partialTickTime) {
 		float scale = 0.4F +
-				(float)entity.getSizeMultiplier() * (entity.getEntityWorld().rand.nextInt(1) == 0 ? 0.01f : -0.01f);
+				(float)entity.getSizeMultiplier() * 0.01f;
 		GlStateManager.scale(scale, scale, scale);
 		GlStateManager.translate(0.0F, -0.46F * scale, 0.0F);
 		super.preRenderCallback(entity, partialTickTime);

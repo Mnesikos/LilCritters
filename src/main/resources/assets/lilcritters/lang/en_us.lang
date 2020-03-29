@@ -8,9 +8,14 @@ item.lilcritters.pine_cone.name=Pine Cone
 item.lilcritters.rodent_kibble.name=Rodent Kibble
 item.lilcritters.rodent_vial.name=Rodent Vial
 
-entity.TreeSquirrel.name=Tree Squirrel
-entity.BoxTurtle.name=Box Turtle
-entity.TuftedDeer.name=Tufted Deer
+entity.lilcritters.treesquirrel.name=Tree Squirrel
+entity.lilcritters.boxturtle.name=Box Turtle
+entity.lilcritters.tufteddeer.name=Tufted Deer
+entity.lilcritters.opossum.name=Opossum
+entity.lilcritters.skunk.name=Skunk
+entity.lilcritters.smallclawedotter.name=Small Clawed Otter
+entity.lilcritters.dwarfcrocodile.name=Dwarf Crocodile
+entity.lilcritters.bandedpenguin.name=Banded Penguin
 
 sound.lilcritters.subtitle.squirrel.bark=Squirrel chattering
 sound.lilcritters.subtitle.squirrel.hurt=Squirrel injured

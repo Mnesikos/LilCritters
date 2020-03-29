@@ -294,7 +294,7 @@ public class ModelTreeSquirrel extends BookwormModelBase {
                         this.tail4.rotateAngleX = this.tail5.rotateAngleX = this.tail6.rotateAngleX =
                                 -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 2f) + 0f;
 
-                    } else if (ZAWAConfig.livingAnimations && !BookwormUtils.isEntityMoving(squirrel) && !squirrel.getIsSitting()) {
+                    } else if (ZAWAConfig.clientOptions.livingAnimations && !BookwormUtils.isEntityMoving(squirrel) && !squirrel.getIsSitting()) {
                         limbSwing = (float) squirrel.ticksExisted;
                         limbSwingAmount = 0.3F;
                         this.tail1.rotateAngleX = 0.24f * limbSwingAmount * (0.08f * globalDegree) * MathHelper.cos(limbSwing * (0.08f * globalSpeed) + 12.0f) + 1.0f;
@@ -311,8 +311,6 @@ public class ModelTreeSquirrel extends BookwormModelBase {
                     }
                 }
             }
-        } else {
-            return;
         }
     }
 

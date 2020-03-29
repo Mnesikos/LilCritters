@@ -6,7 +6,7 @@ import com.github.mnesikos.lilcritters.init.ModEntities;
 import com.github.mnesikos.lilcritters.init.ModItems;
 import com.github.mnesikos.lilcritters.init.ModRecipes;
 import com.github.mnesikos.lilcritters.network.ModPacketHandler;
-import com.github.mnesikos.lilcritters.util.ModFoodGroups;
+import com.github.mnesikos.lilcritters.util.DietHandlerLC;
 import com.github.mnesikos.lilcritters.util.Ref;
 
 import net.minecraft.block.Block;
@@ -44,13 +44,6 @@ public class CommonProxy {
 			@SideOnly(Side.CLIENT)
 			public void displayAllRelevantItems(NonNullList<ItemStack> itemList) {
 				super.displayAllRelevantItems(itemList);
-				for (EntityList.EntityEggInfo eggInfo : EntityList.ENTITY_EGGS.values()) {
-					if (eggInfo.spawnedID.getResourceDomain().equals(Ref.MODID)) {
-						ItemStack itemstack = new ItemStack(Items.SPAWN_EGG, 1);
-						ItemMonsterPlacer.applyEntityIdToItemStack(itemstack, eggInfo.spawnedID);
-						itemList.add(itemstack);
-					}
-				}
 			}
 		};
 		ModEntities.init();
@@ -65,7 +58,6 @@ public class CommonProxy {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		ModFoodGroups.registerFoodGroups();
 	}
 	
 	@SubscribeEvent

@@ -1,8 +1,11 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.github.mnesikos.lilcritters.entity.base.LCBaseLandAvoidWater;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
@@ -15,15 +18,13 @@ import net.minecraft.pathfinding.PathNavigateClimber;
 import net.minecraft.util.math.BlockPos;
 import org.zawamod.configuration.ZAWAConfig;
 import org.zawamod.entity.core.AnimalData;
-import org.zawamod.entity.core.BreedItems;
+import org.zawamod.entity.core.DietHandler;
 import org.zawamod.entity.core.IMultiSpeciesEntity;
-import org.zawamod.entity.core.SpeciesData;
 
 import com.github.mnesikos.lilcritters.init.ModItems;
 import com.github.mnesikos.lilcritters.init.ModSoundHandler;
 import com.github.mnesikos.lilcritters.network.MessageSquirrelEat;
 import com.github.mnesikos.lilcritters.network.ModPacketHandler;
-import com.github.mnesikos.lilcritters.util.ModFoodGroups;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -43,7 +44,7 @@ import org.zawamod.util.DataItem;
 import org.zawamod.util.StringedItem;
 import org.zawamod.util.status.StatusClimbing;
 
-public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSpeciesEntity {
+public class EntityTreeSquirrel extends LCBaseLandAvoidWater implements IMultiSpeciesEntity {
 	private boolean isSquirrelSitting;
 	private int sitTicks;
 	private ItemStack heldFood = ItemStack.EMPTY;
@@ -52,6 +53,9 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	public EntityTreeSquirrel(World world) {
 		super(world);
 		setSize(0.6F, 0.6F);
+		this.stepHeight = 1.0F;
+		this.speed = 1.2F;
+		this.activity = AnimalData.Activity.ACTIVE;
 	}
 
 	@Override
@@ -60,9 +64,16 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30D);
+	}
 
-		getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
+	@Override
+	public float getEyeHeight() {
+		return this.height * 0.5F;
+	}
+
+	@Override
+	public boolean displayCuriosity() {
+		return true;
 	}
 
 	@Override
@@ -76,16 +87,81 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	}
 
 	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(CLIMBING, (byte)0);
+	}
+
+	@Override
+	public ItemStack setTameItem() {
+		return new ItemStack(ModItems.RODENT_KIBBLE, 1);
+	}
+
+	@Override
+	public int setVariants() {
+		return 6;
+	}
+
+	@Override
+	public void onVariantSet() {
+		//TODO Biome specific variants?
+		super.onVariantSet();
+	}
+
+	@Override
+	public Map<Integer, String> speciesData() {
+		Map<Integer, String> map = new HashMap<>();
+		if (this.getName().equals("Captain")) {
+			map.put(0, "Peruvian Lightning");
+			map.put(1, "Peruvian Lightning");
+			map.put(2, "Peruvian Lightning");
+			map.put(3, "Peruvian Lightning");
+			map.put(4, "Peruvian Lightning");
+			map.put(5, "Peruvian Lightning");
+
+		} else {
+			map.put(0, "Eastern Gray");
+			map.put(1, "Mexican Gray");
+			map.put(2, "Eastern Fox");
+			map.put(3, "Eurasian Red");
+			map.put(4, "Prevost's");
+			map.put(5, "Forest Giant");
+		}
+		return map;
+	}
+
+	@Override
+	public AnimalData.EnumNature setNature() {
+		return AnimalData.EnumNature.SKITTISH;
+	}
+
+	@Override
+	public ItemStack setVial() {
+		return new ItemStack(ModItems.RODENT_VIAL, 1);
+	}
+
+	@Override
+	public EntityAgeable createChild(EntityAgeable ageable) {
+		EntityTreeSquirrel parent2 = (EntityTreeSquirrel) ageable;
+		EntityTreeSquirrel child = new EntityTreeSquirrel(this.world);
+		if (parent2.getAnimalType() != this.getAnimalType() && this.rand.nextInt(2) == 0) {
+			child.setAnimalType(parent2.getAnimalType());
+		} else {
+			child.setAnimalType(this.getAnimalType());
+		}
+		return child;
+	}
+
+	@Override
+	public boolean isFoodItem(ItemStack stack) {
+		return DietHandler.OpportunistItems(stack);
+	}
+
+	@Override
 	public DataItem getIconList() {
 		List<StringedItem> s = new ArrayList<>();
 		s.add(new StatusClimbing());
 		return new DataItem(s);
-	}
-
-	@Override
-	protected void entityInit() {
-		super.entityInit();
-		this.dataManager.register(CLIMBING, (byte)0);
 	}
 
 	@Override
@@ -113,28 +189,6 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	public void setSitting() {
 		this.aiSit.setSitting(true);
 	}
-
-	@Override
-	public float getEyeHeight() {
-		return this.height * 0.5F;
-	}
-
-	/*protected final EntityItem getNearbyNut()
-	{
-		List<EntityItem> list = this.world.<EntityItem>getEntitiesWithinAABB(EntityItem.class, this.getEntityBoundingBox().grow(8.0D));
-		double d0 = Double.MAX_VALUE;
-		EntityItem item = null;
-
-		for (EntityItem itm : list) {
-			if((item.getItem().getItem() == ModItems.ACORN || item.getItem().getItem() == ModItems.PINE_CONE)) {
-				if (this.getDistanceSq(itm) < d0) {
-					item = itm;
-					d0 = this.getDistanceSq(itm);
-				}
-			}
-		}
-		return item;
-	}*/
 
 	@Override
 	public void onUpdate() {
@@ -194,61 +248,6 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	@Override
 	public int getMaxSpawnedInChunk() {
 		return 5;
-	}
-
-	@Override
-	public ItemStack setVial() {
-		return new ItemStack(ModItems.RODENT_VIAL, 1);
-	}
-
-	@Override
-	public ItemStack setTameItem() {
-		return new ItemStack(ModItems.RODENT_KIBBLE, 1);
-	}
-
-	@Override
-	public int setVariants() {
-		return 7;
-	}
-
-	@Override
-	public void onVariantSet() {
-		//TODO Biome specific variants?
-		super.onVariantSet();
-	}
-
-	public List<SpeciesData> speciesData() {
-		List<SpeciesData> lst = new ArrayList<>();
-		lst.add(new SpeciesData("Eastern Gray", 0));
-		lst.add(new SpeciesData("Mexican Gray", 1));
-		lst.add(new SpeciesData("Eastern Fox", 2));
-		lst.add(new SpeciesData("Eurasian Red", 3));
-		lst.add(new SpeciesData("Prevost's", 4));
-		lst.add(new SpeciesData("Forest Giant", 5));
-		lst.add(new SpeciesData("Peruvian Lightning", 6));
-		return lst;
-	}
-
-	@Override
-	public AnimalData.EnumNature setNature() {
-		return AnimalData.EnumNature.SKITTISH;
-	}
-
-	@Override
-	public boolean isFoodItem(ItemStack stack) {
-		return BreedItems.OmnivoreItems(stack) || ModFoodGroups.SeedItems(stack) || ModFoodGroups.NutItems(stack);
-	}
-
-	@Override
-	public EntityAgeable createChild(EntityAgeable ageable) {
-		EntityTreeSquirrel parent2 = (EntityTreeSquirrel) ageable;
-		EntityTreeSquirrel child = new EntityTreeSquirrel(this.world);
-		if (parent2.getAnimalType() != this.getAnimalType() && this.rand.nextInt(2) == 0) {
-			child.setAnimalType(parent2.getAnimalType());
-		} else {
-			child.setAnimalType(this.getAnimalType());
-		}
-		return child;
 	}
 
 	@Override
@@ -316,7 +315,7 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 
 	@Override
 	public boolean isOnLadder() {
-		return this.isBesideClimbableBlock() && ZAWAConfig.canClimb;
+		return this.isBesideClimbableBlock() && ZAWAConfig.serverOptions.canClimb;
 	}
 
 	@Override
@@ -336,16 +335,16 @@ public class EntityTreeSquirrel extends EntityBaseAvoidWater implements IMultiSp
 	public void fall(float distance, float damageMultiplier) {} // no fall damage for these guys
 
 	@Override
+	protected float getSoundVolume() { // does this even do anything, I notice no difference
+		return 0.1F;
+	}
+
+	@Override
 	protected SoundEvent getAmbientSound() {
 		if (this.rand.nextInt(4) == 0) // 1/4th the amount of noise
 			return ModSoundHandler.SQUIRREL_AMBIENT;
 		else
 			return null;
-	}
-
-	@Override
-	protected float getSoundVolume() { // does this even do anything, I notice no difference
-		return 0.1F;
 	}
 
 	@Override

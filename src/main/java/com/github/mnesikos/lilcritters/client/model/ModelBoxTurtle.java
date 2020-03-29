@@ -264,7 +264,7 @@ public class ModelBoxTurtle extends BookwormModelBase {
                         this.backLeftLeg.rotateAngleZ = 1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + 0.0F;
                         this.backLeftFoot.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
 
-                    } else if (ZAWAConfig.livingAnimations && !BookwormUtils.isEntityMoving(turtle)) {
+                    } else if (ZAWAConfig.clientOptions.livingAnimations && !BookwormUtils.isEntityMoving(turtle)) {
                         // TODO
 
                     }
