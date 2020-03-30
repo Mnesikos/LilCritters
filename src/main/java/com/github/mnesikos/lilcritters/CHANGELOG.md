@@ -8,7 +8,7 @@ and this project adheres to
 
 ## [1.12.2-1.0.0.1] - 2020/03/29
 For ZAWA 2.0.1 and Bookworm 2.5.0
-## Fixed
+### Fixed
 - Rewrote LC's spawn configs to ZAWA's config file for the meantime in order to catch modded biomes.
 - Opossum model no longer floats off the ground by a little.
 - Penguin's swim animation adjusted a little.
