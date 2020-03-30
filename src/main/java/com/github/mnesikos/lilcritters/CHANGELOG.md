@@ -6,7 +6,14 @@ The format is based on
 and this project adheres to 
 [Forge Versioning Conventions](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
-## [1.12.2-1.0.0.0] - 2020/03/30
+## [1.12.2-1.0.0.1] - 2020/03/29
+For ZAWA 2.0.1 and Bookworm 2.5.0
+## Fixed
+- Rewrote LC's spawn configs to ZAWA's config file for the meantime in order to catch modded biomes.
+- Opossum model no longer floats off the ground by a little.
+- Penguin's swim animation adjusted a little.
+
+## [1.12.2-1.0.0.0] - 2020/03/29
 For ZAWA 2.0.1 and Bookworm 2.5.0
 ### Added
 - 6 new critters! Skunks, Opossums, Tufted Deer, Small Clawed Otters, Banded Penguins, and Dwarf Crocs.

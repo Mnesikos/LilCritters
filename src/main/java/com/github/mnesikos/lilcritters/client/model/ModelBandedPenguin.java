@@ -211,8 +211,9 @@ public class ModelBandedPenguin extends ZAWAModelBase {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
-        this.head.rotateAngleX = (headPitch / (180F / (float)Math.PI)) + (float)(24 / (180 / Math.PI));
-        this.head.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+        this.head.rotateAngleX = (headPitch / (180F / (float)Math.PI)) + (float)(24 / (180 / Math.PI)) - (!entity.isInWater() ? 0.0F : 1.4F);
+        if (!entity.isInWater())
+            this.head.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
     }
 
     @Override
@@ -240,8 +241,8 @@ public class ModelBandedPenguin extends ZAWAModelBase {
             if (entity.isInWater()) {
                 f = (float)entity.ticksExisted;
                 f1 = 0.25F;
-                speed = 2.0F;
-                degree = 2.0F;
+                speed = 1.2F;
+                degree = 1.0F;
                 this.body.rotateAngleX = MathHelper.cos((float) Math.PI) * (-12.5F) * f1 * 0.5F;
                 this.hips.rotateAngleX = MathHelper.cos((f * speed * 0.0F) + (float) Math.PI) * (degree * 0.0F) * f1 * 0.5F;
                 this.LeftThigh.rotateAngleX = MathHelper.cos(1.0F + (f * speed * 0.2F) + (float) Math.PI) * (degree * -0.2F) * f1 * 0.5F;
@@ -252,12 +253,12 @@ public class ModelBandedPenguin extends ZAWAModelBase {
                 this.chest.rotateAngleX = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * -0.2F) * f1 * 0.5F + -0.2F;
                 this.head.rotateAngleX = MathHelper.cos(1.6F + (f * speed * 0.2F) + (float) Math.PI) * (degree * -0.6F) * f1 * 0.5F + -1.0F;
                 this.neck.rotateAngleX = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * -0.2F) * f1 * 0.5F + -0.2F;
-                this.LeftFlipper1.rotateAngleY = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * 2.0F) * f1 * 0.5F + -1.4F;
-                this.LeftFlipper1.rotateAngleX = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * 6.0F) * f1 * 0.5F + -0.5F;
-                this.LeftFlipper1.rotateAngleZ = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * -4.0F) * f1 * 0.5F + -0.8F;
-                this.RightFlipper1.rotateAngleY = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * -2.0F) * f1 * 0.5F + 1.4F;
-                this.RightFlipper1.rotateAngleX = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * 6.0F) * f1 * 0.5F + -0.5F;
-                this.RightFlipper1.rotateAngleZ = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * 4.0F) * f1 * 0.5F + 0.8F;
+                this.LeftFlipper1.rotateAngleY = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * 4.0F) * f1 * 0.5F + -1.4F;
+                this.LeftFlipper1.rotateAngleX = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * 12.0F) * f1 * 0.5F + -0.5F;
+                this.LeftFlipper1.rotateAngleZ = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * -8.0F) * f1 * 0.5F + -0.8F;
+                this.RightFlipper1.rotateAngleY = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * -4.0F) * f1 * 0.5F + 1.4F;
+                this.RightFlipper1.rotateAngleX = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * 12.0F) * f1 * 0.5F + -0.5F;
+                this.RightFlipper1.rotateAngleZ = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * 8.0F) * f1 * 0.5F + 0.8F;
 
             } else if (!entity.isOverWater()){
                 speed = this.isChild ? 3.0F : 6.0F;

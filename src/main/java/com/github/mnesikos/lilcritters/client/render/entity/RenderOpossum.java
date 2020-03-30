@@ -24,7 +24,7 @@ public class RenderOpossum extends RenderLivingZAWA<EntityOpossum> {
         float scale = 0.5F + (entity.getGender() == Gender.MALE ? 0.01f : 0f) +
                 (float)entity.getSizeMultiplier() * 0.01f;
         GlStateManager.scale(scale, scale, scale);
-        GlStateManager.translate(0.0F, -0.46F * scale, 0.0F);
+        GlStateManager.translate(0.0F, -0.24F * scale, 0.0F);
         super.preRenderCallback(entity, partialTickTime);
     }
 

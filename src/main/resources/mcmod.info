@@ -9,7 +9,7 @@
   "updateUrl": "",
   "updateJSON": "",
   "authorList": ["Mnesikos"],
-  "credits": "SoggyMustache for his coding contributions, and my lovely team of model and texture artists: Ailments concentrate, Bolcko, CodaBear1552, HobbitNerdYouTube, Jaz, LukeChange, Mr. Mubbs.",
+  "credits": "SoggyMustache for his coding contributions, and my lovely model and texture contributors. Thank you!",
   "logoFile": "assets/lilcritters/logo.png",
   "screenshots": [],
   "requiredMods": ["forge", "bookworm", "zawa"],

@@ -46,7 +46,6 @@ public class CommonProxy {
 				super.displayAllRelevantItems(itemList);
 			}
 		};
-		ModEntities.init();
 	}
 
 	@Mod.EventHandler
@@ -54,6 +53,7 @@ public class CommonProxy {
 		ModPacketHandler.initPackets();
 		ModRecipes.init();
 		ModItems.register();
+		ModEntities.init();
 	}
 
 	@Mod.EventHandler
