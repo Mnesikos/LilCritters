@@ -1,0 +1,13 @@
+{
+  "max_health": 10.0,
+  "variants": 4,
+  "kibble": "zawa:pinniped_kibble",
+  "vial": "zawa:pinniped_vial",
+  "nature": "NEUTRAL",
+  "activity": "ACTIVE",
+  "swimming": true,
+  "water_breathing": true,
+  "transportable": true,
+  "speed": 1.0,
+  "mc_speed": 0.26
+}

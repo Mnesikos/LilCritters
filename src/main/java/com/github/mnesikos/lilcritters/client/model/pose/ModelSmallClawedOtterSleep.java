@@ -1,0 +1,124 @@
+package com.github.mnesikos.lilcritters.client.model.pose;
+
+import com.github.mnesikos.lilcritters.client.model.ModelSmallClawedOtter;
+
+/**
+ * Small Clawed Otter Sleep - Hjeshed & Mnesikos
+ * Created using Tabula 7.1.0
+ */
+public class ModelSmallClawedOtterSleep extends ModelSmallClawedOtter {
+
+    public ModelSmallClawedOtterSleep() {
+        this.textureWidth = 64;
+        this.textureHeight = 32;
+        this.handRight.mirror = true;
+        this.handRight.setRotationPoint(0.01F, 2.8F, -0.6F);
+        this.handRight.addBox(-1.0F, -0.5F, -2.5F, 2, 1, 3, 0.0F);
+        this.setRotateAngle(handRight, 1.1519173063162573F, -0.13962634015954636F, -0.06981317007977318F);
+        this.lowerLegLeft.setRotationPoint(0.0F, 4.0F, -1.5F);
+        this.lowerLegLeft.addBox(-1.0F, 0.0F, 0.0F, 2, 3, 2, 0.0F);
+        this.setRotateAngle(lowerLegLeft, 0.8028514559173915F, -0.06981317007977318F, 0.06981317007977318F);
+        this.snout.setRotationPoint(0.0F, -1.2F, -2.7F);
+        this.snout.addBox(-1.5F, 0.0F, -3.0F, 3, 2, 2, 0.0F);
+        this.setRotateAngle(snout, 0.017453292519943295F, 0.0F, 0.0F);
+        this.back.setRotationPoint(0.0F, -5.0F, 0.0F);
+        this.back.addBox(-2.5F, 0.0F, 0.0F, 5, 5, 5, 0.0F);
+        this.setRotateAngle(back, -0.41887902047863906F, 0.0F, 0.0F);
+        this.footRight.mirror = true;
+        this.footRight.setRotationPoint(0.01F, 2.6F, 1.1F);
+        this.footRight.addBox(-1.0F, 0.0F, -3.5F, 2, 1, 4, 0.0F);
+        this.setRotateAngle(footRight, 0.13962634015954636F, 0.0F, 0.0F);
+        this.lowerLegRight.mirror = true;
+        this.lowerLegRight.setRotationPoint(0.0F, 4.0F, -1.5F);
+        this.lowerLegRight.addBox(-1.0F, 0.0F, 0.0F, 2, 3, 2, 0.0F);
+        this.setRotateAngle(lowerLegRight, 0.9424777960769379F, 0.0F, 0.0F);
+        this.earLeft.setRotationPoint(1.5F, -1.8F, -1.8F);
+        this.earLeft.addBox(0.0F, -0.5F, -0.5F, 1, 1, 1, 0.0F);
+        this.setRotateAngle(earLeft, 0.0F, -0.3490658503988659F, -0.41887902047863906F);
+        this.upperArmLeft.setRotationPoint(2.5F, -0.5F, -2.0F);
+        this.upperArmLeft.addBox(-1.5F, 0.0F, -1.5F, 3, 4, 3, 0.0F);
+        this.setRotateAngle(upperArmLeft, 0.13962634015954636F, 0.0F, 0.24434609527920614F);
+        this.bellyPoint.setRotationPoint(0.0F, 2.5F, 4.0F);
+        this.bellyPoint.addBox(0.0F, 0.0F, 0.0F, 0, 0, 0, 0.0F);
+        this.lowerArmRight.mirror = true;
+        this.lowerArmRight.setRotationPoint(0.0F, 4.0F, 1.4F);
+        this.lowerArmRight.addBox(-1.0F, 0.0F, -2.0F, 2, 3, 2, 0.0F);
+        this.setRotateAngle(lowerArmRight, -0.4886921905584123F, 0.0F, 0.0F);
+        this.face.setRotationPoint(0.0F, 0.2F, -3.0F);
+        this.face.addBox(-2.0F, -2.5F, -4.0F, 4, 4, 4, 0.0F);
+        this.setRotateAngle(face, 0.3839724354387525F, 0.0F, 0.17453292519943295F);
+        this.chin.setRotationPoint(0.0F, 1.8F, -1.2F);
+        this.chin.addBox(-1.0F, -0.2F, -1.3F, 2, 1, 2, 0.0F);
+        this.setRotateAngle(chin, -0.13962634015954636F, 0.0F, 0.0F);
+        this.neck.setRotationPoint(0.0F, -0.5F, -2.0F);
+        this.neck.addBox(-2.5F, -2.0F, -4.0F, 5, 4, 4, 0.0F);
+        this.setRotateAngle(neck, 0.10471975511965977F, 0.10471975511965977F, 0.0F);
+        this.upperLegRight.mirror = true;
+        this.upperLegRight.setRotationPoint(-1.7F, 2.2F, 2.5F);
+        this.upperLegRight.addBox(-1.5F, 0.0F, -1.5F, 3, 4, 3, 0.0F);
+        this.setRotateAngle(upperLegRight, 0.06981317007977318F, 0.0F, 0.0F);
+        this.tail1.setRotationPoint(0.0F, 1.7F, 4.3F);
+        this.tail1.addBox(-2.0F, -1.5F, 0.0F, 4, 3, 4, 0.0F);
+        this.setRotateAngle(tail1, -0.4886921905584123F, 0.0F, 0.0F);
+        this.upperLegLeft.setRotationPoint(2.0F, 2.2F, 2.5F);
+        this.upperLegLeft.addBox(-1.5F, 0.0F, -1.5F, 3, 4, 3, 0.0F);
+        this.setRotateAngle(upperLegLeft, 0.24434609527920614F, -0.17453292519943295F, 0.20943951023931953F);
+        this.footLeft.setRotationPoint(-0.01F, 2.6F, 1.1F);
+        this.footLeft.addBox(-1.0F, 0.0F, -3.5F, 2, 1, 4, 0.0F);
+        this.setRotateAngle(footLeft, 0.3490658503988659F, 0.0F, 0.0F);
+        this.lowerArmLeft.setRotationPoint(0.0F, 4.0F, 1.4F);
+        this.lowerArmLeft.addBox(-1.0F, 0.0F, -2.0F, 2, 3, 2, 0.0F);
+        this.setRotateAngle(lowerArmLeft, -0.41887902047863906F, 0.20943951023931953F, 0.13962634015954636F);
+        this.tail2.setRotationPoint(0.0F, 0.0F, 3.5F);
+        this.tail2.addBox(-1.5F, -1.0F, 0.0F, 3, 2, 4, 0.0F);
+        this.setRotateAngle(tail2, -0.41887902047863906F, 0.0F, 0.0F);
+        this.nose.setRotationPoint(0.0F, -0.5F, -1.2F);
+        this.nose.addBox(-1.0F, 0.0F, -2.0F, 2, 1, 2, 0.0F);
+        this.setRotateAngle(nose, 0.22689280275926282F, 0.0F, 0.0F);
+        this.body.setRotationPoint(-1.0F, 22.1F, -1.0F);
+        this.body.addBox(-3.0F, -2.5F, -4.0F, 6, 5, 8, 0.0F);
+        this.setRotateAngle(body, 0.13962634015954636F, 0.0F, -1.5707963267948966F);
+        this.tail3.setRotationPoint(0.0F, 0.0F, 3.5F);
+        this.tail3.addBox(-1.0F, -0.5F, 0.0F, 2, 1, 3, 0.0F);
+        this.setRotateAngle(tail3, -0.20943951023931953F, 0.0F, 0.0F);
+        this.upperArmRight.mirror = true;
+        this.upperArmRight.setRotationPoint(-2.1F, -1.0F, -2.0F);
+        this.upperArmRight.addBox(-1.5F, 0.0F, -1.5F, 3, 4, 3, 0.0F);
+        this.setRotateAngle(upperArmRight, 0.06981317007977318F, 0.0F, 0.0F);
+        this.lowerChest.setRotationPoint(0.0F, 3.0F, -1.0F);
+        this.lowerChest.addBox(-1.5F, -2.0F, -5.0F, 3, 2, 5, 0.0F);
+        this.setRotateAngle(lowerChest, -0.3490658503988659F, 0.0F, 0.0F);
+        this.handLeft.setRotationPoint(-0.01F, 2.8F, -0.6F);
+        this.handLeft.addBox(-1.0F, -0.5F, -2.5F, 2, 1, 3, 0.0F);
+        this.setRotateAngle(handLeft, 0.593411945678072F, 0.03490658503988659F, 0.13962634015954636F);
+        this.earRight.mirror = true;
+        this.earRight.setRotationPoint(-1.5F, -1.8F, -1.8F);
+        this.earRight.addBox(-1.0F, -0.5F, -0.5F, 1, 1, 1, 0.0F);
+        this.setRotateAngle(earRight, 0.0F, 0.3490658503988659F, 0.41887902047863906F);
+        this.lowerArmRight.addChild(this.handRight);
+        this.upperLegLeft.addChild(this.lowerLegLeft);
+        this.face.addChild(this.snout);
+        this.bellyPoint.addChild(this.back);
+        this.lowerLegRight.addChild(this.footRight);
+        this.upperLegRight.addChild(this.lowerLegRight);
+        this.face.addChild(this.earLeft);
+        this.body.addChild(this.upperArmLeft);
+        this.body.addChild(this.bellyPoint);
+        this.upperArmRight.addChild(this.lowerArmRight);
+        this.neck.addChild(this.face);
+        this.snout.addChild(this.chin);
+        this.body.addChild(this.neck);
+        this.back.addChild(this.upperLegRight);
+        this.back.addChild(this.tail1);
+        this.back.addChild(this.upperLegLeft);
+        this.lowerLegLeft.addChild(this.footLeft);
+        this.upperArmLeft.addChild(this.lowerArmLeft);
+        this.tail1.addChild(this.tail2);
+        this.snout.addChild(this.nose);
+        this.tail2.addChild(this.tail3);
+        this.body.addChild(this.upperArmRight);
+        this.neck.addChild(this.lowerChest);
+        this.lowerArmLeft.addChild(this.handLeft);
+        this.face.addChild(this.earRight);
+    }
+}

@@ -30,6 +30,7 @@ public class ModEntities {
         add(EntityBoxTurtle.class, "boxturtle");
         add(EntityDwarfCrocodile.class, "dwarfcrocodile");
         add(EntityOpossum.class, "opossum");
+        add(EntityRaccoon.class, "raccoon");
         add(EntitySkunk.class, "skunk");
         add(EntitySmallClawedOtter.class, "smallclawedotter");
         add(EntityTreeSquirrel.class, "treesquirrel");
@@ -59,6 +60,7 @@ public class ModEntities {
             ZAWASpawnConfiguration.edits.put(EntityTuftedDeer.class, new BiomeEdit(new String[]{"minecraft:extreme_hills_with_trees"}, new String[]{"minecraft:desert_hills", "biomesoplenty:crag", "biomesoplenty:grassland", "biomesoplenty:highland", "biomesoplenty:moor", "minecraft:mutated_swampland", "minecraft:mutated_ice_flats", "minecraft:ice_mountains"}));
             ZAWASpawnConfiguration.edits.put(EntitySkunk.class, new BiomeEdit(new String[]{"biomesoplenty:bayou", "biomesoplenty:dead_swamp", "biomesoplenty:lush_swamp", "biomesoplenty:marsh", "biomesoplenty:moor", "biomesoplenty:tropical_rainforest"}, new String[]{"biomesoplenty:outback", "biomesoplenty:bamboo_forest", "biomesoplenty:eucalyptus_forest", "biomesoplenty:land_of_lakes", "biomesoplenty:snowy_coniferous_forest", "biomesoplenty:snowy_forest"}));
             ZAWASpawnConfiguration.edits.put(EntityOpossum.class, new BiomeEdit(new String[]{"biomesoplenty:bog", "biomesoplenty:boreal_forest"}, new String[]{"biomesoplenty:bamboo_forest", "biomesoplenty:eucalyptus_forest", "biomesoplenty:mangrove", "biomesoplenty:outback", "biomesoplenty:tropical_island", "biomesoplenty:land_of_lakes"}));
+            ZAWASpawnConfiguration.edits.put(EntityRaccoon.class, new BiomeEdit(new String[0], new String []{"biomesoplenty:highland", "minecraft:mutated_savanna_rock", "minecraft:mutated_savanna", "biomesoplenty:outback", "biomesoplenty:temperate_rainforest", "biomesoplenty:mountain"}));
             ZAWASpawnConfiguration.edits.put(EntityDwarfCrocodile.class, new BiomeEdit(new String[]{"biomesoplenty:bog", "biomesoplenty:dead_swamp"}, new String[]{"minecraft:extreme_hills_with_trees", "biomesoplenty:brushland", "biomesoplenty:cherry_blossom_grove", "biomesoplenty:quagmire", "biomesoplenty:eucalyptus_forest", "biomesoplenty:highland", "biomesoplenty:mystic_grove", "biomesoplenty:overgrown_cliffs", "biomesoplenty:rainforest", "biomesoplenty:temperate_rainforest", "biomesoplenty:tropical_rainforest", "biomesoplenty:outback", "biomesoplenty:xeric_shrubland", "biomesoplenty:mountain", "biomesoplenty:orchard", "biomesoplenty:redwood_forest", "biomesoplenty:mountain_foothills"}));
             ZAWASpawnConfiguration.edits.put(EntitySmallClawedOtter.class, new BiomeEdit(new String[]{"biomesoplenty:tropical_island"}, new String[0]));
             ZAWASpawnConfiguration.edits.put(EntityBandedPenguin.class, new BiomeEdit(new String[]{"biomesoplenty:tropical_island"}, new String[0]));
@@ -68,26 +70,10 @@ public class ModEntities {
             ZAWASpawnConfiguration.add(EntityTuftedDeer.class, "TuftedDeer", 10, 1, 1, EnumCreatureType.CREATURE, excludeBiomesByType(getAllBiomesOf(BiomeDictionary.Type.HILLS, BiomeDictionary.Type.MOUNTAIN), BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.SPARSE));
             ZAWASpawnConfiguration.add(EntitySkunk.class, "Skunks", 10, 1, 2, EnumCreatureType.CREATURE, SpawnUtils.mergeBiomes(SpawnUtils.getBiomesOfType(BiomeDictionary.Type.FOREST), SpawnUtils.getBiomesOfType(BiomeDictionary.Type.PLAINS), SpawnUtils.getBiomesOfType(BiomeDictionary.Type.SAVANNA)));
             ZAWASpawnConfiguration.add(EntityOpossum.class, "Opossums", 20, 1, 1, EnumCreatureType.CREATURE, excludeBiomesByType(getAllBiomesOf(BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.SWAMP), BiomeDictionary.Type.COLD, BiomeDictionary.Type.JUNGLE));
+            ZAWASpawnConfiguration.add(EntityRaccoon.class, "Raccoons", 15, 1, 1, EnumCreatureType.CREATURE, excludeBiomesByType(getAllBiomesOf(BiomeDictionary.Type.FOREST, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.WET), BiomeDictionary.Type.JUNGLE));
             ZAWASpawnConfiguration.add(EntityDwarfCrocodile.class, "DwarfCrocodiles", 10, 1, 1, EnumCreatureType.CREATURE, excludeBiomesByType(getAllBiomesOf(BiomeDictionary.Type.RIVER, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.WET, BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.FOREST), BiomeDictionary.Type.COLD, BiomeDictionary.Type.JUNGLE));
             ZAWASpawnConfiguration.add(EntitySmallClawedOtter.class, "SmallClawedOtters", 20, 4, 6, EnumCreatureType.CREATURE, excludeBiomesByType(getAllBiomesOf(BiomeDictionary.Type.RIVER, BiomeDictionary.Type.BEACH), BiomeDictionary.Type.COLD));
             ZAWASpawnConfiguration.add(EntityBandedPenguin.class, "BandedPenguins", 15, 4, 8, EnumCreatureType.CREATURE, excludeBiomesByType(getAllBiomesOf(BiomeDictionary.Type.BEACH), BiomeDictionary.Type.COLD));
-
-            /*EntityRegistry.addSpawn(EntityTreeSquirrel.class, ConfigLC.spawns.tree_squirrel.spawnChance, ConfigLC.spawns.tree_squirrel.minGroup, ConfigLC.spawns.tree_squirrel.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.tree_squirrel.biomes)}));
-            EntityRegistry.addSpawn(EntityBoxTurtle.class, ConfigLC.spawns.box_turtle.spawnChance, ConfigLC.spawns.box_turtle.minGroup, ConfigLC.spawns.box_turtle.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.box_turtle.biomes)}));
-            EntityRegistry.addSpawn(EntityTuftedDeer.class, ConfigLC.spawns.tufted_deer.spawnChance, ConfigLC.spawns.tufted_deer.minGroup, ConfigLC.spawns.tufted_deer.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.tufted_deer.biomes)}));
-            EntityRegistry.addSpawn(EntitySkunk.class, ConfigLC.spawns.skunk.spawnChance, ConfigLC.spawns.skunk.minGroup, ConfigLC.spawns.skunk.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.skunk.biomes)}));
-            EntityRegistry.addSpawn(EntityOpossum.class, ConfigLC.spawns.opossum.spawnChance, ConfigLC.spawns.opossum.minGroup, ConfigLC.spawns.opossum.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.opossum.biomes)}));
-            EntityRegistry.addSpawn(EntityDwarfCrocodile.class, ConfigLC.spawns.dwarf_crocodile.spawnChance, ConfigLC.spawns.dwarf_crocodile.minGroup, ConfigLC.spawns.dwarf_crocodile.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.dwarf_crocodile.biomes)}));
-            EntityRegistry.addSpawn(EntitySmallClawedOtter.class, ConfigLC.spawns.small_clawed_otter.spawnChance, ConfigLC.spawns.small_clawed_otter.minGroup, ConfigLC.spawns.small_clawed_otter.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.small_clawed_otter.biomes)}));
-            EntityRegistry.addSpawn(EntityBandedPenguin.class, ConfigLC.spawns.banded_penguin.spawnChance, ConfigLC.spawns.banded_penguin.minGroup, ConfigLC.spawns.banded_penguin.maxGroup, EnumCreatureType.CREATURE,
-                    SpawnUtils.mergeBiomes(new Biome[][]{getBiomes(ConfigLC.spawns.banded_penguin.biomes)}));*/
         }
 
         LootTableList.register(EntityBoxTurtle.LOOT);
@@ -100,6 +86,7 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntityBoxTurtle.class, RenderBoxTurtle::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityDwarfCrocodile.class, RenderDwarfCrocodile::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityOpossum.class, RenderOpossum::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityRaccoon.class, RenderRaccoon::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySkunk.class, RenderSkunk::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySmallClawedOtter.class, RenderSmallClawedOtter::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTreeSquirrel.class, RenderTreeSquirrel::new);

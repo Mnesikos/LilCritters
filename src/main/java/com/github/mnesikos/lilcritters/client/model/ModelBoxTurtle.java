@@ -5,47 +5,47 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
-import net.soggymustache.bookworm.client.animation.part.BookwormModelBase;
 import net.soggymustache.bookworm.client.animation.part.BookwormModelRenderer;
 import net.soggymustache.bookworm.util.BookwormUtils;
+import org.zawamod.client.model.base.ZAWAModelBase;
 import org.zawamod.configuration.ZAWAConfig;
 
 /**
  * Box Turtle - Mr. Mubbs
  * Created using Tabula 5.1.0
  */
-public class ModelBoxTurtle extends BookwormModelBase {
-    private BookwormModelRenderer shell;
-    private BookwormModelRenderer shellTop;
-    private BookwormModelRenderer shellFront;
-    private BookwormModelRenderer shellRight;
-    private BookwormModelRenderer shellLeft;
-    private BookwormModelRenderer shellBack;
-    private BookwormModelRenderer frontRightLeg;
-    private BookwormModelRenderer frontLeftLeg;
-    private BookwormModelRenderer backRightLeg;
-    private BookwormModelRenderer backLeftLeg;
-    private BookwormModelRenderer shellBottom;
-    private BookwormModelRenderer headLipTop;
-    private BookwormModelRenderer neck;
-    private BookwormModelRenderer headLipBottom;
-    private BookwormModelRenderer headLipLeft;
-    private BookwormModelRenderer headLipRight;
-    private BookwormModelRenderer head;
-    private BookwormModelRenderer nose;
-    private BookwormModelRenderer mouth;
-    private BookwormModelRenderer lipRight;
-    private BookwormModelRenderer lipLeft;
-    private BookwormModelRenderer backLip;
-    private BookwormModelRenderer tail;
-    private BookwormModelRenderer backLipRight;
-    private BookwormModelRenderer backLipLeft;
-    private BookwormModelRenderer frontRightFoot;
-    private BookwormModelRenderer frontLeftFoot;
-    private BookwormModelRenderer backRightFoot;
-    private BookwormModelRenderer backLeftFoot;
-    private BookwormModelRenderer shellBottomRight;
-    private BookwormModelRenderer shellBottomLeft;
+public class ModelBoxTurtle extends ZAWAModelBase {
+    protected BookwormModelRenderer shell;
+    protected BookwormModelRenderer shellTop;
+    protected BookwormModelRenderer shellFront;
+    protected BookwormModelRenderer shellRight;
+    protected BookwormModelRenderer shellLeft;
+    protected BookwormModelRenderer shellBack;
+    protected BookwormModelRenderer frontRightLeg;
+    protected BookwormModelRenderer frontLeftLeg;
+    protected BookwormModelRenderer backRightLeg;
+    protected BookwormModelRenderer backLeftLeg;
+    protected BookwormModelRenderer shellBottom;
+    protected BookwormModelRenderer headLipTop;
+    protected BookwormModelRenderer neck;
+    protected BookwormModelRenderer headLipBottom;
+    protected BookwormModelRenderer headLipLeft;
+    protected BookwormModelRenderer headLipRight;
+    protected BookwormModelRenderer head;
+    protected BookwormModelRenderer nose;
+    protected BookwormModelRenderer mouth;
+    protected BookwormModelRenderer lipRight;
+    protected BookwormModelRenderer lipLeft;
+    protected BookwormModelRenderer backLip;
+    protected BookwormModelRenderer tail;
+    protected BookwormModelRenderer backLipRight;
+    protected BookwormModelRenderer backLipLeft;
+    protected BookwormModelRenderer frontRightFoot;
+    protected BookwormModelRenderer frontLeftFoot;
+    protected BookwormModelRenderer backRightFoot;
+    protected BookwormModelRenderer backLeftFoot;
+    protected BookwormModelRenderer shellBottomRight;
+    protected BookwormModelRenderer shellBottomLeft;
 
     public ModelBoxTurtle() {
         this.textureWidth = 64;
@@ -221,75 +221,75 @@ public class ModelBoxTurtle extends BookwormModelBase {
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
-        if (entity != null) {
-            super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
-            this.reset();
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
 
-            float globalSpeed = 6.0f;
-            float globalDegree = 2.0f;
-            float globalHeight = 4.0f;
-            if (this.isChild) {
-                globalSpeed = 2f;
-                globalDegree = 2f;
-                globalHeight = 1f;
+        if (entity instanceof EntityBoxTurtle && !((EntityBoxTurtle) entity).isAsleep()) {
+            EntityBoxTurtle turtle = (EntityBoxTurtle) entity;
+            this.neck.rotateAngleX = (headPitch / (180F / (float)Math.PI)) - 0.10471975511965977F;
+            this.neck.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+
+            if (turtle.getIsHiding() && !BookwormUtils.isEntityMoving(turtle)) {
+                this.reset();
+                this.shell.setRotationPoint(0.0F, 21.1F, 0.0F);
+                this.neck.setRotationPoint(0.0F, 0.1F, 5.0F);
+                this.tail.setRotationPoint(0.0F, 1.0F, -1.5F);
+                this.frontRightLeg.setRotationPoint(-2.2F, -2.3F, -2.6F);
+                this.frontLeftLeg.setRotationPoint(2.2F, -2.3F, -2.6F);
+                this.backRightLeg.setRotationPoint(-1.8F, -1.3F, 1.7F);
+                this.backLeftLeg.setRotationPoint(1.8F, -1.3F, 1.7F);
+            }
+        }
+    }
+
+    @Override
+    protected void performGenericAnimation(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+        EntityBoxTurtle turtle = (EntityBoxTurtle) entity;
+
+        float globalSpeed = 6.0f;
+        float globalDegree = 2.0f;
+        float globalHeight = 4.0f;
+        if (this.isChild) {
+            globalSpeed = 2f;
+            globalDegree = 2f;
+            globalHeight = 1f;
+        }
+
+        if (!turtle.isRiding() && !turtle.getIsHiding()) {
+            if (turtle.isInWater()) {
+                limbSwing = (float)entity.ticksExisted / 10F;
+                limbSwingAmount = 0.1F;
             }
 
-            if (entity instanceof EntityBoxTurtle) {
-                EntityBoxTurtle turtle = (EntityBoxTurtle) entity;
-                this.neck.rotateAngleX = (headPitch / (180F / (float)Math.PI)) - 0.10471975511965977F;
-                this.neck.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+            if (BookwormUtils.isEntityMoving(turtle) || turtle.isInWater()) {
+                // TODO this pretty broken when the turtle is smacked/on a lead
+                this.shell.rotationPointY = (float) -Math.abs((Math.sin(limbSwing * (0.5f * globalSpeed) + 1.0F) * limbSwingAmount * (0.5f * globalHeight))) + 19.7f;
+                this.neck.rotateAngleX = 1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + -0.1F;
+                this.head.rotateAngleX = -1f * limbSwingAmount * (0.05f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0.2F;
+                this.tail.rotateAngleX = -1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + -0.28F;
 
-                if (!turtle.isRiding() && !turtle.getIsHiding()) {
-                    if (turtle.isInWater()) {
-                        limbSwing = (float)entity.ticksExisted / 10F;
-                        limbSwingAmount = 0.1F;
-                    }
+                this.frontLeftLeg.rotateAngleX = 1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
+                this.frontLeftFoot.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
+                this.frontRightLeg.rotateAngleX = -1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
+                this.frontRightFoot.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
 
-                    if (BookwormUtils.isEntityMoving(turtle) || turtle.isInWater()) {
-                        // TODO this pretty broken when the turtle is smacked/on a lead
-                        this.shell.rotationPointY = (float) -Math.abs((Math.sin(limbSwing * (0.5f * globalSpeed) + 1.0F) * limbSwingAmount * (0.5f * globalHeight))) + 19.7f;
-                        this.neck.rotateAngleX = 1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + -0.1F;
-                        this.head.rotateAngleX = -1f * limbSwingAmount * (0.05f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0.2F;
-                        this.tail.rotateAngleX = -1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + -0.28F;
+                this.backRightLeg.rotateAngleX = -1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
+                this.backRightLeg.rotateAngleZ = 1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + 0.0F;
+                this.backRightFoot.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
+                this.backLeftLeg.rotateAngleX = 1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
+                this.backLeftLeg.rotateAngleZ = 1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + 0.0F;
+                this.backLeftFoot.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
 
-                        this.frontLeftLeg.rotateAngleX = 1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
-                        this.frontLeftFoot.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
-                        this.frontRightLeg.rotateAngleX = -1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
-                        this.frontRightFoot.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
+            } else if (ZAWAConfig.clientOptions.livingAnimations && !BookwormUtils.isEntityMoving(turtle)) {
+                // TODO
 
-                        this.backRightLeg.rotateAngleX = -1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
-                        this.backRightLeg.rotateAngleZ = 1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + 0.0F;
-                        this.backRightFoot.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
-                        this.backLeftLeg.rotateAngleX = 1f * limbSwingAmount * (1f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + -0.6F;
-                        this.backLeftLeg.rotateAngleZ = 1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 0f) + 0.0F;
-                        this.backLeftFoot.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.5f * globalSpeed) + 1f) + 0.5F;
-
-                    } else if (ZAWAConfig.clientOptions.livingAnimations && !BookwormUtils.isEntityMoving(turtle)) {
-                        // TODO
-
-                    }
-                }
-                if (turtle.getIsHiding() && !BookwormUtils.isEntityMoving(turtle)) {
-                    this.reset();
-                    this.shell.setRotationPoint(0.0F, 21.1F, 0.0F);
-                    this.neck.setRotationPoint(0.0F, 0.1F, 5.0F);
-                    this.tail.setRotationPoint(0.0F, 1.0F, -1.5F);
-                    this.frontRightLeg.setRotationPoint(-2.2F, -2.3F, -2.6F);
-                    this.frontLeftLeg.setRotationPoint(2.2F, -2.3F, -2.6F);
-                    this.backRightLeg.setRotationPoint(-1.8F, -1.3F, 1.7F);
-                    this.backLeftLeg.setRotationPoint(1.8F, -1.3F, 1.7F);
-                }
             }
-
-        } else {
-            return;
         }
     }
 
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
-    private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+    protected void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;

@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.client.model;
 
+import com.github.mnesikos.lilcritters.entity.EntitySmallClawedOtter;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -186,7 +187,7 @@ public class ModelSmallClawedOtter extends ZAWAModelBase {
         if (this.isChild) {
             GlStateManager.pushMatrix();
             GlStateManager.scale(0.6D, 0.6D, 0.6D);
-            GlStateManager.translate(0.0F, 17.0F * scale, 0.0F);
+            GlStateManager.translate(0.0F, 16.8F * scale, 0.0F);
             this.body.render(scale);
             GlStateManager.popMatrix();
         } else
@@ -196,8 +197,11 @@ public class ModelSmallClawedOtter extends ZAWAModelBase {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
-        this.face.rotateAngleX = (headPitch / (180F / (float)Math.PI)) + (float)(24 / (180 / Math.PI));
-        this.face.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+
+        if (entity instanceof EntitySmallClawedOtter && !((EntitySmallClawedOtter) entity).isAsleep()) {
+            this.face.rotateAngleX = (headPitch / (180F / (float) Math.PI)) + (float) (24 / (180 / Math.PI));
+            this.face.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+        }
     }
 
     @Override
@@ -275,10 +279,5 @@ public class ModelSmallClawedOtter extends ZAWAModelBase {
 
             }
         }
-    }
-
-    @Override
-    protected void performSleepAnimation(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-        super.performSleepAnimation(f, f1, f2, f3, f4, f5, entity);
     }
 }

@@ -1,21 +1,23 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.entity.base.LCBaseCrossover;
+import com.github.mnesikos.lilcritters.util.AnimalPacksLC;
+import com.github.mnesikos.lilcritters.util.ModEntityPoses;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.zawamod.entity.core.AnimalData;
+import net.soggymustache.bookworm.client.animation.lerp.Animation;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.zawamod.entity.core.AnimalPack;
 import org.zawamod.entity.core.IMultiSpeciesEntity;
-import org.zawamod.init.ZAWAItems;
+import org.zawamod.entity.core.modules.ModuleManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,41 +29,29 @@ public class EntityBandedPenguin extends LCBaseCrossover implements IMultiSpecie
     public EntityBandedPenguin(World world) {
         super(world);
         setSize(0.6F, 0.8F);
-        this.speed = 1.0F;
-        this.activity = AnimalData.Activity.CALM;
     }
 
     @Override
     public float getEyeHeight() {
-        return this.isChild() ? this.height * 0.9F : (this.scale() / 100.0F) * 1.7F;
+        return this.height * 0.8F;
     }
 
+    @NotNull
     @Override
-    public boolean displayCuriosity() {
-        return true;
+    public Animation getSleepAnimation() {
+        return new Animation(ModEntityPoses.BANDED_PENGUIN, ModEntityPoses.BANDED_PENGUIN_SLEEP);
     }
 
+    @Nullable
     @Override
-    public boolean canBreatheUnderwater() {
-        return true;
+    public Animation getChildSleepAnimation() {
+        return new Animation(ModEntityPoses.BANDED_PENGUIN, ModEntityPoses.BANDED_PENGUIN_SLEEP);
     }
 
+    @NotNull
     @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.16D);
-    }
-
-    @Override
-    public ItemStack setTameItem() {
-        return new ItemStack(ZAWAItems.PINNIPED_KIBBLE);
-    }
-
-    @Override
-    public int setVariants() {
-        return 4;
+    public AnimalPack getPack() {
+        return AnimalPacksLC.BANDED_PENGUIN;
     }
 
     @Override
@@ -75,24 +65,14 @@ public class EntityBandedPenguin extends LCBaseCrossover implements IMultiSpecie
     }
 
     @Override
-    public AnimalData.EnumNature setNature() {
-        return AnimalData.EnumNature.NEUTRAL;
-    }
-
-    @Override
-    public ItemStack setVial() {
-        return new ItemStack(ZAWAItems.PINNIPED_VIAL);
-    }
-
-    @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
         EntityBandedPenguin parent2 = (EntityBandedPenguin) ageable;
         EntityBandedPenguin child = new EntityBandedPenguin(this.world);
-        if (parent2.getAnimalType() != this.getAnimalType() && this.rand.nextInt(2) == 0) {
-            child.setAnimalType(parent2.getAnimalType());
-        } else {
-            child.setAnimalType(this.getAnimalType());
-        }
+        if (ModuleManager.VARIANT.getVariant(parent2) != ModuleManager.VARIANT.getVariant(this) && this.rand.nextInt(2) == 0)
+            ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(parent2));
+        else
+            ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(this));
+
         return child;
     }
 

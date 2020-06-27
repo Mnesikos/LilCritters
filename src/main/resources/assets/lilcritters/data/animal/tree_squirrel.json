@@ -1,0 +1,14 @@
+{
+  "max_health": 6.0,
+  "variants": 6,
+  "kibble": "lilcritters:rodent_kibble",
+  "vial": "lilcritters:rodent_vial",
+  "nature": "PROVOKED",
+  "activity": "ACTIVE",
+  "swimming": false,
+  "water_breathing": false,
+  "transportable": true,
+  "damage": 1.0,
+  "speed": 1.2,
+  "mc_speed": 0.30
+}

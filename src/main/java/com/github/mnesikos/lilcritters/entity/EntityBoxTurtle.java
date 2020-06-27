@@ -1,10 +1,11 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.entity.base.LCBaseLand;
+import com.github.mnesikos.lilcritters.util.AnimalPacksLC;
+import com.github.mnesikos.lilcritters.util.ModEntityPoses;
 import com.github.mnesikos.lilcritters.util.Ref;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,10 +14,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import org.zawamod.entity.core.AnimalData;
+import net.soggymustache.bookworm.client.animation.lerp.Animation;
+import org.jetbrains.annotations.NotNull;
+import org.zawamod.entity.core.AnimalPack;
 import org.zawamod.entity.core.DietHandler;
 import org.zawamod.entity.core.IMultiSpeciesEntity;
-import org.zawamod.init.ZAWAItems;
+import org.zawamod.entity.core.modules.ModuleManager;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -30,17 +33,6 @@ public class EntityBoxTurtle extends LCBaseLand implements IMultiSpeciesEntity {
     public EntityBoxTurtle(World world) {
         super(world);
         setSize(0.5F, 0.4F);
-        this.stepHeight = 1.0F;
-        this.speed = 0.8F;
-        this.activity = AnimalData.Activity.LAZY;
-    }
-
-    @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10D);
     }
 
     @Override
@@ -48,9 +40,16 @@ public class EntityBoxTurtle extends LCBaseLand implements IMultiSpeciesEntity {
         return this.height * 0.4F;
     }
 
+    @Nullable
     @Override
-    public boolean displayCuriosity() {
-        return true;
+    public Animation getSleepAnimation() {
+        return new Animation(ModEntityPoses.BOX_TURTLE, ModEntityPoses.BOX_TURTLE_SLEEP);
+    }
+
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public Animation getChildSleepAnimation() {
+        return new Animation(ModEntityPoses.BOX_TURTLE, ModEntityPoses.BOX_TURTLE_SLEEP);
     }
 
     @Override
@@ -59,14 +58,10 @@ public class EntityBoxTurtle extends LCBaseLand implements IMultiSpeciesEntity {
         this.tasks.addTask(0, new EntityAISwimming(this));
     }
 
+    @NotNull
     @Override
-    public ItemStack setTameItem() {
-        return new ItemStack(ZAWAItems.TORTOISE_KIBBLE, 1);
-    }
-
-    @Override
-    public int setVariants() {
-        return 5;
+    public AnimalPack getPack() {
+        return AnimalPacksLC.BOX_TURTLE;
     }
 
     @Override
@@ -81,24 +76,14 @@ public class EntityBoxTurtle extends LCBaseLand implements IMultiSpeciesEntity {
     }
 
     @Override
-    public AnimalData.EnumNature setNature() {
-        return AnimalData.EnumNature.NEUTRAL;
-    }
-
-    @Override
-    public ItemStack setVial() {
-        return new ItemStack(ZAWAItems.TORTOISE_VIAL, 1);
-    }
-
-    @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
         EntityBoxTurtle parent2 = (EntityBoxTurtle) ageable;
         EntityBoxTurtle child = new EntityBoxTurtle(this.world);
-        if (parent2.getAnimalType() != this.getAnimalType() && this.rand.nextInt(2) == 0) {
-            child.setAnimalType(parent2.getAnimalType());
-        } else {
-            child.setAnimalType(this.getAnimalType());
-        }
+        if (ModuleManager.VARIANT.getVariant(parent2) != ModuleManager.VARIANT.getVariant(this) && this.rand.nextInt(2) == 0)
+            ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(parent2));
+        else
+            ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(this));
+
         return child;
     }
 

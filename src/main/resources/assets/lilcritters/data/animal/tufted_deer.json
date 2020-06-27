@@ -1,0 +1,13 @@
+{
+  "max_health": 20.0,
+  "variants": 4,
+  "kibble": "zawa:unglate_kibble",
+  "vial": "zawa:unglate_vial",
+  "nature": "SKITTISH",
+  "activity": "HASTY",
+  "swimming": false,
+  "water_breathing": false,
+  "transportable": true,
+  "speed": 1.2,
+  "mc_speed": 0.24
+}

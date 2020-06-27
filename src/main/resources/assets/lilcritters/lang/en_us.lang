@@ -16,6 +16,7 @@ entity.lilcritters.skunk.name=Skunk
 entity.lilcritters.smallclawedotter.name=Small Clawed Otter
 entity.lilcritters.dwarfcrocodile.name=Dwarf Crocodile
 entity.lilcritters.bandedpenguin.name=Banded Penguin
+entity.lilcritters.raccoon.name=Raccoon
 
 sound.lilcritters.subtitle.squirrel.bark=Squirrel chattering
 sound.lilcritters.subtitle.squirrel.hurt=Squirrel injured

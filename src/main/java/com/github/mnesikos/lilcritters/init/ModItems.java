@@ -29,6 +29,7 @@ public class ModItems {
 	public static final Item BOX_TURTLE_SPAWN_EGG = new ItemSpawnEggLC("box_turtle");
 	public static final Item DWARF_CROCODILE_SPAWN_EGG = new ItemSpawnEggLC("dwarf_crocodile");
 	public static final Item OPOSSUM_SPAWN_EGG = new ItemSpawnEggLC("opossum");
+	public static final Item RACCOON_SPAWN_EGG = new ItemSpawnEggLC("raccoon");
 	public static final Item SKUNK_SPAWN_EGG = new ItemSpawnEggLC("skunk");
 	public static final Item SMALL_CLAWED_OTTER_SPAWN_EGG = new ItemSpawnEggLC("small_clawed_otter");
 	public static final Item TREE_SQUIRREL_SPAWN_EGG = new ItemSpawnEggLC("tree_squirrel");

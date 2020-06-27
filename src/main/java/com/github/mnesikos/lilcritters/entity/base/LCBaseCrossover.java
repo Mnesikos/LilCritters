@@ -3,54 +3,19 @@ package com.github.mnesikos.lilcritters.entity.base;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.zawamod.entity.base.ZAWABaseCrossover;
-import org.zawamod.entity.core.AnimalData;
 
 public abstract class LCBaseCrossover extends ZAWABaseCrossover {
     public LCBaseCrossover(World world) {
         super(world);
-        this.stepHeight = 1.0F;
-        this.speed = 1.0F; //This is the speed variable that the zawa wander ai uses
-        /* How often the entity should move ACTIVITY(chance)
-         * ACTIVE(50)
-         * HASTY(60)
-         * NORMAL(90)
-         * CALM(110)
-         * LAZY(130)
-         * INACTIVE(190) */
-        this.activity = AnimalData.Activity.NORMAL;
     }
 
     @Override
     public abstract float getEyeHeight();
-
-    //This will let the animal wander and check out dropped item
-    @Override
-    public abstract boolean displayCuriosity();
-
-    //This will let the animal be carried in the back of the ATV
-    @Override
-    public boolean isTransportable() {
-        return true;
-    }
-
-    @Override
-    public abstract ItemStack setTameItem();
-
-    @Override
-    public abstract int setVariants();
-
-    //SKITTISH - avoids when too close? (I think)
-    //NETURAL - nothing
-    //PROTECTIVE - attack when the entity is near or when hit (distance depends on difficulty)
-    //AGGRESSIVE - attack on sight
-    @Override
-    public abstract AnimalData.EnumNature setNature();
 
     //All entities extending this class that are able to be picked up will have their position determined here
     @Override
@@ -82,9 +47,6 @@ public abstract class LCBaseCrossover extends ZAWABaseCrossover {
             }
         }
     }
-
-    @Override
-    public abstract ItemStack setVial();
 
     @Override
     public abstract EntityAgeable createChild(EntityAgeable ageable);

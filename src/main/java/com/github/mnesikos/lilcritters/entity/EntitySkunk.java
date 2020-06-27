@@ -1,16 +1,19 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.entity.base.LCBaseLandAvoidWater;
-import com.github.mnesikos.lilcritters.init.ModItems;
+import com.github.mnesikos.lilcritters.util.AnimalPacksLC;
+import com.github.mnesikos.lilcritters.util.ModEntityPoses;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import org.zawamod.entity.core.AnimalData;
+import net.soggymustache.bookworm.client.animation.lerp.Animation;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.zawamod.entity.core.AnimalPack;
 import org.zawamod.entity.core.IMultiSpeciesEntity;
+import org.zawamod.entity.core.modules.ModuleManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,34 +21,36 @@ import java.util.Map;
 public class EntitySkunk extends LCBaseLandAvoidWater implements IMultiSpeciesEntity {
     public EntitySkunk(World world) {
         super(world);
-        setSize(0.8F, 0.8F);
-        this.stepHeight = 1.0F;
-        this.speed = 1.0F;
-        this.activity = AnimalData.Activity.CALM;
-    }
-
-    @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D);
+        setSize(0.6F, 0.6F);
     }
 
     @Override
     public float getEyeHeight() {
-        return 0.5F;
+        return this.height * 0.5F;
     }
 
+    @Nullable
     @Override
-    public boolean displayCuriosity() {
-        return false;
+    public Animation getSleepAnimation() {
+        return new Animation(ModEntityPoses.SKUNK, ModEntityPoses.SKUNK_SLEEP);
+    }
+
+    @Nullable
+    @Override
+    public Animation getChildSleepAnimation() {
+        return new Animation(ModEntityPoses.SKUNK, ModEntityPoses.SKUNK_SLEEP);
     }
 
     @Override
     protected void initEntityAI() {
         super.initEntityAI();
         this.tasks.addTask(0, new EntityAISwimming(this));
+    }
+
+    @NotNull
+    @Override
+    public AnimalPack getPack() {
+        return AnimalPacksLC.SKUNK;
     }
 
     @Override
@@ -65,16 +70,6 @@ public class EntitySkunk extends LCBaseLandAvoidWater implements IMultiSpeciesEn
     }
 
     @Override
-    public ItemStack setTameItem() {
-        return new ItemStack(ModItems.RODENT_KIBBLE, 1);
-    }
-
-    @Override
-    public int setVariants() {
-        return 2;
-    }
-
-    @Override
     public Map<Integer, String> speciesData() {
         Map<Integer, String> map = new HashMap<>();
         map.put(0, "Striped");
@@ -83,24 +78,14 @@ public class EntitySkunk extends LCBaseLandAvoidWater implements IMultiSpeciesEn
     }
 
     @Override
-    public AnimalData.EnumNature setNature() {
-        return AnimalData.EnumNature.SKITTISH;
-    }
-
-    @Override
-    public ItemStack setVial() {
-        return new ItemStack(ModItems.RODENT_VIAL, 1);
-    }
-
-    @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
         EntitySkunk parent2 = (EntitySkunk) ageable;
         EntitySkunk child = new EntitySkunk(this.world);
-        if (parent2.getAnimalType() != this.getAnimalType() && this.rand.nextInt(2) == 0) {
-            child.setAnimalType(parent2.getAnimalType());
-        } else {
-            child.setAnimalType(this.getAnimalType());
-        }
+        if (ModuleManager.VARIANT.getVariant(parent2) != ModuleManager.VARIANT.getVariant(this) && this.rand.nextInt(2) == 0)
+            ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(parent2));
+        else
+            ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(this));
+
         return child;
     }
 

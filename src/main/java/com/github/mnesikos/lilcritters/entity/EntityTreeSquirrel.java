@@ -1,33 +1,17 @@
 package com.github.mnesikos.lilcritters.entity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.github.mnesikos.lilcritters.entity.base.LCBaseLandAvoidWater;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.PathNavigate;
-import net.minecraft.pathfinding.PathNavigateClimber;
-import net.minecraft.util.math.BlockPos;
-import org.zawamod.configuration.ZAWAConfig;
-import org.zawamod.entity.core.AnimalData;
-import org.zawamod.entity.core.DietHandler;
-import org.zawamod.entity.core.IMultiSpeciesEntity;
-
 import com.github.mnesikos.lilcritters.init.ModItems;
 import com.github.mnesikos.lilcritters.init.ModSoundHandler;
 import com.github.mnesikos.lilcritters.network.MessageSquirrelEat;
 import com.github.mnesikos.lilcritters.network.ModPacketHandler;
-
+import com.github.mnesikos.lilcritters.util.AnimalPacksLC;
+import com.github.mnesikos.lilcritters.util.ModEntityPoses;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISit;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAITempt;
@@ -35,14 +19,33 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathNavigate;
+import net.minecraft.pathfinding.PathNavigateClimber;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.soggymustache.bookworm.client.animation.lerp.Animation;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.zawamod.configuration.ZAWAConfig;
+import org.zawamod.entity.core.AnimalPack;
+import org.zawamod.entity.core.DietHandler;
+import org.zawamod.entity.core.IMultiSpeciesEntity;
+import org.zawamod.entity.core.modules.ModuleManager;
 import org.zawamod.entity.land.EntityBlackSpiderMonkey;
 import org.zawamod.util.DataItem;
 import org.zawamod.util.StringedItem;
 import org.zawamod.util.status.StatusClimbing;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class EntityTreeSquirrel extends LCBaseLandAvoidWater implements IMultiSpeciesEntity {
 	private boolean isSquirrelSitting;
@@ -53,17 +56,6 @@ public class EntityTreeSquirrel extends LCBaseLandAvoidWater implements IMultiSp
 	public EntityTreeSquirrel(World world) {
 		super(world);
 		setSize(0.6F, 0.6F);
-		this.stepHeight = 1.0F;
-		this.speed = 1.2F;
-		this.activity = AnimalData.Activity.ACTIVE;
-	}
-
-	@Override
-	protected void applyEntityAttributes() {
-		super.applyEntityAttributes();
-
-		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
-		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30D);
 	}
 
 	@Override
@@ -71,9 +63,16 @@ public class EntityTreeSquirrel extends LCBaseLandAvoidWater implements IMultiSp
 		return this.height * 0.5F;
 	}
 
+	@Nullable
 	@Override
-	public boolean displayCuriosity() {
-		return true;
+	public Animation getSleepAnimation() {
+		return new Animation(ModEntityPoses.TREE_SQUIRREL, ModEntityPoses.TREE_SQUIRREL_SLEEP);
+	}
+
+	@Nullable
+	@Override
+	public Animation getChildSleepAnimation() {
+		return new Animation(ModEntityPoses.TREE_SQUIRREL, ModEntityPoses.TREE_SQUIRREL_SLEEP);
 	}
 
 	@Override
@@ -86,20 +85,16 @@ public class EntityTreeSquirrel extends LCBaseLandAvoidWater implements IMultiSp
 		this.tasks.addTask(4, new EntityAITempt(this, 1.25D, ModItems.PINE_CONE, true));
 	}
 
+	@NotNull
+	@Override
+	public AnimalPack getPack() {
+		return AnimalPacksLC.TREE_SQUIRREL;
+	}
+
 	@Override
 	protected void entityInit() {
 		super.entityInit();
 		this.dataManager.register(CLIMBING, (byte)0);
-	}
-
-	@Override
-	public ItemStack setTameItem() {
-		return new ItemStack(ModItems.RODENT_KIBBLE, 1);
-	}
-
-	@Override
-	public int setVariants() {
-		return 6;
 	}
 
 	@Override
@@ -131,24 +126,14 @@ public class EntityTreeSquirrel extends LCBaseLandAvoidWater implements IMultiSp
 	}
 
 	@Override
-	public AnimalData.EnumNature setNature() {
-		return AnimalData.EnumNature.SKITTISH;
-	}
-
-	@Override
-	public ItemStack setVial() {
-		return new ItemStack(ModItems.RODENT_VIAL, 1);
-	}
-
-	@Override
 	public EntityAgeable createChild(EntityAgeable ageable) {
 		EntityTreeSquirrel parent2 = (EntityTreeSquirrel) ageable;
 		EntityTreeSquirrel child = new EntityTreeSquirrel(this.world);
-		if (parent2.getAnimalType() != this.getAnimalType() && this.rand.nextInt(2) == 0) {
-			child.setAnimalType(parent2.getAnimalType());
-		} else {
-			child.setAnimalType(this.getAnimalType());
-		}
+		if (ModuleManager.VARIANT.getVariant(parent2) != ModuleManager.VARIANT.getVariant(this) && this.rand.nextInt(2) == 0)
+			ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(parent2));
+		else
+			ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(this));
+
 		return child;
 	}
 
@@ -180,7 +165,7 @@ public class EntityTreeSquirrel extends LCBaseLandAvoidWater implements IMultiSp
     
     public void readEntityFromNBT(NBTTagCompound tagCompound) {
         super.readEntityFromNBT(tagCompound);
-        if(tagCompound.getTag("HeldFood") == null)
+        if (tagCompound.getTag("HeldFood") == null)
         	this.setHeldFood(ItemStack.EMPTY);
         else
         	this.setHeldFood(new ItemStack((NBTTagCompound) tagCompound.getTag("HeldFood")));
@@ -213,7 +198,7 @@ public class EntityTreeSquirrel extends LCBaseLandAvoidWater implements IMultiSp
 	@Override
 	public void onLivingUpdate() {
 		if(this.getHeldFood() == ItemStack.EMPTY) {
-			EntityItem targetFood = this.getNearbyFood();
+			EntityItem targetFood = ModuleManager.NEARBY_FOOD.getNearbyFood(this);
 			if(targetFood != null && !targetFood.isDead && targetFood.getItem().getCount() >= 1) {
 				
 				this.getLookHelper().setLookPositionWithEntity(targetFood, 10.0F, (float)this.getVerticalFaceSpeed());

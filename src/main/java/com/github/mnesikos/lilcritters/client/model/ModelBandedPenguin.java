@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.client.model;
 
+import com.github.mnesikos.lilcritters.entity.EntityBandedPenguin;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -211,9 +212,11 @@ public class ModelBandedPenguin extends ZAWAModelBase {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
-        this.head.rotateAngleX = (headPitch / (180F / (float)Math.PI)) + (float)(24 / (180 / Math.PI)) - (!entity.isInWater() ? 0.0F : 1.4F);
-        if (!entity.isInWater())
-            this.head.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+        if (entity instanceof EntityBandedPenguin && !((EntityBandedPenguin) entity).isAsleep()) {
+            this.head.rotateAngleX = (headPitch / (180F / (float) Math.PI)) + (float) (24 / (180 / Math.PI)) - (!entity.isInWater() ? 0.0F : 1.4F);
+            if (!entity.isInWater())
+                this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+        }
     }
 
     @Override
@@ -280,10 +283,5 @@ public class ModelBandedPenguin extends ZAWAModelBase {
                 this.Tail1.rotateAngleY = MathHelper.cos((f * speed * 0.3F) + (float) Math.PI) * (degree * -0.4F) * f1 * 0.5F;
             }
         }
-    }
-
-    @Override
-    protected void performSleepAnimation(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-        super.performSleepAnimation(f, f1, f2, f3, f4, f5, entity);
     }
 }

@@ -6,12 +6,12 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
-import net.soggymustache.bookworm.client.animation.part.BookwormModelBase;
 import net.soggymustache.bookworm.client.animation.part.BookwormModelRenderer;
 import net.soggymustache.bookworm.util.BookwormUtils;
+import org.zawamod.client.model.base.ZAWAModelBase;
 import org.zawamod.configuration.ZAWAConfig;
 
-public class ModelTreeSquirrel extends BookwormModelBase {
+public class ModelTreeSquirrel extends ZAWAModelBase {
     protected BookwormModelRenderer body;
     protected BookwormModelRenderer neck;
     protected BookwormModelRenderer leftBicep;
@@ -221,96 +221,119 @@ public class ModelTreeSquirrel extends BookwormModelBase {
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, Entity entity) {
-        if (entity != null) {
-            super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
-            this.reset();
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
 
-            float globalSpeed = 1f;
-            float globalDegree = 1.2f;
-            float globalHeight = 1.5f;
-            if (this.isChild) {
-                globalSpeed = 0.7f;
-                globalDegree = 0.8f;
-                globalHeight = 1.0f;
+        if (entity instanceof EntityTreeSquirrel && !((EntityTreeSquirrel) entity).isAsleep()) {
+            this.head.rotateAngleX = (headPitch / (180F / (float)Math.PI)) + (float)(24 / (180 / Math.PI));
+            this.head.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+
+            EntityTreeSquirrel squirrel = (EntityTreeSquirrel) entity;
+            if (!BookwormUtils.isEntityMoving(squirrel) && squirrel.getIsSitting()) {
+                this.loadPosedModel(ModEntityPoses.SQUIRREL_SIT);
+                limbSwing = (float) squirrel.ticksExisted;
+                limbSwingAmount = 0.3F;
+                this.head.rotateAngleX = 1f * limbSwingAmount * (0.26f * 1.2f) * MathHelper.cos(limbSwing * (0.8f * 1f) + 0.0f) + 1.4f;
+                this.chin.rotateAngleX = 1f * limbSwingAmount * (0.6f * 1.2f) * MathHelper.cos(limbSwing * (0.8f * 1f) + 2.0f);
             }
+        }
+    }
 
-            if (entity instanceof EntityTreeSquirrel) {
-                EntityTreeSquirrel squirrel = (EntityTreeSquirrel) entity;
-                this.head.rotateAngleX = (headPitch / (180F / (float)Math.PI)) + (float)(24 / (180 / Math.PI));
-                this.head.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+    @Override
+    protected void performGenericAnimation(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+        super.performGenericAnimation(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
+        this.reset();
 
-                if (!squirrel.isRiding()) {
+        EntityTreeSquirrel squirrel = (EntityTreeSquirrel) entity;
 
-                    if (squirrel.isInWater()) {
-                        limbSwing = squirrel.isChild() ? (float) entity.ticksExisted * 3f : (float) entity.ticksExisted;
-                        limbSwingAmount = 1.0F;
+        float globalSpeed = 1f;
+        float globalDegree = 1.2f;
+        float globalHeight = 1.5f;
+        if (this.isChild) {
+            globalSpeed = 0.7f;
+            globalDegree = 0.8f;
+            globalHeight = 1.0f;
+        }
 
-                        this.rightBicep.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 0.7f) + -0.3f;
-                        this.leftBicep.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 0.7f) + -0.3f;
-                        this.rightForearm.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 2f) + -1f;
-                        this.leftForearm.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 2f) + -1f;
-                        this.rightHand.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + -1f) + 0.8f;
-                        this.leftHand.rotateAngleX = 1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + -1f) + 0.8f;
+        if (!squirrel.isRiding()) {
 
-                        this.rightThigh.rotateAngleX = 1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 0f) + 0f;
-                        this.leftThigh.rotateAngleX = -1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 0f) + 0f;
-                        this.rightLeg.rotateAngleX = -1f * limbSwingAmount * (0.33f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 1.5f) + 1.16f;
-                        this.leftLeg.rotateAngleX = 1f * limbSwingAmount * (0.33f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 1.5f) + 1.16f;
-                        this.rightFoot.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + -0.6f) + -0.2f;
-                        this.leftFoot.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + -0.6f) + -0.2f;
+            if (squirrel.isInWater()) {
+                limbSwing = squirrel.isChild() ? (float) entity.ticksExisted * 3f : (float) entity.ticksExisted;
+                limbSwingAmount = 1.0F;
 
-                        this.neck.rotateAngleX = -0.67f;
-                        this.head.rotateAngleX = 0.3f;
-                        this.tail1.rotateAngleY = 1f * limbSwingAmount * (0.02f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 0f);
-                        this.tail1.rotateAngleX = 0f;
-                        this.tail2.rotateAngleX = 0.2f;
-                        this.tail3.rotateAngleX = this.tail4.rotateAngleX = this.tail5.rotateAngleX = this.tail6.rotateAngleX = 0.1f;
+                this.rightBicep.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 0.7f) + -0.3f;
+                this.leftBicep.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 0.7f) + -0.3f;
+                this.rightForearm.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 2f) + -1f;
+                this.leftForearm.rotateAngleX = -1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 2f) + -1f;
+                this.rightHand.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + -1f) + 0.8f;
+                this.leftHand.rotateAngleX = 1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + -1f) + 0.8f;
 
-                    } else if (!squirrel.getIsSitting() && BookwormUtils.isEntityMoving(squirrel)) {
-                        this.body.rotationPointY = (float) -Math.abs((Math.sin(limbSwing * (0.5f * globalSpeed)) * limbSwingAmount * (6.0f * globalHeight))) + 20.5f;
-                        this.body.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0.1f;
-                        this.butt.rotateAngleX = 1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 1.3f) + -0.5f;
+                this.rightThigh.rotateAngleX = 1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 0f) + 0f;
+                this.leftThigh.rotateAngleX = -1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 0f) + 0f;
+                this.rightLeg.rotateAngleX = -1f * limbSwingAmount * (0.33f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 1.5f) + 1.16f;
+                this.leftLeg.rotateAngleX = 1f * limbSwingAmount * (0.33f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 1.5f) + 1.16f;
+                this.rightFoot.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + -0.6f) + -0.2f;
+                this.leftFoot.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + -0.6f) + -0.2f;
 
-                        this.rightBicep.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0.7f) + -0.3f;
-                        this.leftBicep.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0.7f) + -0.3f;
-                        this.rightForearm.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 2f) + -1f;
-                        this.leftForearm.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 2f) + -1f;
-                        this.rightHand.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + -1f) + 0.8f;
-                        this.leftHand.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + -1f) + 0.8f;
+                this.neck.rotateAngleX = -0.67f;
+                this.head.rotateAngleX = 0.3f;
+                this.tail1.rotateAngleY = 1f * limbSwingAmount * (0.02f * globalDegree) * MathHelper.cos(limbSwing * (0.3f * globalSpeed) + 0f);
+                this.tail1.rotateAngleX = 0f;
+                this.tail2.rotateAngleX = 0.2f;
+                this.tail3.rotateAngleX = this.tail4.rotateAngleX = this.tail5.rotateAngleX = this.tail6.rotateAngleX = 0.1f;
 
-                        this.rightThigh.rotateAngleX = -1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0f;
-                        this.leftThigh.rotateAngleX = -1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0f;
-                        this.rightLeg.rotateAngleX = 1f * limbSwingAmount * (0.33f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 1.5f) + 1.16f;
-                        this.leftLeg.rotateAngleX = 1f * limbSwingAmount * (0.33f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 1.5f) + 1.16f;
-                        this.rightFoot.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + -0.6f) + -0.2f;
-                        this.leftFoot.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + -0.6f) + -0.2f;
+            } else if (!squirrel.getIsSitting() && BookwormUtils.isEntityMoving(squirrel)) {
+                this.body.rotationPointY = (float) -Math.abs((Math.sin(limbSwing * (0.5f * globalSpeed)) * limbSwingAmount * (6.0f * globalHeight))) + 20.5f;
+                this.body.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0.1f;
+                this.butt.rotateAngleX = 1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 1.3f) + -0.5f;
 
-                        this.neck.rotateAngleX = -1f * limbSwingAmount * (0.3f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + -0.5f;
-                        this.head.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0.3f;
-                        this.tail1.rotateAngleX =
-                                1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 2f) + 0.3f;
-                        this.tail2.rotateAngleX = this.tail3.rotateAngleX =
-                                1f * limbSwingAmount * (0.3f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0.2f;
-                        this.tail4.rotateAngleX = this.tail5.rotateAngleX = this.tail6.rotateAngleX =
-                                -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 2f) + 0f;
+                this.rightBicep.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0.7f) + -0.3f;
+                this.leftBicep.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0.7f) + -0.3f;
+                this.rightForearm.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 2f) + -1f;
+                this.leftForearm.rotateAngleX = 1f * limbSwingAmount * (0.4f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 2f) + -1f;
+                this.rightHand.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + -1f) + 0.8f;
+                this.leftHand.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + -1f) + 0.8f;
 
-                    } else if (ZAWAConfig.clientOptions.livingAnimations && !BookwormUtils.isEntityMoving(squirrel) && !squirrel.getIsSitting()) {
-                        limbSwing = (float) squirrel.ticksExisted;
-                        limbSwingAmount = 0.3F;
-                        this.tail1.rotateAngleX = 0.24f * limbSwingAmount * (0.08f * globalDegree) * MathHelper.cos(limbSwing * (0.08f * globalSpeed) + 12.0f) + 1.0f;
-                        this.tail4.rotateAngleX = 0.24f * limbSwingAmount * (0.16f * globalDegree) * MathHelper.cos(limbSwing * (0.08f * globalSpeed) + 6.0f) + 0.52f;
-                        this.neck.rotateAngleX = 0.5f * limbSwingAmount * (0.16f * globalDegree) * MathHelper.cos(limbSwing * (0.06f * globalSpeed) + 14.0f) + -0.6f;
+                this.rightThigh.rotateAngleX = -1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0f;
+                this.leftThigh.rotateAngleX = -1f * limbSwingAmount * (0.5f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0f;
+                this.rightLeg.rotateAngleX = 1f * limbSwingAmount * (0.33f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 1.5f) + 1.16f;
+                this.leftLeg.rotateAngleX = 1f * limbSwingAmount * (0.33f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 1.5f) + 1.16f;
+                this.rightFoot.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + -0.6f) + -0.2f;
+                this.leftFoot.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + -0.6f) + -0.2f;
 
-                    } else if (!BookwormUtils.isEntityMoving(squirrel) && squirrel.getIsSitting()) {
-                        this.loadPosedModel(ModEntityPoses.SQUIRREL_SIT);
-                        limbSwing = (float) squirrel.ticksExisted;
-                        limbSwingAmount = 0.3F;
-                        this.head.rotateAngleX = 1f * limbSwingAmount * (0.26f * 1.2f) * MathHelper.cos(limbSwing * (0.8f * 1f) + 0.0f) + 1.4f;
-                        this.chin.rotateAngleX = 1f * limbSwingAmount * (0.6f * 1.2f) * MathHelper.cos(limbSwing * (0.8f * 1f) + 2.0f);
-
-                    }
-                }
+                this.neck.rotateAngleX = -1f * limbSwingAmount * (0.3f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + -0.5f;
+                this.head.rotateAngleX = -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0.3f;
+                this.tail1.rotateAngleX =
+                        1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 2f) + 0.3f;
+                this.tail2.rotateAngleX = this.tail3.rotateAngleX =
+                        1f * limbSwingAmount * (0.3f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0.2f;
+                this.tail4.rotateAngleX = this.tail5.rotateAngleX = this.tail6.rotateAngleX =
+                        -1f * limbSwingAmount * (0.2f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 2f) + 0f;
             }
+        }
+    }
+
+    @Override
+    protected void performIdleAnimation(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+        super.performIdleAnimation(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
+        this.reset();
+
+        EntityTreeSquirrel squirrel = (EntityTreeSquirrel) entity;
+
+        float globalSpeed = 1f;
+        float globalDegree = 1.2f;
+        float globalHeight = 1.5f;
+        if (this.isChild) {
+            globalSpeed = 0.7f;
+            globalDegree = 0.8f;
+            globalHeight = 1.0f;
+        }
+
+        if (!BookwormUtils.isEntityMoving(squirrel) && !squirrel.getIsSitting()) {
+            limbSwing = (float) squirrel.ticksExisted;
+            limbSwingAmount = 0.3F;
+            this.tail1.rotateAngleX = 0.24f * limbSwingAmount * (0.08f * globalDegree) * MathHelper.cos(limbSwing * (0.08f * globalSpeed) + 12.0f) + 1.0f;
+            this.tail4.rotateAngleX = 0.24f * limbSwingAmount * (0.16f * globalDegree) * MathHelper.cos(limbSwing * (0.08f * globalSpeed) + 6.0f) + 0.52f;
+            this.neck.rotateAngleX = 0.5f * limbSwingAmount * (0.16f * globalDegree) * MathHelper.cos(limbSwing * (0.06f * globalSpeed) + 14.0f) + -0.6f;
         }
     }
 

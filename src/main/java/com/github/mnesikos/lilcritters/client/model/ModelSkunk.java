@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.client.model;
 
+import com.github.mnesikos.lilcritters.entity.EntitySkunk;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -210,8 +211,11 @@ public class ModelSkunk extends ZAWAModelBase {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
-        this.Head.rotateAngleX = (headPitch / (180F / (float)Math.PI)) + (float)(24 / (180 / Math.PI));
-        this.Head.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+
+        if (entity instanceof EntitySkunk && !((EntitySkunk) entity).isAsleep()) {
+            this.Head.rotateAngleX = (headPitch / (180F / (float) Math.PI)) + (float) (24 / (180 / Math.PI));
+            this.Head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+        }
     }
 
     @Override
@@ -289,10 +293,5 @@ public class ModelSkunk extends ZAWAModelBase {
             this.Body.rotateAngleX = MathHelper.cos((f * speed * 0.4F) + (float) Math.PI) * (degree * 0.1F) * f1 * 0.5F + 0.14F;
             this.Body.rotateAngleZ = MathHelper.cos((f * speed * 0.2F) + (float) Math.PI) * (degree * 0.2F) * f1 * 0.5F;
         }
-    }
-
-    @Override
-    protected void performSleepAnimation(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-        super.performSleepAnimation(f, f1, f2, f3, f4, f5, entity);
     }
 }

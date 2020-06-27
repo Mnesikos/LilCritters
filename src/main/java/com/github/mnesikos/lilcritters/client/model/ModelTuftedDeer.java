@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.client.model;
 
+import com.github.mnesikos.lilcritters.entity.EntityTuftedDeer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -223,8 +224,11 @@ public class ModelTuftedDeer extends ZAWAModelBase {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
-        this.head.rotateAngleX = (headPitch / (180F / (float)Math.PI)) + (float)(-48 / (180 / Math.PI));
-        this.neck.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+
+        if (entity instanceof EntityTuftedDeer && !((EntityTuftedDeer) entity).isAsleep()) {
+            this.head.rotateAngleX = (headPitch / (180F / (float) Math.PI)) + (float) (-48 / (180 / Math.PI));
+            this.neck.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+        }
     }
 
     @Override
@@ -284,10 +288,5 @@ public class ModelTuftedDeer extends ZAWAModelBase {
             this.neck.rotateAngleX = MathHelper.cos((f * speed * 0.6F) + (float) Math.PI) * (degree * -0.06F) * f1 * 0.5F + 1.05F;
             this.head.rotateAngleX = MathHelper.cos(1.0F + (f * speed * 0.6F) + (float) Math.PI) * (degree * 0.1F) * f1 * 0.5F + -0.9F;
         }
-    }
-
-    @Override
-    protected void performSleepAnimation(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-        super.performSleepAnimation(f, f1, f2, f3, f4, f5, entity);
     }
 }

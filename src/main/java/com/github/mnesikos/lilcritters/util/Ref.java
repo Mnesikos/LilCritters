@@ -8,5 +8,5 @@ public class Ref {
 	public static final String ACCEPTED_VERSIONS = "[1.12.2]";
 	public static final String CLIENT_PROXY = "com.github.mnesikos.lilcritters.proxy.ClientProxy";
 	public static final String SERVER_PROXY = "com.github.mnesikos.lilcritters.proxy.ServerProxy";
-    public static final String DEPENDS = "required-after:bookworm@[1.12.2-2.5.0];required-after:zawa@[1.12.2-2.0.1];";
+    public static final String DEPENDS = "required-after:bookworm@[1.12.2-2.5.2];required-after:zawa@[1.12.2-2.1.0];";
 }

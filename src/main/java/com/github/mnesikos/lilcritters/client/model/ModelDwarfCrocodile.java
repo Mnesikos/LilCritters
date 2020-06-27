@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.client.model;
 
+import com.github.mnesikos.lilcritters.entity.EntityDwarfCrocodile;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -231,8 +232,11 @@ public class ModelDwarfCrocodile extends ZAWAModelBase {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
-        this.neck.rotateAngleX = (headPitch / (180F / (float)Math.PI)) + (float)(1 / (180 / Math.PI));
-        this.head.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+
+        if (entity instanceof EntityDwarfCrocodile && !((EntityDwarfCrocodile) entity).isAsleep()) {
+            this.neck.rotateAngleX = (headPitch / (180F / (float) Math.PI)) + (float) (1 / (180 / Math.PI));
+            this.head.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
+        }
     }
 
     @Override
@@ -309,10 +313,5 @@ public class ModelDwarfCrocodile extends ZAWAModelBase {
 
             }
         }
-    }
-
-    @Override
-    protected void performSleepAnimation(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-        super.performSleepAnimation(f, f1, f2, f3, f4, f5, entity);
     }
 }

@@ -1,15 +1,14 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.entity.base.LCBaseCrossover;
+import com.github.mnesikos.lilcritters.util.AnimalPacksLC;
+import com.github.mnesikos.lilcritters.util.ModEntityPoses;
 import com.github.mnesikos.lilcritters.util.Ref;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFleeSun;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -17,9 +16,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.zawamod.entity.core.AnimalData;
-import org.zawamod.entity.core.AnimalData.EnumNature;
-import org.zawamod.init.ZAWAItems;
+import net.soggymustache.bookworm.client.animation.lerp.Animation;
+import org.jetbrains.annotations.NotNull;
+import org.zawamod.entity.core.AnimalPack;
+import org.zawamod.entity.core.modules.ModuleManager;
 import org.zawamod.util.DataItem;
 import org.zawamod.util.StringedItem;
 import org.zawamod.util.status.StatusSunSeeking;
@@ -37,8 +37,6 @@ public class EntityDwarfCrocodile extends LCBaseCrossover {
     public EntityDwarfCrocodile(World world) {
         super(world);
         setSize(1.0F, 0.5F);
-        this.speed = 1.0F;
-        this.activity = AnimalData.Activity.LAZY;
         this.tasks.addTask(5, aiWander);
     }
 
@@ -47,9 +45,16 @@ public class EntityDwarfCrocodile extends LCBaseCrossover {
         return this.height * 0.6F;
     }
 
+    @Nullable
     @Override
-    public boolean displayCuriosity() {
-        return false;
+    public Animation getSleepAnimation() {
+        return new Animation(ModEntityPoses.DWARF_CROCODILE, ModEntityPoses.DWARF_CROCODILE_SLEEP);
+    }
+
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public Animation getChildSleepAnimation() {
+        return new Animation(ModEntityPoses.DWARF_CROCODILE, ModEntityPoses.DWARF_CROCODILE_SLEEP);
     }
 
     @Override
@@ -59,48 +64,20 @@ public class EntityDwarfCrocodile extends LCBaseCrossover {
         this.tasks.addTask(0, new EntityAIFleeSun(this, 1.26D));
     }
 
+    @NotNull
     @Override
-    public boolean canBreatheUnderwater() {
-        return true;
+    public AnimalPack getPack() {
+        return AnimalPacksLC.DWARF_CROC;
     }
-
-    @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10D);
-    }
-
-    @Override
-    public ItemStack setTameItem() {
-        return new ItemStack(ZAWAItems.CROCODILE_KIBBLE, 1);
-    }
-
-    @Override
-    public int setVariants() {
-        return 3;
-    }
-
-    @Override
-    public EnumNature setNature() {
-        return EnumNature.PROTECTIVE;
-    }
-
-    @Override
-    public ItemStack setVial() {
-        return new ItemStack(ZAWAItems.CROCODILE_VIAL, 1);
-    }
-
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
         EntityDwarfCrocodile parent2 = (EntityDwarfCrocodile) ageable;
         EntityDwarfCrocodile child = new EntityDwarfCrocodile(this.world);
-        if (parent2.getAnimalType() != this.getAnimalType() && this.rand.nextInt(2) == 0) {
-            child.setAnimalType(parent2.getAnimalType());
-        } else {
-            child.setAnimalType(this.getAnimalType());
-        }
+        if (ModuleManager.VARIANT.getVariant(parent2) != ModuleManager.VARIANT.getVariant(this) && this.rand.nextInt(2) == 0)
+            ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(parent2));
+        else
+            ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(this));
+
         return child;
     }
 

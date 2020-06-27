@@ -6,6 +6,16 @@ The format is based on
 and this project adheres to 
 [Forge Versioning Conventions](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.12.2-1.1.0.0] - 2020/06/27
+For ZAWA 2.1.0 and Bookworm 2.5.2
+### Added
+- Raccoons!!
+- Sleep poses for all Lil Critters... no more standing around at night.
+### Changed
+- Squirrels attack back now lol it's hilarious good luck
+- Small Clawed Otters are actually small now.
+- Skunks are tamed and bred with canine kibble/vials instead of rodent.
+
 ## [1.12.2-1.0.0.1] - 2020/03/29
 For ZAWA 2.0.1 and Bookworm 2.5.0
 ### Fixed

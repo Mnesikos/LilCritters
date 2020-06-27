@@ -1,33 +1,25 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.entity.base.LCBaseLand;
+import com.github.mnesikos.lilcritters.util.AnimalPacksLC;
+import com.github.mnesikos.lilcritters.util.ModEntityPoses;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import org.zawamod.entity.core.AnimalData;
-import org.zawamod.entity.core.AnimalData.EnumNature;
+import net.soggymustache.bookworm.client.animation.lerp.Animation;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.zawamod.entity.core.AnimalPack;
 import org.zawamod.entity.core.DietHandler;
-import org.zawamod.init.ZAWAItems;
+import org.zawamod.entity.core.modules.ModuleManager;
 
 public class EntityOpossum extends LCBaseLand {
     public EntityOpossum(World world) {
         super(world);
         setSize(0.6F, 0.5F);
-        this.stepHeight = 1.0F;
-        this.speed = 1.0F;
-        this.activity = AnimalData.Activity.CALM;
-    }
-
-    @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D);
     }
 
     @Override
@@ -35,9 +27,16 @@ public class EntityOpossum extends LCBaseLand {
         return this.height * 0.8F;
     }
 
+    @Nullable
     @Override
-    public boolean displayCuriosity() {
-        return true;
+    public Animation getSleepAnimation() {
+        return new Animation(ModEntityPoses.OPOSSUM, ModEntityPoses.OPOSSUM_SLEEP);
+    }
+
+    @Nullable
+    @Override
+    public Animation getChildSleepAnimation() {
+        return new Animation(ModEntityPoses.OPOSSUM, ModEntityPoses.OPOSSUM_SLEEP);
     }
 
     @Override
@@ -46,35 +45,21 @@ public class EntityOpossum extends LCBaseLand {
         this.tasks.addTask(0, new EntityAISwimming(this));
     }
 
+    @NotNull
     @Override
-    public ItemStack setTameItem() {
-        return new ItemStack(ZAWAItems.CANINE_KIBBLE, 1);
-    }
-
-    @Override
-    public int setVariants() {
-        return 1;
-    }
-
-    @Override
-    public EnumNature setNature() {
-        return EnumNature.SKITTISH;
-    }
-
-    @Override
-    public ItemStack setVial() {
-        return new ItemStack(ZAWAItems.CANINE_VIAL, 1);
+    public AnimalPack getPack() {
+        return AnimalPacksLC.OPOSSUM;
     }
 
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
         EntityOpossum parent2 = (EntityOpossum) ageable;
         EntityOpossum child = new EntityOpossum(this.world);
-        if (parent2.getAnimalType() != this.getAnimalType() && this.rand.nextInt(2) == 0) {
-            child.setAnimalType(parent2.getAnimalType());
-        } else {
-            child.setAnimalType(this.getAnimalType());
-        }
+        if (ModuleManager.VARIANT.getVariant(parent2) != ModuleManager.VARIANT.getVariant(this) && this.rand.nextInt(2) == 0)
+            ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(parent2));
+        else
+            ModuleManager.VARIANT.setVariant(child, ModuleManager.VARIANT.getVariant(this));
+
         return child;
     }
 

@@ -1,0 +1,20 @@
+{
+  "max_health": 16.0,
+  "variants": 6,
+  "kibble": "zawa:canine_kibble",
+  "vial": "zawa:canine_vial",
+  "nature": "SKITTISH",
+  "activity": "CALM",
+  "swimming": false,
+  "water_breathing": false,
+  "transportable": true,
+  "flip_sleep": true,
+  "speed": 1.0,
+  "mc_speed": 0.20,
+  "rare_variants": [
+    3, 4
+  ],
+  "breed_variants": [
+    5
+  ]
+}
