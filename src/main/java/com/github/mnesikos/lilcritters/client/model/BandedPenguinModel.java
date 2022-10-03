@@ -265,7 +265,7 @@ public class BandedPenguinModel extends ZawaBaseModel<BandedPenguinEntity> {
             this.RightFlipper1.zRot = MathHelper.cos((limbSwing * speed * 0.6F) + (float) Math.PI) * (degree * -0.4F) * limbSwingAmount * 0.5F + 0.2F;
             this.RightFlipper1.xRot = MathHelper.cos((limbSwing * speed * 0.6F) + (float) Math.PI) * (degree * 0.2F) * limbSwingAmount * 0.5F + -0.2F;
             this.body.zRot = MathHelper.cos((limbSwing * speed * 0.3F) + (float) Math.PI) * (degree * 0.4F) * limbSwingAmount * 0.5F;
-            this.body.y = MathHelper.cos((limbSwing * speed * 0.6F) + (float) Math.PI) * (degree * 0.2F) * limbSwingAmount * 0.5F + -0.02F;
+//            this.body.y = MathHelper.cos((limbSwing * speed * 0.6F) + (float) Math.PI) * (degree * 0.2F) * limbSwingAmount * 0.5F + -0.02F;
             this.neck.xRot = MathHelper.cos((limbSwing * speed * 0.6F) + (float) Math.PI) * (degree * -0.1F) * limbSwingAmount * 0.5F + -0.2F;
             this.chest.xRot = MathHelper.cos((limbSwing * speed * 0.6F) + (float) Math.PI) * (degree * -0.1F) * limbSwingAmount * 0.5F + -0.4F;
             this.head.xRot = MathHelper.cos((limbSwing * speed * 0.6F) + (float) Math.PI) * (degree * 0.2F) * limbSwingAmount * 0.5F + 0.1F;

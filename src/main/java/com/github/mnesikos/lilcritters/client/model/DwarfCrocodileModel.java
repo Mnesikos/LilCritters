@@ -255,7 +255,7 @@ public class DwarfCrocodileModel extends ZawaBaseModel<DwarfCrocodileEntity> {
             speed = 1.0F;
             degree = 1.0F;
             this.body.yRot = MathHelper.cos((limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * 2.0F) * limbSwingAmount * 0.5F;
-            this.body.x = MathHelper.cos((limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * -0.2F) * limbSwingAmount * 0.5F;
+//            this.body.x = MathHelper.cos((limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * -0.2F) * limbSwingAmount * 0.5F;
             this.torso.yRot = MathHelper.cos(1.0F + (limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * 0.6F) * limbSwingAmount * 0.5F;
             this.chest.yRot = MathHelper.cos(2.0F + (limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * 0.6F) * limbSwingAmount * 0.5F;
             this.neck.yRot = MathHelper.cos(3.0F + (limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * 2.0F) * limbSwingAmount * 0.5F;
@@ -297,7 +297,7 @@ public class DwarfCrocodileModel extends ZawaBaseModel<DwarfCrocodileEntity> {
             this.upperLegLeft.zRot = MathHelper.cos((limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * 2.0F) * limbSwingAmount * 0.5F + 0.6F;
             this.thighRight.zRot = MathHelper.cos((limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * -2.0F) * limbSwingAmount * 0.5F + -0.9F;
             this.upperLegRight.zRot = MathHelper.cos((limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * 2.0F) * limbSwingAmount * 0.5F + -0.6F;
-            this.body.y = MathHelper.cos(0.8F + (limbSwing * speed * 0.4F) + (float) Math.PI) * (degree * 0.05F) * limbSwingAmount * 0.5F + -0.02F;
+//            this.body.y = MathHelper.cos(0.8F + (limbSwing * speed * 0.4F) + (float) Math.PI) * (degree * 0.05F) * limbSwingAmount * 0.5F + -0.02F;
             this.thighRight.yRot = MathHelper.cos((limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * 2.0F) * limbSwingAmount * 0.5F + -0.1F;
             this.footRight.yRot = MathHelper.cos(0.8F + (limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * -2.0F) * limbSwingAmount * 0.5F + 0.1F;
             this.thighLeft.yRot = MathHelper.cos((limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * 2.0F) * limbSwingAmount * 0.5F + -0.1F;

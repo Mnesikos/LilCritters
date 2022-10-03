@@ -274,7 +274,7 @@ public class TreeSquirrelModel extends ZawaBaseModel<TreeSquirrelEntity> {
             this.tail3.xRot = this.tail4.xRot = this.tail5.xRot = this.tail6.xRot = 0.1f;
 
         } else {
-            this.body.y = (float) -Math.abs((Math.sin(limbSwing * (0.5f * speed)) * limbSwingAmount * (6.0f * height))) + 20.5f;
+//            this.body.y = (float) -Math.abs((Math.sin(limbSwing * (0.5f * speed)) * limbSwingAmount * (6.0f * height))) + 20.5f;
             this.body.xRot = 1f * limbSwingAmount * (0.4f * degree) * MathHelper.cos(limbSwing * (speed) + 0f) + 0.1f;
             this.butt.xRot = 1f * limbSwingAmount * (0.2f * degree) * MathHelper.cos(limbSwing * (speed) + 1.3f) + -0.5f;
 

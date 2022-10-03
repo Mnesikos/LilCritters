@@ -1,11 +1,11 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
+import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.model.TuftedDeerModel;
 import com.github.mnesikos.lilcritters.entity.TuftedDeerEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
-import org.zawamod.zawa.Zawa;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class TuftedDeerRenderer extends ZawaMobRenderer<TuftedDeerEntity, TuftedDeerModel> {
@@ -31,8 +31,8 @@ public class TuftedDeerRenderer extends ZawaMobRenderer<TuftedDeerEntity, Tufted
         int variantCount = entity.getTotalVariants();
         adultTextures = new ResourceLocation[variantCount * 2];
         for (int i = 0; i < variantCount; i++) {
-            adultTextures[i * 2] = new ResourceLocation(Zawa.MOD_ID, "textures/entity/tufted_deer/tufted_deer_" + (i + 1) + "_female.png");
-            adultTextures[i * 2 + 1] = new ResourceLocation(Zawa.MOD_ID, "textures/entity/tufted_deer/tufted_deer_" + (i + 1) + "_male.png");
+            adultTextures[i * 2] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/tufted_deer/tufted_deer_" + (i + 1) + "_female.png");
+            adultTextures[i * 2 + 1] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/tufted_deer/tufted_deer_" + (i + 1) + "_male.png");
         }
     }
 
@@ -41,6 +41,6 @@ public class TuftedDeerRenderer extends ZawaMobRenderer<TuftedDeerEntity, Tufted
         int variantCount = entity.getTotalVariants();
         babyTextures = new ResourceLocation[variantCount];
         for (int i = 0; i < variantCount; i++)
-            babyTextures[i] = new ResourceLocation(Zawa.MOD_ID, "textures/entity/tufted_deer/tufted_deer_baby_" + (i + 1) + ".png");
+            babyTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/tufted_deer/tufted_deer_baby_" + (i + 1) + ".png");
     }
 }

@@ -240,7 +240,7 @@ public class BoxTurtleModel extends ZawaBaseModel<BoxTurtleEntity> {
         }
 
         // TODO this pretty broken when the turtle is smacked/on a lead
-        this.shell.y = (float) -Math.abs((Math.sin(limbSwing * (0.5f * globalSpeed) + 1.0F) * limbSwingAmount * (0.5f * globalHeight))) + 19.7f;
+//        this.shell.y = (float) -Math.abs((Math.sin(limbSwing * (0.5f * globalSpeed) + 1.0F) * limbSwingAmount * (0.5f * globalHeight))) + 19.7f;
         this.neck.xRot = 1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + -0.1F;
         this.head.xRot = -1f * limbSwingAmount * (0.05f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + 0.2F;
         this.tail.xRot = -1f * limbSwingAmount * (0.1f * globalDegree) * MathHelper.cos(limbSwing * (1f * globalSpeed) + 0f) + -0.28F;

@@ -287,7 +287,7 @@ public class RaccoonModel extends ZawaBaseModel<RaccoonEntity> {
         this.RightLeg.xRot = MathHelper.cos(3.5F + limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount - 1.0F;
         this.RightFoot.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.2F;
         this.Head.xRot = MathHelper.cos(limbSwing * speed * 0.4F) * degree * -0.1F * limbSwingAmount + 0.2F;
-        this.Body.y = MathHelper.cos(limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount - 0.01F;
+//        this.Body.y = MathHelper.cos(limbSwing * speed * 0.4F) * degree * 0.1F * limbSwingAmount - 0.01F;
         this.Body.xRot = MathHelper.cos(limbSwing * speed * 0.4F) * degree * 0.05F * limbSwingAmount + 0.14F;
         this.Body.zRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.1F * limbSwingAmount;
         this.LeftUpperLeg.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 1.0F;

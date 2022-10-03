@@ -241,7 +241,7 @@ public class OpossumModel extends ZawaBaseModel<OpossumEntity> {
         this.footRight.xRot = MathHelper.cos(1.4F + (limbSwing * speed * 0.2F) + (float) Math.PI) * (degree * 2.0F) * limbSwingAmount * 0.5F + 1.23F;
         this.neck1.xRot = MathHelper.cos((limbSwing * speed * 0.4F) + (float) Math.PI) * (degree * 0.2F) * limbSwingAmount * 0.5F + -0.07F;
         this.tail1.xRot = MathHelper.cos((limbSwing * speed * 0.4F) + (float) Math.PI) * (degree * -0.2F) * limbSwingAmount * 0.5F + -0.16F;
-        this.body.y = MathHelper.cos((limbSwing * speed * 0.4F) + (float) Math.PI) * (degree * 0.1F) * limbSwingAmount * 0.5F + -0.02F;
+//        this.body.y = MathHelper.cos((limbSwing * speed * 0.4F) + (float) Math.PI) * (degree * 0.1F) * limbSwingAmount * 0.5F + -0.02F;
         this.tail1.yRot = MathHelper.cos((limbSwing * speed * 0.4F) + (float) Math.PI) * (degree * 0.4F) * limbSwingAmount * 0.5F;
         this.tail2.xRot = MathHelper.cos((limbSwing * speed * 0.4F) + (float) Math.PI) * (degree * -0.1F) * limbSwingAmount * 0.5F + 0.28F;
     }

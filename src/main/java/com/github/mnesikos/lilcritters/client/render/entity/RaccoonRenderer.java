@@ -1,11 +1,11 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
+import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.model.RaccoonModel;
 import com.github.mnesikos.lilcritters.entity.RaccoonEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
-import org.zawamod.zawa.Zawa;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class RaccoonRenderer extends ZawaMobRenderer<RaccoonEntity, RaccoonModel> {
@@ -31,7 +31,7 @@ public class RaccoonRenderer extends ZawaMobRenderer<RaccoonEntity, RaccoonModel
         int variantCount = entity.getTotalVariants();
         adultTextures = new ResourceLocation[variantCount];
         for (int i = 0; i < variantCount; i++)
-            adultTextures[i] = new ResourceLocation(Zawa.MOD_ID, "textures/entity/raccoon/raccoon_" + (i + 1) + ".png");
+            adultTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/raccoon/raccoon_" + (i + 1) + ".png");
     }
 
     @Override
@@ -39,6 +39,6 @@ public class RaccoonRenderer extends ZawaMobRenderer<RaccoonEntity, RaccoonModel
         int variantCount = entity.getTotalVariants();
         babyTextures = new ResourceLocation[variantCount];
         for (int i = 0; i < variantCount; i++)
-            babyTextures[i] = new ResourceLocation(Zawa.MOD_ID, "textures/entity/raccoon/raccoon_" + (i + 1) + ".png");
+            babyTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/raccoon/raccoon_" + (i + 1) + ".png");
     }
 }
