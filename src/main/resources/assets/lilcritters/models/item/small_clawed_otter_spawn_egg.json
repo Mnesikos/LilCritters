@@ -1,0 +1,5 @@
+{
+  "parent": "item/generated",
+  "textures":
+    { "layer0": "lilcritters:item/small_clawed_otter_spawn_egg" }
+}

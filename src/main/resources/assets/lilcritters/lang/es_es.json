@@ -1,0 +1,20 @@
+{
+  "itemGroup.lilcritters.tab": "Lil' Critters",
+  "config.lilcritters.title": "Lil' Critters Configuración",
+  "item.lilcritters.acorn.name": "Bellota",
+  "item.lilcritters.roasted_acorn.name": "Bellota Asada",
+  "item.lilcritters.pine_cone.name": "Cono de Conífera",
+  "item.lilcritters.rodent_kibble.name": "Croqueta de Roedor",
+  "item.lilcritters.rodent_vial.name": "Frasco para Roedor",
+  "entity.lilcritters.treesquirrel.name": "Ardilla de Árbol",
+  "entity.lilcritters.boxturtle.name": "Tortuga de Caja",
+  "entity.lilcritters.tufteddeer.name": "Ciervo Copetudo",
+  "entity.lilcritters.opossum.name": "Opossum",
+  "entity.lilcritters.skunk.name": "Skunk",
+  "entity.lilcritters.smallclawedotter.name": "Small Clawed Otter",
+  "entity.lilcritters.dwarfcrocodile.name": "Dwarf Crocodile",
+  "entity.lilcritters.bandedpenguin.name": "Banded Penguin",
+  "entity.lilcritters.raccoon.name": "Raccoon",
+  "sound.lilcritters.subtitle.squirrel.bark": "Gorjeo de Ardilla ",
+  "sound.lilcritters.subtitle.squirrel.hurt": "Ardilla Lastimada"
+}

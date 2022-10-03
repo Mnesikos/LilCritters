@@ -1,0 +1,25 @@
+{
+  "temperament": "defensive",
+  "kibble": "zawa:omnivore_kibble",
+  "size": "tiny",
+  "fertility": "high",
+  "breeding_item": "minecraft:pumpkin_seeds",
+  "litter_size": {
+    "min": 2,
+    "max": 4
+  },
+  "diet": "zawa:omnivore",
+  "speed": "fast",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:branch",
+      "zawa:puzzle_feeder",
+      "zawa:rope"
+    ],
+    "zawa:entities": [
+      "zawa:apple_ice_treat",
+      "zawa:beef_ice_treat"
+    ]
+  },
+  "variant_count": 6
+}

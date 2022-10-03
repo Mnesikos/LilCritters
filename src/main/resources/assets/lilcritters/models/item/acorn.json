@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "lilcritters:items/acorn"
+		"layer0": "lilcritters:item/acorn"
 	}
 }

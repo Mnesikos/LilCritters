@@ -1,0 +1,21 @@
+{
+  "temperament": "timid",
+  "kibble": "zawa:herbivore_kibble",
+  "size": "small",
+  "fertility": "low",
+  "breeding_item": "minecraft:sweet_berries",
+  "litter_size": 1,
+  "diet": "zawa:ruminant",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:leaf_hanging_browse",
+      "zawa:puzzle_feeder",
+      "zawa:salt_lick"
+    ],
+    "zawa:entities": [
+      "zawa:apple_ice_treat"
+    ]
+  },
+  "variant_count": 4
+}

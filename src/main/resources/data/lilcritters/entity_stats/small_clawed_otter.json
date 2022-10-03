@@ -1,0 +1,20 @@
+{
+  "temperament": "timid",
+  "kibble": "zawa:shellfish_kibble",
+  "size": "small",
+  "fertility": "medium",
+  "breeding_item": "zawa:mussels",
+  "litter_size": {
+    "min": 1,
+    "max": 3
+  },
+  "diet": "zawa:shellfish",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:puzzle_feeder",
+      "zawa:sprinkler"
+    ]
+  },
+  "variant_count": 4
+}

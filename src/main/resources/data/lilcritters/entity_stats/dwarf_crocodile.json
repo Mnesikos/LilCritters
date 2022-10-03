@@ -1,0 +1,20 @@
+{
+  "temperament": "territorial",
+  "kibble": "zawa:carnivore_kibble",
+  "size": "small",
+  "fertility": "low",
+  "breeding_item": "zawa:rat",
+  "litter_size": 1,
+  "diet": "zawa:small_carnivore",
+  "speed": "slow",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:heat_lamp",
+      "zawa:heat_rock"
+    ],
+    "zawa:entities": [
+      "zawa:beef_ice_treat"
+    ]
+  },
+  "variant_count": 3
+}

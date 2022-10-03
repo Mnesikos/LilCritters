@@ -1,0 +1,25 @@
+{
+  "temperament": "timid",
+  "kibble": "zawa:omnivore_kibble",
+  "size": "small",
+  "fertility": "high",
+  "breeding_item": "minecraft:egg",
+  "litter_size": {
+    "min": 2,
+    "max": 4
+  },
+  "diet": "zawa:scavenger",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:branch",
+      "zawa:puzzle_feeder",
+      "zawa:rope"
+    ],
+    "zawa:entities": [
+      "zawa:apple_ice_treat",
+      "zawa:beef_ice_treat"
+    ]
+  },
+  "variant_count": 1
+}

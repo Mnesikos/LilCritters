@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "lilcritters:items/pine_cone"
+    "layer0": "lilcritters:item/pine_cone"
   }
 }

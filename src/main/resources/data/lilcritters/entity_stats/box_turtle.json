@@ -1,0 +1,21 @@
+{
+  "temperament": "neutral",
+  "kibble": "zawa:omnivore_kibble",
+  "size": "tiny",
+  "fertility": "low",
+  "breeding_item": "zawa:earthworm",
+  "litter_size": 1,
+  "diet": "zawa:omnivore",
+  "speed": "slow",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:heat_lamp",
+      "zawa:heat_rock"
+    ],
+    "zawa:entities": [
+      "zawa:apple_ice_treat",
+      "zawa:beef_ice_treat"
+    ]
+  },
+  "variant_count": 5
+}

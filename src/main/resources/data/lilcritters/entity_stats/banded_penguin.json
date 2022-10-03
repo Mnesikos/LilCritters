@@ -1,0 +1,16 @@
+{
+  "temperament": "neutral",
+  "kibble": "zawa:piscivore_kibble",
+  "size": "tiny",
+  "fertility": "medium",
+  "breeding_item": "zawa:corydoras",
+  "litter_size": 1,
+  "diet": "zawa:piscivore",
+  "speed": "slow",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:sprinkler"
+    ]
+  },
+  "variant_count": 4
+}

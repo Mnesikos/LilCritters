@@ -1,0 +1,5 @@
+{
+  "parent": "item/generated",
+  "textures":
+    { "layer0": "lilcritters:item/tree_squirrel_spawn_egg" }
+}

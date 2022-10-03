@@ -1,0 +1,24 @@
+{
+  "temperament": "timid",
+  "kibble": "zawa:omnivore_kibble",
+  "size": "small",
+  "fertility": "medium",
+  "breeding_item": "zawa:earthworm",
+  "litter_size": {
+    "min": 1,
+    "max": 3
+  },
+  "diet": "zawa:omnivore",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:puzzle_feeder",
+      "zawa:scratching_post"
+    ],
+    "zawa:entities": [
+      "zawa:apple_ice_treat",
+      "zawa:beef_ice_treat"
+    ]
+  },
+  "variant_count": 2
+}
