@@ -3,7 +3,7 @@
   "kibble": "zawa:carnivore_kibble",
   "size": "small",
   "fertility": "low",
-  "breeding_item": "zawa:rat",
+  "breeding_item": "zawa:brown_rat",
   "litter_size": 1,
   "diet": "zawa:small_carnivore",
   "speed": "slow",
