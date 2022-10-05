@@ -77,14 +77,4 @@ public class BandedPenguinEntity extends ZawaSemiAquaticEntity implements Specie
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return null;
     }
-
-    /*@Override
-    public Map<Integer, String> speciesData() {
-        Map<Integer, String> map = new HashMap<>();
-        map.put(0, "Magellanic");
-        map.put(1, "Humboldt");
-        map.put(2, "Galapagos");
-        map.put(3, "African");
-        return map;
-    }*/
 }

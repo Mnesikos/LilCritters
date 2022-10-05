@@ -68,12 +68,4 @@ public class SkunkEntity extends ZawaLandEntity implements SpeciesVariantsEntity
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return null;
     }
-
-    /*@Override
-    public Map<Integer, String> speciesData() {
-        Map<Integer, String> map = new HashMap<>();
-        map.put(0, "Striped");
-        map.put(1, "Hooded");
-        return map;
-    }*/
 }

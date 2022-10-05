@@ -1,7 +1,9 @@
 package com.github.mnesikos.lilcritters.entity;
 
-import com.github.mnesikos.lilcritters.sounds.LCSounds;
-import net.minecraft.entity.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
@@ -11,15 +13,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import org.zawamod.zawa.client.ZawaSounds;
 import org.zawamod.zawa.entity.base.ZawaSemiAquaticEntity;
 import org.zawamod.zawa.entity.goals.ZawaMeleeAttackGoal;
 
 import javax.annotation.Nullable;
 
 public class DwarfCrocodileEntity extends ZawaSemiAquaticEntity {
-//    public static final ResourceLocation LOOT = new ResourceLocation(Ref.MODID, "entities/dwarf_crocodile");
-
     public DwarfCrocodileEntity(EntityType<? extends ZawaSemiAquaticEntity> type, World world) {
         super(type, world);
         this.maxUpStep = 1.0F;

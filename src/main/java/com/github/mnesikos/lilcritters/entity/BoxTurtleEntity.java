@@ -8,7 +8,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -19,8 +18,6 @@ import org.zawamod.zawa.entity.base.ZawaLandEntity;
 import javax.annotation.Nullable;
 
 public class BoxTurtleEntity extends ZawaLandEntity implements SpeciesVariantsEntity {
-//    public static final ResourceLocation LOOT = new ResourceLocation(Ref.MODID, "entities/box_turtle");
-
     public BoxTurtleEntity(EntityType<? extends ZawaLandEntity> type, World world) {
         super(type, world);
     }
@@ -60,15 +57,4 @@ public class BoxTurtleEntity extends ZawaLandEntity implements SpeciesVariantsEn
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return null;
     }
-
-    /*@Override
-    public Map<Integer, String> speciesData() {
-        Map<Integer, String> map = new HashMap<>();
-        map.put(0, "Common");
-        map.put(1, "Desert");
-        map.put(2, "Eastern");
-        map.put(3, "Gulf Coast");
-        map.put(4, "Three-Toed");
-        return map;
-    }*/
 }
