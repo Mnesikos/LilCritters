@@ -38,4 +38,23 @@ public class TuftedDeerRenderer extends ZawaMobRenderer<TuftedDeerEntity, Tufted
         for (int i = 0; i < variantCount; i++)
             babyTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/tufted_deer/tufted_deer_baby_" + (i + 1) + ".png");
     }
+
+    @Override
+    public ResourceLocation getTextureLocation(TuftedDeerEntity entity) {
+        if (!entity.isBaby()) {
+            int variantCount = entity.getTotalVariants();
+            int variant = entity.getVariant();
+            if (variant >= variantCount) {
+                return UNKNOWN_VARIANT;
+            } else {
+                if (this.getAdultTextures() == null || this.getAdultTextures().length != variantCount * 2) {
+                    this.setupAdultTextures(entity);
+                }
+
+                return this.getAdultTextures()[variant * 2 + entity.getGender().ordinal()];
+            }
+        } else {
+            return super.getTextureLocation(entity);
+        }
+    }
 }

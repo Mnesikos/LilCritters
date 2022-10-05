@@ -47,6 +47,11 @@ public class TuftedDeerEntity extends ZawaLandEntity {
         return size.height * 0.8F;
     }
 
+    @Override
+    public float getMaleRatio() {
+        return 0.25F;
+    }
+
     @Nullable
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
