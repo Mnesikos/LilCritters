@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "lilcritters:banded_penguin",
+    "lilcritters:box_turtle",
+    "lilcritters:dwarf_crocodile",
+    "lilcritters:opossum",
+    "lilcritters:raccoon",
+    "lilcritters:skunk",
+    "lilcritters:small_clawed_otter",
+    "lilcritters:tree_squirrel",
+    "lilcritters:tufted_deer"
+  ]
+}
