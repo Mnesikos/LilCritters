@@ -15,14 +15,8 @@ public class BoxTurtleRenderer extends ZawaMobRenderer<BoxTurtleEntity, BoxTurtl
 
     @Override
     protected void scale(BoxTurtleEntity entity, MatrixStack matrixStack, float partialTickTime) {
-        if (entity.isBaby()) {
-            matrixStack.scale(0.7F, 0.7F, 0.7F);
-            matrixStack.translate(0.0F, 9.6F * entity.getScale(), 0.0F);
-        } else {
-            float scale = 0.7F;
-            matrixStack.scale(scale, scale, scale);
-            matrixStack.translate(0.0F, -0.01F * scale, 0.0F);
-        }
+        float scale = entity.isBaby() ? 0.4F : 0.7F;
+        matrixStack.scale(scale, scale, scale);
         super.scale(entity, matrixStack, partialTickTime);
     }
 

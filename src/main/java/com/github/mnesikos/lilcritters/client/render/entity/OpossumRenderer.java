@@ -15,14 +15,9 @@ public class OpossumRenderer extends ZawaMobRenderer<OpossumEntity, OpossumModel
 
     @Override
     protected void scale(OpossumEntity entity, MatrixStack matrixStack, float partialTickTime) {
-        if (entity.isBaby()) {
-            matrixStack.scale(0.5F, 0.5F, 0.5F);
-            matrixStack.translate(0.0F, 26.0F * entity.getScale(), 0.0F);
-        } else {
-            float scale = 0.5F;
-            matrixStack.scale(scale, scale, scale);
-            matrixStack.translate(0.0F, -0.24F * scale, 0.0F);
-        }
+        float scale = entity.isBaby() ? 0.3F : 0.6F;
+        matrixStack.scale(scale, scale, scale);
+        matrixStack.translate(0.0F, -0.24F * scale, 0.0F);
         super.scale(entity, matrixStack, partialTickTime);
     }
 

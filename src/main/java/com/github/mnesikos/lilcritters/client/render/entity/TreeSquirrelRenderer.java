@@ -15,14 +15,9 @@ public class TreeSquirrelRenderer extends ZawaMobRenderer<TreeSquirrelEntity, Tr
 
     @Override
     protected void scale(TreeSquirrelEntity entity, MatrixStack matrixStack, float partialTickTime) {
-        if (entity.isBaby()) {
-            matrixStack.scale(0.5F, 0.5F, 0.5F);
-            matrixStack.translate(0.0F, 26.0F * entity.getScale(), 0.0F);
-        } else {
-            float scale = 0.4F;
-            matrixStack.scale(scale, scale, scale);
-            matrixStack.translate(0.0F, -0.46F * scale, 0.0F);
-        }
+        float scale = entity.isBaby() ? 0.2F : 0.4F;
+        matrixStack.scale(scale, scale, scale);
+        matrixStack.translate(0.0F, -0.46F * scale, 0.0F);
         super.scale(entity, matrixStack, partialTickTime);
     }
 

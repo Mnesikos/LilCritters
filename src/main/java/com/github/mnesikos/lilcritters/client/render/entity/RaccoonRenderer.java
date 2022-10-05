@@ -15,14 +15,9 @@ public class RaccoonRenderer extends ZawaMobRenderer<RaccoonEntity, RaccoonModel
 
     @Override
     protected void scale(RaccoonEntity entity, MatrixStack matrixStack, float partialTickTime) {
-        if (entity.isBaby()) {
-            matrixStack.scale(0.6F, 0.6F, 0.6F);
-            matrixStack.translate(0.0F, 17.0F * entity.getScale(), 0.0F);
-        } else {
-            float scale = 0.8F;
-            matrixStack.scale(scale, scale, scale);
-            matrixStack.translate(0.0F, -0.1F * scale, 0.0F);
-        }
+        float scale = entity.isBaby() ? 0.4F : 0.8F;
+        matrixStack.scale(scale, scale, scale);
+        matrixStack.translate(0.0F, -0.1F * scale, 0.0F);
         super.scale(entity, matrixStack, partialTickTime);
     }
 

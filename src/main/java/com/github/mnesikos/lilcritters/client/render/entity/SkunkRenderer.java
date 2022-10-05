@@ -15,14 +15,8 @@ public class SkunkRenderer extends ZawaMobRenderer<SkunkEntity, SkunkModel> {
 
     @Override
     protected void scale(SkunkEntity entity, MatrixStack matrixStack, float partialTickTime) {
-        if (entity.isBaby()) {
-            matrixStack.scale(0.4F, 0.4F, 0.4F);
-            matrixStack.translate(0.0F, 36.0F * entity.getScale(), 0.0F);
-        } else {
-            float scale = 0.4F;
-            matrixStack.scale(scale, scale, scale);
-            matrixStack.translate(0.0F, 0.0F * scale, 0.0F);
-        }
+        float scale = entity.isBaby() ? 0.2F : 0.4F;
+        matrixStack.scale(scale, scale, scale);
         super.scale(entity, matrixStack, partialTickTime);
     }
 

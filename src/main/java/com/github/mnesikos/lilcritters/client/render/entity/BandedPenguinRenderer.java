@@ -15,14 +15,9 @@ public class BandedPenguinRenderer extends ZawaMobRenderer<BandedPenguinEntity, 
 
     @Override
     protected void scale(BandedPenguinEntity entity, MatrixStack matrixStack, float partialTickTime) {
-        if (entity.isBaby()) {
-            matrixStack.scale(0.4F, 0.4F, 0.4F);
-            matrixStack.translate(0.0F, 40.0F * entity.getScale(), 0.0F);
-        } else {
-            float scale = 0.7F;
-            matrixStack.scale(scale, scale, scale);
-            matrixStack.translate(0.0F, -0.2F * scale, 0.0F);
-        }
+        float scale = entity.isBaby() ? 0.4F : 0.7F;
+        matrixStack.scale(scale, scale, scale);
+        matrixStack.translate(0.0F, -0.2F * scale, 0.0F);
         super.scale(entity, matrixStack, partialTickTime);
     }
 
