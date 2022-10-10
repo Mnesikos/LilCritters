@@ -24,7 +24,7 @@ public class SmallClawedOtterEntity extends ZawaSemiAquaticEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerSmallClawedOtterAttributes() {
-        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.225F).add(Attributes.MAX_HEALTH, 8.0).add(Attributes.ATTACK_DAMAGE, 1.0);
+        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.MAX_HEALTH, 10.0).add(Attributes.ATTACK_DAMAGE, 2.0);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class SmallClawedOtterEntity extends ZawaSemiAquaticEntity {
 
     @Override
     public float swimSpeedMultiplier() {
-        return 0.6F;
+        return 0.5F;
     }
 
     @Override

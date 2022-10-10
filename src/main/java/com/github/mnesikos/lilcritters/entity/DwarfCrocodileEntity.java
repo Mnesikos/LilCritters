@@ -25,7 +25,7 @@ public class DwarfCrocodileEntity extends ZawaSemiAquaticEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerDwarfCrocodileAttributes() {
-        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.10F).add(Attributes.MAX_HEALTH, 12.0).add(Attributes.ATTACK_DAMAGE, 4.0);
+        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.10F).add(Attributes.MAX_HEALTH, 16.0).add(Attributes.ATTACK_DAMAGE, 3.0);
     }
 
     @Override

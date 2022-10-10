@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:bone",
+          "name": "minecraft:feather",
           "functions": [
             {
               "function": "minecraft:set_count",

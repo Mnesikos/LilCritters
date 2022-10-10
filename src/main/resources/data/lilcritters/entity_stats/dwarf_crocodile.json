@@ -4,7 +4,10 @@
   "size": "small",
   "fertility": "low",
   "breeding_item": "zawa:brown_rat",
-  "litter_size": 1,
+  "litter_size": {
+    "min": 4,
+    "max": 5
+  },
   "diet": "zawa:small_carnivore",
   "speed": "slow",
   "enrichment": {

@@ -1,15 +1,22 @@
 {
   "temperament": "neutral",
   "kibble": "zawa:piscivore_kibble",
-  "size": "tiny",
+  "size": "small",
   "fertility": "medium",
   "breeding_item": "zawa:corydoras",
-  "litter_size": 1,
+  "litter_size": {
+    "min": 1,
+    "max": 2
+  },
   "diet": "zawa:piscivore",
   "speed": "slow",
   "enrichment": {
     "zawa:blocks": [
+      "zawa:puzzle_feeder",
       "zawa:sprinkler"
+    ],
+    "zawa:entities": [
+      "zawa:scented_ball"
     ]
   },
   "variant_count": 4

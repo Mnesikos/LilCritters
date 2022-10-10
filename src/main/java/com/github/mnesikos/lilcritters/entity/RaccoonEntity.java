@@ -22,7 +22,7 @@ public class RaccoonEntity extends ZawaLandEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerRaccoonAttributes() {
-        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.225F).add(Attributes.MAX_HEALTH, 8.0).add(Attributes.ATTACK_DAMAGE, 1.0);
+        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.225F).add(Attributes.MAX_HEALTH, 10.0).add(Attributes.ATTACK_DAMAGE, 2.0);
     }
 
     @Override

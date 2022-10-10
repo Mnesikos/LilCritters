@@ -32,7 +32,7 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
     }
 
     public static AttributeModifierMap.MutableAttribute registerTreeSquirrelAttributes() {
-        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.MAX_HEALTH, 8.0).add(Attributes.ATTACK_DAMAGE, 1.0);
+        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.MAX_HEALTH, 4.0).add(Attributes.ATTACK_DAMAGE, 1.0);
     }
 
     @Override

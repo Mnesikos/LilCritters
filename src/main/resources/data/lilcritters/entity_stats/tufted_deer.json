@@ -1,8 +1,8 @@
 {
   "temperament": "timid",
   "kibble": "zawa:herbivore_kibble",
-  "size": "small",
-  "fertility": "low",
+  "size": "medium",
+  "fertility": "medium",
   "breeding_item": "minecraft:sweet_berries",
   "litter_size": 1,
   "diet": "zawa:ruminant",
@@ -10,11 +10,12 @@
   "enrichment": {
     "zawa:blocks": [
       "zawa:leaf_hanging_browse",
-      "zawa:puzzle_feeder",
+      "zawa:hay_hanging_browse",
       "zawa:salt_lick"
     ],
     "zawa:entities": [
-      "zawa:apple_ice_treat"
+      "zawa:apple_ice_treat",
+      "zawa:scented_ball"
     ]
   },
   "variant_count": 5

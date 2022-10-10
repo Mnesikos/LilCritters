@@ -23,7 +23,7 @@ public class TuftedDeerEntity extends ZawaLandEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerTuftedDeerAttributes() {
-        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.225F).add(Attributes.MAX_HEALTH, 8.0).add(Attributes.ATTACK_DAMAGE, 1.0);
+        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.225F).add(Attributes.MAX_HEALTH, 16.0).add(Attributes.ATTACK_DAMAGE, 2.0);
     }
 
     @Override

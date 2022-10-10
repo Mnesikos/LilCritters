@@ -1,10 +1,13 @@
 {
-  "temperament": "neutral",
+  "temperament": "timid",
   "kibble": "zawa:omnivore_kibble",
   "size": "tiny",
-  "fertility": "low",
+  "fertility": "medium",
   "breeding_item": "zawa:earthworm",
-  "litter_size": 1,
+  "litter_size": {
+    "min": 4,
+    "max": 5
+  },
   "diet": "zawa:omnivore",
   "speed": "slow",
   "enrichment": {

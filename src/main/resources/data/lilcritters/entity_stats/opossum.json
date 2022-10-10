@@ -5,8 +5,8 @@
   "fertility": "high",
   "breeding_item": "minecraft:egg",
   "litter_size": {
-    "min": 2,
-    "max": 4
+    "min": 4,
+    "max": 5
   },
   "diet": "zawa:scavenger",
   "speed": "medium",
@@ -14,11 +14,12 @@
     "zawa:blocks": [
       "zawa:branch",
       "zawa:puzzle_feeder",
-      "zawa:rope"
+      "zawa:rope",
+      "zawa:tire_swing"
     ],
     "zawa:entities": [
       "zawa:apple_ice_treat",
-      "zawa:beef_ice_treat"
+      "zawa:scented_ball"
     ]
   },
   "variant_count": 1

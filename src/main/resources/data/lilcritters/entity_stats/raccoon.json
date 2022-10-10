@@ -3,9 +3,9 @@
   "kibble": "zawa:omnivore_kibble",
   "size": "small",
   "fertility": "high",
-  "breeding_item": "minecraft:cod",
+  "breeding_item": "zawa:small_meat",
   "litter_size": {
-    "min": 1,
+    "min": 2,
     "max": 3
   },
   "diet": "zawa:scavenger",
@@ -14,11 +14,12 @@
     "zawa:blocks": [
       "zawa:branch",
       "zawa:puzzle_feeder",
-      "zawa:rope"
+      "zawa:rope",
+      "zawa:tire_swing"
     ],
     "zawa:entities": [
       "zawa:apple_ice_treat",
-      "zawa:beef_ice_treat"
+      "zawa:scented_ball"
     ]
   },
   "variant_count": 6,
