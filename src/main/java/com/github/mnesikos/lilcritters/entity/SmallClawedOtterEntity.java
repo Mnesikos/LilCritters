@@ -36,7 +36,7 @@ public class SmallClawedOtterEntity extends ZawaSemiAquaticEntity {
 
     @Override
     public float swimSpeedMultiplier() {
-        return 2.0F;
+        return 0.6F;
     }
 
     @Override
