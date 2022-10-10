@@ -88,14 +88,14 @@ public class LCEntities {
             .attributes(TuftedDeerEntity::registerTuftedDeerAttributes)
             .renderer(() -> TuftedDeerRenderer::new)
             .spawn(ZawaSpawnCategory.TEMPERATE_ALPINE, 5, 1, 1)
-            .data(tBuilder -> tBuilder.sized(1.0F, 1.2F).clientTrackingRange(10))
+            .data(tBuilder -> tBuilder.sized(0.8F, 1.2F).clientTrackingRange(10))
             .build(REGISTRAR, "tufted_deer");
 
     public static final RegistryObject<EntityType<TreeSquirrelEntity>> TREE_SQUIRREL = new Builder<>(TreeSquirrelEntity::new, EntityClassification.CREATURE)
             .attributes(TreeSquirrelEntity::registerTreeSquirrelAttributes)
             .renderer(() -> TreeSquirrelRenderer::new)
             .spawn(ZawaSpawnCategory.TEMPERATE_FOREST, 15, 1, 2)
-            .data(tBuilder -> tBuilder.sized(1.0f, 1.0f).clientTrackingRange(10))
+            .data(tBuilder -> tBuilder.sized(0.6F, 0.6F).clientTrackingRange(10))
             .build(REGISTRAR, "tree_squirrel");
 
     public static void registerSpawnPlacements() {
