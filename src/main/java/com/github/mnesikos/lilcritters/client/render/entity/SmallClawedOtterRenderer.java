@@ -17,7 +17,7 @@ public class SmallClawedOtterRenderer extends ZawaMobRenderer<SmallClawedOtterEn
     protected void scale(SmallClawedOtterEntity entity, MatrixStack matrixStack, float partialTickTime) {
         float scale = entity.isBaby() ? 0.4F : 0.7F;
         matrixStack.scale(scale, scale, scale);
-        matrixStack.translate(0.0F, -0.12F * scale, 0.0F);
+        matrixStack.translate(0.0F, -0.16F * scale, 0.0F);
         super.scale(entity, matrixStack, partialTickTime);
     }
 
