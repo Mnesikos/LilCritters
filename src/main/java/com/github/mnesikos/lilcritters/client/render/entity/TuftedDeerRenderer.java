@@ -4,20 +4,32 @@ import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.model.TuftedDeerModel;
 import com.github.mnesikos.lilcritters.entity.TuftedDeerEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
+import org.zawamod.zawa.entity.base.ZawaBaseEntity;
 
 public class TuftedDeerRenderer extends ZawaMobRenderer<TuftedDeerEntity, TuftedDeerModel> {
+    private final TuftedDeerModel adultModel;
+    private final TuftedDeerModel babyModel;
+
     public TuftedDeerRenderer(EntityRendererManager manager) {
-        super(manager, new TuftedDeerModel(), 0.4F);
+        super(manager, new TuftedDeerModel.Adult(), 0.4F);
+        adultModel = model;
+        babyModel = new TuftedDeerModel.Child();
+    }
+
+    @Override
+    public void render(TuftedDeerEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight) {
+        model = entity.isBaby() ? babyModel : adultModel;
+        super.render(entity, entityYaw, partialTicks, matrixStack, buffer, packedLight);
     }
 
     @Override
     protected void scale(TuftedDeerEntity entity, MatrixStack matrixStack, float partialTickTime) {
-        float scale = entity.isBaby() ? 0.3F : 0.5F;
+        float scale = (entity.getGender() == ZawaBaseEntity.Gender.FEMALE) ? 0.85F : 0.9F;
         matrixStack.scale(scale, scale, scale);
-        matrixStack.translate(0.0F, -0.6F * scale, 0.0F);
         super.scale(entity, matrixStack, partialTickTime);
     }
 
@@ -33,10 +45,7 @@ public class TuftedDeerRenderer extends ZawaMobRenderer<TuftedDeerEntity, Tufted
 
     @Override
     public void setupBabyTextures(TuftedDeerEntity entity) {
-        int variantCount = entity.getTotalVariants();
-        babyTextures = new ResourceLocation[variantCount];
-        for (int i = 0; i < variantCount; i++)
-            babyTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/tufted_deer/tufted_deer_baby_" + (i + 1) + ".png");
+        babyTexture = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/tufted_deer/tufted_deer_baby.png");
     }
 
     @Override
