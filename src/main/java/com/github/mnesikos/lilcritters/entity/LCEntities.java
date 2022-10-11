@@ -49,6 +49,13 @@ public class LCEntities {
             .data(tBuilder -> tBuilder.sized(0.5F, 0.4F).clientTrackingRange(10))
             .build(REGISTRAR, "box_turtle");
 
+    public static final RegistryObject<EntityType<CapybaraEntity>> CAPYBARA = new Builder<>(CapybaraEntity::new, EntityClassification.CREATURE)
+            .attributes(CapybaraEntity::registerCapybaraAttributes)
+            .renderer(() -> CapybaraRenderer::new)
+            .spawn(ZawaSpawnCategory.DRY_RAINFOREST, 10, 3, 6)
+            .data(tBuilder -> tBuilder.sized(0.8F, 0.8F).clientTrackingRange(10))
+            .build(REGISTRAR, "capybara");
+
     public static final RegistryObject<EntityType<DwarfCrocodileEntity>> DWARF_CROCODILE = new Builder<>(DwarfCrocodileEntity::new, EntityClassification.CREATURE)
             .attributes(DwarfCrocodileEntity::registerDwarfCrocodileAttributes)
             .renderer(() -> DwarfCrocodileRenderer::new)
@@ -101,6 +108,7 @@ public class LCEntities {
     public static void registerSpawnPlacements() {
         EntitySpawnPlacementRegistry.register(BANDED_PENGUIN.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
         EntitySpawnPlacementRegistry.register(BOX_TURTLE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
+        EntitySpawnPlacementRegistry.register(CAPYBARA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(DWARF_CROCODILE.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
         EntitySpawnPlacementRegistry.register(OPOSSUM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(RACCOON.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);

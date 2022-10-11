@@ -1,0 +1,26 @@
+{
+  "temperament": "neutral",
+  "kibble": "zawa:herbivore_kibble",
+  "size": "medium",
+  "fertility": "high",
+  "breeding_item": "minecraft:melon_slice",
+  "litter_size": {
+    "min": 4,
+    "max": 5
+  },
+  "diet": "zawa:herbivore",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:leaf_hanging_browse",
+      "zawa:hay_hanging_browse",
+      "zawa:puzzle_feeder",
+      "zawa:tire_swing"
+    ],
+    "zawa:entities": [
+      "zawa:apple_ice_treat",
+      "zawa:scented_ball"
+    ]
+  },
+  "variant_count": 4
+}
