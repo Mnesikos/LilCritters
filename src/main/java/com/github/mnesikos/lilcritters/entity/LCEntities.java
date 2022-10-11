@@ -59,7 +59,7 @@ public class LCEntities {
     public static final RegistryObject<EntityType<OpossumEntity>> OPOSSUM = new Builder<>(OpossumEntity::new, EntityClassification.CREATURE)
             .attributes(OpossumEntity::registerOpossumAttributes)
             .renderer(() -> OpossumRenderer::new)
-            .spawn(ZawaSpawnCategory.WET_FOREST, 10, 1, 1)
+            .spawnVariant(OpossumEntity.VARIANT_SPAWNS, 10, 1, 1)
             .data(tBuilder -> tBuilder.sized(0.6F, 0.5F).clientTrackingRange(10))
             .build(REGISTRAR, "opossum");
 
@@ -73,7 +73,7 @@ public class LCEntities {
     public static final RegistryObject<EntityType<SkunkEntity>> SKUNK = new Builder<>(SkunkEntity::new, EntityClassification.CREATURE)
             .attributes(SkunkEntity::registerSkunkAttributes)
             .renderer(() -> SkunkRenderer::new)
-            .spawn(ZawaSpawnCategory.DRY_GRASSLAND, 10, 1, 2)
+            .spawns(10, 1, 3, ZawaSpawnCategory.DRY_GRASSLAND, ZawaSpawnCategory.TEMPERATE_FOREST)
             .data(tBuilder -> tBuilder.sized(0.6F, 0.6F).clientTrackingRange(10))
             .build(REGISTRAR, "skunk");
 
@@ -87,7 +87,7 @@ public class LCEntities {
     public static final RegistryObject<EntityType<TreeSquirrelEntity>> TREE_SQUIRREL = new Builder<>(TreeSquirrelEntity::new, EntityClassification.CREATURE)
             .attributes(TreeSquirrelEntity::registerTreeSquirrelAttributes)
             .renderer(() -> TreeSquirrelRenderer::new)
-            .spawn(ZawaSpawnCategory.TEMPERATE_FOREST, 15, 1, 3)
+            .spawnVariant(TreeSquirrelEntity.VARIANT_SPAWNS, 15, 1, 3)
             .data(tBuilder -> tBuilder.sized(0.6F, 0.6F).clientTrackingRange(10))
             .build(REGISTRAR, "tree_squirrel");
 

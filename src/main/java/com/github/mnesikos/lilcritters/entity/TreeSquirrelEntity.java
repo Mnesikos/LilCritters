@@ -12,10 +12,12 @@ import net.minecraft.pathfinding.ClimberPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import org.zawamod.zawa.client.ZawaSounds;
+import org.zawamod.zawa.config.ZawaSpawnCategory;
 import org.zawamod.zawa.entity.base.SpeciesVariantsEntity;
 import org.zawamod.zawa.entity.base.ZawaBaseEntity;
 import org.zawamod.zawa.entity.base.ZawaLandEntity;
@@ -23,8 +25,20 @@ import org.zawamod.zawa.entity.behavior.ClimbingEntity;
 import org.zawamod.zawa.entity.goals.ZawaMeleeAttackGoal;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariantsEntity, ClimbingEntity {
+    public static final List<Tuple<String, ZawaSpawnCategory>> VARIANT_SPAWNS = new ArrayList<>(Arrays.asList(
+            new Tuple<>("eastern_gray", ZawaSpawnCategory.TEMPERATE_FOREST),
+            new Tuple<>("mexican_gray", ZawaSpawnCategory.TEMPERATE_FOREST),
+            new Tuple<>("eastern_fox", ZawaSpawnCategory.TEMPERATE_FOREST),
+            new Tuple<>("eurasian_red", ZawaSpawnCategory.TEMPERATE_FOREST),
+            new Tuple<>("prevosts", ZawaSpawnCategory.DEEP_RAINFOREST),
+            new Tuple<>("forest_giant", ZawaSpawnCategory.WET_FOREST)
+    ));
+
     public static final DataParameter<Boolean> CLIMBING = EntityDataManager.defineId(TreeSquirrelEntity.class, DataSerializers.BOOLEAN);
 
     public TreeSquirrelEntity(EntityType<? extends ZawaBaseEntity> type, World world) {
@@ -73,6 +87,14 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
 
     @Override
     public int getVariantByBiome(IWorld iWorld) {
+        String biome = level.getBiome(this.blockPosition()).getRegistryName().toString();
+        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
+            return random.nextInt(4);
+        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
+            return 5;
+        if (ZawaSpawnCategory.DEEP_RAINFOREST.getBiomes().contains(biome))
+            return 4;
+
         return random.nextInt(getWildVariants());
     }
 
