@@ -11,13 +11,26 @@ import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.Tuple;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import org.zawamod.zawa.config.ZawaSpawnCategory;
+import org.zawamod.zawa.entity.base.SpeciesVariantsEntity;
 import org.zawamod.zawa.entity.base.ZawaLandEntity;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class OpossumEntity extends ZawaLandEntity {
+public class OpossumEntity extends ZawaLandEntity implements SpeciesVariantsEntity {
+    public static final List<Tuple<String, ZawaSpawnCategory>> VARIANT_SPAWNS = new ArrayList<>(Arrays.asList(
+            new Tuple<>("virginia", ZawaSpawnCategory.WET_FOREST),
+            new Tuple<>("common", ZawaSpawnCategory.TEMPERATE_FOREST),
+            new Tuple<>("southern_white_eared", ZawaSpawnCategory.TEMPERATE_FOREST)
+    ));
+
     public OpossumEntity(EntityType<? extends ZawaLandEntity> type, World world) {
         super(type, world);
     }
@@ -51,6 +64,17 @@ public class OpossumEntity extends ZawaLandEntity {
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
         return LCEntities.OPOSSUM.get().create(world);
+    }
+
+    @Override
+    public int getVariantByBiome(IWorld iWorld) {
+        String biome = level.getBiome(this.blockPosition()).getRegistryName().toString();
+        if (ZawaSpawnCategory.TEMPERATE_FOREST.getBiomes().contains(biome))
+            return random.nextBoolean() ? 1 : 2;
+        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
+            return 0;
+
+        return random.nextInt(this.getWildVariants());
     }
 
     @Override
