@@ -4,6 +4,7 @@
   "entity.lilcritters.box_turtle": "箱龟",
   "entity.lilcritters.capybara": "Capybara",
   "entity.lilcritters.dwarf_crocodile": "Dwarf Crocodile",
+  "entity.lilcritters.mystery_snail": "Mystery Snail",
   "entity.lilcritters.opossum": "Opossum",
   "entity.lilcritters.raccoon": "Raccoon",
   "entity.lilcritters.skunk": "Skunk",
@@ -16,12 +17,14 @@
   "item.lilcritters.box_turtle_spawn_egg": "箱龟 Spawn Egg",
   "item.lilcritters.capybara_spawn_egg": "Capybara Spawn Egg",
   "item.lilcritters.dwarf_crocodile_spawn_egg": "Dwarf Crocodile Spawn Egg",
+    "item.lilcritters.mystery_snail_spawn_egg": "Mystery Snail Spawn Egg",
   "item.lilcritters.opossum_spawn_egg": "Opossum Spawn Egg",
   "item.lilcritters.raccoon_spawn_egg": "Raccoon Spawn Egg",
   "item.lilcritters.skunk_spawn_egg": "Skunk Spawn Egg",
   "item.lilcritters.small_clawed_otter_spawn_egg": "Small Clawed Otter Spawn Egg",
   "item.lilcritters.tree_squirrel_spawn_egg": "松鼠 Spawn Egg",
   "item.lilcritters.tufted_deer_spawn_egg": "毛冠麂 Spawn Egg",
+  "item.lilcritters.mystery_snail": "Mystery Snail",
 
   "__comment": "Sound Subtitles",
   "subtitle.lilcritters.squirrel_ambient": "松鼠喋喋不休",
@@ -214,5 +217,15 @@
   "taxonomic_class.zawa.tufted_deer": "Mammal",
   "range.zawa.tufted_deer": "Southeastern China",
   "conservation_status.zawa.tufted_deer": "Near Threatened",
-  "informational_blurb.zawa.tufted_deer": "This unique ungulate uses its vampiric fangs more than its tiny horns in scraps for dominance with other males. Unfortunately, like many other species in Southeast Asia, the tufted deer is threatened by overhunting. Whether for its hide, or for its other parts used in dubious traditional medicine, it is not properly protected by law and could be in serious trouble without a change in legislation."
+  "informational_blurb.zawa.tufted_deer": "This unique ungulate uses its vampiric fangs more than its tiny horns in scraps for dominance with other males. Unfortunately, like many other species in Southeast Asia, the tufted deer is threatened by overhunting. Whether for its hide, or for its other parts used in dubious traditional medicine, it is not properly protected by law and could be in serious trouble without a change in legislation.",
+
+  "__comment": "Ambient Entity Variant Names",
+  "variant.zawa.mystery_snail_0": "Brown",
+  "variant.zawa.mystery_snail_1": "Chestnut",
+  "variant.zawa.mystery_snail_2": "Ivory",
+  "variant.zawa.mystery_snail_3": "Gold",
+  "variant.zawa.mystery_snail_4": "Jade",
+  "variant.zawa.mystery_snail_5": "Blue",
+  "variant.zawa.mystery_snail_6": "Purple",
+  "variant.zawa.mystery_snail_7": "Magenta"
 }

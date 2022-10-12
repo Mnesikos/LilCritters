@@ -19,6 +19,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.zawamod.zawa.Zawa;
 import org.zawamod.zawa.config.ZawaSpawnCategory;
 import org.zawamod.zawa.entity.SpawnInfo;
+import org.zawamod.zawa.entity.base.ZawaBaseAmbientEntity;
 import org.zawamod.zawa.entity.base.ZawaBaseEntity;
 
 import java.util.ArrayList;
@@ -62,6 +63,13 @@ public class LCEntities {
             .spawn(ZawaSpawnCategory.SLOW_FRESH_WATER, 5, 1, 1)
             .data(tBuilder -> tBuilder.sized(1.0F, 0.5F).clientTrackingRange(10))
             .build(REGISTRAR, "dwarf_crocodile");
+
+    public static final RegistryObject<EntityType<MysterySnailEntity>> MYSTERY_SNAIL = new Builder<>(MysterySnailEntity::new, EntityClassification.WATER_AMBIENT)
+            .attributes(MysterySnailEntity::registerMysterySnailAttributes)
+            .renderer(() -> MysterySnailRenderer::new)
+            .spawns(10, 2, 6, ZawaSpawnCategory.DRY_RAINFOREST, ZawaSpawnCategory.FAST_FRESH_WATER)
+            .data(tBuilder -> tBuilder.sized(0.4F, 0.4F).clientTrackingRange(4))
+            .build(REGISTRAR, "mystery_snail");
 
     public static final RegistryObject<EntityType<OpossumEntity>> OPOSSUM = new Builder<>(OpossumEntity::new, EntityClassification.CREATURE)
             .attributes(OpossumEntity::registerOpossumAttributes)
@@ -110,6 +118,7 @@ public class LCEntities {
         EntitySpawnPlacementRegistry.register(BOX_TURTLE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(CAPYBARA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(DWARF_CROCODILE.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
+        EntitySpawnPlacementRegistry.register(MYSTERY_SNAIL.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseAmbientEntity::checkAquaticSpawnRules);
         EntitySpawnPlacementRegistry.register(OPOSSUM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(RACCOON.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(SKUNK.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
