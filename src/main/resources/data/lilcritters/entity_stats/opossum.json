@@ -3,7 +3,7 @@
   "kibble": "zawa:omnivore_kibble",
   "size": "small",
   "fertility": "high",
-  "breeding_item": "minecraft:egg",
+  "breeding_item": "lilcritters:mystery_snail",
   "litter_size": {
     "min": 4,
     "max": 5
