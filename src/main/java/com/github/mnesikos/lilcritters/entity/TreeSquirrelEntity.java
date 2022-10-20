@@ -143,10 +143,12 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
         return LCSounds.SQUIRREL_HURT.get();
     }
 
+    @Override
     public boolean isClimbing() {
         return this.entityData.get(CLIMBING);
     }
 
+    @Override
     public void setClimbing(boolean climbing) {
         this.entityData.set(CLIMBING, climbing);
     }

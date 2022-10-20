@@ -99,6 +99,13 @@ public class LCEntities {
             .data(tBuilder -> tBuilder.sized(0.6F, 0.4F).clientTrackingRange(10))
             .build(REGISTRAR, "small_clawed_otter");
 
+    public static final RegistryObject<EntityType<TreeMonitorEntity>> TREE_MONITOR = new Builder<>(TreeMonitorEntity::new, EntityClassification.CREATURE)
+            .attributes(TreeMonitorEntity::registerTreeMonitorAttributes)
+            .renderer(() -> TreeMonitorRenderer::new)
+            .spawn(ZawaSpawnCategory.WET_RAINFOREST, 5, 1, 2)
+            .data(tBuilder -> tBuilder.sized(0.5F, 0.8F).clientTrackingRange(10))
+            .build(REGISTRAR, "tree_monitor");
+
     public static final RegistryObject<EntityType<TreeSquirrelEntity>> TREE_SQUIRREL = new Builder<>(TreeSquirrelEntity::new, EntityClassification.CREATURE)
             .attributes(TreeSquirrelEntity::registerTreeSquirrelAttributes)
             .renderer(() -> TreeSquirrelRenderer::new)
@@ -123,8 +130,9 @@ public class LCEntities {
         EntitySpawnPlacementRegistry.register(RACCOON.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(SKUNK.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(SMALL_CLAWED_OTTER.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
-        EntitySpawnPlacementRegistry.register(TUFTED_DEER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
+        EntitySpawnPlacementRegistry.register(TREE_MONITOR.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
         EntitySpawnPlacementRegistry.register(TREE_SQUIRREL.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
+        EntitySpawnPlacementRegistry.register(TUFTED_DEER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
     }
 
     public static void registerAttributes(BiConsumer<EntityType<? extends LivingEntity>, AttributeModifierMap.MutableAttribute> register) {

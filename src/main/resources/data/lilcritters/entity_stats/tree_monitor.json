@@ -1,0 +1,23 @@
+{
+  "temperament": "neutral",
+  "kibble": "zawa:insectivore_kibble",
+  "size": "small",
+  "fertility": "medium",
+  "breeding_item": "zawa:termites",
+  "litter_size": {
+    "min": 1,
+    "max": 2
+  },
+  "diet": "zawa:insectivore",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:heat_lamp",
+      "zawa:heat_rock"
+    ],
+    "zawa:entities": [
+      "zawa:scented_ball"
+    ]
+  },
+  "variant_count": 4
+}
