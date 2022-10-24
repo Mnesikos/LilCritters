@@ -2,23 +2,59 @@
   "squirrel_ambient": {
     "subtitle": "subtitle.lilcritters.squirrel_bark",
     "sounds": [
-      {"name": "lilcritters:squirrel_bark1"},
-      {"name": "lilcritters:squirrel_bark2"},
-      {"name": "lilcritters:squirrel_bark3"},
-      {"name": "lilcritters:squirrel_bark4"},
-      {"name": "lilcritters:squirrel_bark5"},
-      {"name": "lilcritters:squirrel_bark6"},
-      {"name": "lilcritters:squirrel_bark7"},
-      {"name": "lilcritters:squirrel_bark8"}
+      {
+        "name": "lilcritters:squirrel_bark1",
+        "volume": 0.5
+      },
+      {
+        "name": "lilcritters:squirrel_bark2",
+        "volume": 0.5
+      },
+      {
+        "name": "lilcritters:squirrel_bark3",
+        "volume": 0.5
+      },
+      {
+        "name": "lilcritters:squirrel_bark4",
+        "volume": 0.5
+      },
+      {
+        "name": "lilcritters:squirrel_bark5",
+        "volume": 0.5
+      },
+      {
+        "name": "lilcritters:squirrel_bark6",
+        "volume": 0.5
+      },
+      {
+        "name": "lilcritters:squirrel_bark7",
+        "volume": 0.5
+      },
+      {
+        "name": "lilcritters:squirrel_bark8",
+        "volume": 0.5
+      }
     ]
   },
   "squirrel_hurt": {
     "subtitle": "subtitle.lilcritters.squirrel_hurt",
     "sounds": [
-      {"name": "lilcritters:squirrel_hurt1"},
-      {"name": "lilcritters:squirrel_hurt2"},
-      {"name": "lilcritters:squirrel_hurt3"},
-      {"name": "lilcritters:squirrel_hurt4"}
+      {
+        "name": "lilcritters:squirrel_hurt1",
+        "volume": 0.5
+      },
+      {
+        "name": "lilcritters:squirrel_hurt2",
+        "volume": 0.5
+      },
+      {
+        "name": "lilcritters:squirrel_hurt3",
+        "volume": 0.5
+      },
+      {
+        "name": "lilcritters:squirrel_hurt4",
+        "volume": 0.5
+      }
     ]
   }
 }
