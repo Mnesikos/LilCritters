@@ -12,8 +12,8 @@
   "speed": "medium",
   "enrichment": {
     "zawa:blocks": [
-      "zawa:leaf_hanging_browse",
-      "zawa:hay_hanging_browse",
+      "zawa:leaf_browse",
+      "zawa:hay_browse",
       "zawa:puzzle_feeder",
       "zawa:tire_swing"
     ],
