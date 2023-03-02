@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "lilcritters:item/pumpkin_toadlet_spawn_egg"
+  }
+}
