@@ -7,8 +7,6 @@ import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import org.zawamod.zawa.entity.base.ZawaLandEntity;
@@ -41,25 +39,5 @@ public class RaccoonEntity extends ZawaLandEntity {
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
         return LCEntities.RACCOON.get().create(world);
-    }
-
-    /*@Override
-    public boolean doHurtTarget(Entity entity) {
-        boolean didHurtTarget = super.doHurtTarget(entity);
-        if (didHurtTarget) {
-            this.playSound(LCSounds.RACCOON_ATTACKING.get(), 1.0F, 1.0F);
-        }
-
-        return didHurtTarget;
-    } // todo */
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return null;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return null;
     }
 }

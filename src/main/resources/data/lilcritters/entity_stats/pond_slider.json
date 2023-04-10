@@ -2,8 +2,8 @@
   "temperament": "timid",
   "kibble": "zawa:omnivore_kibble",
   "size": "tiny",
-  "fertility": "medium",
-  "breeding_item": "zawa:earthworm",
+  "fertility": "high",
+  "breeding_item": "zawa:water_lettuce",
   "litter_size": {
     "min": 4,
     "max": 5
@@ -12,8 +12,8 @@
   "speed": "slow",
   "enrichment": {
     "zawa:blocks": [
-      "zawa:heat_lamp",
-      "zawa:heat_rock"
+      "zawa:heat_rock",
+      "zawa:heat_lamp"
     ],
     "zawa:entities": [
       "zawa:scented_ball"

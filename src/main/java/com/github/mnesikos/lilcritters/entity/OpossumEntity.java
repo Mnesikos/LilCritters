@@ -9,8 +9,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -75,15 +73,5 @@ public class OpossumEntity extends ZawaLandEntity implements SpeciesVariantsEnti
             return 0;
 
         return random.nextInt(this.getWildVariants());
-    }
-
-    @Override
-    protected SoundEvent getAmbientSound() { // todo
-        return null;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return null;
     }
 }

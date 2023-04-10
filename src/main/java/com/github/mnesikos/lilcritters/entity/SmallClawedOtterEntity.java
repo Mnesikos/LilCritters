@@ -6,14 +6,11 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import org.zawamod.zawa.entity.base.ZawaSemiAquaticEntity;
+import org.zawamod.zawa.entity.goals.ZawaMeleeAttackGoal;
 
 import javax.annotation.Nullable;
 
@@ -30,8 +27,8 @@ public class SmallClawedOtterEntity extends ZawaSemiAquaticEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.33));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 0.8, 1.33, (entity) -> AVOID_PLAYERS.test(entity) && !this.isTame()));
+        this.goalSelector.addGoal(5, new ZawaMeleeAttackGoal(this, 1.5, 1.33, true));
+        this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
     }
 
     @Override
@@ -41,7 +38,7 @@ public class SmallClawedOtterEntity extends ZawaSemiAquaticEntity {
 
     @Override
     public boolean canBabySwim() {
-        return false;
+        return true;
     }
 
     @Override
@@ -53,15 +50,5 @@ public class SmallClawedOtterEntity extends ZawaSemiAquaticEntity {
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
         return LCEntities.SMALL_CLAWED_OTTER.get().create(world);
-    }
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return null;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return null;
     }
 }

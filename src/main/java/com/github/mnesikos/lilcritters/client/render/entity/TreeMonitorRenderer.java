@@ -10,14 +10,13 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class TreeMonitorRenderer extends ZawaMobRenderer<TreeMonitorEntity, TreeMonitorModel> {
     public TreeMonitorRenderer(EntityRendererManager manager) {
-        super(manager, new TreeMonitorModel(), 0.5F);
+        super(manager, new TreeMonitorModel(), 0.3F);
     }
 
     @Override
     protected void scale(TreeMonitorEntity entity, MatrixStack matrixStack, float partialTickTime) {
-        float scale = entity.isBaby() ? 0.5F : 1.0F;
+        float scale = entity.isBaby() ? 0.4F : 0.7F;
         matrixStack.scale(scale, scale, scale);
-//        matrixStack.translate(0.0F, -0.15F * scale, 0.0F);
         super.scale(entity, matrixStack, partialTickTime);
     }
 

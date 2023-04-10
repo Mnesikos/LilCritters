@@ -12,6 +12,9 @@ For ZAWA: Evolved 1.0.1-BeefBeta-Carnivora2
 - 6 all-new critters, introducing the: bullfrog, pacman frog, dart frog, pumpkin toadlet, slider turtle, and guinea pig! 
 ### Changed
 - Box turtle has a new look, plus more species!!
+### Fixed
+- Capybara and tufted deer can now use the hanging browses as enrichment.
+- Lowered the tree squirrel's volume
 
 ## [1.16.5-1.0.0] - 2022/10/22
 For ZAWA: Evolved 1.0.1-BeefBeta-Carnivora2

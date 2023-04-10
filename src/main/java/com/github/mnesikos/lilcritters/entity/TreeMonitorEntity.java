@@ -1,7 +1,9 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.PanicGoal;
@@ -10,8 +12,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.ClimberPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import org.zawamod.zawa.entity.base.ZawaLandEntity;
@@ -34,6 +34,11 @@ public class TreeMonitorEntity extends ZawaLandEntity implements ClimbingEntity 
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.33));
+    }
+
+    @Override
+    public float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return size.height * 0.5F;
     }
 
     @Override
@@ -68,16 +73,6 @@ public class TreeMonitorEntity extends ZawaLandEntity implements ClimbingEntity 
     @Override
     public boolean causeFallDamage(float distance, float damageMultiplier) {
         return false;
-    }
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return null;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return null;
     }
 
     @Override

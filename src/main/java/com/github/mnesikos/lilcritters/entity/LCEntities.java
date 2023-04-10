@@ -47,8 +47,15 @@ public class LCEntities {
             .attributes(BoxTurtleEntity::registerBoxTurtleAttributes)
             .renderer(() -> BoxTurtleRenderer::new)
             .spawnVariant(BoxTurtleEntity.VARIANT_SPAWNS, 5, 1, 3)
-            .data(tBuilder -> tBuilder.sized(0.5F, 0.4F).clientTrackingRange(10))
+            .data(tBuilder -> tBuilder.sized(0.4F, 0.4F).clientTrackingRange(10))
             .build(REGISTRAR, "box_turtle");
+
+    public static final RegistryObject<EntityType<BullfrogEntity>> BULLFROG = new Builder<>(BullfrogEntity::new, EntityClassification.CREATURE)
+            .attributes(BullfrogEntity::registerBullfrogAttributes)
+            .renderer(() -> BullfrogRenderer::new)
+            .spawn(ZawaSpawnCategory.DRY_GRASSLAND, 10, 1, 1)
+            .data(tBuilder -> tBuilder.sized(0.5F, 0.4F).clientTrackingRange(10))
+            .build(REGISTRAR, "bullfrog");
 
     public static final RegistryObject<EntityType<CapybaraEntity>> CAPYBARA = new Builder<>(CapybaraEntity::new, EntityClassification.CREATURE)
             .attributes(CapybaraEntity::registerCapybaraAttributes)
@@ -57,12 +64,26 @@ public class LCEntities {
             .data(tBuilder -> tBuilder.sized(0.8F, 0.8F).clientTrackingRange(10))
             .build(REGISTRAR, "capybara");
 
+    public static final RegistryObject<EntityType<DartFrogEntity>> DART_FROG = new Builder<>(DartFrogEntity::new, EntityClassification.CREATURE)
+            .attributes(DartFrogEntity::registerDartFrogAttributes)
+            .renderer(() -> DartFrogRenderer::new)
+            .spawn(ZawaSpawnCategory.DEEP_RAINFOREST, 5, 1, 1)
+            .data(tBuilder -> tBuilder.sized(0.3F, 0.3F).clientTrackingRange(10))
+            .build(REGISTRAR, "dart_frog");
+
     public static final RegistryObject<EntityType<DwarfCrocodileEntity>> DWARF_CROCODILE = new Builder<>(DwarfCrocodileEntity::new, EntityClassification.CREATURE)
             .attributes(DwarfCrocodileEntity::registerDwarfCrocodileAttributes)
             .renderer(() -> DwarfCrocodileRenderer::new)
             .spawn(ZawaSpawnCategory.SLOW_FRESH_WATER, 5, 1, 1)
             .data(tBuilder -> tBuilder.sized(1.0F, 0.5F).clientTrackingRange(10))
             .build(REGISTRAR, "dwarf_crocodile");
+
+    public static final RegistryObject<EntityType<GuineaPigEntity>> GUINEA_PIG = new Builder<>(GuineaPigEntity::new, EntityClassification.CREATURE)
+            .attributes(GuineaPigEntity::registerGuineaPigAttributes)
+            .renderer(() -> GuineaPigRenderer::new)
+            .spawn(ZawaSpawnCategory.TROPICAL_ALPINE, 15, 2, 6)
+            .data(tBuilder -> tBuilder.sized(0.4F, 0.4F).clientTrackingRange(10))
+            .build(REGISTRAR, "guinea_pig");
 
     public static final RegistryObject<EntityType<MysterySnailEntity>> MYSTERY_SNAIL = new Builder<>(MysterySnailEntity::new, EntityClassification.WATER_AMBIENT)
             .attributes(MysterySnailEntity::registerMysterySnailAttributes)
@@ -77,6 +98,27 @@ public class LCEntities {
             .spawnVariant(OpossumEntity.VARIANT_SPAWNS, 10, 1, 1)
             .data(tBuilder -> tBuilder.sized(0.6F, 0.5F).clientTrackingRange(10))
             .build(REGISTRAR, "opossum");
+
+    public static final RegistryObject<EntityType<PacmanFrogEntity>> PACMAN_FROG = new Builder<>(PacmanFrogEntity::new, EntityClassification.CREATURE)
+            .attributes(PacmanFrogEntity::registerPacmanFrogAttributes)
+            .renderer(() -> PacmanFrogRenderer::new)
+            .spawn(ZawaSpawnCategory.DEEP_RAINFOREST, 5, 1, 1)
+            .data(tBuilder -> tBuilder.sized(0.5F, 0.4F).clientTrackingRange(10))
+            .build(REGISTRAR, "pacman_frog");
+
+    public static final RegistryObject<EntityType<PondSliderEntity>> POND_SLIDER = new Builder<>(PondSliderEntity::new, EntityClassification.CREATURE)
+            .attributes(PondSliderEntity::registerPondSliderAttributes)
+            .renderer(() -> PondSliderRenderer::new)
+            .spawn(ZawaSpawnCategory.WET_FOREST, 10, 1, 3)
+            .data(tBuilder -> tBuilder.sized(0.5F, 0.4F).clientTrackingRange(10))
+            .build(REGISTRAR, "pond_slider");
+
+    public static final RegistryObject<EntityType<PumpkinToadletEntity>> PUMPKIN_TOADLET = new Builder<>(PumpkinToadletEntity::new, EntityClassification.CREATURE)
+            .attributes(PumpkinToadletEntity::registerPumpkinToadletAttributes)
+            .renderer(() -> PumpkinToadletRenderer::new)
+            .spawn(ZawaSpawnCategory.DEEP_RAINFOREST, 2, 1, 1)
+            .data(tBuilder -> tBuilder.sized(0.3F, 0.3F).clientTrackingRange(10))
+            .build(REGISTRAR, "pumpkin_toadlet");
 
     public static final RegistryObject<EntityType<RaccoonEntity>> RACCOON = new Builder<>(RaccoonEntity::new, EntityClassification.CREATURE)
             .attributes(RaccoonEntity::registerRaccoonAttributes)
@@ -103,7 +145,7 @@ public class LCEntities {
             .attributes(TreeMonitorEntity::registerTreeMonitorAttributes)
             .renderer(() -> TreeMonitorRenderer::new)
             .spawn(ZawaSpawnCategory.WET_RAINFOREST, 5, 1, 2)
-            .data(tBuilder -> tBuilder.sized(0.5F, 0.8F).clientTrackingRange(10))
+            .data(tBuilder -> tBuilder.sized(0.6F, 0.5F).clientTrackingRange(10))
             .build(REGISTRAR, "tree_monitor");
 
     public static final RegistryObject<EntityType<TreeSquirrelEntity>> TREE_SQUIRREL = new Builder<>(TreeSquirrelEntity::new, EntityClassification.CREATURE)
@@ -123,10 +165,16 @@ public class LCEntities {
     public static void registerSpawnPlacements() {
         EntitySpawnPlacementRegistry.register(BANDED_PENGUIN.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
         EntitySpawnPlacementRegistry.register(BOX_TURTLE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
+        EntitySpawnPlacementRegistry.register(BULLFROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(CAPYBARA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
+        EntitySpawnPlacementRegistry.register(DART_FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(DWARF_CROCODILE.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
+        EntitySpawnPlacementRegistry.register(GUINEA_PIG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(MYSTERY_SNAIL.get(), EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseAmbientEntity::checkAquaticSpawnRules);
         EntitySpawnPlacementRegistry.register(OPOSSUM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
+        EntitySpawnPlacementRegistry.register(PACMAN_FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
+        EntitySpawnPlacementRegistry.register(POND_SLIDER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
+        EntitySpawnPlacementRegistry.register(PUMPKIN_TOADLET.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(RACCOON.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(SKUNK.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         EntitySpawnPlacementRegistry.register(SMALL_CLAWED_OTTER.get(), EntitySpawnPlacementRegistry.PlacementType.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);

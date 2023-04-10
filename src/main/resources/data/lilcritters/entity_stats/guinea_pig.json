@@ -1,14 +1,14 @@
 {
   "temperament": "timid",
-  "kibble": "zawa:omnivore_kibble",
-  "size": "small",
+  "kibble": "zawa:herbivore_kibble",
+  "size": "tiny",
   "fertility": "high",
-  "breeding_item": "zawa:earthworm",
+  "breeding_item": "minecraft:carrot",
   "litter_size": {
-    "min": 2,
-    "max": 3
+    "min": 4,
+    "max": 5
   },
-  "diet": "zawa:scavenger",
+  "diet": "zawa:herbivore",
   "speed": "medium",
   "enrichment": {
     "zawa:blocks": [

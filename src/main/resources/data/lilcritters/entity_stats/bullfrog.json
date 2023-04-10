@@ -1,22 +1,19 @@
 {
-  "temperament": "timid",
-  "kibble": "zawa:omnivore_kibble",
+  "temperament": "defensive",
+  "kibble": "zawa:insectivore_kibble",
   "size": "tiny",
   "fertility": "medium",
-  "breeding_item": "zawa:earthworm",
+  "breeding_item": "zawa:brown_rat",
   "litter_size": {
-    "min": 4,
-    "max": 5
+    "min": 2,
+    "max": 3
   },
-  "diet": "zawa:omnivore",
+  "diet": "zawa:insectivore",
   "speed": "slow",
   "enrichment": {
     "zawa:blocks": [
       "zawa:heat_lamp",
       "zawa:heat_rock"
-    ],
-    "zawa:entities": [
-      "zawa:scented_ball"
     ]
   },
   "variant_count": 3

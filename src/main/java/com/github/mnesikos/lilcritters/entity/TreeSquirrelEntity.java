@@ -1,7 +1,10 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.sounds.LCSounds;
-import net.minecraft.entity.*;
+import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
@@ -16,7 +19,6 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import org.zawamod.zawa.client.ZawaSounds;
 import org.zawamod.zawa.config.ZawaSpawnCategory;
 import org.zawamod.zawa.entity.base.SpeciesVariantsEntity;
 import org.zawamod.zawa.entity.base.ZawaBaseEntity;
@@ -119,16 +121,6 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
     public boolean causeFallDamage(float distance, float damageMultiplier) {
         return false;
     }
-
-    /*@Override
-    public boolean doHurtTarget(Entity entity) {
-        boolean didHurtTarget = super.doHurtTarget(entity);
-        if (didHurtTarget) {
-            this.playSound(LCSounds.TREE_SQUIRREL_ATTACKING.get(), 1.0F, 1.0F);
-        }
-
-        return didHurtTarget;
-    } // todo */
 
     @Override
     protected SoundEvent getAmbientSound() {
