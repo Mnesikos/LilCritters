@@ -141,6 +141,13 @@ public class LCEntities {
             .data(tBuilder -> tBuilder.sized(0.6F, 0.4F).clientTrackingRange(10))
             .build(REGISTRAR, "small_clawed_otter");
 
+    public static final RegistryObject<EntityType<TomatoFrogEntity>> TOMATO_FROG = new Builder<>(TomatoFrogEntity::new, EntityClassification.CREATURE)
+            .attributes(TomatoFrogEntity::registerTomatoFrogAttributes)
+            .renderer(() -> TomatoFrogRenderer::new)
+            .spawn(ZawaSpawnCategory.SLOW_FRESH_WATER, 5, 1, 1)
+            .data(tBuilder -> tBuilder.sized(0.5F, 0.4F).clientTrackingRange(10))
+            .build(REGISTRAR, "tomato_frog");
+
     public static final RegistryObject<EntityType<TreeMonitorEntity>> TREE_MONITOR = new Builder<>(TreeMonitorEntity::new, EntityClassification.CREATURE)
             .attributes(TreeMonitorEntity::registerTreeMonitorAttributes)
             .renderer(() -> TreeMonitorRenderer::new)

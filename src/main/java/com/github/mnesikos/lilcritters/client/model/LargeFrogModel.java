@@ -2,6 +2,7 @@ package com.github.mnesikos.lilcritters.client.model;
 
 import com.github.mnesikos.lilcritters.entity.BullfrogEntity;
 import com.github.mnesikos.lilcritters.entity.PacmanFrogEntity;
+import com.github.mnesikos.lilcritters.entity.TomatoFrogEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -211,6 +212,12 @@ public class LargeFrogModel<E extends Entity> extends ZawaBaseModel<E> {
 
     public static class PacmanFrog extends LargeFrogModel<PacmanFrogEntity> {
         public PacmanFrog() {
+            super();
+        }
+    }
+
+    public static class TomatoFrog extends LargeFrogModel<TomatoFrogEntity> {
+        public TomatoFrog() {
             super();
         }
     }
