@@ -176,15 +176,16 @@ public class SmallFrogModel<E extends Entity> extends ZawaBaseModel<E> {
     @Override
     public void setupAnim(E entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        this.Head.xRot = (headPitch / (180F / (float) Math.PI)) + 0.56F;
     }
 
     @Override
-    public void playIdleAnimation(Entity entity, float v, float v1, float v2, float v3, float v4) {
+    public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
     }
 
     @Override
-    public void playMovementAnimation(Entity entity, float v, float v1, float v2, float v3, float v4) {
+    public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
     }
 

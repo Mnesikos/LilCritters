@@ -207,15 +207,37 @@ public class BoxTurtleModel extends ZawaBaseModel<BoxTurtleEntity> {
     @Override
     public void setupAnim(BoxTurtleEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        this.Head.xRot = (headPitch / (180F / (float) Math.PI)) + 0.27F;
+        this.Head.yRot = netHeadYaw / (180F / (float) Math.PI) * 0.5F;
+        this.Neck.yRot = netHeadYaw / (180F / (float) Math.PI) * 0.5F;
     }
 
     @Override
-    public void playIdleAnimation(Entity entity, float v, float v1, float v2, float v3, float v4) {
-
+    public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.loadBase();
+        float speed = 1.0f;
+        float degree = 1.0f;
+        this.Neck.xRot = MathHelper.cos(limbSwing * speed * 0.1F) * degree * 0.1F * limbSwingAmount - 0.68F;
+        this.Head.xRot = MathHelper.cos(limbSwing * speed * 0.1F) * degree * -0.1F * limbSwingAmount + 0.27F;
     }
 
     @Override
     public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+        this.loadBase();
+        float speed = 10.0f;
+        float degree = 2.0f;
+        this.LeftArm.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.09F;
+        this.LeftForeArm.xRot = MathHelper.cos(1.0F + limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.91F;
+        this.LeftHand.xRot = MathHelper.cos(2.0F + limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 0.18F;
+        this.LeftLeg.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount - 0.46F;
+        this.LeftFoot.xRot = MathHelper.cos(-2.0F + limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount - 0.36F;
+        this.RightArm.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 0.09F;
+        this.RightForeArm.xRot = MathHelper.cos(1.0F + limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 0.91F;
+        this.RightHand.xRot = MathHelper.cos(2.0F + limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.18F;
+        this.RightLeg.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount - 0.46F;
+        this.RightFoot.xRot = MathHelper.cos(-2.0F + limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount - 0.36F;
+        this.Neck.yRot = MathHelper.cos(1.0F + limbSwing * speed * 0.2F) * degree * -0.2F * limbSwingAmount;
+        this.Head.yRot = MathHelper.cos(2.0F + limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount;
+        this.Shell.y = MathHelper.cos(limbSwing * speed * 0.4F) * degree * 0.8F * limbSwingAmount + 19F;
     }
 }

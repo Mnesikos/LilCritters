@@ -4,6 +4,7 @@ import com.github.mnesikos.lilcritters.entity.GuineaPigEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 import org.zawamod.zawa.client.renderer.entity.model.ZawaBaseModel;
 
 public class GuineaPigModel extends ZawaBaseModel<GuineaPigEntity> {
@@ -23,7 +24,7 @@ public class GuineaPigModel extends ZawaBaseModel<GuineaPigEntity> {
     public ModelRenderer TopSnout;
     public ModelRenderer ForeArmLeft;
     public ModelRenderer HandLeft;
-    public ModelRenderer ArmRight_1;
+    public ModelRenderer ForeArmRight;
     public ModelRenderer HandRight;
     public ModelRenderer LegLeft;
     public ModelRenderer FootLeft;
@@ -126,10 +127,10 @@ public class GuineaPigModel extends ZawaBaseModel<GuineaPigEntity> {
         this.HandRight.setPos(0.1F, 0.5F, -0.5F);
         this.HandRight.addBox(-0.5F, 0.0F, -1.0F, 1, 1, 1, 0.0F);
         this.setRotateAngle(HandRight, 0.40980330836826856F, 0.0F, 0.0F);
-        this.ArmRight_1 = new ModelRenderer(this, 0, 29);
-        this.ArmRight_1.setPos(0.0F, 2.0F, 0.5F);
-        this.ArmRight_1.addBox(-0.5F, 0.0F, -1.0F, 1, 1, 1, 0.0F);
-        this.setRotateAngle(ArmRight_1, -0.8196066167365371F, 0.0F, 0.0F);
+        this.ForeArmRight = new ModelRenderer(this, 0, 29);
+        this.ForeArmRight.setPos(0.0F, 2.0F, 0.5F);
+        this.ForeArmRight.addBox(-0.5F, 0.0F, -1.0F, 1, 1, 1, 0.0F);
+        this.setRotateAngle(ForeArmRight, -0.8196066167365371F, 0.0F, 0.0F);
         this.LegLeft = new ModelRenderer(this, 16, 22);
         this.LegLeft.mirror = true;
         this.LegLeft.setPos(0.1F, 2.0F, -1.0F);
@@ -153,8 +154,8 @@ public class GuineaPigModel extends ZawaBaseModel<GuineaPigEntity> {
         this.Hips.addChild(this.ThighLeft);
         this.LegRight.addChild(this.FootRight);
         this.Head.addChild(this.EarRight);
-        this.ArmRight_1.addChild(this.HandRight);
-        this.ArmRight.addChild(this.ArmRight_1);
+        this.ForeArmRight.addChild(this.HandRight);
+        this.ArmRight.addChild(this.ForeArmRight);
         this.ThighLeft.addChild(this.LegLeft);
         this.saveBase();
     }
@@ -162,15 +163,47 @@ public class GuineaPigModel extends ZawaBaseModel<GuineaPigEntity> {
     @Override
     public void setupAnim(GuineaPigEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        this.Head.xRot = (headPitch / (180F / (float) Math.PI)) + 0.36F;
+        this.Neck.yRot = netHeadYaw / (180F / (float) Math.PI);
     }
 
     @Override
-    public void playIdleAnimation(Entity entity, float v, float v1, float v2, float v3, float v4) {
-
+    public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.loadBase();
+        float speed = 1.0f;
+        float degree = 1.0f;
+        this.Head.xRot = MathHelper.cos(0.5F + limbSwing * speed * 0.05F) * degree * -0.1F * limbSwingAmount + 0.36F;
+        this.EarLeft.xRot = MathHelper.cos(-1.0F + limbSwing * speed * 0.1F) * degree * -0.1F * limbSwingAmount - 0.23F;
+        this.EarRight.xRot = MathHelper.cos(-1.5F + limbSwing * speed * 0.1F) * degree * -0.1F * limbSwingAmount - 0.23F;
+        this.Neck.xRot = MathHelper.cos(limbSwing * speed * 0.05F) * degree * 0.1F * limbSwingAmount - 0.46F;
     }
 
     @Override
-    public void playMovementAnimation(Entity entity, float v, float v1, float v2, float v3, float v4) {
+    public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.loadBase();
+        float speed = 6.0f, degree = 0.8f;
 
+        if (isSwimming) {
+            limbSwing = (float) entity.tickCount;
+            limbSwingAmount = 0.3F;
+        }
+
+        this.ArmLeft.xRot = MathHelper.cos(limbSwing * speed * 0.1F) * degree * 1.0F * limbSwingAmount + 0.27F;
+        this.ForeArmLeft.xRot = MathHelper.cos(1.0F + limbSwing * speed * 0.1F) * degree * 1.0F * limbSwingAmount - 0.82F;
+        this.HandLeft.xRot = MathHelper.cos(-1.0F + limbSwing * speed * 0.1F) * degree * -1.0F * limbSwingAmount + 0.5F;
+        this.ThighLeft.xRot = MathHelper.cos(1.5F + limbSwing * speed * 0.1F) * degree * 1.5F * limbSwingAmount;
+        this.LegLeft.xRot = MathHelper.cos(-0.5F + limbSwing * speed * 0.1F) * degree * 0.8F * limbSwingAmount + 0.77F;
+        this.FootLeft.xRot = MathHelper.cos(-2.5F + limbSwing * speed * 0.1F) * degree * 1.0F * limbSwingAmount - 0.82F;
+        this.ThighRight.xRot = MathHelper.cos(1.5F + limbSwing * speed * 0.1F) * degree * -1.5F * limbSwingAmount;
+        this.LegRight.xRot = MathHelper.cos(-0.5F + limbSwing * speed * 0.1F) * degree * -0.8F * limbSwingAmount + 0.77F;
+        this.FootRight.xRot = MathHelper.cos(-2.5F + limbSwing * speed * -0.1F) * degree * -1.0F * limbSwingAmount - 0.82F;
+        this.ArmRight.xRot = MathHelper.cos(limbSwing * speed * 0.1F) * degree * -1.0F * limbSwingAmount + 0.27F;
+        this.ForeArmRight.xRot = MathHelper.cos(1.0F + limbSwing * speed * 0.1F) * degree * -1.0F * limbSwingAmount - 0.82F;
+        this.HandRight.xRot = MathHelper.cos(-1.0F + limbSwing * speed * 0.1F) * degree * 1.0F * limbSwingAmount + 0.5F;
+        this.Neck.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.1F * limbSwingAmount - 0.46F;
+        this.Head.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * -0.1F * limbSwingAmount + 0.36F;
+        this.EarLeft.xRot = MathHelper.cos(-1.0F + limbSwing * speed * 0.2F) * degree * -0.1F * limbSwingAmount - 0.23F;
+        this.EarRight.xRot = MathHelper.cos(-1.0F + limbSwing * speed * 0.2F) * degree * -0.1F * limbSwingAmount - 0.23F;
+        this.Hips.y = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 0.8F * limbSwingAmount + 20F;
     }
 }

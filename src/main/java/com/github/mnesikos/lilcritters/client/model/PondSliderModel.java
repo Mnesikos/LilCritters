@@ -4,6 +4,7 @@ import com.github.mnesikos.lilcritters.entity.PondSliderEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 import org.zawamod.zawa.client.renderer.entity.model.ZawaBaseModel;
 
 public class PondSliderModel extends ZawaBaseModel<PondSliderEntity> {
@@ -20,10 +21,10 @@ public class PondSliderModel extends ZawaBaseModel<PondSliderEntity> {
     public ModelRenderer LeftArm;
     public ModelRenderer RightArm;
     public ModelRenderer Neck;
+    public ModelRenderer LeftForeArm;
+    public ModelRenderer LeftHand;
     public ModelRenderer RightForeArm;
     public ModelRenderer RightHand;
-    public ModelRenderer RightForeArm_1;
-    public ModelRenderer RightHand_1;
     public ModelRenderer Head;
     public ModelRenderer Snout;
     public ModelRenderer Mouth;
@@ -101,10 +102,10 @@ public class PondSliderModel extends ZawaBaseModel<PondSliderEntity> {
         this.Head.setPos(0.0F, 0.2F, -4.5F);
         this.Head.addBox(-1.5F, -1.5F, -1.0F, 3.0F, 3.0F, 2.0F, 0.0F, 0.0F, 0.0F);
         this.setRotateAngle(Head, 0.27314402127920984F, 0.0F, 0.0F);
-        this.RightForeArm = new ModelRenderer(this, 31, 19);
-        this.RightForeArm.setPos(0.0F, -1.0F, -3.0F);
-        this.RightForeArm.addBox(-0.9F, 0.0F, -2.0F, 2.0F, 2.0F, 2.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(RightForeArm, 0.9075712110370513F, 0.0F, 0.0F);
+        this.LeftForeArm = new ModelRenderer(this, 31, 19);
+        this.LeftForeArm.setPos(0.0F, -1.0F, -3.0F);
+        this.LeftForeArm.addBox(-0.9F, 0.0F, -2.0F, 2.0F, 2.0F, 2.0F, 0.0F, 0.0F, 0.0F);
+        this.setRotateAngle(LeftForeArm, 0.9075712110370513F, 0.0F, 0.0F);
         this.RightBackLip1 = new ModelRenderer(this, 47, 16);
         this.RightBackLip1.setPos(0.0F, -0.6F, 3.8F);
         this.RightBackLip1.addBox(-3.1F, 0.0F, -1.0F, 3.0F, 1.0F, 1.0F, 0.1F, 0.0F, 0.0F);
@@ -129,26 +130,26 @@ public class PondSliderModel extends ZawaBaseModel<PondSliderEntity> {
         this.RightFrontLip.setPos(-3.1F, 1.7F, -2.0F);
         this.RightFrontLip.addBox(-1.0F, -2.0F, -1.0F, 1.0F, 4.0F, 1.0F, 0.0F, 0.0F, 0.0F);
         this.setRotateAngle(RightFrontLip, 0.3953170689188129F, -0.7285004590772052F, -0.13962634015954636F);
-        this.RightHand = new ModelRenderer(this, 34, 24);
-        this.RightHand.setPos(0.3F, 1.6F, -1.3F);
-        this.RightHand.addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(RightHand, 0.17453292519943295F, 0.17453292519943295F, 0.0F);
+        this.LeftHand = new ModelRenderer(this, 34, 24);
+        this.LeftHand.setPos(0.3F, 1.6F, -1.3F);
+        this.LeftHand.addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 1.0F, 0.0F, 0.0F, 0.0F);
+        this.setRotateAngle(LeftHand, 0.17453292519943295F, 0.17453292519943295F, 0.0F);
         this.ShellBack = new ModelRenderer(this, 44, 0);
         this.ShellBack.setPos(0.0F, -2.0F, 2.5F);
         this.ShellBack.addBox(-3.0F, 0.1F, 0.0F, 6.0F, 3.0F, 3.0F, 0.0F, 0.1F, 0.0F);
         this.setRotateAngle(ShellBack, -0.3839724354387525F, 0.0F, 0.0F);
-        this.RightHand_1 = new ModelRenderer(this, 34, 24);
-        this.RightHand_1.setPos(-0.3F, 1.6F, -1.3F);
-        this.RightHand_1.addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(RightHand_1, 0.17453292519943295F, -0.17453292519943295F, 0.0F);
+        this.RightHand = new ModelRenderer(this, 34, 24);
+        this.RightHand.setPos(-0.3F, 1.6F, -1.3F);
+        this.RightHand.addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 1.0F, 0.0F, 0.0F, 0.0F);
+        this.setRotateAngle(RightHand, 0.17453292519943295F, -0.17453292519943295F, 0.0F);
         this.ShellFront = new ModelRenderer(this, 25, 0);
         this.ShellFront.setPos(0.0F, -2.0F, -2.5F);
         this.ShellFront.addBox(-3.0F, 0.2F, -3.0F, 6.0F, 3.0F, 3.0F, 0.0F, 0.2F, -0.1F);
         this.setRotateAngle(ShellFront, 0.3141592653589793F, 0.0F, 0.0F);
-        this.RightForeArm_1 = new ModelRenderer(this, 31, 19);
-        this.RightForeArm_1.setPos(0.0F, -1.0F, -3.0F);
-        this.RightForeArm_1.addBox(-1.1F, 0.0F, -2.0F, 2.0F, 2.0F, 2.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(RightForeArm_1, 0.9075712110370513F, 0.0F, 0.0F);
+        this.RightForeArm = new ModelRenderer(this, 31, 19);
+        this.RightForeArm.setPos(0.0F, -1.0F, -3.0F);
+        this.RightForeArm.addBox(-1.1F, 0.0F, -2.0F, 2.0F, 2.0F, 2.0F, 0.0F, 0.0F, 0.0F);
+        this.setRotateAngle(RightForeArm, 0.9075712110370513F, 0.0F, 0.0F);
         this.Nose = new ModelRenderer(this, 9, 26);
         this.Nose.setPos(0.0F, -1.0F, -1.2F);
         this.Nose.addBox(-0.5F, 0.0F, -1.0F, 1.0F, 2.0F, 1.0F, 0.0F, 0.0F, 0.0F);
@@ -184,18 +185,18 @@ public class PondSliderModel extends ZawaBaseModel<PondSliderEntity> {
         this.ShellBack.addChild(this.RightBackLip2);
         this.ShellFront.addChild(this.RightTopLip);
         this.Neck.addChild(this.Head);
-        this.LeftArm.addChild(this.RightForeArm);
+        this.LeftArm.addChild(this.LeftForeArm);
         this.ShellBack.addChild(this.RightBackLip1);
         this.RightLeg.addChild(this.RightFoot);
         this.Shell.addChild(this.Belly);
         this.ShellBack.addChild(this.RightLeg);
         this.Snout.addChild(this.SnoutFront);
         this.ShellFront.addChild(this.RightFrontLip);
-        this.RightForeArm.addChild(this.RightHand);
+        this.LeftForeArm.addChild(this.LeftHand);
         this.Shell.addChild(this.ShellBack);
-        this.RightForeArm_1.addChild(this.RightHand_1);
+        this.RightForeArm.addChild(this.RightHand);
         this.Shell.addChild(this.ShellFront);
-        this.RightArm.addChild(this.RightForeArm_1);
+        this.RightArm.addChild(this.RightForeArm);
         this.Snout.addChild(this.Nose);
         this.Shell.addChild(this.RightLip);
         this.ShellFront.addChild(this.LeftFrontLip);
@@ -208,15 +209,37 @@ public class PondSliderModel extends ZawaBaseModel<PondSliderEntity> {
     @Override
     public void setupAnim(PondSliderEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        this.Head.xRot = (headPitch / (180F / (float) Math.PI)) + 0.27F;
+        this.Head.yRot = netHeadYaw / (180F / (float) Math.PI) * 0.5F;
+        this.Neck.yRot = netHeadYaw / (180F / (float) Math.PI) * 0.5F;
     }
 
     @Override
-    public void playIdleAnimation(Entity entity, float v, float v1, float v2, float v3, float v4) {
-
+    public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.loadBase();
+        float speed = 1.0f;
+        float degree = 1.0f;
+        this.Neck.xRot = MathHelper.cos(limbSwing * speed * 0.1F) * degree * 0.1F * limbSwingAmount - 0.42F;
+        this.Head.xRot = MathHelper.cos(limbSwing * speed * 0.1F) * degree * -0.1F * limbSwingAmount + 0.27F;
     }
 
     @Override
-    public void playMovementAnimation(Entity entity, float v, float v1, float v2, float v3, float v4) {
-
+    public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.loadBase();
+        float speed = 10.0f;
+        float degree = 2.0f;
+        this.LeftArm.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.21F;
+        this.LeftForeArm.xRot = MathHelper.cos(1.0F + limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.9F;
+        this.LeftHand.xRot = MathHelper.cos(2.0F + limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 0.17F;
+        this.LeftLeg.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount - 0.78F;
+        this.LeftFoot.xRot = MathHelper.cos(-2.0F + limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount - 0.35F;
+        this.RightArm.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 0.21F;
+        this.RightForeArm.xRot = MathHelper.cos(1.0F + limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 0.9F;
+        this.RightHand.xRot = MathHelper.cos(2.0F + limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.17F;
+        this.RightLeg.xRot = MathHelper.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount - 0.78F;
+        this.RightFoot.xRot = MathHelper.cos(-2.0F + limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount - 0.35F;
+        this.Neck.yRot = MathHelper.cos(1.0F + limbSwing * speed * 0.2F) * degree * -0.2F * limbSwingAmount;
+        this.Head.yRot = MathHelper.cos(2.0F + limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount;
+        this.Shell.y = MathHelper.cos(limbSwing * speed * 0.4F) * degree * 0.8F * limbSwingAmount + 20.4F;
     }
 }
