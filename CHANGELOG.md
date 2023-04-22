@@ -6,10 +6,10 @@ The format is based on
 and this project adheres to 
 [Forge Versioning Conventions](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
-## [1.16.5-1.0.1] - RELEASE DATE
+## [1.16.5-1.0.1] - 2023/04/21
 For ZAWA: Evolved 1.0.1-BeefBeta-Carnivora2
 ### Added
-- 6 all-new critters, introducing the: bullfrog, pacman frog, dart frog, pumpkin toadlet, slider turtle, and guinea pig! 
+- 7 all-new critters, introducing the: bullfrog, pacman frog, tomato frog, dart frog, pumpkin toadlet, slider turtle, and guinea pig! 
 ### Changed
 - Box turtle has a new look, plus more species!!
 ### Fixed
