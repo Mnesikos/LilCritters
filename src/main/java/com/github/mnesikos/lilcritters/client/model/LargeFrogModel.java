@@ -3,9 +3,11 @@ package com.github.mnesikos.lilcritters.client.model;
 import com.github.mnesikos.lilcritters.entity.BullfrogEntity;
 import com.github.mnesikos.lilcritters.entity.PacmanFrogEntity;
 import com.github.mnesikos.lilcritters.entity.TomatoFrogEntity;
+import com.github.mnesikos.lilcritters.entity.base.JumpingEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 import org.zawamod.zawa.client.renderer.entity.model.ZawaBaseModel;
 
 public class LargeFrogModel<E extends Entity> extends ZawaBaseModel<E> {
@@ -35,6 +37,7 @@ public class LargeFrogModel<E extends Entity> extends ZawaBaseModel<E> {
     public ModelRenderer HandLeft;
     public ModelRenderer ForearmRight;
     public ModelRenderer HandRight;
+    private float jumpRotation;
     private Iterable<ModelRenderer> parts;
 
     public Iterable<ModelRenderer> parts() {
@@ -192,17 +195,40 @@ public class LargeFrogModel<E extends Entity> extends ZawaBaseModel<E> {
     @Override
     public void setupAnim(E entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        this.Head.xRot = (headPitch / (180F / (float) Math.PI)) + 0.56F;
+        this.Head.xRot = headPitch / (180F / (float) Math.PI) + 0.56F;
+        this.Head.yRot = netHeadYaw / (180F / (float) Math.PI);
     }
 
     @Override
     public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+        this.Head.xRot = MathHelper.cos(limbSwing * 0.1F) * -0.1F * limbSwingAmount + 0.27F;
     }
 
     @Override
     public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        if (entity instanceof JumpingEntity) {
+            float f = ageInTicks - (float) entity.tickCount;
+            this.jumpRotation = MathHelper.sin(((JumpingEntity) entity).getJumpCompletion(f) * (float) Math.PI);
+            this.ThighLeft.xRot = this.jumpRotation * 1.2f - 0.279F;
+            this.ThighLeft.zRot = this.jumpRotation * 1.2f - 0.226f;
+            this.ThighRight.xRot = this.jumpRotation * 1.2f - 0.279F;
+            this.ThighRight.zRot = -this.jumpRotation * 1.2f + 0.226f;
+            this.FootLeft.zRot = this.jumpRotation * 0.9f + 0.453f;
+            this.FootRight.zRot = -this.jumpRotation * 0.9f - 0.453f;
+            this.ArmLeft.xRot = -this.jumpRotation * 1.2f + 1.36F;
+            this.ArmLeft.yRot = -this.jumpRotation * 0.7f + 0.628F;
+            this.ArmRight.xRot = -this.jumpRotation * 1.2f + 1.36F;
+            this.ArmRight.yRot = this.jumpRotation * 0.7f - 0.628F;
+            this.ForearmLeft.xRot = this.jumpRotation * 0.7f + 1.134F;
+            this.ForearmRight.xRot = this.jumpRotation * 0.7f + 1.134F;
+        }
+    }
 
+    @Override
+    public void prepareMobModel(E entity, float speed, float walkSpeed, float partialTick) {
+        super.prepareMobModel(entity, speed, walkSpeed, partialTick);
+        if (entity instanceof JumpingEntity)
+            this.jumpRotation = MathHelper.sin(((JumpingEntity) entity).getJumpCompletion(partialTick) * (float) Math.PI);
     }
 
     public static class Bullfrog extends LargeFrogModel<BullfrogEntity> {
