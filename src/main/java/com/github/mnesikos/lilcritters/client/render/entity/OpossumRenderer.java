@@ -4,25 +4,13 @@ import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.model.OpossumModel;
 import com.github.mnesikos.lilcritters.entity.OpossumEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class OpossumRenderer extends ZawaMobRenderer<OpossumEntity, OpossumModel> {
-    private final OpossumModel adultModel;
-    private final OpossumModel babyModel;
-
     public OpossumRenderer(EntityRendererManager manager) {
-        super(manager, new OpossumModel.Adult(), 0.4F);
-        adultModel = model;
-        babyModel = new OpossumModel.Child();
-    }
-
-    @Override
-    public void render(OpossumEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight) {
-        model = entity.isBaby() ? babyModel : adultModel;
-        super.render(entity, entityYaw, partialTicks, matrixStack, buffer, packedLight);
+        super(manager, new OpossumModel.Adult(), new OpossumModel.Child(), 0.4F);
     }
 
     @Override

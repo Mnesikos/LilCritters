@@ -13,9 +13,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.zawamod.zawa.entity.base.SpeciesVariantsEntity;
-import org.zawamod.zawa.entity.base.ZawaSemiAquaticEntity;
-import org.zawamod.zawa.entity.goals.ZawaMeleeAttackGoal;
+import org.zawamod.zawa.world.entity.SpeciesVariantsEntity;
+import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
+import org.zawamod.zawa.world.entity.ai.goal.ZawaMeleeAttackGoal;
 
 import javax.annotation.Nullable;
 

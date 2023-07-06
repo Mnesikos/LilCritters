@@ -33,6 +33,6 @@ A ZAWA mod addon, aiming to add some ambiance with little critters usually found
 [[dependencies.lilcritters]]
     modId="zawa"
     mandatory=true
-    versionRange="[1.16.5-1.0.1-BeefBeta-Carnivora2,)"
+    versionRange="[1.16.5-1.0.2-BeefBeta-TropicalExpedition1,)"
     ordering="AFTER"
     side="BOTH"

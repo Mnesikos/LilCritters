@@ -8,8 +8,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.zawamod.zawa.client.renderer.entity.model.ZawaBaseModel;
-import org.zawamod.zawa.client.renderer.entity.model.ZawaModelRenderer;
+import org.zawamod.zawa.client.model.ZawaBaseModel;
+import org.zawamod.zawa.client.model.ZawaModelRenderer;
 
 public abstract class TuftedDeerModel extends ZawaBaseModel<TuftedDeerEntity> {
     public ModelRenderer Chest;

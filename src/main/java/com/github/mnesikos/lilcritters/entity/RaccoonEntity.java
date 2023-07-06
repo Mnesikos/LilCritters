@@ -9,8 +9,8 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import org.zawamod.zawa.entity.base.ZawaLandEntity;
-import org.zawamod.zawa.entity.goals.ZawaMeleeAttackGoal;
+import org.zawamod.zawa.world.entity.ai.goal.ZawaMeleeAttackGoal;
+import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
 
 import javax.annotation.Nullable;
 

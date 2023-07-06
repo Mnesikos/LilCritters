@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.zawamod.zawa.entity.base.ZawaBaseEntity;
+import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
 
 public interface JumpingEntity {
     boolean getJumping();

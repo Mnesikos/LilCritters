@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
-import org.zawamod.zawa.client.renderer.entity.model.ZawaBaseModel;
+import org.zawamod.zawa.client.model.ZawaBaseModel;
 
 public class GuineaPigModel extends ZawaBaseModel<GuineaPigEntity> {
     public ModelRenderer Hips;

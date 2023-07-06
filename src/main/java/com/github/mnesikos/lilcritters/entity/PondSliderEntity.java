@@ -11,7 +11,7 @@ import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import org.zawamod.zawa.entity.base.ZawaSemiAquaticEntity;
+import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
 
 import javax.annotation.Nullable;
 

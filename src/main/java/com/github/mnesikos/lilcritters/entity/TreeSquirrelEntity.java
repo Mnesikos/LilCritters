@@ -20,11 +20,11 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import org.zawamod.zawa.config.ZawaSpawnCategory;
-import org.zawamod.zawa.entity.base.SpeciesVariantsEntity;
-import org.zawamod.zawa.entity.base.ZawaBaseEntity;
-import org.zawamod.zawa.entity.base.ZawaLandEntity;
-import org.zawamod.zawa.entity.behavior.ClimbingEntity;
-import org.zawamod.zawa.entity.goals.ZawaMeleeAttackGoal;
+import org.zawamod.zawa.world.entity.SpeciesVariantsEntity;
+import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
+import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
+import org.zawamod.zawa.world.entity.ClimbingEntity;
+import org.zawamod.zawa.world.entity.ai.goal.ZawaMeleeAttackGoal;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

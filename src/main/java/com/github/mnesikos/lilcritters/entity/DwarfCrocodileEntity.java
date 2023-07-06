@@ -11,8 +11,8 @@ import net.minecraft.entity.ai.goal.NonTamedTargetGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import org.zawamod.zawa.entity.base.ZawaSemiAquaticEntity;
-import org.zawamod.zawa.entity.goals.ZawaMeleeAttackGoal;
+import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
+import org.zawamod.zawa.world.entity.ai.goal.ZawaMeleeAttackGoal;
 
 import javax.annotation.Nullable;
 

@@ -24,8 +24,8 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.Tags;
-import org.zawamod.zawa.entity.base.ZawaBaseAmbientEntity;
-import org.zawamod.zawa.entity.behavior.ClimbingEntity;
+import org.zawamod.zawa.world.entity.ClimbingEntity;
+import org.zawamod.zawa.world.entity.ambient.ZawaBaseAmbientEntity;
 
 import javax.annotation.Nullable;
 

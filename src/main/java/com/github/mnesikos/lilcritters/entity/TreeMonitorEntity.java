@@ -14,8 +14,8 @@ import net.minecraft.pathfinding.ClimberPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import org.zawamod.zawa.entity.base.ZawaLandEntity;
-import org.zawamod.zawa.entity.behavior.ClimbingEntity;
+import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
+import org.zawamod.zawa.world.entity.ClimbingEntity;
 
 import javax.annotation.Nullable;
 

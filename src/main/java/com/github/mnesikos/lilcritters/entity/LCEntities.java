@@ -18,9 +18,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.zawamod.zawa.Zawa;
 import org.zawamod.zawa.config.ZawaSpawnCategory;
-import org.zawamod.zawa.entity.SpawnInfo;
-import org.zawamod.zawa.entity.base.ZawaBaseAmbientEntity;
-import org.zawamod.zawa.entity.base.ZawaBaseEntity;
+import org.zawamod.zawa.world.entity.ambient.ZawaBaseAmbientEntity;
+import org.zawamod.zawa.world.entity.animal.SpawnInfo;
+import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -12,8 +12,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import org.zawamod.zawa.entity.base.SpeciesVariantsEntity;
-import org.zawamod.zawa.entity.base.ZawaLandEntity;
+import org.zawamod.zawa.world.entity.SpeciesVariantsEntity;
+import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
 
 import javax.annotation.Nullable;
 
