@@ -21,14 +21,6 @@ public class SkunkRenderer extends ZawaMobRenderer<SkunkEntity, SkunkModel> {
     }
 
     @Override
-    public void setupAdultTextures(SkunkEntity entity) {
-        int variantCount = entity.getTotalVariants();
-        adultTextures = new ResourceLocation[variantCount];
-        for (int i = 0; i < variantCount; i++)
-            adultTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/skunk/skunk_" + (i + 1) + ".png");
-    }
-
-    @Override
     public void setupBabyTextures(SkunkEntity entity) {
         int variantCount = entity.getTotalVariants();
         babyTextures = new ResourceLocation[variantCount];

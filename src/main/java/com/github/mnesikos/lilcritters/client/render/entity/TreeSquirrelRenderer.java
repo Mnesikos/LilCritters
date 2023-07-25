@@ -22,14 +22,6 @@ public class TreeSquirrelRenderer extends ZawaMobRenderer<TreeSquirrelEntity, Tr
     }
 
     @Override
-    public void setupAdultTextures(TreeSquirrelEntity entity) {
-        int variantCount = entity.getTotalVariants();
-        adultTextures = new ResourceLocation[variantCount];
-        for (int i = 0; i < variantCount; i++)
-            adultTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/tree_squirrel/tree_squirrel_" + (i + 1) + ".png");
-    }
-
-    @Override
     public void setupBabyTextures(TreeSquirrelEntity entity) {
         int variantCount = entity.getTotalVariants();
         babyTextures = new ResourceLocation[variantCount];

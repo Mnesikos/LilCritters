@@ -20,5 +20,9 @@
     ]
   },
   "variant_count": 6,
-  "captive_variants": 3
+  "captive_variants": [
+    "rio_grande",
+    "albino",
+    "charcoal"
+  ]
 }

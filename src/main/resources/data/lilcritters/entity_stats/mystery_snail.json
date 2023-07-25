@@ -4,5 +4,11 @@
   "breeding_item": "zawa:java_moss",
   "speed": "slow",
   "variant_count": 8,
-  "captive_variants": 5
+  "captive_variants": [
+    "gold",
+    "jade",
+    "blue",
+    "purple",
+    "magenta"
+  ]
 }

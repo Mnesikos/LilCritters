@@ -21,14 +21,6 @@ public class PacmanFrogRenderer extends ZawaMobRenderer<PacmanFrogEntity, LargeF
     }
 
     @Override
-    public void setupAdultTextures(PacmanFrogEntity entity) {
-        int variantCount = entity.getTotalVariants();
-        adultTextures = new ResourceLocation[variantCount];
-        for (int i = 0; i < variantCount; i++)
-            adultTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/pacman_frog/pacman_frog_" + (i + 1) + ".png");
-    }
-
-    @Override
     public void setupBabyTextures(PacmanFrogEntity entity) {
         int variantCount = entity.getTotalVariants();
         babyTextures = new ResourceLocation[variantCount];

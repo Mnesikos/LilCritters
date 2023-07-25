@@ -21,14 +21,6 @@ public class PondSliderRenderer extends ZawaMobRenderer<PondSliderEntity, PondSl
     }
 
     @Override
-    public void setupAdultTextures(PondSliderEntity entity) {
-        int variantCount = entity.getTotalVariants();
-        adultTextures = new ResourceLocation[variantCount];
-        for (int i = 0; i < variantCount; i++)
-            adultTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/pond_slider/pond_slider_" + (i + 1) + ".png");
-    }
-
-    @Override
     public void setupBabyTextures(PondSliderEntity entity) {
         int variantCount = entity.getTotalVariants();
         babyTextures = new ResourceLocation[variantCount];

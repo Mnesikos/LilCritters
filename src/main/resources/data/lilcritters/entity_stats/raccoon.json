@@ -23,5 +23,7 @@
     ]
   },
   "variant_count": 6,
-  "captive_variants": 1
+  "captive_variants": [
+    "leucistic"
+  ]
 }

@@ -17,5 +17,10 @@
     ]
   },
   "variant_count": 8,
-  "captive_variants": 4
+  "captive_variants": [
+    "albino",
+    "pikachu",
+    "matcha",
+    "samurai_blue"
+  ]
 }

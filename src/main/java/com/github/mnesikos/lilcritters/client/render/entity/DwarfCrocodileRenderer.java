@@ -20,14 +20,6 @@ public class DwarfCrocodileRenderer extends ZawaMobRenderer<DwarfCrocodileEntity
     }
 
     @Override
-    public void setupAdultTextures(DwarfCrocodileEntity entity) {
-        int variantCount = entity.getTotalVariants();
-        adultTextures = new ResourceLocation[variantCount];
-        for (int i = 0; i < variantCount; i++)
-            adultTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/dwarf_crocodile/dwarf_crocodile_" + (i + 1) + ".png");
-    }
-
-    @Override
     public void setupBabyTextures(DwarfCrocodileEntity entity) {
         int variantCount = entity.getTotalVariants();
         babyTextures = new ResourceLocation[variantCount];

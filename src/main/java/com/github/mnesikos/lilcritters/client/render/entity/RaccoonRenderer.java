@@ -22,14 +22,6 @@ public class RaccoonRenderer extends ZawaMobRenderer<RaccoonEntity, RaccoonModel
     }
 
     @Override
-    public void setupAdultTextures(RaccoonEntity entity) {
-        int variantCount = entity.getTotalVariants();
-        adultTextures = new ResourceLocation[variantCount];
-        for (int i = 0; i < variantCount; i++)
-            adultTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/raccoon/raccoon_" + (i + 1) + ".png");
-    }
-
-    @Override
     public void setupBabyTextures(RaccoonEntity entity) {
         int variantCount = entity.getTotalVariants();
         babyTextures = new ResourceLocation[variantCount];

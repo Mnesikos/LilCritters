@@ -21,14 +21,6 @@ public class TomatoFrogRenderer extends ZawaMobRenderer<TomatoFrogEntity, LargeF
     }
 
     @Override
-    public void setupAdultTextures(TomatoFrogEntity entity) {
-        int variantCount = entity.getTotalVariants();
-        adultTextures = new ResourceLocation[variantCount];
-        for (int i = 0; i < variantCount; i++)
-            adultTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/tomato_frog/tomato_frog_" + (i + 1) + ".png");
-    }
-
-    @Override
     public void setupBabyTextures(TomatoFrogEntity entity) {
         int variantCount = entity.getTotalVariants();
         babyTextures = new ResourceLocation[variantCount];

@@ -22,14 +22,6 @@ public class GuineaPigRenderer extends ZawaMobRenderer<GuineaPigEntity, GuineaPi
     }
 
     @Override
-    public void setupAdultTextures(GuineaPigEntity entity) {
-        int variantCount = entity.getTotalVariants();
-        adultTextures = new ResourceLocation[variantCount];
-        for (int i = 0; i < variantCount; i++)
-            adultTextures[i] = new ResourceLocation(LilCritters.MOD_ID, "textures/entity/guinea_pig/guinea_pig_" + (i + 1) + ".png");
-    }
-
-    @Override
     public void setupBabyTextures(GuineaPigEntity entity) {
         int variantCount = entity.getTotalVariants();
         babyTextures = new ResourceLocation[variantCount];
