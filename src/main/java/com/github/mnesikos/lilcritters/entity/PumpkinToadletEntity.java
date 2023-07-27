@@ -1,6 +1,5 @@
 package com.github.mnesikos.lilcritters.entity;
 
-import com.github.mnesikos.lilcritters.entity.base.JumpingEntity;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
@@ -14,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.zawamod.zawa.world.entity.JumpingEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
 
 import javax.annotation.Nullable;

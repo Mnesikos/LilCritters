@@ -2,7 +2,7 @@ package com.github.mnesikos.lilcritters.client.model;
 
 import com.github.mnesikos.lilcritters.entity.DartFrogEntity;
 import com.github.mnesikos.lilcritters.entity.PumpkinToadletEntity;
-import com.github.mnesikos.lilcritters.entity.base.JumpingEntity;
+import org.zawamod.zawa.world.entity.JumpingEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
