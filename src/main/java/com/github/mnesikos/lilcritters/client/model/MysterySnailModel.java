@@ -2,10 +2,10 @@ package com.github.mnesikos.lilcritters.client.model;
 
 import com.github.mnesikos.lilcritters.entity.MysterySnailEntity;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import org.zawamod.zawa.client.model.ZawaBaseAmbientModel;
 
-public class MysterySnailModel extends SegmentedModel<MysterySnailEntity> {
+public class MysterySnailModel extends ZawaBaseAmbientModel<MysterySnailEntity> {
     public ModelRenderer Body;
     public ModelRenderer Shell1;
     public ModelRenderer Head;
@@ -17,11 +17,8 @@ public class MysterySnailModel extends SegmentedModel<MysterySnailEntity> {
     private Iterable<ModelRenderer> parts;
 
     public Iterable<ModelRenderer> parts() {
-        if (this.parts == null) {
-            this.parts = ImmutableList.of(this.Body);
-        }
-
-        return this.parts;
+        if (parts == null) parts = ImmutableList.of(Body);
+        return parts;
     }
 
     public MysterySnailModel() {
@@ -71,11 +68,5 @@ public class MysterySnailModel extends SegmentedModel<MysterySnailEntity> {
 
     @Override
     public void setupAnim(MysterySnailEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-    }
-
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
     }
 }

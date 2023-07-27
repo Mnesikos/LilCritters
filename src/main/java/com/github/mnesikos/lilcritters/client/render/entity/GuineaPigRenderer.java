@@ -6,8 +6,12 @@ import com.github.mnesikos.lilcritters.client.model.LargeFrogModel;
 import com.github.mnesikos.lilcritters.entity.GuineaPigEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
+import org.zawamod.zawa.resources.EntityStatsManager;
+import org.zawamod.zawa.world.entity.ambient.ZawaBaseAmbientEntity;
+import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
 
 public class GuineaPigRenderer extends ZawaMobRenderer<GuineaPigEntity, GuineaPigModel> {
     public GuineaPigRenderer(EntityRendererManager manager) {
@@ -19,6 +23,14 @@ public class GuineaPigRenderer extends ZawaMobRenderer<GuineaPigEntity, GuineaPi
         float scale = entity.isBaby() ? 0.4F : 0.8F;
         matrixStack.scale(scale, scale, scale);
         super.scale(entity, matrixStack, partialTickTime);
+    }
+
+    @Override
+    public ResourceLocation getBabyTexture(GuineaPigEntity entity, int variant) {
+        if (variant >= entity.getWildVariants()) {
+            String variantName = EntityStatsManager.INSTANCE.getStats(entity).getCaptiveVariantsList().get(variant - entity.getWildVariants());
+            return new ResourceLocation(LilCritters.MOD_ID, "textures/entity/guinea_pig/guinea_pig_" + variantName + ".png");
+        } else return this.babyTexture != null ? this.babyTexture : this.babyTextures[variant];
     }
 
     @Override
