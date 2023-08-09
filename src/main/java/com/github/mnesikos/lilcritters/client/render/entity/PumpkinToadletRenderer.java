@@ -6,11 +6,12 @@ import com.github.mnesikos.lilcritters.entity.PumpkinToadletEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
+import org.zawamod.zawa.client.model.ZawaFrogBaseModel;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
-public class PumpkinToadletRenderer extends ZawaMobRenderer<PumpkinToadletEntity, SmallFrogModel.PumpkinToadlet> {
+public class PumpkinToadletRenderer extends ZawaMobRenderer<PumpkinToadletEntity, ZawaFrogBaseModel<PumpkinToadletEntity>> {
     public PumpkinToadletRenderer(EntityRendererManager manager) {
-        super(manager, new SmallFrogModel.PumpkinToadlet(), 0.1F);
+        super(manager, new SmallFrogModel<>(), 0.1F);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.entity;
 
+import com.github.mnesikos.lilcritters.item.LCItems;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
@@ -9,16 +10,18 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.zawamod.zawa.world.entity.JumpingEntity;
+import org.zawamod.zawa.world.entity.OviparousEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
 
 import javax.annotation.Nullable;
 
-public class PumpkinToadletEntity extends ZawaLandEntity implements JumpingEntity {
+public class PumpkinToadletEntity extends ZawaLandEntity implements OviparousEntity, JumpingEntity {
     private int jumpTicks;
     private int jumpDuration;
     private boolean wasOnGround;
@@ -51,6 +54,11 @@ public class PumpkinToadletEntity extends ZawaLandEntity implements JumpingEntit
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
         return LCEntities.PUMPKIN_TOADLET.get().create(world);
+    }
+
+    @Override
+    public ItemStack getBreedEggItem() {
+        return LCItems.PUMPKIN_TOADLET_EGG.get().getDefaultInstance();
     }
 
     @Override

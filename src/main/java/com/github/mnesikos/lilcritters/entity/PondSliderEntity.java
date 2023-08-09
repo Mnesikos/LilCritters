@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.entity;
 
+import com.github.mnesikos.lilcritters.item.LCItems;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
@@ -9,13 +10,15 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import org.zawamod.zawa.world.entity.OviparousEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
 
 import javax.annotation.Nullable;
 
-public class PondSliderEntity extends ZawaSemiAquaticEntity {
+public class PondSliderEntity extends ZawaSemiAquaticEntity implements OviparousEntity {
     public PondSliderEntity(EntityType<? extends ZawaSemiAquaticEntity> type, World world) {
         super(type, world);
         this.maxUpStep = 1.0F;
@@ -56,5 +59,10 @@ public class PondSliderEntity extends ZawaSemiAquaticEntity {
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
         return LCEntities.POND_SLIDER.get().create(world);
+    }
+
+    @Override
+    public ItemStack getBreedEggItem() {
+        return LCItems.POND_SLIDER_EGG.get().getDefaultInstance();
     }
 }

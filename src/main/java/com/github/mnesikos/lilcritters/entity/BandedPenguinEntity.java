@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.entity;
 
+import com.github.mnesikos.lilcritters.item.LCItems;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
@@ -7,15 +8,17 @@ import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import org.zawamod.zawa.world.entity.OviparousEntity;
 import org.zawamod.zawa.world.entity.SpeciesVariantsEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
 
 import javax.annotation.Nullable;
 
-public class BandedPenguinEntity extends ZawaSemiAquaticEntity implements SpeciesVariantsEntity {
+public class BandedPenguinEntity extends ZawaSemiAquaticEntity implements SpeciesVariantsEntity, OviparousEntity {
     public BandedPenguinEntity(EntityType<? extends ZawaSemiAquaticEntity> type, World world) {
         super(type, world);
         this.maxUpStep = 1.0F;
@@ -59,6 +62,11 @@ public class BandedPenguinEntity extends ZawaSemiAquaticEntity implements Specie
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
         return LCEntities.BANDED_PENGUIN.get().create(world);
+    }
+
+    @Override
+    public ItemStack getBreedEggItem() {
+        return LCItems.BANDED_PENGUIN_EGG.get().getDefaultInstance();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.entity;
 
+import com.github.mnesikos.lilcritters.item.LCItems;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
@@ -7,6 +8,7 @@ import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -14,12 +16,13 @@ import net.minecraft.pathfinding.ClimberPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import org.zawamod.zawa.world.entity.OviparousEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
 import org.zawamod.zawa.world.entity.ClimbingEntity;
 
 import javax.annotation.Nullable;
 
-public class TreeMonitorEntity extends ZawaLandEntity implements ClimbingEntity {
+public class TreeMonitorEntity extends ZawaLandEntity implements OviparousEntity, ClimbingEntity {
     public static final DataParameter<Boolean> CLIMBING = EntityDataManager.defineId(TreeMonitorEntity.class, DataSerializers.BOOLEAN);
 
     public TreeMonitorEntity(EntityType<? extends ZawaLandEntity> type, World world) {
@@ -51,6 +54,11 @@ public class TreeMonitorEntity extends ZawaLandEntity implements ClimbingEntity 
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
         return LCEntities.TREE_MONITOR.get().create(world);
+    }
+
+    @Override
+    public ItemStack getBreedEggItem() {
+        return LCItems.TREE_MONITOR_EGG.get().getDefaultInstance();
     }
 
     @Override
