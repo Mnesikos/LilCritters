@@ -28,8 +28,8 @@ public class BullfrogEntity extends ZawaSemiAquaticEntity implements SpeciesVari
     public BullfrogEntity(EntityType<? extends ZawaSemiAquaticEntity> type, World world) {
         super(type, world);
         this.maxUpStep = 1.0F;
-        jumpControl = new JumpHelperController(this);
-        moveControl = new MoveHelperController(this);
+        jumpControl = new JumpersJumpControl(this);
+        moveControl = new JumpingMoveControl(this);
         this.setSpeedModifier(this, 0.0D);
     }
 

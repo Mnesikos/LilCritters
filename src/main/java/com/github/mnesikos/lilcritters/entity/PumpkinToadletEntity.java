@@ -26,8 +26,8 @@ public class PumpkinToadletEntity extends ZawaLandEntity implements JumpingEntit
 
     public PumpkinToadletEntity(EntityType<? extends ZawaLandEntity> type, World world) {
         super(type, world);
-        jumpControl = new JumpHelperController(this);
-        moveControl = new MoveHelperController(this);
+        jumpControl = new JumpersJumpControl(this);
+        moveControl = new JumpingMoveControl(this);
         this.setSpeedModifier(this, 0.0D);
     }
 

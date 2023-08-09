@@ -26,8 +26,8 @@ public class TomatoFrogEntity extends ZawaSemiAquaticEntity implements JumpingEn
     public TomatoFrogEntity(EntityType<? extends ZawaSemiAquaticEntity> type, World world) {
         super(type, world);
         this.maxUpStep = 1.0F;
-        jumpControl = new JumpingEntity.JumpHelperController(this);
-        moveControl = new JumpingEntity.MoveHelperController(this);
+        jumpControl = new JumpingEntity.JumpersJumpControl(this);
+        moveControl = new JumpingEntity.JumpingMoveControl(this);
         this.setSpeedModifier(this, 0.0D);
     }
 
