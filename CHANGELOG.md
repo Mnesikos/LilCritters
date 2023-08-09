@@ -6,6 +6,17 @@ The format is based on
 and this project adheres to 
 [Forge Versioning Conventions](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.16.5-1.0.2] - 2023/08/08
+For ZAWA: Evolved 1.0.2-BeefBeta-TropicalExpedition1
+### Added
+- Eggs and egg laying for 10 animals: banded penguin, box turtle, bullfrog, dart frog, dwarf crocodile, pacman frog, pond slider, pumpkin toadlet, tomato frog, and tree monitor.
+- Tadpole stages for 4 animals: bullfrog, dart frog, pacman frog, and tomato frog. Did you know pumpkin toadlets skip the tadpole stage? How neat! The babies are half a centimeter when they hatch.
+### Changed
+- Updated everything to work with latest zawa update.
+### Fixed
+- Dart frog #13 texture update to match the species (was previously a duplicated texture, oops!)
+- Frogs should appropriately be able to spawn on leaves now.
+
 ## [1.16.5-1.0.1] - 2023/04/21
 For ZAWA: Evolved 1.0.1-BeefBeta-Carnivora2
 ### Added
