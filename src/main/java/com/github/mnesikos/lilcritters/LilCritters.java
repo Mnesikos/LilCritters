@@ -15,7 +15,7 @@ public class LilCritters {
     public LilCritters() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        LCEntities.REGISTRAR.register(bus);
+        LCEntities.REGISTRY.initialize();
         LCItems.REGISTRAR.register(bus);
         LCSounds.REGISTRAR.register(bus);
 
