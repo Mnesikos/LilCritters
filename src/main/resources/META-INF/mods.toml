@@ -19,7 +19,7 @@ A ZAWA mod addon, aiming to add some ambiance with little critters usually found
 [[dependencies.lilcritters]]
     modId="forge"
     mandatory=true
-    versionRange="[36.2.0,)"
+    versionRange="[36.2.20,)"
     ordering="NONE"
     side="BOTH"
 
@@ -33,6 +33,6 @@ A ZAWA mod addon, aiming to add some ambiance with little critters usually found
 [[dependencies.lilcritters]]
     modId="zawa"
     mandatory=true
-    versionRange="[1.16.5-1.0.2-BeefBeta-TropicalExpedition1,)"
+    versionRange="[1.16.5-1.0.2-BeefBeta-TropicalExpedition3,)"
     ordering="AFTER"
     side="BOTH"
