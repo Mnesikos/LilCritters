@@ -66,11 +66,11 @@ public class OpossumEntity extends ZawaLandEntity implements SpeciesVariantsEnti
 
     @Override
     public int getVariantByBiome(LevelAccessor iWorld) {
-        String biome = level.getBiome(this.blockPosition()).value().getRegistryName().toString();
-        if (ZawaSpawnCategory.TEMPERATE_FOREST.getBiomes().contains(biome))
-            return random.nextBoolean() ? 1 : 2;
-        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
-            return 0;
+//        String biome = level.getBiome(this.blockPosition()).value().getRegistryName().toString();
+//        if (ZawaSpawnCategory.TEMPERATE_FOREST.getBiomes().contains(biome))
+//            return random.nextBoolean() ? 1 : 2;
+//        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
+//            return 0;
 
         return random.nextInt(this.getWildVariants());
     }

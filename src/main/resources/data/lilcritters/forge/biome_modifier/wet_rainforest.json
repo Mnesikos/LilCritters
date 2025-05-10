@@ -1,0 +1,38 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:or",
+    "values": [
+      {
+        "type": "forge:and",
+        "values": [
+          "#is_overworld",
+          "#minecraft:is_jungle",
+          "#forge:is_dense"
+        ]
+      },
+      {
+        "type": "forge:and",
+        "values": [
+          "#is_overworld",
+          "#forge:is_swamp",
+          {"type": "forge:not", "value": "#forge:is_cold"}
+        ]
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "lilcritters:box_turtle",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "lilcritters:tree_monitor",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 2
+    }
+  ]
+}

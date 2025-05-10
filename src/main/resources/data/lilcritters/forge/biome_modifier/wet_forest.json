@@ -1,0 +1,59 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:or",
+    "values": [
+      {
+        "type": "forge:and",
+        "values": [
+          "#is_overworld",
+          "#minecraft:is_forest",
+          "#forge:is_spooky"
+        ]
+      },
+      {
+        "type": "forge:and",
+        "values": [
+          "#is_overworld",
+          "#minecraft:is_forest",
+          "#forge:is_lush"
+        ]
+      },
+      {
+        "type": "forge:and",
+        "values": [
+          "#is_overworld",
+          "#forge:is_wet",
+          "#minecraft:is_forest",
+          {"type": "forge:not", "value": "#forge:is_hot"}
+        ]
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "lilcritters:box_turtle",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "lilcritters:oppossum",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "lilcritters:tree_squirrel",
+      "weight": 15,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "lilcritters:pond_slider",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 3
+    }
+  ]
+}

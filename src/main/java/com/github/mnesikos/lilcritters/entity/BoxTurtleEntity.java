@@ -90,24 +90,24 @@ public class BoxTurtleEntity extends ZawaLandEntity implements SpeciesVariantsEn
 
     @Override
     public int getVariantByBiome(LevelAccessor iWorld) {
-        String biome = level.getBiome(this.blockPosition()).value().getRegistryName().toString();
-        if (ZawaSpawnCategory.TEMPERATE_FOREST.getBiomes().contains(biome))
-            if (random.nextBoolean()) return random.nextInt(3) == 0 ? 12 : random.nextBoolean() ? 13 : 17;
-            else return random.nextInt(3) == 0 ? 0 : random.nextBoolean() ? 4 : 22;
-        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
-            if (random.nextBoolean()) return random.nextInt(3) == 0 ? 6 : random.nextBoolean() ? 7 : 14;
-            else return random.nextInt(3) == 0 ? 2 : random.nextBoolean() ? 3 : 20;
-        if (ZawaSpawnCategory.DRY_GRASSLAND.getBiomes().contains(biome))
-            return random.nextBoolean() ? 1 : 5;
-        if (ZawaSpawnCategory.DRY_ALPINE.getBiomes().contains(biome))
-            return 8;
-        if (ZawaSpawnCategory.SLOW_FRESH_WATER.getBiomes().contains(biome))
-            return random.nextInt(3) == 0 ? 9 : random.nextBoolean() ? 11 : 18;
-        if (ZawaSpawnCategory.WET_RAINFOREST.getBiomes().contains(biome))
-            return 10;
-        if (ZawaSpawnCategory.TEMPERATE_ALPINE.getBiomes().contains(biome))
-            if (random.nextBoolean()) return random.nextBoolean() ? 19 : 21;
-            else return random.nextBoolean() ? 15 : 16;
+//        String biome = level.getBiome(this.blockPosition()).value().getRegistryName().toString();
+//        if (ZawaSpawnCategory.TEMPERATE_FOREST.getBiomes().contains(biome))
+//            if (random.nextBoolean()) return random.nextInt(3) == 0 ? 12 : random.nextBoolean() ? 13 : 17;
+//            else return random.nextInt(3) == 0 ? 0 : random.nextBoolean() ? 4 : 22;
+//        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
+//            if (random.nextBoolean()) return random.nextInt(3) == 0 ? 6 : random.nextBoolean() ? 7 : 14;
+//            else return random.nextInt(3) == 0 ? 2 : random.nextBoolean() ? 3 : 20;
+//        if (ZawaSpawnCategory.DRY_GRASSLAND.getBiomes().contains(biome))
+//            return random.nextBoolean() ? 1 : 5;
+//        if (ZawaSpawnCategory.DRY_ALPINE.getBiomes().contains(biome))
+//            return 8;
+//        if (ZawaSpawnCategory.SLOW_FRESH_WATER.getBiomes().contains(biome))
+//            return random.nextInt(3) == 0 ? 9 : random.nextBoolean() ? 11 : 18;
+//        if (ZawaSpawnCategory.WET_RAINFOREST.getBiomes().contains(biome))
+//            return 10;
+//        if (ZawaSpawnCategory.TEMPERATE_ALPINE.getBiomes().contains(biome))
+//            if (random.nextBoolean()) return random.nextBoolean() ? 19 : 21;
+//            else return random.nextBoolean() ? 15 : 16;
 
         return random.nextInt(this.getWildVariants());
     }

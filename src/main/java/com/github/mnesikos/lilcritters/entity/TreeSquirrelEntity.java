@@ -89,13 +89,13 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
 
     @Override
     public int getVariantByBiome(LevelAccessor iWorld) {
-        String biome = level.getBiome(this.blockPosition()).value().getRegistryName().toString();
-        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
-            return random.nextInt(4);
-        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
-            return 5;
-        if (ZawaSpawnCategory.DEEP_RAINFOREST.getBiomes().contains(biome))
-            return 4;
+//        String biome = level.getBiome(this.blockPosition()).value().getRegistryName().toString();
+//        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
+//            return random.nextInt(4);
+//        if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
+//            return 5;
+//        if (ZawaSpawnCategory.DEEP_RAINFOREST.getBiomes().contains(biome))
+//            return 4;
 
         return random.nextInt(getWildVariants());
     }
