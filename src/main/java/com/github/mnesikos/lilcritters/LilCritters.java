@@ -39,6 +39,9 @@ public class LilCritters {
         if (event.getTabKey() == Zawa.ITEMS_GROUP.getKey()) {
             LCItems.REGISTRAR.getEntries().forEach(item -> event.accept(item.get()));
         }
+        if (event.getTabKey() == Zawa.ENTITIES_GROUP.getKey()) {
+            LCEntities.REGISTRY.itemRegistrar.getEntries().forEach(item -> event.accept(item.get()));
+        }
     }
 
     private void setup(final FMLCommonSetupEvent event) {
