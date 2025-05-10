@@ -1,28 +1,29 @@
 package com.github.mnesikos.lilcritters.entity;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.FindWaterGoal;
-import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.ClimberPathNavigator;
-import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.TryFindWaterGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.Tags;
 import org.zawamod.zawa.world.entity.ClimbingEntity;
 import org.zawamod.zawa.world.entity.ambient.ZawaBaseAmbientEntity;
@@ -30,25 +31,25 @@ import org.zawamod.zawa.world.entity.ambient.ZawaBaseAmbientEntity;
 import javax.annotation.Nullable;
 
 public class MysterySnailEntity extends ZawaBaseAmbientEntity implements ClimbingEntity {
-    public static final DataParameter<Boolean> CLIMBING = EntityDataManager.defineId(MysterySnailEntity.class, DataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> CLIMBING = SynchedEntityData.defineId(MysterySnailEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public MysterySnailEntity(EntityType<? extends ZawaBaseAmbientEntity> type, World world) {
+    public MysterySnailEntity(EntityType<? extends ZawaBaseAmbientEntity> type, Level world) {
         super(type, world);
         this.maxUpStep = 1.0F;
-        this.setPathfindingMalus(PathNodeType.WATER, 0.0F);
+        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
 
-    public static AttributeModifierMap.MutableAttribute registerMysterySnailAttributes() {
+    public static AttributeSupplier.Builder registerMysterySnailAttributes() {
         return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.10F).add(Attributes.MAX_HEALTH, 2.0);
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new FindWaterGoal(this));
+        this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.33D));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 8.0F, 0.8D, 1.33D, AVOID_PLAYERS::test));
-        this.goalSelector.addGoal(8, new RandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 8.0F, 0.8D, 1.33D, AVOID_PLAYERS::test));
+        this.goalSelector.addGoal(8, new RandomStrollGoal(this, 1.0D));
     }
 
     @Override
@@ -59,13 +60,13 @@ public class MysterySnailEntity extends ZawaBaseAmbientEntity implements Climbin
 
     @Nullable
     @Override
-    public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
+    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.MYSTERY_SNAIL.get().create(world);
     }
 
     @Override
-    protected PathNavigator createNavigation(World world) {
-        return new ClimberPathNavigator(this, world);
+    protected PathNavigation createNavigation(Level world) {
+        return new WallClimberNavigation(this, world);
     }
 
     @Override
@@ -78,12 +79,12 @@ public class MysterySnailEntity extends ZawaBaseAmbientEntity implements Climbin
     }
 
     @Override
-    public CreatureAttribute getMobType() {
-        return CreatureAttribute.WATER;
+    public MobType getMobType() {
+        return MobType.WATER;
     }
 
     @Override
-    public boolean checkSpawnObstruction(IWorldReader level) {
+    public boolean checkSpawnObstruction(LevelReader level) {
         return level.isUnobstructed(this);
     }
 
@@ -105,7 +106,7 @@ public class MysterySnailEntity extends ZawaBaseAmbientEntity implements Climbin
     }
 
     @Override
-    public boolean causeFallDamage(float distance, float damageMultiplier) {
+    public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
         return false;
     }
 
@@ -120,8 +121,8 @@ public class MysterySnailEntity extends ZawaBaseAmbientEntity implements Climbin
     }
 
     @Override
-    public boolean isClimbableBlock(World level, BlockPos blockPos) {
-        Block block = (level.getBlockState(blockPos)).getBlock();
-        return Tags.Blocks.DIRT.contains(block) || BlockTags.SAND.contains(block) || ClimbingEntity.super.isClimbableBlock(level, blockPos);
+    public boolean isClimbableBlock(Level level, BlockPos blockPos) {
+        BlockState blockState = level.getBlockState(blockPos);
+        return blockState.is(BlockTags.DIRT) || blockState.is(BlockTags.SAND) || ClimbingEntity.super.isClimbableBlock(level, blockPos);
     }
 }

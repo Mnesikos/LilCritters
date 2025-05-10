@@ -2,8 +2,8 @@ package com.github.mnesikos.lilcritters.item;
 
 import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.entity.LCEntities;
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.zawamod.zawa.Zawa;

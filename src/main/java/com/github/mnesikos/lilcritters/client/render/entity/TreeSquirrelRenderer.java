@@ -3,18 +3,18 @@ package com.github.mnesikos.lilcritters.client.render.entity;
 import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.model.TreeSquirrelModel;
 import com.github.mnesikos.lilcritters.entity.TreeSquirrelEntity;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class TreeSquirrelRenderer extends ZawaMobRenderer<TreeSquirrelEntity, TreeSquirrelModel> {
-    public TreeSquirrelRenderer(EntityRendererManager manager) {
+    public TreeSquirrelRenderer(EntityRendererProvider manager) {
         super(manager, new TreeSquirrelModel(), 0.2F);
     }
 
     @Override
-    protected void scale(TreeSquirrelEntity entity, MatrixStack matrixStack, float partialTickTime) {
+    protected void scale(TreeSquirrelEntity entity, PoseStack matrixStack, float partialTickTime) {
         float scale = entity.isBaby() ? 0.2F : 0.4F;
         matrixStack.scale(scale, scale, scale);
         matrixStack.translate(0.0F, -0.46F * scale, 0.0F);

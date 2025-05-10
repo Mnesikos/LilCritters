@@ -3,7 +3,7 @@ package com.github.mnesikos.lilcritters.client.model;
 import com.github.mnesikos.lilcritters.entity.TreeMonitorEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import org.zawamod.zawa.client.model.ZawaBaseModel;
 

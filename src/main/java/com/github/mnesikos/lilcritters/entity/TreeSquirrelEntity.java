@@ -1,24 +1,24 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.sounds.LCSounds;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.ClimberPathNavigator;
-import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import org.zawamod.zawa.config.ZawaSpawnCategory;
 import org.zawamod.zawa.world.entity.SpeciesVariantsEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
@@ -41,13 +41,13 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
             new Tuple<>("forest_giant", ZawaSpawnCategory.WET_FOREST)
     ));
 
-    public static final DataParameter<Boolean> CLIMBING = EntityDataManager.defineId(TreeSquirrelEntity.class, DataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> CLIMBING = SynchedEntityData.defineId(TreeSquirrelEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public TreeSquirrelEntity(EntityType<? extends ZawaBaseEntity> type, World world) {
+    public TreeSquirrelEntity(EntityType<? extends ZawaBaseEntity> type, Level world) {
         super(type, world);
     }
 
-    public static AttributeModifierMap.MutableAttribute registerTreeSquirrelAttributes() {
+    public static AttributeSupplier.Builder registerTreeSquirrelAttributes() {
         return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.MAX_HEALTH, 4.0).add(Attributes.ATTACK_DAMAGE, 1.0);
     }
 
@@ -72,7 +72,7 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
     }
 
     @Override
-    public float getStandingEyeHeight(Pose pose, EntitySize size) {
+    public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
         return size.height * 0.5F;
     }
 
@@ -83,13 +83,13 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
 
     @Nullable
     @Override
-    public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
+    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.TREE_SQUIRREL.get().create(world);
     }
 
     @Override
-    public int getVariantByBiome(IWorld iWorld) {
-        String biome = level.getBiome(this.blockPosition()).getRegistryName().toString();
+    public int getVariantByBiome(LevelAccessor iWorld) {
+        String biome = level.getBiome(this.blockPosition()).value().getRegistryName().toString();
         if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
             return random.nextInt(4);
         if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))
@@ -101,8 +101,8 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
     }
 
     @Override
-    protected PathNavigator createNavigation(World world) {
-        return new ClimberPathNavigator(this, world);
+    protected PathNavigation createNavigation(Level world) {
+        return new WallClimberNavigation(this, world);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
     }
 
     @Override
-    public boolean causeFallDamage(float distance, float damageMultiplier) {
+    public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
         return false;
     }
 

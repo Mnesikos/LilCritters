@@ -3,13 +3,13 @@ package com.github.mnesikos.lilcritters.client.render.entity;
 import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.model.LargeFrogModel;
 import com.github.mnesikos.lilcritters.entity.BullfrogEntity;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
 import org.zawamod.zawa.client.model.ZawaFrogBaseModel;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class BullfrogRenderer extends ZawaMobRenderer<BullfrogEntity, ZawaFrogBaseModel<BullfrogEntity>> {
-    public BullfrogRenderer(EntityRendererManager manager) {
+    public BullfrogRenderer(EntityRendererProvider manager) {
         super(manager, new LargeFrogModel<>(), new ZawaFrogBaseModel.Tadpole<>(), 0.2F);
     }
 

@@ -1,18 +1,19 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.item.LCItems;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.zawamod.zawa.world.entity.JumpingEntity;
@@ -27,14 +28,14 @@ public class PumpkinToadletEntity extends ZawaLandEntity implements OviparousEnt
     private boolean wasOnGround;
     private int jumpDelayTicks;
 
-    public PumpkinToadletEntity(EntityType<? extends ZawaLandEntity> type, World world) {
+    public PumpkinToadletEntity(EntityType<? extends ZawaLandEntity> type, Level world) {
         super(type, world);
         jumpControl = new JumpersJumpControl(this);
         moveControl = new JumpingMoveControl(this);
         this.setSpeedModifier(this, 0.0D);
     }
 
-    public static AttributeModifierMap.MutableAttribute registerPumpkinToadletAttributes() {
+    public static AttributeSupplier.Builder registerPumpkinToadletAttributes() {
         return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.10F).add(Attributes.MAX_HEALTH, 4.0);
     }
 
@@ -42,17 +43,17 @@ public class PumpkinToadletEntity extends ZawaLandEntity implements OviparousEnt
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.33));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 1.0, 1.33, (entity) -> AVOID_PLAYERS.test(entity) && !this.isTame()));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 16.0F, 1.0, 1.33, (entity) -> AVOID_PLAYERS.test(entity) && !this.isTame()));
     }
 
     @Override
-    public float getStandingEyeHeight(Pose pose, EntitySize size) {
+    public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
         return size.height * 0.35F;
     }
 
     @Nullable
     @Override
-    public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
+    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.PUMPKIN_TOADLET.get().create(world);
     }
 
@@ -62,7 +63,7 @@ public class PumpkinToadletEntity extends ZawaLandEntity implements OviparousEnt
     }
 
     @Override
-    public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
+    public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
         return false;
     }
 
@@ -119,7 +120,7 @@ public class PumpkinToadletEntity extends ZawaLandEntity implements OviparousEnt
     @Override
     protected void jumpFromGround() {
         super.jumpFromGround();
-        adjustJumpFromGround(this, getHorizontalDistanceSqr(getDeltaMovement()));
+        adjustJumpFromGround(this, getDeltaMovement().horizontalDistanceSqr());
     }
 
     @Override

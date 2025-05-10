@@ -1,26 +1,26 @@
 package com.github.mnesikos.lilcritters.entity;
 
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.level.Level;
 import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
 import org.zawamod.zawa.world.entity.ai.goal.ZawaMeleeAttackGoal;
 
 import javax.annotation.Nullable;
 
 public class SmallClawedOtterEntity extends ZawaSemiAquaticEntity {
-    public SmallClawedOtterEntity(EntityType<? extends ZawaSemiAquaticEntity> type, World world) {
+    public SmallClawedOtterEntity(EntityType<? extends ZawaSemiAquaticEntity> type, Level world) {
         super(type, world);
         this.maxUpStep = 1.0F;
     }
 
-    public static AttributeModifierMap.MutableAttribute registerSmallClawedOtterAttributes() {
+    public static AttributeSupplier.Builder registerSmallClawedOtterAttributes() {
         return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.MAX_HEALTH, 10.0).add(Attributes.ATTACK_DAMAGE, 2.0);
     }
 
@@ -42,13 +42,13 @@ public class SmallClawedOtterEntity extends ZawaSemiAquaticEntity {
     }
 
     @Override
-    public float getStandingEyeHeight(Pose pose, EntitySize size) {
+    public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
         return size.height * 0.7F;
     }
 
     @Nullable
     @Override
-    public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
+    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.SMALL_CLAWED_OTTER.get().create(world);
     }
 }

@@ -1,21 +1,22 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.item.LCItems;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.ClimberPathNavigator;
-import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.level.Level;
 import org.zawamod.zawa.world.entity.OviparousEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
 import org.zawamod.zawa.world.entity.ClimbingEntity;
@@ -23,13 +24,13 @@ import org.zawamod.zawa.world.entity.ClimbingEntity;
 import javax.annotation.Nullable;
 
 public class TreeMonitorEntity extends ZawaLandEntity implements OviparousEntity, ClimbingEntity {
-    public static final DataParameter<Boolean> CLIMBING = EntityDataManager.defineId(TreeMonitorEntity.class, DataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> CLIMBING = SynchedEntityData.defineId(TreeMonitorEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public TreeMonitorEntity(EntityType<? extends ZawaLandEntity> type, World world) {
+    public TreeMonitorEntity(EntityType<? extends ZawaLandEntity> type, Level world) {
         super(type, world);
     }
 
-    public static AttributeModifierMap.MutableAttribute registerTreeMonitorAttributes() {
+    public static AttributeSupplier.Builder registerTreeMonitorAttributes() {
         return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.225F).add(Attributes.MAX_HEALTH, 8.0).add(Attributes.ATTACK_DAMAGE, 1.0);
     }
 
@@ -40,7 +41,7 @@ public class TreeMonitorEntity extends ZawaLandEntity implements OviparousEntity
     }
 
     @Override
-    public float getStandingEyeHeight(Pose pose, EntitySize size) {
+    public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
         return size.height * 0.5F;
     }
 
@@ -52,7 +53,7 @@ public class TreeMonitorEntity extends ZawaLandEntity implements OviparousEntity
 
     @Nullable
     @Override
-    public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
+    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.TREE_MONITOR.get().create(world);
     }
 
@@ -62,8 +63,8 @@ public class TreeMonitorEntity extends ZawaLandEntity implements OviparousEntity
     }
 
     @Override
-    protected PathNavigator createNavigation(World world) {
-        return new ClimberPathNavigator(this, world);
+    protected PathNavigation createNavigation(Level world) {
+        return new WallClimberNavigation(this, world);
     }
 
     @Override
@@ -79,7 +80,7 @@ public class TreeMonitorEntity extends ZawaLandEntity implements OviparousEntity
     }
 
     @Override
-    public boolean causeFallDamage(float distance, float damageMultiplier) {
+    public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
         return false;
     }
 

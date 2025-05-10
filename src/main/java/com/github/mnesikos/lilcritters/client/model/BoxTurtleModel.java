@@ -3,10 +3,8 @@ package com.github.mnesikos.lilcritters.client.model;
 import com.github.mnesikos.lilcritters.entity.BoxTurtleEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.zawamod.zawa.client.model.ZawaBaseModel;
 import org.zawamod.zawa.client.model.ZawaModelRenderer;
 

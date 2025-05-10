@@ -1,17 +1,17 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.item.LCItems;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import org.zawamod.zawa.world.entity.OviparousEntity;
 import org.zawamod.zawa.world.entity.SpeciesVariantsEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
@@ -19,12 +19,12 @@ import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
 import javax.annotation.Nullable;
 
 public class BandedPenguinEntity extends ZawaSemiAquaticEntity implements SpeciesVariantsEntity, OviparousEntity {
-    public BandedPenguinEntity(EntityType<? extends ZawaSemiAquaticEntity> type, World world) {
+    public BandedPenguinEntity(EntityType<? extends ZawaSemiAquaticEntity> type, Level world) {
         super(type, world);
         this.maxUpStep = 1.0F;
     }
 
-    public static AttributeModifierMap.MutableAttribute registerBandedPenguinAttributes() {
+    public static AttributeSupplier.Builder registerBandedPenguinAttributes() {
         return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.10F).add(Attributes.MAX_HEALTH, 8.0).add(Attributes.ATTACK_DAMAGE, 1.0);
     }
 
@@ -54,13 +54,13 @@ public class BandedPenguinEntity extends ZawaSemiAquaticEntity implements Specie
     }
 
     @Override
-    public float getStandingEyeHeight(Pose pose, EntitySize size) {
+    public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
         return size.height * 0.8F;
     }
 
     @Nullable
     @Override
-    public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
+    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.BANDED_PENGUIN.get().create(world);
     }
 
@@ -70,7 +70,7 @@ public class BandedPenguinEntity extends ZawaSemiAquaticEntity implements Specie
     }
 
     @Override
-    public int getVariantByBiome(IWorld iWorld) {
+    public int getVariantByBiome(LevelAccessor iWorld) {
         return random.nextInt(getWildVariants());
     }
 }

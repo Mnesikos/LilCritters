@@ -1,20 +1,20 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.item.LCItems;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import org.zawamod.zawa.config.ZawaSpawnCategory;
 import org.zawamod.zawa.world.entity.OviparousEntity;
 import org.zawamod.zawa.world.entity.SpeciesVariantsEntity;
@@ -52,11 +52,11 @@ public class BoxTurtleEntity extends ZawaLandEntity implements SpeciesVariantsEn
             new Tuple<>("zhous", ZawaSpawnCategory.TEMPERATE_FOREST)
     ));
 
-    public BoxTurtleEntity(EntityType<? extends ZawaLandEntity> type, World world) {
+    public BoxTurtleEntity(EntityType<? extends ZawaLandEntity> type, Level world) {
         super(type, world);
     }
 
-    public static AttributeModifierMap.MutableAttribute registerBoxTurtleAttributes() {
+    public static AttributeSupplier.Builder registerBoxTurtleAttributes() {
         return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.10F).add(Attributes.MAX_HEALTH, 8.0).add(Attributes.ATTACK_DAMAGE, 1.0);
     }
 
@@ -64,11 +64,11 @@ public class BoxTurtleEntity extends ZawaLandEntity implements SpeciesVariantsEn
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.33));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 1.0, 1.0, (entity) -> AVOID_PLAYERS.test(entity) && !this.isTame()));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 16.0F, 1.0, 1.0, (entity) -> AVOID_PLAYERS.test(entity) && !this.isTame()));
     }
 
     @Override
-    public float getStandingEyeHeight(Pose pose, EntitySize size) {
+    public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
         return size.height * 0.5F;
     }
 
@@ -79,7 +79,7 @@ public class BoxTurtleEntity extends ZawaLandEntity implements SpeciesVariantsEn
 
     @Nullable
     @Override
-    public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
+    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.BOX_TURTLE.get().create(world);
     }
 
@@ -89,8 +89,8 @@ public class BoxTurtleEntity extends ZawaLandEntity implements SpeciesVariantsEn
     }
 
     @Override
-    public int getVariantByBiome(IWorld iWorld) {
-        String biome = level.getBiome(this.blockPosition()).getRegistryName().toString();
+    public int getVariantByBiome(LevelAccessor iWorld) {
+        String biome = level.getBiome(this.blockPosition()).value().getRegistryName().toString();
         if (ZawaSpawnCategory.TEMPERATE_FOREST.getBiomes().contains(biome))
             if (random.nextBoolean()) return random.nextInt(3) == 0 ? 12 : random.nextBoolean() ? 13 : 17;
             else return random.nextInt(3) == 0 ? 0 : random.nextBoolean() ? 4 : 22;

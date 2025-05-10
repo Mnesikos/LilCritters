@@ -1,18 +1,18 @@
 package com.github.mnesikos.lilcritters.entity;
 
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import org.zawamod.zawa.config.ZawaSpawnCategory;
 import org.zawamod.zawa.world.entity.SpeciesVariantsEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
@@ -29,11 +29,11 @@ public class OpossumEntity extends ZawaLandEntity implements SpeciesVariantsEnti
             new Tuple<>("southern_white_eared", ZawaSpawnCategory.TEMPERATE_FOREST)
     ));
 
-    public OpossumEntity(EntityType<? extends ZawaLandEntity> type, World world) {
+    public OpossumEntity(EntityType<? extends ZawaLandEntity> type, Level world) {
         super(type, world);
     }
 
-    public static AttributeModifierMap.MutableAttribute registerOpossumAttributes() {
+    public static AttributeSupplier.Builder registerOpossumAttributes() {
         return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.225F).add(Attributes.MAX_HEALTH, 10.0).add(Attributes.ATTACK_DAMAGE, 1.0);
     }
 
@@ -41,7 +41,7 @@ public class OpossumEntity extends ZawaLandEntity implements SpeciesVariantsEnti
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.33));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 0.8, 1.33, (entity) -> AVOID_PLAYERS.test(entity) && !this.isTame()));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 16.0F, 0.8, 1.33, (entity) -> AVOID_PLAYERS.test(entity) && !this.isTame()));
     }
 
     @Override
@@ -54,19 +54,19 @@ public class OpossumEntity extends ZawaLandEntity implements SpeciesVariantsEnti
     }
 
     @Override
-    public float getStandingEyeHeight(Pose pose, EntitySize size) {
+    public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
         return size.height * 0.8F;
     }
 
     @Nullable
     @Override
-    public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
+    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.OPOSSUM.get().create(world);
     }
 
     @Override
-    public int getVariantByBiome(IWorld iWorld) {
-        String biome = level.getBiome(this.blockPosition()).getRegistryName().toString();
+    public int getVariantByBiome(LevelAccessor iWorld) {
+        String biome = level.getBiome(this.blockPosition()).value().getRegistryName().toString();
         if (ZawaSpawnCategory.TEMPERATE_FOREST.getBiomes().contains(biome))
             return random.nextBoolean() ? 1 : 2;
         if (ZawaSpawnCategory.WET_FOREST.getBiomes().contains(biome))

@@ -1,6 +1,6 @@
 package com.github.mnesikos.lilcritters.client.model;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import org.zawamod.zawa.client.model.ZawaFrogBaseModel;
 import org.zawamod.zawa.client.model.ZawaModelRenderer;

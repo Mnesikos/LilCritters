@@ -2,11 +2,11 @@ package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.render.entity.*;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.EntityType;
+import net.minecraft.world.entity.EntityClassification;
+import net.minecraft.world.entity.EntitySpawnPlacementRegistry;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import org.zawamod.zawa.Zawa;
 import org.zawamod.zawa.config.ZawaSpawnCategory;
 import org.zawamod.zawa.world.entity.ZawaEntityRegistry;

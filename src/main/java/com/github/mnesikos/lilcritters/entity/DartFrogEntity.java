@@ -1,26 +1,32 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.item.LCItems;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.FindWaterGoal;
-import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.*;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.entity.*;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.TryFindWaterGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
+import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.zawamod.zawa.world.entity.ClimbingEntity;
@@ -32,35 +38,35 @@ import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
 import javax.annotation.Nullable;
 
 public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, JumpingEntity, ClimbingEntity {
-    public static final DataParameter<Boolean> CLIMBING = EntityDataManager.defineId(DartFrogEntity.class, DataSerializers.BOOLEAN);
-    protected final SwimmerPathNavigator waterNavigation;
-    protected final GroundPathNavigator groundNavigation;
-    protected FindWaterGoal tryFindWaterGoal;
+    public static final EntityDataAccessor<Boolean> CLIMBING = SynchedEntityData.defineId(DartFrogEntity.class, EntityDataSerializers.BOOLEAN);
+    protected final WaterBoundPathNavigation waterNavigation;
+    protected final GroundPathNavigation groundNavigation;
+    protected TryFindWaterGoal tryFindWaterGoal;
     protected RandomSwimmingGoal randomSwimmingGoal;
     private int jumpTicks;
     private int jumpDuration;
     private boolean wasOnGround;
     private int jumpDelayTicks;
 
-    public DartFrogEntity(EntityType<? extends ZawaLandEntity> type, World world) {
+    public DartFrogEntity(EntityType<? extends ZawaLandEntity> type, Level world) {
         super(type, world);
-        setPathfindingMalus(PathNodeType.WATER, 0.0F);
+        setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
         jumpControl = new JumpersJumpControl(this);
         moveControl = new TreeFrog.FrogMovementControl(this);
         setSpeedModifier(this, 0.0D);
-        waterNavigation = new SwimmerPathNavigator(this, level);
-        groundNavigation = new GroundPathNavigator(this, level);
-        tryFindWaterGoal = new FindWaterGoal(this);
+        waterNavigation = new WaterBoundPathNavigation(this, level);
+        groundNavigation = new GroundPathNavigation(this, level);
+        tryFindWaterGoal = new TryFindWaterGoal(this);
         randomSwimmingGoal = new RandomSwimmingGoal(this, 1.0D, 10);
     }
 
-    public static AttributeModifierMap.MutableAttribute registerDartFrogAttributes() {
+    public static AttributeSupplier.Builder registerDartFrogAttributes() {
         return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.225F).add(Attributes.MAX_HEALTH, 4.0);
     }
 
     @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        if (spawnData == null) spawnData = new AgeableData(false);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData spawnData, @Nullable CompoundTag dataTag) {
+        if (spawnData == null) spawnData = new AgeableMobGroupData(false);
         return super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
     }
 
@@ -68,7 +74,7 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.33));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 1.0, 1.33, (entity) -> AVOID_PLAYERS.test(entity) && !this.isTame()));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 16.0F, 1.0, 1.33, (entity) -> AVOID_PLAYERS.test(entity) && !this.isTame()));
     }
 
     @Override
@@ -78,13 +84,13 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
     }
 
     @Override
-    public float getStandingEyeHeight(Pose pose, EntitySize size) {
+    public float getStandingEyeHeight(Pose pose, EntityDimensions size) {
         return size.height * 0.35F;
     }
 
     @Nullable
     @Override
-    public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity entity) {
+    public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.DART_FROG.get().create(world);
     }
 
@@ -94,8 +100,8 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
     }
 
     @Override
-    protected PathNavigator createNavigation(World world) {
-        return new ClimberPathNavigator(this, world);
+    protected PathNavigation createNavigation(Level world) {
+        return new WallClimberNavigation(this, world);
     }
 
     @Override
@@ -141,7 +147,7 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
         if (isBaby()) {
             if (onGround && !isInWaterRainOrBubble()) {
                 setDeltaMovement(getDeltaMovement().add((random.nextFloat() * 2.0F - 1.0F) * 0.2F, 0.5D, (random.nextFloat() * 2.0F - 1.0F) * 0.2F));
-                yRot = random.nextFloat() * 360.0F;
+                setYRot(random.nextFloat() * 360.0F);
                 onGround = false;
                 hasImpulse = true;
             }
@@ -170,7 +176,7 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
     }
 
     @Override
-    public void travel(Vector3d travelVector) {
+    public void travel(Vec3 travelVector) {
         if (isBaby() && isEffectiveAi() && isInWater()) {
             moveRelative(getSpeed(), travelVector);
             move(MoverType.SELF, getDeltaMovement());
@@ -185,8 +191,8 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
     }
 
     @Override
-    public CreatureAttribute getMobType() {
-        return isBaby() ? CreatureAttribute.WATER : super.getMobType();
+    public MobType getMobType() {
+        return isBaby() ? MobType.WATER : super.getMobType();
     }
 
     @Override
@@ -195,7 +201,7 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
     }
 
     @Override
-    public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
+    public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
         return false;
     }
 
@@ -252,7 +258,7 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
     @Override
     protected void jumpFromGround() {
         super.jumpFromGround();
-        if (!isBaby()) adjustJumpFromGround(this, getHorizontalDistanceSqr(getDeltaMovement()));
+        if (!isBaby()) adjustJumpFromGround(this, getDeltaMovement().horizontalDistanceSqr());
     }
 
     @Override

@@ -3,19 +3,19 @@ package com.github.mnesikos.lilcritters.client.render.entity;
 import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.model.RaccoonModel;
 import com.github.mnesikos.lilcritters.entity.RaccoonEntity;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 import org.zawamod.zawa.resources.EntityStatsManager;
 
 public class RaccoonRenderer extends ZawaMobRenderer<RaccoonEntity, RaccoonModel> {
-    public RaccoonRenderer(EntityRendererManager manager) {
+    public RaccoonRenderer(EntityRendererProvider manager) {
         super(manager, new RaccoonModel(), 0.5F);
     }
 
     @Override
-    protected void scale(RaccoonEntity entity, MatrixStack matrixStack, float partialTickTime) {
+    protected void scale(RaccoonEntity entity, PoseStack matrixStack, float partialTickTime) {
         float scale = entity.isBaby() ? 0.4F : 0.8F;
         matrixStack.scale(scale, scale, scale);
         matrixStack.translate(0.0F, -0.15F * scale, 0.0F);

@@ -2,24 +2,20 @@ package com.github.mnesikos.lilcritters.client.render.entity;
 
 import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.model.GuineaPigModel;
-import com.github.mnesikos.lilcritters.client.model.LargeFrogModel;
 import com.github.mnesikos.lilcritters.entity.GuineaPigEntity;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.entity.EntityType;
-import net.minecraft.util.ResourceLocation;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 import org.zawamod.zawa.resources.EntityStatsManager;
-import org.zawamod.zawa.world.entity.ambient.ZawaBaseAmbientEntity;
-import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
 
 public class GuineaPigRenderer extends ZawaMobRenderer<GuineaPigEntity, GuineaPigModel> {
-    public GuineaPigRenderer(EntityRendererManager manager) {
+    public GuineaPigRenderer(EntityRendererProvider manager) {
         super(manager, new GuineaPigModel(), 0.2F);
     }
 
     @Override
-    protected void scale(GuineaPigEntity entity, MatrixStack matrixStack, float partialTickTime) {
+    protected void scale(GuineaPigEntity entity, PoseStack matrixStack, float partialTickTime) {
         float scale = entity.isBaby() ? 0.4F : 0.8F;
         matrixStack.scale(scale, scale, scale);
         super.scale(entity, matrixStack, partialTickTime);
