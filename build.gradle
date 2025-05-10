@@ -48,6 +48,7 @@ minecraft {
         server {
             workingDirectory project.file('run')
             property 'forge.logging.console.level', 'debug'
+            args '--nogui'
 
             mods {
                 lilcritters {
