@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36.2.0,)"
+loaderVersion="[40,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/Mnesikos/LilCritters/issues"
 
@@ -19,20 +19,20 @@ A ZAWA mod addon, aiming to add some ambiance with little critters usually found
 [[dependencies.lilcritters]]
     modId="forge"
     mandatory=true
-    versionRange="[36.2.20,)"
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.lilcritters]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,1.17)"
+    versionRange="[1.18.2,1.19)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.lilcritters]]
     modId="zawa"
     mandatory=true
-    versionRange="[1.16.5-1.0.2-BeefBeta-TropicalExpedition3,)"
+    versionRange="[1.18.2-1.0.2-BeefBeta-TropicalExpedition3,)"
     ordering="AFTER"
     side="BOTH"
