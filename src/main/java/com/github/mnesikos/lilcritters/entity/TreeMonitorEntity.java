@@ -70,8 +70,8 @@ public class TreeMonitorEntity extends ZawaLandEntity implements OviparousEntity
     @Override
     public void tick() {
         super.tick();
-        if (!this.level.isClientSide && this.horizontalCollision)
-            this.setClimbing(this.isClimbableBlock(this.level, this.blockPosition().relative(this.getDirection())));
+        if (!this.level().isClientSide && this.horizontalCollision)
+            this.setClimbing(this.isClimbableBlock(this.level(), this.blockPosition().relative(this.getDirection())));
     }
 
     @Override

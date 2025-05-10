@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 public class DwarfCrocodileEntity extends ZawaSemiAquaticEntity implements OviparousEntity {
     public DwarfCrocodileEntity(EntityType<? extends ZawaSemiAquaticEntity> type, Level world) {
         super(type, world);
-        this.maxUpStep = 1.0F;
+//        this.maxUpStep = 1.0F;
     }
 
     public static AttributeSupplier.Builder registerDwarfCrocodileAttributes() {

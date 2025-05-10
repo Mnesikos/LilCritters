@@ -35,7 +35,7 @@ public class MysterySnailEntity extends ZawaBaseAmbientEntity implements Climbin
 
     public MysterySnailEntity(EntityType<? extends ZawaBaseAmbientEntity> type, Level world) {
         super(type, world);
-        this.maxUpStep = 1.0F;
+//        this.maxUpStep = 1.0F;
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
 
@@ -85,7 +85,7 @@ public class MysterySnailEntity extends ZawaBaseAmbientEntity implements Climbin
 
     @Override
     public boolean checkSpawnObstruction(LevelReader level) {
-        return level.isUnobstructed(this);
+        return level().isUnobstructed(this);
     }
 
     @Override
@@ -96,8 +96,8 @@ public class MysterySnailEntity extends ZawaBaseAmbientEntity implements Climbin
     @Override
     public void tick() {
         super.tick();
-        if (!level.isClientSide && horizontalCollision)
-            setClimbing(isClimbableBlock(level, blockPosition().relative(getDirection())));
+        if (!level().isClientSide && horizontalCollision)
+            setClimbing(isClimbableBlock(level(), blockPosition().relative(getDirection())));
     }
 
     @Override

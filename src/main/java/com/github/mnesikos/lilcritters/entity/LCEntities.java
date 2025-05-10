@@ -15,7 +15,7 @@ import org.zawamod.zawa.world.entity.ambient.ZawaBaseAmbientEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
 
 public class LCEntities {
-    public static final ZawaEntityRegistry REGISTRY = new ZawaEntityRegistry(LilCritters.MOD_ID, Zawa.ENTITIES_GROUP);
+    public static final ZawaEntityRegistry REGISTRY = new ZawaEntityRegistry(LilCritters.MOD_ID);
 
     public static final RegistryObject<EntityType<BandedPenguinEntity>> BANDED_PENGUIN = REGISTRY.builder(BandedPenguinEntity::new, MobCategory.CREATURE)
             .attributes(BandedPenguinEntity::registerBandedPenguinAttributes)

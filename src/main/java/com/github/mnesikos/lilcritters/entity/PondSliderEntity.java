@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 public class PondSliderEntity extends ZawaSemiAquaticEntity implements OviparousEntity {
     public PondSliderEntity(EntityType<? extends ZawaSemiAquaticEntity> type, Level world) {
         super(type, world);
-        this.maxUpStep = 1.0F;
+//        this.maxUpStep = 1.0F;
     }
 
     public static AttributeSupplier.Builder registerPondSliderAttributes() {

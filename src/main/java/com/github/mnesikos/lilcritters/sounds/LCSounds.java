@@ -14,6 +14,6 @@ public class LCSounds {
     public static RegistryObject<SoundEvent> SQUIRREL_HURT = registerSound("squirrel_hurt");
 
     private static RegistryObject<SoundEvent> registerSound(String name) {
-        return REGISTRAR.register(name, () -> new SoundEvent(new ResourceLocation(LilCritters.MOD_ID, name)));
+        return REGISTRAR.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(LilCritters.MOD_ID, name)));
     }
 }

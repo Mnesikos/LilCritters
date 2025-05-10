@@ -54,8 +54,8 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
         jumpControl = new JumpersJumpControl(this);
         moveControl = new TreeFrog.FrogMovementControl(this);
         setSpeedModifier(this, 0.0D);
-        waterNavigation = new WaterBoundPathNavigation(this, level);
-        groundNavigation = new GroundPathNavigation(this, level);
+        waterNavigation = new WaterBoundPathNavigation(this, level());
+        groundNavigation = new GroundPathNavigation(this, level());
         tryFindWaterGoal = new TryFindWaterGoal(this);
         randomSwimmingGoal = new RandomSwimmingGoal(this, 1.0D, 10);
     }
@@ -130,7 +130,7 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
 
     @Override
     public void updateSwimming() {
-        if (isBaby() && !level.isClientSide) {
+        if (isBaby() && !level().isClientSide) {
             if (isEffectiveAi() && isInWater()) {
                 navigation = waterNavigation;
                 setSwimming(true);
@@ -145,14 +145,14 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
     public void tick() {
         super.tick();
         if (isBaby()) {
-            if (onGround && !isInWaterRainOrBubble()) {
+            if (onGround() && !isInWaterRainOrBubble()) {
                 setDeltaMovement(getDeltaMovement().add((random.nextFloat() * 2.0F - 1.0F) * 0.2F, 0.5D, (random.nextFloat() * 2.0F - 1.0F) * 0.2F));
                 setYRot(random.nextFloat() * 360.0F);
-                onGround = false;
+                setOnGround(false);;
                 hasImpulse = true;
             }
-        } else if (!level.isClientSide) {
-            if (horizontalCollision) setClimbing(isClimbableBlock(level, blockPosition().relative(getDirection())));
+        } else if (!level().isClientSide) {
+            if (horizontalCollision) setClimbing(isClimbableBlock(level(), blockPosition().relative(getDirection())));
         }
     }
 
@@ -170,7 +170,7 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
             setAirSupply(airSupply - 1);
             if (getAirSupply() == -20) {
                 setAirSupply(0);
-                hurt(DamageSource.DROWN, 2.0F);
+                hurt(damageSources().drown(), 2.0F);
             }
         } else setAirSupply(300);
     }

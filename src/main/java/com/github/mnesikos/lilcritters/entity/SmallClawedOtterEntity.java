@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 public class SmallClawedOtterEntity extends ZawaSemiAquaticEntity {
     public SmallClawedOtterEntity(EntityType<? extends ZawaSemiAquaticEntity> type, Level world) {
         super(type, world);
-        this.maxUpStep = 1.0F;
+//        this.maxUpStep = 1.0F;
     }
 
     public static AttributeSupplier.Builder registerSmallClawedOtterAttributes() {

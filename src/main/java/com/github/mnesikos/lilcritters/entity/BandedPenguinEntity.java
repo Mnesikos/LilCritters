@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 public class BandedPenguinEntity extends ZawaSemiAquaticEntity implements SpeciesVariantsEntity, OviparousEntity {
     public BandedPenguinEntity(EntityType<? extends ZawaSemiAquaticEntity> type, Level world) {
         super(type, world);
-        this.maxUpStep = 1.0F;
+//        this.maxUpStep = 1.0F;
     }
 
     public static AttributeSupplier.Builder registerBandedPenguinAttributes() {
