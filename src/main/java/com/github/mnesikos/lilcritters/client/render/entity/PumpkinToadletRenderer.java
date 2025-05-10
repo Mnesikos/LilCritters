@@ -1,6 +1,7 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
 import com.github.mnesikos.lilcritters.LilCritters;
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.client.model.SmallFrogModel;
 import com.github.mnesikos.lilcritters.entity.PumpkinToadletEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -11,7 +12,7 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class PumpkinToadletRenderer extends ZawaMobRenderer<PumpkinToadletEntity, ZawaFrogBaseModel<PumpkinToadletEntity>> {
     public PumpkinToadletRenderer(EntityRendererProvider.Context context) {
-        super(context, new SmallFrogModel<>(), 0.1F);
+        super(context, new SmallFrogModel<>(context.bakeLayer(LCModelLayers.PUMPKIN_TOADLET)), 0.1F);
     }
 
     @Override

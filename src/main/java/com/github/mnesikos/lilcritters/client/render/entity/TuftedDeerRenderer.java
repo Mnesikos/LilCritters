@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.client.model.TuftedDeerModel;
 import com.github.mnesikos.lilcritters.entity.TuftedDeerEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -9,7 +10,7 @@ import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
 
 public class TuftedDeerRenderer extends ZawaMobRenderer<TuftedDeerEntity, TuftedDeerModel> {
     public TuftedDeerRenderer(EntityRendererProvider.Context context) {
-        super(context, new TuftedDeerModel.Adult(), new TuftedDeerModel.Child(), 0.4F);
+        super(context, new TuftedDeerModel.Adult(context.bakeLayer(LCModelLayers.TUFTED_DEER_ADULT)), new TuftedDeerModel.Child(context.bakeLayer(LCModelLayers.TUFTED_DEER_CHILD)), 0.4F);
     }
 
     @Override

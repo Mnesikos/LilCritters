@@ -2,6 +2,7 @@ package com.github.mnesikos.lilcritters.client.render.entity;
 
 import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.model.BoxTurtleModel;
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.entity.BoxTurtleEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -10,7 +11,7 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class BoxTurtleRenderer extends ZawaMobRenderer<BoxTurtleEntity, BoxTurtleModel> {
     public BoxTurtleRenderer(EntityRendererProvider.Context context) {
-        super(context, new BoxTurtleModel(), 0.2F);
+        super(context, new BoxTurtleModel(context.bakeLayer(LCModelLayers.BOX_TURTLE)), 0.2F);
     }
 
     @Override

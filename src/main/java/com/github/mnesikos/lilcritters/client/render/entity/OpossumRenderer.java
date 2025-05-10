@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.client.model.OpossumModel;
 import com.github.mnesikos.lilcritters.entity.OpossumEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -8,7 +9,7 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class OpossumRenderer extends ZawaMobRenderer<OpossumEntity, OpossumModel> {
     public OpossumRenderer(EntityRendererProvider.Context context) {
-        super(context, new OpossumModel.Adult(), new OpossumModel.Child(), 0.4F);
+        super(context, new OpossumModel.Adult(context.bakeLayer(LCModelLayers.OPOSSUM_ADULT)), new OpossumModel.Child(context.bakeLayer(LCModelLayers.OPOSSUM_CHILD)), 0.4F);
     }
 
     @Override

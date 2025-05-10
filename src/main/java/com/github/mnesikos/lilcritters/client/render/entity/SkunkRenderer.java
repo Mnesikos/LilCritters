@@ -1,6 +1,7 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
 import com.github.mnesikos.lilcritters.LilCritters;
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.client.model.SkunkModel;
 import com.github.mnesikos.lilcritters.entity.SkunkEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -10,7 +11,7 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class SkunkRenderer extends ZawaMobRenderer<SkunkEntity, SkunkModel> {
     public SkunkRenderer(EntityRendererProvider.Context context) {
-        super(context, new SkunkModel(), 0.4F);
+        super(context, new SkunkModel(context.bakeLayer(LCModelLayers.SKUNK)), 0.4F);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
 import com.github.mnesikos.lilcritters.client.model.BandedPenguinModel;
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.entity.BandedPenguinEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -8,7 +9,7 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class BandedPenguinRenderer extends ZawaMobRenderer<BandedPenguinEntity, BandedPenguinModel> {
     public BandedPenguinRenderer(EntityRendererProvider.Context context) {
-        super(context, new BandedPenguinModel(), 0.2F);
+        super(context, new BandedPenguinModel(context.bakeLayer(LCModelLayers.BANDED_PENGUIN)), 0.2F);
     }
 
     @Override

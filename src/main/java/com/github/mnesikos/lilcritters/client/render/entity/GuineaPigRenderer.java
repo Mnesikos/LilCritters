@@ -2,6 +2,7 @@ package com.github.mnesikos.lilcritters.client.render.entity;
 
 import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.client.model.GuineaPigModel;
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.entity.GuineaPigEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -11,7 +12,7 @@ import org.zawamod.zawa.resources.EntityStatsManager;
 
 public class GuineaPigRenderer extends ZawaMobRenderer<GuineaPigEntity, GuineaPigModel> {
     public GuineaPigRenderer(EntityRendererProvider.Context context) {
-        super(context, new GuineaPigModel(), 0.2F);
+        super(context, new GuineaPigModel(context.bakeLayer(LCModelLayers.GUINEA_PIG)), 0.2F);
     }
 
     @Override

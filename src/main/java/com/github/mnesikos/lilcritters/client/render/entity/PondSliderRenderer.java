@@ -1,6 +1,7 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
 import com.github.mnesikos.lilcritters.LilCritters;
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.client.model.PondSliderModel;
 import com.github.mnesikos.lilcritters.entity.PondSliderEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -11,7 +12,7 @@ import org.zawamod.zawa.resources.EntityStatsManager;
 
 public class PondSliderRenderer extends ZawaMobRenderer<PondSliderEntity, PondSliderModel> {
     public PondSliderRenderer(EntityRendererProvider.Context context) {
-        super(context, new PondSliderModel(), 0.3F);
+        super(context, new PondSliderModel(context.bakeLayer(LCModelLayers.POND_SLIDER)), 0.3F);
     }
 
     @Override

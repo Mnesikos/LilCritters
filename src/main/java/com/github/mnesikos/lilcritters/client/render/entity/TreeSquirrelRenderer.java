@@ -1,6 +1,7 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
 import com.github.mnesikos.lilcritters.LilCritters;
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.client.model.TreeSquirrelModel;
 import com.github.mnesikos.lilcritters.entity.TreeSquirrelEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -10,7 +11,7 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class TreeSquirrelRenderer extends ZawaMobRenderer<TreeSquirrelEntity, TreeSquirrelModel> {
     public TreeSquirrelRenderer(EntityRendererProvider.Context context) {
-        super(context, new TreeSquirrelModel(), 0.2F);
+        super(context, new TreeSquirrelModel(context.bakeLayer(LCModelLayers.TREE_SQUIRREL)), 0.2F);
     }
 
     @Override

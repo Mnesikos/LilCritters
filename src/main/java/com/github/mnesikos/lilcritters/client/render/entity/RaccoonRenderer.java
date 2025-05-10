@@ -1,6 +1,7 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
 import com.github.mnesikos.lilcritters.LilCritters;
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.client.model.RaccoonModel;
 import com.github.mnesikos.lilcritters.entity.RaccoonEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -11,7 +12,7 @@ import org.zawamod.zawa.resources.EntityStatsManager;
 
 public class RaccoonRenderer extends ZawaMobRenderer<RaccoonEntity, RaccoonModel> {
     public RaccoonRenderer(EntityRendererProvider.Context context) {
-        super(context, new RaccoonModel(), 0.5F);
+        super(context, new RaccoonModel(context.bakeLayer(LCModelLayers.RACCOON)), 0.5F);
     }
 
     @Override

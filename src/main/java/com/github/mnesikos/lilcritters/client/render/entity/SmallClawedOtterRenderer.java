@@ -1,6 +1,7 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
 import com.github.mnesikos.lilcritters.LilCritters;
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.client.model.SmallClawedOtterModel;
 import com.github.mnesikos.lilcritters.entity.SmallClawedOtterEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -10,7 +11,7 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class SmallClawedOtterRenderer extends ZawaMobRenderer<SmallClawedOtterEntity, SmallClawedOtterModel> {
     public SmallClawedOtterRenderer(EntityRendererProvider.Context context) {
-        super(context, new SmallClawedOtterModel(), 0.4F);
+        super(context, new SmallClawedOtterModel(context.bakeLayer(LCModelLayers.SMALL_CLAWED_OTTER)), 0.4F);
     }
 
     @Override

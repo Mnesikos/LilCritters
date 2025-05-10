@@ -1,5 +1,6 @@
 package com.github.mnesikos.lilcritters.client.render.entity;
 
+import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.client.model.LargeFrogModel;
 import com.github.mnesikos.lilcritters.entity.PacmanFrogEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -8,6 +9,6 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class PacmanFrogRenderer extends ZawaMobRenderer<PacmanFrogEntity, ZawaFrogBaseModel<PacmanFrogEntity>> {
     public PacmanFrogRenderer(EntityRendererProvider.Context context) {
-        super(context, new LargeFrogModel<>(), new ZawaFrogBaseModel.Tadpole<>(), 0.2F);
+        super(context, new LargeFrogModel<>(context.bakeLayer(LCModelLayers.PACMAN_FROG_ADULT)), new ZawaFrogBaseModel.Tadpole<>(context.bakeLayer(LCModelLayers.PACMAN_FROG_CHILD)), 0.2F);
     }
 }
