@@ -39,6 +39,7 @@ public abstract class OpossumModel extends ZawaBaseModel<OpossumEntity> {
     public ModelPart snout;
     private Iterable<ModelPart> parts;
 
+    @Override
     public Iterable<ModelPart> parts() {
         if (this.parts == null) {
             this.parts = ImmutableList.of(this.chest);

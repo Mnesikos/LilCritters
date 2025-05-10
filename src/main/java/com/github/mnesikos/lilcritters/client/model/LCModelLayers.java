@@ -25,14 +25,14 @@ public class LCModelLayers {
     public static final ModelLayerLocation BULLFROG_ADULT = register("bullfrog", "adult", LargeFrogModel::createBodyLayer);
     public static final ModelLayerLocation BULLFROG_CHILD = register("bullfrog", "child", ZawaFrogBaseModel.Tadpole::createBodyLayer);
     public static final ModelLayerLocation CAPYBARA_ADULT = register("capybara", "adult", CapybaraModel.Adult::createBodyLayer);
-    public static final ModelLayerLocation CAPYBARA_CHILD = register("capybara", "child", TuftedDeerModel.Child::createBodyLayer);
+    public static final ModelLayerLocation CAPYBARA_CHILD = register("capybara", "child", CapybaraModel.Child::createBodyLayer);
     public static final ModelLayerLocation DART_FROG_ADULT = register("dart_frog", "adult", SmallFrogModel::createBodyLayer);
     public static final ModelLayerLocation DART_FROG_CHILD = register("dart_frog", "child", ZawaFrogBaseModel.Tadpole::createBodyLayer);
     public static final ModelLayerLocation DWARF_CROCODILE = register("dwarf_crocodile", DwarfCrocodileModel::createBodyLayer);
     public static final ModelLayerLocation GUINEA_PIG = register("guinea_pig", GuineaPigModel::createBodyLayer);
     public static final ModelLayerLocation MYSTERY_SNAIL = register("mystery_snail", MysterySnailModel::createBodyLayer);
-    public static final ModelLayerLocation OPOSSUM_ADULT = register("opossum", "adult", CapybaraModel.Adult::createBodyLayer);
-    public static final ModelLayerLocation OPOSSUM_CHILD = register("opossum", "child", TuftedDeerModel.Child::createBodyLayer);
+    public static final ModelLayerLocation OPOSSUM_ADULT = register("opossum", "adult", OpossumModel.Adult::createBodyLayer);
+    public static final ModelLayerLocation OPOSSUM_CHILD = register("opossum", "child", OpossumModel.Child::createBodyLayer);
     public static final ModelLayerLocation PACMAN_FROG_ADULT = register("pacman_frog", "adult", LargeFrogModel::createBodyLayer);
     public static final ModelLayerLocation PACMAN_FROG_CHILD = register("pacman_frog", "child", ZawaFrogBaseModel.Tadpole::createBodyLayer);
     public static final ModelLayerLocation POND_SLIDER = register("pond_slider", PondSliderModel::createBodyLayer);
