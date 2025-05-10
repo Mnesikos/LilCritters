@@ -8,8 +8,8 @@ import org.zawamod.zawa.client.model.ZawaFrogBaseModel;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class DartFrogRenderer extends ZawaMobRenderer<DartFrogEntity, ZawaFrogBaseModel<DartFrogEntity>> {
-    public DartFrogRenderer(EntityRendererProvider manager) {
-        super(manager, new SmallFrogModel<>(), new ZawaFrogBaseModel.Tadpole<>(), 0.2F);
+    public DartFrogRenderer(EntityRendererProvider.Context context) {
+        super(context, new SmallFrogModel<>(), new ZawaFrogBaseModel.Tadpole<>(), 0.2F);
     }
 
     @Override

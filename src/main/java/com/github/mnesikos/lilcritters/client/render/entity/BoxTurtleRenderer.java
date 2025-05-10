@@ -9,8 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class BoxTurtleRenderer extends ZawaMobRenderer<BoxTurtleEntity, BoxTurtleModel> {
-    public BoxTurtleRenderer(EntityRendererProvider manager) {
-        super(manager, new BoxTurtleModel(), 0.2F);
+    public BoxTurtleRenderer(EntityRendererProvider.Context context) {
+        super(context, new BoxTurtleModel(), 0.2F);
     }
 
     @Override

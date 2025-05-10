@@ -9,8 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class DwarfCrocodileRenderer extends ZawaMobRenderer<DwarfCrocodileEntity, DwarfCrocodileModel> {
-    public DwarfCrocodileRenderer(EntityRendererProvider manager) {
-        super(manager, new DwarfCrocodileModel(), 0.8F);
+    public DwarfCrocodileRenderer(EntityRendererProvider.Context context) {
+        super(context, new DwarfCrocodileModel(), 0.8F);
     }
 
     @Override

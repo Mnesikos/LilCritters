@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class BandedPenguinRenderer extends ZawaMobRenderer<BandedPenguinEntity, BandedPenguinModel> {
-    public BandedPenguinRenderer(EntityRendererProvider manager) {
-        super(manager, new BandedPenguinModel(), 0.2F);
+    public BandedPenguinRenderer(EntityRendererProvider.Context context) {
+        super(context, new BandedPenguinModel(), 0.2F);
     }
 
     @Override

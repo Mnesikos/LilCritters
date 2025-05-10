@@ -10,8 +10,8 @@ import org.zawamod.zawa.client.model.ZawaFrogBaseModel;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class PumpkinToadletRenderer extends ZawaMobRenderer<PumpkinToadletEntity, ZawaFrogBaseModel<PumpkinToadletEntity>> {
-    public PumpkinToadletRenderer(EntityRendererProvider manager) {
-        super(manager, new SmallFrogModel<>(), 0.1F);
+    public PumpkinToadletRenderer(EntityRendererProvider.Context context) {
+        super(context, new SmallFrogModel<>(), 0.1F);
     }
 
     @Override

@@ -2,68 +2,55 @@ package com.github.mnesikos.lilcritters.client.model;
 
 import com.github.mnesikos.lilcritters.entity.MysterySnailEntity;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 import org.zawamod.zawa.client.model.ZawaBaseAmbientModel;
 
 public class MysterySnailModel extends ZawaBaseAmbientModel<MysterySnailEntity> {
-    public ModelRenderer Body;
-    public ModelRenderer Shell1;
-    public ModelRenderer Head;
-    public ModelRenderer Shell2;
-    public ModelRenderer RightAntennae1;
-    public ModelRenderer RightAntennae2;
-    public ModelRenderer LeftAntennae1;
-    public ModelRenderer LeftAntennae2;
-    private Iterable<ModelRenderer> parts;
+    public ModelPart Body;
+    public ModelPart Shell1;
+    public ModelPart Head;
+    public ModelPart Shell2;
+    public ModelPart RightAntennae1;
+    public ModelPart RightAntennae2;
+    public ModelPart LeftAntennae1;
+    public ModelPart LeftAntennae2;
+    private Iterable<ModelPart> parts;
 
-    public Iterable<ModelRenderer> parts() {
+    public Iterable<ModelPart> parts() {
         if (parts == null) parts = ImmutableList.of(Body);
         return parts;
     }
 
-    public MysterySnailModel() {
-        this.texWidth = 32;
-        this.texHeight = 32;
-        this.Head = new ModelRenderer(this, 0, 4);
-        this.Head.setPos(0.0F, 0.2F, -2.8F);
-        this.Head.addBox(-1.0F, -0.5F, -1.0F, 2, 1, 1, 0.0F);
-        this.setRotateAngle(Head, 0.20943951023931953F, 0.0F, 0.0F);
-        this.Body = new ModelRenderer(this, 0, 12);
-        this.Body.setPos(0.0F, 23.0F, 0.0F);
-        this.Body.addBox(-1.5F, -1.0F, -3.5F, 3, 2, 8, 0.0F);
-        this.RightAntennae2 = new ModelRenderer(this, 0, 0);
-        this.RightAntennae2.mirror = true;
-        this.RightAntennae2.setPos(-0.7F, 0.5F, -0.3F);
-        this.RightAntennae2.addBox(-0.5F, 0.0F, -2.0F, 1, 0, 2, 0.0F);
-        this.setRotateAngle(RightAntennae2, -0.13962634015954636F, 0.2792526803190927F, -0.13962634015954636F);
-        this.LeftAntennae1 = new ModelRenderer(this, 0, 0);
-        this.LeftAntennae1.setPos(1.0F, 0.0F, -0.5F);
-        this.LeftAntennae1.addBox(0.0F, -3.0F, -0.5F, 0, 3, 1, 0.0F);
-        this.setRotateAngle(LeftAntennae1, 0.6981317007977318F, 0.3490658503988659F, 0.2792526803190927F);
-        this.Shell1 = new ModelRenderer(this, 0, 0);
-        this.Shell1.setPos(0.0F, 0.0F, -3.6F);
-        this.Shell1.addBox(-2.5F, -5.0F, 0.0F, 5, 5, 7, 0.0F);
-        this.setRotateAngle(Shell1, 0.08726646259971647F, -0.06981317007977318F, 0.0F);
-        this.Shell2 = new ModelRenderer(this, 17, 0);
-        this.Shell2.setPos(-0.5F, -2.8F, 5.6F);
-        this.Shell2.addBox(-2.0F, -2.0F, 0.0F, 4, 4, 3, 0.0F);
-        this.setRotateAngle(Shell2, -0.06981317007977318F, -0.2792526803190927F, -0.06981317007977318F);
-        this.RightAntennae1 = new ModelRenderer(this, 0, 0);
-        this.RightAntennae1.mirror = true;
-        this.RightAntennae1.setPos(-1.0F, 0.0F, -0.5F);
-        this.RightAntennae1.addBox(0.0F, -3.0F, -0.5F, 0, 3, 1, 0.0F);
-        this.setRotateAngle(RightAntennae1, 0.6981317007977318F, -0.3490658503988659F, -0.2792526803190927F);
-        this.LeftAntennae2 = new ModelRenderer(this, 0, 0);
-        this.LeftAntennae2.setPos(0.7F, 0.5F, -0.3F);
-        this.LeftAntennae2.addBox(-0.5F, 0.0F, -2.0F, 1, 0, 2, 0.0F);
-        this.setRotateAngle(LeftAntennae2, -0.13962634015954636F, -0.2792526803190927F, 0.13962634015954636F);
-        this.Body.addChild(this.Head);
-        this.Head.addChild(this.RightAntennae2);
-        this.Head.addChild(this.LeftAntennae1);
-        this.Body.addChild(this.Shell1);
-        this.Shell1.addChild(this.Shell2);
-        this.Head.addChild(this.RightAntennae1);
-        this.Head.addChild(this.LeftAntennae2);
+    public MysterySnailModel(ModelPart root) {
+        this.Body = root.getChild("Body");
+        this.Head = this.Body.getChild("Head");
+        this.RightAntennae2 = this.Head.getChild("RightAntennae2");
+        this.LeftAntennae1 = this.Head.getChild("LeftAntennae1");
+        this.Shell1 = this.Body.getChild("Shell1");
+        this.Shell2 = this.Shell1.getChild("Shell2");
+        this.RightAntennae1 = this.Head.getChild("RightAntennae1");
+        this.LeftAntennae2 = this.Head.getChild("LeftAntennae2");
+    }
+
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshDefinition = new MeshDefinition();
+        PartDefinition partDefinition = meshDefinition.getRoot();
+
+        partDefinition.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(0, 4).addBox(-1.0F, -0.5F, -1.0F, 2, 1, 1), PartPose.offsetAndRotation(0.0F, 0.2F, -2.8F, 0.20943951023931953F, 0.0F, 0.0F));
+        partDefinition.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 12).addBox(-1.5F, -1.0F, -3.5F, 3, 2, 8), PartPose.offset(0.0F, 23.0F, 0.0F));
+        partDefinition.addOrReplaceChild("RightAntennae2", CubeListBuilder.create().texOffs(0, 0).mirror(true).addBox(-0.5F, 0.0F, -2.0F, 1, 0, 2), PartPose.offsetAndRotation(-0.7F, 0.5F, -0.3F, -0.13962634015954636F, 0.2792526803190927F, -0.13962634015954636F));
+        partDefinition.addOrReplaceChild("LeftAntennae1", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -3.0F, -0.5F, 0, 3, 1), PartPose.offsetAndRotation(1.0F, 0.0F, -0.5F, 0.6981317007977318F, 0.3490658503988659F, 0.2792526803190927F));
+        partDefinition.addOrReplaceChild("Shell1", CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -5.0F, 0.0F, 5, 5, 7), PartPose.offsetAndRotation(0.0F, 0.0F, -3.6F, 0.08726646259971647F, -0.06981317007977318F, 0.0F));
+        partDefinition.addOrReplaceChild("Shell2", CubeListBuilder.create().texOffs(17, 0).addBox(-2.0F, -2.0F, 0.0F, 4, 4, 3), PartPose.offsetAndRotation(-0.5F, -2.8F, 5.6F, -0.06981317007977318F, -0.2792526803190927F, -0.06981317007977318F));
+        partDefinition.addOrReplaceChild("RightAntennae1", CubeListBuilder.create().texOffs(0, 0).mirror(true).addBox(0.0F, -3.0F, -0.5F, 0, 3, 1), PartPose.offsetAndRotation(-1.0F, 0.0F, -0.5F, 0.6981317007977318F, -0.3490658503988659F, -0.2792526803190927F));
+        partDefinition.addOrReplaceChild("LeftAntennae2", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, 0.0F, -2.0F, 1, 0, 2), PartPose.offsetAndRotation(0.7F, 0.5F, -0.3F, -0.13962634015954636F, -0.2792526803190927F, 0.13962634015954636F));
+
+        return LayerDefinition.create(meshDefinition, 32, 32);
     }
 
     @Override

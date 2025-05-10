@@ -1,166 +1,93 @@
 package com.github.mnesikos.lilcritters.client.model;
 
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import org.zawamod.zawa.client.model.ZawaFrogBaseModel;
-import org.zawamod.zawa.client.model.ZawaModelRenderer;
 import org.zawamod.zawa.world.entity.JumpingEntity;
 
 public class SmallFrogModel<E extends Entity> extends ZawaFrogBaseModel<E> {
-    public ZawaModelRenderer Hips;
-    public ZawaModelRenderer Head;
-    public ZawaModelRenderer ArmLeft;
-    public ZawaModelRenderer ArmRight;
-    public ZawaModelRenderer ThighLeft;
-    public ZawaModelRenderer ThighRight;
-    public ZawaModelRenderer LegLeft;
-    public ZawaModelRenderer FootLeft;
-    public ZawaModelRenderer LegRight;
-    public ZawaModelRenderer FootRight;
-    public ZawaModelRenderer Forehead;
-    public ZawaModelRenderer Snout;
-    public ZawaModelRenderer HeadUnder;
-    public ZawaModelRenderer EyeLeft;
-    public ZawaModelRenderer EyeRight;
-    public ZawaModelRenderer SnoutLeft;
-    public ZawaModelRenderer SnoutRight;
-    public ZawaModelRenderer Mouth;
-    public ZawaModelRenderer ForearmLeft;
-    public ZawaModelRenderer HandLeft;
-    public ZawaModelRenderer ForearmRight;
-    public ZawaModelRenderer HandRight;
+    public ModelPart Hips;
+    public ModelPart Head;
+    public ModelPart ArmLeft;
+    public ModelPart ArmRight;
+    public ModelPart ThighLeft;
+    public ModelPart ThighRight;
+    public ModelPart LegLeft;
+    public ModelPart FootLeft;
+    public ModelPart LegRight;
+    public ModelPart FootRight;
+    public ModelPart Forehead;
+    public ModelPart Snout;
+    public ModelPart HeadUnder;
+    public ModelPart EyeLeft;
+    public ModelPart EyeRight;
+    public ModelPart SnoutLeft;
+    public ModelPart SnoutRight;
+    public ModelPart Mouth;
+    public ModelPart ForearmLeft;
+    public ModelPart HandLeft;
+    public ModelPart ForearmRight;
+    public ModelPart HandRight;
     private float jumpRotation;
 
-    public SmallFrogModel() {
-        this.texWidth = 24;
-        this.texHeight = 16;
-        this.ArmRight = new ZawaModelRenderer(this, 0, 11);
-        this.ArmRight.mirror = true;
-        this.ArmRight.setPos(-1.5F, 0.3F, -2.0F);
-        this.ArmRight.addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(ArmRight, 1.3613568165555772F, -0.6457718232379019F, 0.0F);
-        this.ThighLeft = new ZawaModelRenderer(this, 16, 4);
-        this.ThighLeft.setPos(1.3F, 0.0F, 1.3F);
-        this.ThighLeft.addBox(-0.5F, 0.0F, -0.5F, 3.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(ThighLeft, 0.0F, 1.0471975511965976F, 0.0F);
-        this.Forehead = new ZawaModelRenderer(this, 10, 5);
-        this.Forehead.setPos(0.0F, -0.7F, -0.05F);
-        this.Forehead.addBox(-1.0F, 0.0F, -2.0F, 2.0F, 1.0F, 2.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(Forehead, -0.15707963267948966F, 0.0F, 0.0F);
-        this.ThighRight = new ZawaModelRenderer(this, 16, 4);
-        this.ThighRight.mirror = true;
-        this.ThighRight.setPos(-1.3F, 0.0F, 1.3F);
-        this.ThighRight.addBox(-2.5F, 0.0F, -0.5F, 3.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(ThighRight, 0.0F, -1.0471975511965976F, 0.0F);
-        this.Head = new ZawaModelRenderer(this, 0, 5);
-        this.Head.setPos(0.0F, -0.8F, -1.7F);
-        this.Head.addBox(-1.5F, -0.5F, -2.0F, 3.0F, 1.0F, 2.0F, 0.1F, 0.0F, 0.0F);
-        this.setRotateAngle(Head, 0.5585053606381855F, 0.0F, 0.0F);
-        this.ForearmLeft = new ZawaModelRenderer(this, 4, 11);
-        this.ForearmLeft.mirror = true;
-        this.ForearmLeft.setPos(-0.2F, 1.8F, -0.5F);
-        this.ForearmLeft.addBox(-0.5F, -2.0F, 0.0F, 1.0F, 2.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(ForearmLeft, 1.1344640137963142F, -0.08726646259971647F, 0.22689280275926282F);
-        this.ArmLeft = new ZawaModelRenderer(this, 0, 11);
-        this.ArmLeft.mirror = true;
-        this.ArmLeft.setPos(1.5F, 0.3F, -2.0F);
-        this.ArmLeft.addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(ArmLeft, 1.3613568165555772F, 0.6457718232379019F, 0.0F);
-        this.LegRight = new ZawaModelRenderer(this, 18, 6);
-        this.LegRight.mirror = true;
-        this.LegRight.setPos(-2.0F, 0.1F, 0.5F);
-        this.LegRight.addBox(0.0F, 0.0F, -1.0F, 2.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(LegRight, 0.0F, -0.45378560551852565F, 0.0F);
-        this.EyeRight = new ZawaModelRenderer(this, 9, 0);
-        this.EyeRight.mirror = true;
-        this.EyeRight.setPos(-1.0F, 0.3F, -2.0F);
-        this.EyeRight.addBox(-0.5F, -0.4F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(EyeRight, -0.17453292519943295F, -0.5585053606381855F, 0.0F);
-        this.Body = new ZawaModelRenderer(this, 0, 0);
-        this.Body.mirror = true;
-        this.Body.setPos(0.0F, 22.5F, 1.0F);
-        this.Body.addBox(-1.5F, -1.0F, -2.0F, 3.0F, 2.0F, 3.0F, 0.2F, 0.2F, 0.0F);
-        this.setRotateAngle(Body, -0.40142572795869574F, 0.0F, 0.0F);
-        this.ForearmRight = new ZawaModelRenderer(this, 4, 11);
-        this.ForearmRight.mirror = true;
-        this.ForearmRight.setPos(0.2F, 1.8F, -0.5F);
-        this.ForearmRight.addBox(-0.5F, -2.0F, 0.0F, 1.0F, 2.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(ForearmRight, 1.1344640137963142F, 0.08726646259971647F, -0.22689280275926282F);
-        this.SnoutRight = new ZawaModelRenderer(this, 6, 8);
-        this.SnoutRight.mirror = true;
-        this.SnoutRight.setPos(-1.0F, 0.02F, -0.8F);
-        this.SnoutRight.addBox(0.0F, -0.5F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(SnoutRight, 0.0F, -0.41887902047863906F, 0.0F);
-        this.FootLeft = new ZawaModelRenderer(this, 16, 8);
-        this.FootLeft.setPos(-2.0F, 0.0F, -0.5F);
-        this.FootLeft.addBox(0.0F, 0.0F, -0.5F, 3.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(FootLeft, 0.0F, -0.08726646259971647F, 0.5410520681182421F);
-        this.Mouth = new ZawaModelRenderer(this, 12, 11);
-        this.Mouth.setPos(0.0F, 0.0F, -1.4F);
-        this.Mouth.addBox(-1.0F, 0.0F, -1.0F, 2.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(Mouth, -0.03490658503988659F, 0.0F, 0.0F);
-        this.LegLeft = new ZawaModelRenderer(this, 18, 6);
-        this.LegLeft.setPos(2.0F, 0.1F, 0.5F);
-        this.LegLeft.addBox(-2.0F, 0.0F, -1.0F, 2.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(LegLeft, 0.0F, 0.45378560551852565F, 0.0F);
-        this.Hips = new ZawaModelRenderer(this, 12, 0);
-        this.Hips.setPos(0.0F, -0.5F, 0.5F);
-        this.Hips.addBox(-1.5F, -0.5F, 0.0F, 3.0F, 2.0F, 2.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(Hips, -0.2792526803190927F, 0.0F, 0.0F);
-        this.SnoutLeft = new ZawaModelRenderer(this, 6, 8);
-        this.SnoutLeft.setPos(1.0F, 0.02F, -0.8F);
-        this.SnoutLeft.addBox(-1.0F, -0.5F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(SnoutLeft, 0.0F, 0.41887902047863906F, 0.0F);
-        this.FootRight = new ZawaModelRenderer(this, 16, 8);
-        this.FootRight.mirror = true;
-        this.FootRight.setPos(2.0F, 0.0F, -0.5F);
-        this.FootRight.addBox(-3.0F, 0.0F, -0.5F, 3.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(FootRight, 0.0F, 0.08726646259971647F, -0.5410520681182421F);
-        this.Snout = new ZawaModelRenderer(this, 0, 8);
-        this.Snout.setPos(0.0F, 0.0F, -2.0F);
-        this.Snout.addBox(-1.0F, -0.5F, -1.0F, 2.0F, 1.0F, 2.0F, 0.02F, 0.0F, 0.0F);
-        this.setRotateAngle(Snout, -0.17453292519943295F, 0.0F, 0.0F);
-        this.EyeLeft = new ZawaModelRenderer(this, 9, 0);
-        this.EyeLeft.setPos(0.9F, 0.3F, -2.0F);
-        this.EyeLeft.addBox(-0.5F, -0.4F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(EyeLeft, -0.17453292519943295F, 0.5585053606381855F, 0.0F);
-        this.HandLeft = new ZawaModelRenderer(this, 8, 11);
-        this.HandLeft.mirror = true;
-        this.HandLeft.setPos(0.0F, -1.5F, 0.7F);
-        this.HandLeft.addBox(-0.5F, -1.0F, -1.0F, 1.0F, 1.0F, 1.0F, -0.05F, 0.0F, 0.0F);
-        this.setRotateAngle(HandLeft, -0.593411945678072F, 0.0F, 0.0F);
-        this.HeadUnder = new ZawaModelRenderer(this, 8, 8);
-        this.HeadUnder.setPos(0.0F, 0.5F, -0.57F);
-        this.HeadUnder.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 1.0F, 2.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(HeadUnder, -0.22689280275926282F, 0.0F, 0.0F);
-        this.HandRight = new ZawaModelRenderer(this, 8, 11);
-        this.HandRight.mirror = true;
-        this.HandRight.setPos(0.0F, -1.5F, 0.7F);
-        this.HandRight.addBox(-0.5F, -1.0F, -1.0F, 1.0F, 1.0F, 1.0F, -0.05F, 0.0F, 0.0F);
-        this.setRotateAngle(HandRight, -0.593411945678072F, 0.0F, 0.0F);
-        this.Body.addChild(this.ArmRight);
-        this.Hips.addChild(this.ThighLeft);
-        this.Head.addChild(this.Forehead);
-        this.Hips.addChild(this.ThighRight);
-        this.Body.addChild(this.Head);
-        this.ArmLeft.addChild(this.ForearmLeft);
-        this.Body.addChild(this.ArmLeft);
-        this.ThighRight.addChild(this.LegRight);
-        this.Forehead.addChild(this.EyeRight);
-        this.ArmRight.addChild(this.ForearmRight);
-        this.Snout.addChild(this.SnoutRight);
-        this.LegLeft.addChild(this.FootLeft);
-        this.HeadUnder.addChild(this.Mouth);
-        this.ThighLeft.addChild(this.LegLeft);
-        this.Body.addChild(this.Hips);
-        this.Snout.addChild(this.SnoutLeft);
-        this.LegRight.addChild(this.FootRight);
-        this.Head.addChild(this.Snout);
-        this.Forehead.addChild(this.EyeLeft);
-        this.ForearmLeft.addChild(this.HandLeft);
-        this.Head.addChild(this.HeadUnder);
-        this.ForearmRight.addChild(this.HandRight);
-        this.saveBase();
+    public SmallFrogModel(ModelPart root) {
+        this.Body = root.getChild("Body");
+        this.ArmRight = this.Body.getChild("ArmRight");
+        this.ThighLeft = this.Hips.getChild("ThighLeft");
+        this.Forehead = this.Head.getChild("Forehead");
+        this.ThighRight = this.Hips.getChild("ThighRight");
+        this.Head = this.Body.getChild("Head");
+        this.ForearmLeft = this.ArmLeft.getChild("ForearmLeft");
+        this.ArmLeft = this.Body.getChild("ArmLeft");
+        this.LegRight = this.ThighRight.getChild("LegRight");
+        this.EyeRight = this.Forehead.getChild("EyeRight");
+        this.ForearmRight = this.ArmRight.getChild("ForearmRight");
+        this.SnoutRight = this.Snout.getChild("SnoutRight");
+        this.FootLeft = this.LegLeft.getChild("FootLeft");
+        this.Mouth = this.HeadUnder.getChild("Mouth");
+        this.LegLeft = this.ThighLeft.getChild("LegLeft");
+        this.Hips = this.Body.getChild("Hips");
+        this.SnoutLeft = this.Snout.getChild("SnoutLeft");
+        this.FootRight = this.LegRight.getChild("FootRight");
+        this.Snout = this.Head.getChild("Snout");
+        this.EyeLeft = this.Forehead.getChild("EyeLeft");
+        this.HandLeft = this.ForearmLeft.getChild("HandLeft");
+        this.HeadUnder = this.Head.getChild("HeadUnder");
+        this.HandRight = this.ForearmRight.getChild("HandRight");
+    }
+
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshDefinition = new MeshDefinition();
+        PartDefinition partDefinition = meshDefinition.getRoot();
+
+        partDefinition.addOrReplaceChild("ArmRight", CubeListBuilder.create().texOffs(0, 11).mirror(true).addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F), PartPose.offsetAndRotation(-1.5F, 0.3F, -2.0F, 1.3613568165555772F, -0.6457718232379019F, 0.0F));
+        partDefinition.addOrReplaceChild("ThighLeft", CubeListBuilder.create().texOffs(16, 4).addBox(-0.5F, 0.0F, -0.5F, 3.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(1.3F, 0.0F, 1.3F, 0.0F, 1.0471975511965976F, 0.0F));
+        partDefinition.addOrReplaceChild("Forehead", CubeListBuilder.create().texOffs(10, 5).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 1.0F, 2.0F), PartPose.offsetAndRotation(0.0F, -0.7F, -0.05F, -0.15707963267948966F, 0.0F, 0.0F));
+        partDefinition.addOrReplaceChild("ThighRight", CubeListBuilder.create().texOffs(16, 4).mirror(true).addBox(-2.5F, 0.0F, -0.5F, 3.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(-1.3F, 0.0F, 1.3F, 0.0F, -1.0471975511965976F, 0.0F));
+        partDefinition.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(0, 5).addBox(-1.5F, -0.5F, -2.0F, 3.0F, 1.0F, 2.0F, new CubeDeformation(0.1F, 0.0F, 0.0F)), PartPose.offsetAndRotation(0.0F, -0.8F, -1.7F, 0.5585053606381855F, 0.0F, 0.0F));
+        partDefinition.addOrReplaceChild("ForearmLeft", CubeListBuilder.create().texOffs(4, 11).mirror(true).addBox(-0.5F, -2.0F, 0.0F, 1.0F, 2.0F, 1.0F), PartPose.offsetAndRotation(-0.2F, 1.8F, -0.5F, 1.1344640137963142F, -0.08726646259971647F, 0.22689280275926282F));
+        partDefinition.addOrReplaceChild("ArmLeft", CubeListBuilder.create().texOffs(0, 11).mirror(true).addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F), PartPose.offsetAndRotation(1.5F, 0.3F, -2.0F, 1.3613568165555772F, 0.6457718232379019F, 0.0F));
+        partDefinition.addOrReplaceChild("LegRight", CubeListBuilder.create().texOffs(18, 6).mirror(true).addBox(0.0F, 0.0F, -1.0F, 2.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(-2.0F, 0.1F, 0.5F, 0.0F, -0.45378560551852565F, 0.0F));
+        partDefinition.addOrReplaceChild("EyeRight", CubeListBuilder.create().texOffs(9, 0).mirror(true).addBox(-0.5F, -0.4F, -0.5F, 1.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(-1.0F, 0.3F, -2.0F, -0.17453292519943295F, -0.5585053606381855F, 0.0F));
+        partDefinition.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 0).mirror(true).addBox(-1.5F, -1.0F, -2.0F, 3.0F, 2.0F, 3.0F, new CubeDeformation(0.2F, 0.2F, 0.0F)), PartPose.offsetAndRotation(0.0F, 22.5F, 1.0F, -0.40142572795869574F, 0.0F, 0.0F));
+        partDefinition.addOrReplaceChild("ForearmRight", CubeListBuilder.create().texOffs(4, 11).mirror(true).addBox(-0.5F, -2.0F, 0.0F, 1.0F, 2.0F, 1.0F), PartPose.offsetAndRotation(0.2F, 1.8F, -0.5F, 1.1344640137963142F, 0.08726646259971647F, -0.22689280275926282F));
+        partDefinition.addOrReplaceChild("SnoutRight", CubeListBuilder.create().texOffs(6, 8).mirror(true).addBox(0.0F, -0.5F, 0.0F, 1.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(-1.0F, 0.02F, -0.8F, 0.0F, -0.41887902047863906F, 0.0F));
+        partDefinition.addOrReplaceChild("FootLeft", CubeListBuilder.create().texOffs(16, 8).addBox(0.0F, 0.0F, -0.5F, 3.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(-2.0F, 0.0F, -0.5F, 0.0F, -0.08726646259971647F, 0.5410520681182421F));
+        partDefinition.addOrReplaceChild("Mouth", CubeListBuilder.create().texOffs(12, 11).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(0.0F, 0.0F, -1.4F, -0.03490658503988659F, 0.0F, 0.0F));
+        partDefinition.addOrReplaceChild("LegLeft", CubeListBuilder.create().texOffs(18, 6).addBox(-2.0F, 0.0F, -1.0F, 2.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(2.0F, 0.1F, 0.5F, 0.0F, 0.45378560551852565F, 0.0F));
+        partDefinition.addOrReplaceChild("Hips", CubeListBuilder.create().texOffs(12, 0).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 2.0F, 2.0F), PartPose.offsetAndRotation(0.0F, -0.5F, 0.5F, -0.2792526803190927F, 0.0F, 0.0F));
+        partDefinition.addOrReplaceChild("SnoutLeft", CubeListBuilder.create().texOffs(6, 8).addBox(-1.0F, -0.5F, 0.0F, 1.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(1.0F, 0.02F, -0.8F, 0.0F, 0.41887902047863906F, 0.0F));
+        partDefinition.addOrReplaceChild("FootRight", CubeListBuilder.create().texOffs(16, 8).mirror(true).addBox(-3.0F, 0.0F, -0.5F, 3.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(2.0F, 0.0F, -0.5F, 0.0F, 0.08726646259971647F, -0.5410520681182421F));
+        partDefinition.addOrReplaceChild("Snout", CubeListBuilder.create().texOffs(0, 8).addBox(-1.0F, -0.5F, -1.0F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.02F, 0.0F, 0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -2.0F, -0.17453292519943295F, 0.0F, 0.0F));
+        partDefinition.addOrReplaceChild("EyeLeft", CubeListBuilder.create().texOffs(9, 0).addBox(-0.5F, -0.4F, -0.5F, 1.0F, 1.0F, 1.0F), PartPose.offsetAndRotation(0.9F, 0.3F, -2.0F, -0.17453292519943295F, 0.5585053606381855F, 0.0F));
+        partDefinition.addOrReplaceChild("HandLeft", CubeListBuilder.create().texOffs(8, 11).mirror(true).addBox(-0.5F, -1.0F, -1.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(-0.05F, 0.0F, 0.0F)), PartPose.offsetAndRotation(0.0F, -1.5F, 0.7F, -0.593411945678072F, 0.0F, 0.0F));
+        partDefinition.addOrReplaceChild("HeadUnder", CubeListBuilder.create().texOffs(8, 8).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 1.0F, 2.0F), PartPose.offsetAndRotation(0.0F, 0.5F, -0.57F, -0.22689280275926282F, 0.0F, 0.0F));
+        partDefinition.addOrReplaceChild("HandRight", CubeListBuilder.create().texOffs(8, 11).mirror(true).addBox(-0.5F, -1.0F, -1.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(-0.05F, 0.0F, 0.0F)), PartPose.offsetAndRotation(0.0F, -1.5F, 0.7F, -0.593411945678072F, 0.0F, 0.0F));
+
+        return LayerDefinition.create(meshDefinition, 24, 16);
     }
 
     @Override
@@ -172,14 +99,14 @@ public class SmallFrogModel<E extends Entity> extends ZawaFrogBaseModel<E> {
 
     @Override
     public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.Head.xRot = MathHelper.cos(limbSwing * 0.1F) * -0.1F * limbSwingAmount + 0.27F;
+        this.Head.xRot = Mth.cos(limbSwing * 0.1F) * -0.1F * limbSwingAmount + 0.27F;
     }
 
     @Override
     public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         if (entity instanceof JumpingEntity) {
             float f = ageInTicks - (float) entity.tickCount;
-            this.jumpRotation = MathHelper.sin(((JumpingEntity) entity).getJumpCompletion(f) * (float) Math.PI);
+            this.jumpRotation = Mth.sin(((JumpingEntity) entity).getJumpCompletion(f) * (float) Math.PI);
             this.ThighLeft.xRot = this.jumpRotation * 1.2f;
             this.ThighLeft.zRot = this.jumpRotation * 1.2f;
             this.ThighRight.xRot = this.jumpRotation * 1.2f;
@@ -199,6 +126,6 @@ public class SmallFrogModel<E extends Entity> extends ZawaFrogBaseModel<E> {
     public void prepareMobModel(E entity, float speed, float walkSpeed, float partialTick) {
         super.prepareMobModel(entity, speed, walkSpeed, partialTick);
         if (entity instanceof JumpingEntity)
-            this.jumpRotation = MathHelper.sin(((JumpingEntity) entity).getJumpCompletion(partialTick) * (float) Math.PI);
+            this.jumpRotation = Mth.sin(((JumpingEntity) entity).getJumpCompletion(partialTick) * (float) Math.PI);
     }
 }

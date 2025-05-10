@@ -8,8 +8,8 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
 
 public class TuftedDeerRenderer extends ZawaMobRenderer<TuftedDeerEntity, TuftedDeerModel> {
-    public TuftedDeerRenderer(EntityRendererProvider manager) {
-        super(manager, new TuftedDeerModel.Adult(), new TuftedDeerModel.Child(), 0.4F);
+    public TuftedDeerRenderer(EntityRendererProvider.Context context) {
+        super(context, new TuftedDeerModel.Adult(), new TuftedDeerModel.Child(), 0.4F);
     }
 
     @Override

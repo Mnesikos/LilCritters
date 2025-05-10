@@ -9,8 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class SkunkRenderer extends ZawaMobRenderer<SkunkEntity, SkunkModel> {
-    public SkunkRenderer(EntityRendererProvider manager) {
-        super(manager, new SkunkModel(), 0.4F);
+    public SkunkRenderer(EntityRendererProvider.Context context) {
+        super(context, new SkunkModel(), 0.4F);
     }
 
     @Override

@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class MysterySnailRenderer extends ZawaMobRenderer<MysterySnailEntity, MysterySnailModel> {
-    public MysterySnailRenderer(EntityRendererProvider manager) {
-        super(manager, new MysterySnailModel(), 0.3F);
+    public MysterySnailRenderer(EntityRendererProvider.Context context) {
+        super(context, new MysterySnailModel(), 0.3F);
     }
 
     @Override

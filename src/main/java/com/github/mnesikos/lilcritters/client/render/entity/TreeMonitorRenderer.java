@@ -9,8 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class TreeMonitorRenderer extends ZawaMobRenderer<TreeMonitorEntity, TreeMonitorModel> {
-    public TreeMonitorRenderer(EntityRendererProvider manager) {
-        super(manager, new TreeMonitorModel(), 0.3F);
+    public TreeMonitorRenderer(EntityRendererProvider.Context context) {
+        super(context, new TreeMonitorModel(), 0.3F);
     }
 
     @Override

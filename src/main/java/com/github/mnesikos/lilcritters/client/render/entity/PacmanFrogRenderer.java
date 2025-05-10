@@ -7,7 +7,7 @@ import org.zawamod.zawa.client.model.ZawaFrogBaseModel;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class PacmanFrogRenderer extends ZawaMobRenderer<PacmanFrogEntity, ZawaFrogBaseModel<PacmanFrogEntity>> {
-    public PacmanFrogRenderer(EntityRendererProvider manager) {
-        super(manager, new LargeFrogModel<>(), new ZawaFrogBaseModel.Tadpole<>(), 0.2F);
+    public PacmanFrogRenderer(EntityRendererProvider.Context context) {
+        super(context, new LargeFrogModel<>(), new ZawaFrogBaseModel.Tadpole<>(), 0.2F);
     }
 }

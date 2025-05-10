@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class OpossumRenderer extends ZawaMobRenderer<OpossumEntity, OpossumModel> {
-    public OpossumRenderer(EntityRendererProvider manager) {
-        super(manager, new OpossumModel.Adult(), new OpossumModel.Child(), 0.4F);
+    public OpossumRenderer(EntityRendererProvider.Context context) {
+        super(context, new OpossumModel.Adult(), new OpossumModel.Child(), 0.4F);
     }
 
     @Override

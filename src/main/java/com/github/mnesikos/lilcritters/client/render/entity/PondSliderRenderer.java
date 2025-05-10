@@ -10,8 +10,8 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 import org.zawamod.zawa.resources.EntityStatsManager;
 
 public class PondSliderRenderer extends ZawaMobRenderer<PondSliderEntity, PondSliderModel> {
-    public PondSliderRenderer(EntityRendererProvider manager) {
-        super(manager, new PondSliderModel(), 0.3F);
+    public PondSliderRenderer(EntityRendererProvider.Context context) {
+        super(context, new PondSliderModel(), 0.3F);
     }
 
     @Override

@@ -10,8 +10,8 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 import org.zawamod.zawa.resources.EntityStatsManager;
 
 public class GuineaPigRenderer extends ZawaMobRenderer<GuineaPigEntity, GuineaPigModel> {
-    public GuineaPigRenderer(EntityRendererProvider manager) {
-        super(manager, new GuineaPigModel(), 0.2F);
+    public GuineaPigRenderer(EntityRendererProvider.Context context) {
+        super(context, new GuineaPigModel(), 0.2F);
     }
 
     @Override

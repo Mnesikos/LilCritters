@@ -9,8 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 
 public class SmallClawedOtterRenderer extends ZawaMobRenderer<SmallClawedOtterEntity, SmallClawedOtterModel> {
-    public SmallClawedOtterRenderer(EntityRendererProvider manager) {
-        super(manager, new SmallClawedOtterModel(), 0.4F);
+    public SmallClawedOtterRenderer(EntityRendererProvider.Context context) {
+        super(context, new SmallClawedOtterModel(), 0.4F);
     }
 
     @Override

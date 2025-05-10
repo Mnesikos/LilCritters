@@ -10,8 +10,8 @@ import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 import org.zawamod.zawa.resources.EntityStatsManager;
 
 public class RaccoonRenderer extends ZawaMobRenderer<RaccoonEntity, RaccoonModel> {
-    public RaccoonRenderer(EntityRendererProvider manager) {
-        super(manager, new RaccoonModel(), 0.5F);
+    public RaccoonRenderer(EntityRendererProvider.Context context) {
+        super(context, new RaccoonModel(), 0.5F);
     }
 
     @Override
