@@ -30,6 +30,11 @@ public class LCRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         shapedRecipeResult(consumer,
+                LCBlocks.LOW_BARRIER_FENCE.get(), 3, ImmutableList.of("AGA", "AGA"), ImmutableMap.<Character, Ingredient>builder()
+                        .put('A', Ingredient.of(Blocks.POLISHED_ANDESITE))
+                        .put('G', Ingredient.of(Blocks.GLASS_PANE)).build());
+
+        shapedRecipeResult(consumer,
                 LCBlocks.PLUSHIES.get("opossum").get(), 1, ImmutableList.of("GLG", "WSW", "WPW"), ImmutableMap.<Character, Ingredient>builder()
                         .put('G', Ingredient.of(Blocks.GRAY_WOOL))
                         .put('L', Ingredient.of(Blocks.LIGHT_GRAY_WOOL))

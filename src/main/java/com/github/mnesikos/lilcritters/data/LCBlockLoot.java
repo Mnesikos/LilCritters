@@ -15,6 +15,7 @@ public class LCBlockLoot extends VanillaBlockLoot {
     @Override
     protected void generate() {
         for (String plush : PLUSHIES_LIST) dropSelf(LCBlocks.PLUSHIES.get(plush).get());
+        dropSelf(LCBlocks.LOW_BARRIER_FENCE.get());
     }
 
     @Override

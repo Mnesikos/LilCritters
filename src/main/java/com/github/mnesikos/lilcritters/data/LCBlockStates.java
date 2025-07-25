@@ -22,6 +22,7 @@ public class LCBlockStates extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         for (String plush : PLUSHIES_LIST) rotateYBlock(LCBlocks.PLUSHIES.get(plush).get());
+        fourWayBlock(LCBlocks.LOW_BARRIER_FENCE.get(), models().getExistingFile(modLoc("block/low_barrier_fence_post")), models().getExistingFile(modLoc("block/low_barrier_fence_side")));
     }
 
     public void rotateYBlock(Block block) {

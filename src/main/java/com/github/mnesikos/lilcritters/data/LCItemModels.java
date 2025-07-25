@@ -15,5 +15,6 @@ public class LCItemModels extends ItemModelProvider {
     @Override
     protected void registerModels() {
         for (String plush : PLUSHIES_LIST) withExistingParent(plush + "_plush", modLoc("block/" + plush + "_plush"));
+        withExistingParent("low_barrier_fence", modLoc("block/low_barrier_fence_inventory"));
     }
 }
