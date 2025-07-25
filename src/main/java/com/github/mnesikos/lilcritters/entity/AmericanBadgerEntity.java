@@ -34,11 +34,6 @@ public class AmericanBadgerEntity extends ZawaLandEntity {
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
-        return super.getStandingEyeHeight(pose, size); // todo
-    }
-
-    @Override
     public @Nullable AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.AMERICAN_BADGER.get().create(world);
     }
