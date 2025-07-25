@@ -1,0 +1,27 @@
+package com.github.mnesikos.lilcritters.data;
+
+import com.github.mnesikos.lilcritters.LilCritters;
+import com.github.mnesikos.lilcritters.block.LCBlocks;
+import net.minecraft.data.loot.packs.VanillaBlockLoot;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static com.github.mnesikos.lilcritters.LilCritters.PLUSHIES_LIST;
+
+public class LCBlockLoot extends VanillaBlockLoot {
+    @Override
+    protected void generate() {
+        for (String plush : PLUSHIES_LIST) dropSelf(LCBlocks.PLUSHIES.get(plush).get());
+    }
+
+    @Override
+    protected Iterable<Block> getKnownBlocks() {
+        return ForgeRegistries.BLOCKS.getEntries().stream()
+                .filter(e -> e.getKey().location().getNamespace().equals(LilCritters.MOD_ID))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
+    }
+}

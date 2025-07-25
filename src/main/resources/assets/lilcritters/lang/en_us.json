@@ -20,6 +20,11 @@
   "entity.lilcritters.tree_squirrel": "Tree Squirrel",
   "entity.lilcritters.tufted_deer": "Tufted Deer",
 
+  "__comment": "Blocks",
+  "block.lilcritters.opossum_plush": "Opossum Plush",
+  "block.lilcritters.skunk_plush": "Skunk Plush",
+  "block.lilcritters.squirrel_plush": "Squirrel Plush",
+
   "__comment": "Items",
   "item.lilcritters.banded_penguin_spawn_egg": "Banded Penguin Spawn Egg",
   "item.lilcritters.box_turtle_spawn_egg": "Box Turtle Spawn Egg",

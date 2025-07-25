@@ -1,10 +1,8 @@
 package com.github.mnesikos.lilcritters;
 
+import com.github.mnesikos.lilcritters.block.LCBlocks;
 import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
-import com.github.mnesikos.lilcritters.data.LCBlockLoot;
-import com.github.mnesikos.lilcritters.data.LCEntityLoot;
-import com.github.mnesikos.lilcritters.data.LCRecipeProvider;
-import com.github.mnesikos.lilcritters.data.LCTagsProviders;
+import com.github.mnesikos.lilcritters.data.*;
 import com.github.mnesikos.lilcritters.entity.LCEntities;
 import com.github.mnesikos.lilcritters.item.LCItems;
 import com.github.mnesikos.lilcritters.sounds.LCSounds;
@@ -32,12 +30,15 @@ import java.util.function.Supplier;
 @Mod(LilCritters.MOD_ID)
 public class LilCritters {
     public static final String MOD_ID = "lilcritters";
+    public static final String[] PLUSHIES_LIST = new String[]{"opossum", "skunk", "squirrel"};
 
     public LilCritters() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         LCEntities.REGISTRY.initialize();
-        LCItems.REGISTRAR.register(bus);
+        LCItems.ITEMS_REGISTRAR.register(bus);
+        LCItems.DECORATIONS_REGISTRAR.register(bus);
+        LCBlocks.REGISTRAR.register(bus);
         LCSounds.REGISTRAR.register(bus);
 
         bus.addListener(this::addCreativeTabs);
@@ -49,7 +50,10 @@ public class LilCritters {
 
     private void addCreativeTabs(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == Zawa.ITEMS_GROUP.getKey()) {
-            LCItems.REGISTRAR.getEntries().forEach(item -> event.accept(item.get()));
+            LCItems.ITEMS_REGISTRAR.getEntries().forEach(item -> event.accept(item.get()));
+        }
+        if (event.getTabKey() == Zawa.DECORATIONS_GROUP.getKey()) {
+            LCItems.DECORATIONS_REGISTRAR.getEntries().forEach(item -> event.accept(item.get()));
         }
         if (event.getTabKey() == Zawa.ENTITIES_GROUP.getKey()) {
             LCEntities.REGISTRY.itemRegistrar.getEntries().forEach(item -> event.accept(item.get()));
@@ -63,18 +67,23 @@ public class LilCritters {
     private void gatherData(final GatherDataEvent event) {
         DataGenerator dataGenerator = event.getGenerator();
         PackOutput packOutput = dataGenerator.getPackOutput();
+//        dataGenerator.addProvider(event.includeClient(), new LCBlockModels(packOutput, event.getExistingFileHelper()));
+        dataGenerator.addProvider(event.includeClient(), new LCBlockStates(packOutput, event.getExistingFileHelper()));
+        dataGenerator.addProvider(event.includeClient(), new LCItemModels(packOutput, event.getExistingFileHelper()));
+
         LCTagsProviders.LCBlockTagsProvider blockTagsProvider = new LCTagsProviders.LCBlockTagsProvider(packOutput, event.getLookupProvider(), event.getExistingFileHelper());
         dataGenerator.addProvider(event.includeServer(), blockTagsProvider);
         dataGenerator.addProvider(event.includeServer(), new LCTagsProviders.LCItemTagsProvider(packOutput, event.getLookupProvider(), blockTagsProvider, event.getExistingFileHelper()));
         dataGenerator.addProvider(event.includeServer(), new LCTagsProviders.LCEntityTypeTagsProvider(packOutput, event.getLookupProvider(), event.getExistingFileHelper()));
         dataGenerator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(), List.of(
-//                new LootTableProvider.SubProviderEntry(LCBlockLoot::new, LootContextParamSets.BLOCK),
+                new LootTableProvider.SubProviderEntry(LCBlockLoot::new, LootContextParamSets.BLOCK),
                 new LootTableProvider.SubProviderEntry(LCEntityLoot::new, LootContextParamSets.ENTITY))));
-//        dataGenerator.addProvider(event.includeServer(), new LCRecipeProvider(packOutput));
+        dataGenerator.addProvider(event.includeServer(), new LCRecipeProvider(packOutput));
     }
 
     private void setupClient(final FMLClientSetupEvent event) {
         LCEntities.registerRenderers();
+        LCBlocks.setRenderLayers();
     }
 
     public void registerLayerDefinitions(final EntityRenderersEvent.RegisterLayerDefinitions event) {
