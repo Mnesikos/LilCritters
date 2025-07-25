@@ -63,9 +63,10 @@ public class LilCritters {
     private void gatherData(final GatherDataEvent event) {
         DataGenerator dataGenerator = event.getGenerator();
         PackOutput packOutput = dataGenerator.getPackOutput();
-//        LCTagsProviders.LCBlockTagsProvider blockTagsProvider = new LCTagsProviders.LCBlockTagsProvider(packOutput, event.getLookupProvider(), event.getExistingFileHelper());
-//        dataGenerator.addProvider(event.includeServer(), blockTagsProvider);
-//        dataGenerator.addProvider(event.includeServer(), new LCTagsProviders.LCEntityTypeTagsProvider(packOutput, event.getLookupProvider(), event.getExistingFileHelper()));
+        LCTagsProviders.LCBlockTagsProvider blockTagsProvider = new LCTagsProviders.LCBlockTagsProvider(packOutput, event.getLookupProvider(), event.getExistingFileHelper());
+        dataGenerator.addProvider(event.includeServer(), blockTagsProvider);
+        dataGenerator.addProvider(event.includeServer(), new LCTagsProviders.LCItemTagsProvider(packOutput, event.getLookupProvider(), blockTagsProvider, event.getExistingFileHelper()));
+        dataGenerator.addProvider(event.includeServer(), new LCTagsProviders.LCEntityTypeTagsProvider(packOutput, event.getLookupProvider(), event.getExistingFileHelper()));
         dataGenerator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(), List.of(
 //                new LootTableProvider.SubProviderEntry(LCBlockLoot::new, LootContextParamSets.BLOCK),
                 new LootTableProvider.SubProviderEntry(LCEntityLoot::new, LootContextParamSets.ENTITY))));
