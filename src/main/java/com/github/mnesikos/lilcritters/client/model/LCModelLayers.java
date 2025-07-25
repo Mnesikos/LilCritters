@@ -21,6 +21,7 @@ public class LCModelLayers {
     public static final Set<ModelLayerLocation> ALL_MODELS = Sets.newHashSet();
     public static final List<Tuple<ModelLayerLocation, Supplier<LayerDefinition>>> MODEL_LAYERS_LIST = new ArrayList<>();
     public static final ModelLayerLocation BANDED_PENGUIN = register("banded_penguin", BandedPenguinModel::createBodyLayer);
+    public static final ModelLayerLocation BEARDED_DRAGON = register("bearded_dragon", BeardedDragonModel::createBodyLayer);
     public static final ModelLayerLocation BOX_TURTLE = register("box_turtle", BoxTurtleModel::createBodyLayer);
     public static final ModelLayerLocation BULLFROG_ADULT = register("bullfrog", "adult", LargeFrogModel::createBodyLayer);
     public static final ModelLayerLocation BULLFROG_CHILD = register("bullfrog", "child", ZawaFrogBaseModel.Tadpole::createBodyLayer);

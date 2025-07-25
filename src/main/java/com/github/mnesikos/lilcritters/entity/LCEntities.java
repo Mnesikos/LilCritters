@@ -23,6 +23,12 @@ public class LCEntities {
             .data(tBuilder -> tBuilder.sized(0.6F, 0.8F).clientTrackingRange(10))
             .build("banded_penguin");
 
+    public static final RegistryObject<EntityType<BeardedDragonEntity>> BEARDED_DRAGON = REGISTRY.builder(BeardedDragonEntity::new, MobCategory.CREATURE)
+            .attributes(BeardedDragonEntity::registerBeardedDragonAttributes)
+            .spawns(5, 1, 3, ZawaSpawnCategory.HOT_DESERT, ZawaSpawnCategory.DRY_SAVANNA, ZawaSpawnCategory.DRY_FOREST)
+            .data(tBuilder -> tBuilder.sized(0.4F, 0.4F).clientTrackingRange(10))
+            .build("bearded_dragon");
+
     public static final RegistryObject<EntityType<BoxTurtleEntity>> BOX_TURTLE = REGISTRY.builder(BoxTurtleEntity::new, MobCategory.CREATURE)
             .attributes(BoxTurtleEntity::registerBoxTurtleAttributes)
             .spawnVariant(BoxTurtleEntity.VARIANT_SPAWNS, 5, 1, 3)
@@ -133,6 +139,7 @@ public class LCEntities {
 
     public static void registerSpawnPlacements() {
         SpawnPlacements.register(BANDED_PENGUIN.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
+        SpawnPlacements.register(BEARDED_DRAGON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
         SpawnPlacements.register(BOX_TURTLE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         SpawnPlacements.register(BULLFROG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
         SpawnPlacements.register(CAPYBARA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
@@ -155,6 +162,7 @@ public class LCEntities {
 
     public static void registerRenderers() {
         EntityRenderers.register(BANDED_PENGUIN.get(), BandedPenguinRenderer::new);
+        EntityRenderers.register(BEARDED_DRAGON.get(), BeardedDragonRenderer::new);
         EntityRenderers.register(BOX_TURTLE.get(), BoxTurtleRenderer::new);
         EntityRenderers.register(BULLFROG.get(), BullfrogRenderer::new);
         EntityRenderers.register(CAPYBARA.get(), CapybaraRenderer::new);

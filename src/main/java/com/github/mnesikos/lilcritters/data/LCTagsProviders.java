@@ -33,6 +33,7 @@ public class LCTagsProviders {
             );
             tag(ZawaEntityTypeTags.ZOO_ANIMALS).add(
                     LCEntities.BANDED_PENGUIN.get(),
+                    LCEntities.BEARDED_DRAGON.get(),
                     LCEntities.BOX_TURTLE.get(),
                     LCEntities.BULLFROG.get(),
                     LCEntities.CAPYBARA.get(),

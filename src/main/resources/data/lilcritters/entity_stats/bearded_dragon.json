@@ -1,0 +1,31 @@
+{
+  "temperament": "neutral",
+  "kibble": "zawa:omnivore_kibble",
+  "size": "small",
+  "fertility": "high",
+  "breeding_item": "zawa:termites",
+  "litter_size": {
+    "min": 4,
+    "max": 5
+  },
+  "diet": "zawa:omnivore",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:heat_lamp",
+      "zawa:heat_rock"
+    ],
+    "zawa:entities": [
+      "zawa:scented_ball"
+    ]
+  },
+  "variant_count": 8,
+  "captive_variants": [
+    "ruby",
+    "wild_black",
+    "zero",
+    "super_orange",
+    "citrus",
+    "electric_purple"
+  ]
+}
