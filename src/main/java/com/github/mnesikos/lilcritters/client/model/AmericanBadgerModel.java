@@ -1,10 +1,12 @@
 package com.github.mnesikos.lilcritters.client.model;
 
 import com.github.mnesikos.lilcritters.entity.AmericanBadgerEntity;
+import com.github.mnesikos.lilcritters.entity.RaccoonEntity;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import org.zawamod.zawa.client.model.ZawaBaseModel;
 
@@ -137,15 +139,52 @@ public class AmericanBadgerModel extends ZawaBaseModel<AmericanBadgerEntity> {
     @Override
     public void setupAnim(AmericanBadgerEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        this.Head.xRot = (headPitch / (180F / (float)Math.PI)) + 0.156F;
+        this.Head.yRot = netHeadYaw / (180F / (float)Math.PI);
     }
 
     @Override
     public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+        float speed = 1.0f;
+        float degree = 1.0f;
+        this.Neck.xRot = Mth.cos(limbSwing * speed * 0.1F) * degree * 0.05F * limbSwingAmount;
+        this.Head.xRot = Mth.cos(1.0F + limbSwing * speed * 0.1F) * degree * -0.05F * limbSwingAmount + 0.156F;
+        this.EarLeft.zRot = Mth.cos(limbSwing * speed * 0.1F) * degree * -0.1F * limbSwingAmount - 0.039F;
+        this.EarRight.zRot = Mth.cos(limbSwing * speed * 0.1F) * degree * 0.1F * limbSwingAmount + 0.039F;
+        this.Tail1.xRot = Mth.cos(2.0F + limbSwing * speed * 0.1F) * degree * 0.05F * limbSwingAmount - 0.312F;
+        this.Tail2.xRot = Mth.cos(limbSwing * speed * 0.1F) * degree * 0.05F * limbSwingAmount + 0.273F;
     }
 
     @Override
     public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        float speed = 4.0f;
+        float degree = 0.3f;
+        if (entity.isInWater()) {
+            limbSwing = (float) entity.tickCount;
+            limbSwingAmount = 0.3F;
+            speed = 1.0F;
+        }
 
+        this.Chest.y = Mth.sin(limbSwing * speed * 0.4F) * degree * 0.4F * limbSwingAmount + 17.7F;
+        this.Chest.xRot = Mth.cos(limbSwing * speed * 0.4F) * degree * 0.05F * limbSwingAmount + 0.039F;
+        this.Chest.zRot = Mth.cos(limbSwing * speed * 0.2F) * degree * 0.4F * limbSwingAmount;
+        this.Neck.xRot = Mth.cos(limbSwing * speed * 0.4F) * degree * 0.2F * limbSwingAmount;
+        this.Head.xRot = Mth.cos(limbSwing * speed * 0.4F) * degree * -0.2F * limbSwingAmount + 0.156F;
+        this.ArmLeft.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * 2.0F * limbSwingAmount + 0.195F;
+        this.ForearmLeft.xRot = Mth.cos(1.0F + limbSwing * speed * 0.2F) * degree * 1.5F * limbSwingAmount + -0.469F;
+        this.HandLeft.xRot = Mth.cos(0.5F + limbSwing * speed * 0.2F) * degree * -1.5F * limbSwingAmount + 0.273F;
+        this.ArmRight.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * -2.0F * limbSwingAmount + 0.195F;
+        this.ForearmRight.xRot = Mth.cos(1.0F + limbSwing * speed * 0.2F) * degree * -1.5F * limbSwingAmount + -0.469F;
+        this.HandRight.xRot = Mth.cos(0.5F + limbSwing * speed * 0.2F) * degree * 1.5F * limbSwingAmount + 0.273F;
+        this.ThighLeft.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.156F;
+        this.LegLeft.xRot = Mth.cos(1.5F + limbSwing * speed * 0.2F) * degree * 2.0F * limbSwingAmount + 0.625F;
+//        this.LegLeft.xRot = Mth.cos(3.5F + limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount + 0.625F;
+        this.FootLeft.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + -0.469F;
+        this.ThighRight.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 0.156F;
+        this.LegRight.xRot = Mth.cos(1.5F + limbSwing * speed * 0.2F) * degree * -2.0F * limbSwingAmount + 0.625F;
+//        this.LegRight.xRot = Mth.cos(3.5F + limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount + 0.625F;
+        this.FootRight.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + -0.469F;
+        this.Tail1.xRot = Mth.cos(1.0F + limbSwing * speed * 0.4F) * degree * 0.4F * limbSwingAmount - 0.312F;
+//        this.Tail2.xRot = Mth.cos(2.0F + limbSwing * speed * 0.4F) * degree * 0.4F * limbSwingAmount + 0.273F;
     }
 }
