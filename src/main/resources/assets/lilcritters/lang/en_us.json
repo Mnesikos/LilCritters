@@ -1,5 +1,6 @@
 {
   "__comment": "Entity Names",
+  "entity.lilcritters.american_badger": "American Badger",
   "entity.lilcritters.banded_penguin": "Banded Penguin",
   "entity.lilcritters.bearded_dragon": "Bearded Dragon",
   "entity.lilcritters.box_turtle": "Box Turtle",
@@ -27,6 +28,7 @@
   "block.lilcritters.squirrel_plush": "Squirrel Plush",
 
   "__comment": "Items",
+  "item.lilcritters.american_badger_spawn_egg": "American Badger Spawn Egg",
   "item.lilcritters.banded_penguin_spawn_egg": "Banded Penguin Spawn Egg",
   "item.lilcritters.bearded_dragon_spawn_egg": "Bearded Dragon Spawn Egg",
   "item.lilcritters.box_turtle_spawn_egg": "Box Turtle Spawn Egg",
@@ -65,6 +67,14 @@
   "subtitle.lilcritters.squirrel_hurt": "Squirrel injured",
   
   "__comment": "Entity Variant and Scientific Names, and Informational Blurbs",
+  "scientific.lilcritters.american_badger": "Taxidea taxus",
+  "variant.lilcritters.american_badger_0": "",
+  "variant.lilcritters.american_badger_1": "",
+  "variant.lilcritters.american_badger_2": "",
+  "taxonomic_class.lilcritters.american_badger": "Mammal",
+  "range.lilcritters.american_badger": "North America",
+  "conservation_status.lilcritters.american_badger": "Least Concern",
+  "informational_blurb.lilcritters.american_badger": "American badgers are an important part of prairie ecosystems, digging burrows that are later used by foxes, skunks, frogs and burrowing owls. They are intelligent animals, sometimes using objects to block prey's escape routes, and hunting in tandem with coyotes: if a squirrel runs from a badger, it's flushed above the ground to be caught by a coyote, but if it runs underground, it's dinnertime for the badger.",
   "scientific.lilcritters.banded_penguin_0": "Spheniscus magellanicus",
   "scientific.lilcritters.banded_penguin_1": "Spheniscus humboldti",
   "scientific.lilcritters.banded_penguin_2": "Spheniscus mendiculus",

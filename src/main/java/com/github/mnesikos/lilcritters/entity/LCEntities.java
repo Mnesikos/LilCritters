@@ -17,6 +17,12 @@ import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
 public class LCEntities {
     public static final ZawaEntityRegistry REGISTRY = new ZawaEntityRegistry(LilCritters.MOD_ID);
 
+    public static final RegistryObject<EntityType<AmericanBadgerEntity>> AMERICAN_BADGER = REGISTRY.builder(AmericanBadgerEntity::new, MobCategory.CREATURE)
+            .attributes(AmericanBadgerEntity::registerAmericanBadgerAttributes)
+            .spawn(ZawaSpawnCategory.DRY_GRASSLAND, 5, 1, 1)
+            .data(tBuilder -> tBuilder.sized(0.8F, 0.6F).clientTrackingRange(10))
+            .build("american_badger");
+
     public static final RegistryObject<EntityType<BandedPenguinEntity>> BANDED_PENGUIN = REGISTRY.builder(BandedPenguinEntity::new, MobCategory.CREATURE)
             .attributes(BandedPenguinEntity::registerBandedPenguinAttributes)
             .spawn(ZawaSpawnCategory.COASTAL_DESERT, 5, 4, 8)
@@ -26,7 +32,7 @@ public class LCEntities {
     public static final RegistryObject<EntityType<BeardedDragonEntity>> BEARDED_DRAGON = REGISTRY.builder(BeardedDragonEntity::new, MobCategory.CREATURE)
             .attributes(BeardedDragonEntity::registerBeardedDragonAttributes)
             .spawns(5, 1, 3, ZawaSpawnCategory.HOT_DESERT, ZawaSpawnCategory.DRY_SAVANNA, ZawaSpawnCategory.DRY_FOREST)
-            .data(tBuilder -> tBuilder.sized(0.4F, 0.4F).clientTrackingRange(10))
+            .data(tBuilder -> tBuilder.sized(0.6F, 0.5F).clientTrackingRange(10))
             .build("bearded_dragon");
 
     public static final RegistryObject<EntityType<BoxTurtleEntity>> BOX_TURTLE = REGISTRY.builder(BoxTurtleEntity::new, MobCategory.CREATURE)
@@ -138,6 +144,7 @@ public class LCEntities {
             .build("tufted_deer");
 
     public static void registerSpawnPlacements() {
+        SpawnPlacements.register(AMERICAN_BADGER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         SpawnPlacements.register(BANDED_PENGUIN.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
         SpawnPlacements.register(BEARDED_DRAGON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
         SpawnPlacements.register(BOX_TURTLE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
@@ -161,6 +168,7 @@ public class LCEntities {
     }
 
     public static void registerRenderers() {
+        EntityRenderers.register(AMERICAN_BADGER.get(), AmericanBadgerRenderer::new);
         EntityRenderers.register(BANDED_PENGUIN.get(), BandedPenguinRenderer::new);
         EntityRenderers.register(BEARDED_DRAGON.get(), BeardedDragonRenderer::new);
         EntityRenderers.register(BOX_TURTLE.get(), BoxTurtleRenderer::new);

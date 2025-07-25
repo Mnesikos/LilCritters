@@ -24,6 +24,12 @@
   },
   "spawners": [
     {
+      "type": "lilcritters:american_badger",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
       "type": "lilcritters:box_turtle",
       "weight": 5,
       "minCount": 1,

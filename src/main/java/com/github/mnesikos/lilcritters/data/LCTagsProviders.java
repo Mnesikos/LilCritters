@@ -32,6 +32,7 @@ public class LCTagsProviders {
                     LCEntities.TREE_SQUIRREL.get()
             );
             tag(ZawaEntityTypeTags.ZOO_ANIMALS).add(
+                    LCEntities.AMERICAN_BADGER.get(),
                     LCEntities.BANDED_PENGUIN.get(),
                     LCEntities.BEARDED_DRAGON.get(),
                     LCEntities.BOX_TURTLE.get(),
