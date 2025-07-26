@@ -4,6 +4,7 @@ import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.block.LCBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -23,6 +24,7 @@ public class LCBlockStates extends BlockStateProvider {
     protected void registerStatesAndModels() {
         for (String plush : PLUSHIES_LIST) rotateYBlock(LCBlocks.PLUSHIES.get(plush).get());
         fourWayBlock(LCBlocks.LOW_BARRIER_FENCE.get(), models().getExistingFile(modLoc("block/low_barrier_fence_post")), models().getExistingFile(modLoc("block/low_barrier_fence_side")));
+        for (int i = 0; i < 16; i++) rotateYBlock(LCBlocks.IGLOO_HIDES.get(DyeColor.byId(i).getName()).get());
     }
 
     public void rotateYBlock(Block block) {

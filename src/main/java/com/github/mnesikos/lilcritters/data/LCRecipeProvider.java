@@ -10,11 +10,13 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.zawamod.zawa.world.item.ZawaItems;
 
@@ -33,6 +35,14 @@ public class LCRecipeProvider extends RecipeProvider {
                 LCBlocks.LOW_BARRIER_FENCE.get(), 3, ImmutableList.of("AGA", "AGA"), ImmutableMap.<Character, Ingredient>builder()
                         .put('A', Ingredient.of(Blocks.POLISHED_ANDESITE))
                         .put('G', Ingredient.of(Blocks.GLASS_PANE)).build());
+
+        for (int i = 0; i < 16; i++) {
+            DyeColor color = DyeColor.byId(i);
+            shapedRecipeResult(consumer,  color.getName() + "_dyed_igloo_hide",
+                    LCBlocks.IGLOO_HIDES.get(color.getName()).get(), 1, ImmutableList.of(" G ", "GDG"), ImmutableMap.<Character, Ingredient>builder()
+                            .put('G', Ingredient.of(Blocks.GLASS_PANE))
+                            .put('D', Ingredient.of(color.getTag())).build());
+        }
 
         shapedRecipeResult(consumer,
                 LCBlocks.PLUSHIES.get("opossum").get(), 1, ImmutableList.of("GLG", "WSW", "WPW"), ImmutableMap.<Character, Ingredient>builder()
@@ -55,10 +65,10 @@ public class LCRecipeProvider extends RecipeProvider {
     }
 
     public static void shapedRecipeResult(Consumer<FinishedRecipe> consumer, ItemLike iItemProvider, int outputNum, List<String> recipe, Map<Character, Ingredient> recipeMapKey) {
-        namedShapedRecipeResult(consumer, ForgeRegistries.ITEMS.getKey(iItemProvider.asItem()).getPath(), iItemProvider, outputNum, recipe, recipeMapKey);
+        shapedRecipeResult(consumer, ForgeRegistries.ITEMS.getKey(iItemProvider.asItem()).getPath(), iItemProvider, outputNum, recipe, recipeMapKey);
     }
 
-    public static void namedShapedRecipeResult(Consumer<FinishedRecipe> consumer, String id, ItemLike iItemProvider, int outputNum, List<String> recipe, Map<Character, Ingredient> recipeMapKey) {
+    public static void shapedRecipeResult(Consumer<FinishedRecipe> consumer, String id, ItemLike iItemProvider, int outputNum, List<String> recipe, Map<Character, Ingredient> recipeMapKey) {
         consumer.accept(new ShapedRecipeBuilder.Result(
                 new ResourceLocation(LilCritters.MOD_ID, id),
                 iItemProvider.asItem(),

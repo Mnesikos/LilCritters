@@ -3,6 +3,7 @@ package com.github.mnesikos.lilcritters.data;
 import com.github.mnesikos.lilcritters.LilCritters;
 import com.github.mnesikos.lilcritters.block.LCBlocks;
 import net.minecraft.data.loot.packs.VanillaBlockLoot;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -16,6 +17,7 @@ public class LCBlockLoot extends VanillaBlockLoot {
     protected void generate() {
         for (String plush : PLUSHIES_LIST) dropSelf(LCBlocks.PLUSHIES.get(plush).get());
         dropSelf(LCBlocks.LOW_BARRIER_FENCE.get());
+        for (int i = 0; i < 16; i++) dropSelf(LCBlocks.IGLOO_HIDES.get(DyeColor.byId(i).getName()).get());
     }
 
     @Override

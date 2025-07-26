@@ -2,6 +2,7 @@ package com.github.mnesikos.lilcritters.data;
 
 import com.github.mnesikos.lilcritters.LilCritters;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -16,5 +17,9 @@ public class LCItemModels extends ItemModelProvider {
     protected void registerModels() {
         for (String plush : PLUSHIES_LIST) withExistingParent(plush + "_plush", modLoc("block/" + plush + "_plush"));
         withExistingParent("low_barrier_fence", modLoc("block/low_barrier_fence_inventory"));
+        for (int i = 0; i < 16; i++) {
+            String colorName = DyeColor.byId(i).getName();
+            withExistingParent(colorName + "_igloo_hide", modLoc("block/" + colorName + "_igloo_hide"));
+        }
     }
 }

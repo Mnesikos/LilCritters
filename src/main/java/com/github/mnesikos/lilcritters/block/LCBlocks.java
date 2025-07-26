@@ -6,6 +6,7 @@ import net.minecraft.Util;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -17,6 +18,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.zawamod.zawa.world.block.PlushBlock;
+import org.zawamod.zawa.world.block.ZawaEnrichmentBlock;
 import org.zawamod.zawa.world.block.ZawaFenceBlock;
 
 import java.util.HashMap;
@@ -35,6 +37,13 @@ public class LCBlocks {
 
     public static final RegistryObject<ZawaFenceBlock> LOW_BARRIER_FENCE = registerWithItem("low_barrier_fence", () -> new ZawaFenceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(2.0F, 3.0F).sound(SoundType.STONE)));
 
+    public static final Map<String, RegistryObject<Block>> IGLOO_HIDES = Util.make(new HashMap<>(), map -> {
+        for (int i = 0; i < 16; i++) {
+            DyeColor color = DyeColor.byId(i);
+            map.put(color.getName(), registerWithItem(color.getName() + "_igloo_hide", () -> new IglooHide(BlockBehaviour.Properties.of().mapColor(color.getMapColor()))));
+        }
+    });
+
     private static <T extends Block> RegistryObject<T> registerWithItem(String name, Supplier<T> block) {
         RegistryObject<T> registryObject = REGISTRAR.register(name, block);
         LCItems.DECORATIONS_REGISTRAR.register(name, () -> new BlockItem(registryObject.get(), new Item.Properties()));
@@ -45,5 +54,9 @@ public class LCBlocks {
     public static void setRenderLayers() {
         RenderType cutoutMipped = RenderType.cutoutMipped();
         ItemBlockRenderTypes.setRenderLayer(LOW_BARRIER_FENCE.get(), cutoutMipped);
+
+        RenderType translucent = RenderType.translucent();
+        for (int i = 0; i < 16; i++)
+            ItemBlockRenderTypes.setRenderLayer(IGLOO_HIDES.get(DyeColor.byId(i).getName()).get(), translucent);
     }
 }

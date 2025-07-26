@@ -13,7 +13,23 @@
   "enrichment": {
     "zawa:blocks": [
       "zawa:puzzle_feeder",
-      "zawa:tire_swing"
+      "zawa:tire_swing",
+      "lilcritters:white_igloo_hide",
+      "lilcritters:orange_igloo_hide",
+      "lilcritters:magenta_igloo_hide",
+      "lilcritters:light_blue_igloo_hide",
+      "lilcritters:yellow_igloo_hide",
+      "lilcritters:lime_igloo_hide",
+      "lilcritters:pink_igloo_hide",
+      "lilcritters:gray_igloo_hide",
+      "lilcritters:light_gray_igloo_hide",
+      "lilcritters:cyan_igloo_hide",
+      "lilcritters:purple_igloo_hide",
+      "lilcritters:blue_igloo_hide",
+      "lilcritters:brown_igloo_hide",
+      "lilcritters:green_igloo_hide",
+      "lilcritters:red_igloo_hide",
+      "lilcritters:black_igloo_hide"
     ],
     "zawa:entities": [
       "zawa:apple_ice_treat",

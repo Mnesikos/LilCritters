@@ -67,7 +67,7 @@ public class LilCritters {
     private void gatherData(final GatherDataEvent event) {
         DataGenerator dataGenerator = event.getGenerator();
         PackOutput packOutput = dataGenerator.getPackOutput();
-//        dataGenerator.addProvider(event.includeClient(), new LCBlockModels(packOutput, event.getExistingFileHelper()));
+        dataGenerator.addProvider(event.includeClient(), new LCBlockModels(packOutput, event.getExistingFileHelper()));
         dataGenerator.addProvider(event.includeClient(), new LCBlockStates(packOutput, event.getExistingFileHelper()));
         dataGenerator.addProvider(event.includeClient(), new LCItemModels(packOutput, event.getExistingFileHelper()));
 
