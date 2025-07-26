@@ -1,6 +1,8 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.item.LCItems;
+import com.github.mnesikos.lilcritters.sounds.LCSounds;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.damagesource.DamageSource;
@@ -297,5 +299,15 @@ public class DartFrogEntity extends ZawaLandEntity implements OviparousEntity, J
     @Override
     public boolean onClimbable() {
         return isClimbing();
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return LCSounds.DART_FROG_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return LCSounds.DART_FROG_HURT.get();
     }
 }

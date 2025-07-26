@@ -1,6 +1,8 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.item.LCItems;
+import com.github.mnesikos.lilcritters.sounds.LCSounds;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -269,5 +271,15 @@ public class BullfrogEntity extends ZawaLandEntity implements SpeciesVariantsEnt
     @Override
     public int getVariantByBiome(LevelAccessor iWorld) {
         return random.nextInt(getWildVariants());
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return LCSounds.BULLFROG_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return LCSounds.BULLFROG_HURT.get();
     }
 }

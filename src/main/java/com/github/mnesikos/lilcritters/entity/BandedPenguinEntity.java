@@ -1,6 +1,9 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.item.LCItems;
+import com.github.mnesikos.lilcritters.sounds.LCSounds;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
@@ -72,5 +75,15 @@ public class BandedPenguinEntity extends ZawaSemiAquaticEntity implements Specie
     @Override
     public int getVariantByBiome(LevelAccessor iWorld) {
         return random.nextInt(getWildVariants());
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return LCSounds.BANDED_PENGUIN_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return LCSounds.BANDED_PENGUIN_HURT.get();
     }
 }

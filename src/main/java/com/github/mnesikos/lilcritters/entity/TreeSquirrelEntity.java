@@ -124,10 +124,7 @@ public class TreeSquirrelEntity extends ZawaLandEntity implements SpeciesVariant
 
     @Override
     protected SoundEvent getAmbientSound() {
-        if (random.nextInt(4) == 0) // 1/4th the amount of noise
-            return LCSounds.SQUIRREL_AMBIENT.get();
-        else
-            return null;
+        return LCSounds.SQUIRREL_AMBIENT.get();
     }
 
     @Override

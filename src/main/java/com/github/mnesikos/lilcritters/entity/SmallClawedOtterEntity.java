@@ -1,10 +1,10 @@
 package com.github.mnesikos.lilcritters.entity;
 
+import com.github.mnesikos.lilcritters.sounds.LCSounds;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Pose;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -50,5 +50,22 @@ public class SmallClawedOtterEntity extends ZawaSemiAquaticEntity {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.SMALL_CLAWED_OTTER.get().create(world);
+    }
+
+    @Override
+    public boolean doHurtTarget(Entity entity) {
+        boolean didHurtTarget = super.doHurtTarget(entity);
+        if (didHurtTarget) playSound(LCSounds.SMALL_CLAWED_OTTER_ATTACK.get(), 1.0F, 1.0F);
+        return didHurtTarget;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return LCSounds.SMALL_CLAWED_OTTER_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return LCSounds.SMALL_CLAWED_OTTER_HURT.get();
     }
 }

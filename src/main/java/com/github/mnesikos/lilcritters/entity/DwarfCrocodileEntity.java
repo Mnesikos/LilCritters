@@ -1,21 +1,21 @@
 package com.github.mnesikos.lilcritters.entity;
 
 import com.github.mnesikos.lilcritters.item.LCItems;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Pose;
+import com.github.mnesikos.lilcritters.sounds.LCSounds;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 import org.zawamod.zawa.world.entity.OviparousEntity;
-import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
 import org.zawamod.zawa.world.entity.ai.goal.ZawaMeleeAttackGoal;
+import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
 
 import javax.annotation.Nullable;
 
@@ -61,5 +61,22 @@ public class DwarfCrocodileEntity extends ZawaSemiAquaticEntity implements Ovipa
     @Override
     public ItemStack getBreedEggItem() {
         return LCItems.DWARF_CROCODILE_EGG.get().getDefaultInstance();
+    }
+
+    @Override
+    public boolean doHurtTarget(Entity entity) {
+        boolean didHurtTarget = super.doHurtTarget(entity);
+        if (didHurtTarget) playSound(LCSounds.DWARF_CROCODILE_ATTACK.get(), 1.0F, 1.0F);
+        return didHurtTarget;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return LCSounds.DWARF_CROCODILE_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return LCSounds.DWARF_CROCODILE_HURT.get();
     }
 }

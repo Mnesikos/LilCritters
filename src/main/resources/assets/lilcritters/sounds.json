@@ -1,7 +1,113 @@
 {
+  "banded_penguin_ambient": {
+    "subtitle": "subtitle.lilcritters.banded_penguin_ambient",
+    "sounds": [
+      "lilcritters:banded_penguin_ambient"
+    ]
+  },
+  "banded_penguin_hurt": {
+    "subtitle": "subtitle.lilcritters.banded_penguin_hurt",
+    "sounds": [
+      "lilcritters:banded_penguin_hurt"
+    ]
+  },
+  "bullfrog_ambient": {
+    "subtitle": "subtitle.lilcritters.bullfrog_ambient",
+    "sounds": [
+      "lilcritters:bullfrog_ambient"
+    ]
+  },
+  "bullfrog_hurt": {
+    "subtitle": "subtitle.lilcritters.bullfrog_hurt",
+    "sounds": [
+      "lilcritters:bullfrog_hurt"
+    ]
+  },
+  "dart_frog_ambient": {
+    "subtitle": "subtitle.lilcritters.dart_frog_ambient",
+    "sounds": [
+      "lilcritters:dart_frog_ambient"
+    ]
+  },
+  "dart_frog_hurt": {
+    "subtitle": "subtitle.lilcritters.dart_frog_hurt",
+    "sounds": [
+      "lilcritters:dart_frog_hurt"
+    ]
+  },
+  "dwarf_crocodile_ambient": {
+    "subtitle": "subtitle.lilcritters.dwarf_crocodile_ambient",
+    "sounds": [
+      "lilcritters:dwarf_crocodile_ambient"
+    ]
+  },
+  "dwarf_crocodile_attack": {
+    "subtitle": "subtitle.lilcritters.dwarf_crocodile_attack",
+    "sounds": [
+      "lilcritters:dwarf_crocodile_attack"
+    ]
+  },
+  "dwarf_crocodile_hurt": {
+    "subtitle": "subtitle.lilcritters.dwarf_crocodile_hurt",
+    "sounds": [
+      "lilcritters:dwarf_crocodile_hurt"
+    ]
+  },
+  "guinea_pig_ambient": {
+    "subtitle": "subtitle.lilcritters.guinea_pig_ambient",
+    "sounds": [
+      "lilcritters:guinea_pig_ambient"
+    ]
+  },
+  "guinea_pig_hurt": {
+    "subtitle": "subtitle.lilcritters.guinea_pig_hurt",
+    "sounds": [
+      "lilcritters:guinea_pig_hurt"
+    ]
+  },
+  "raccoon_ambient": {
+    "subtitle": "subtitle.lilcritters.raccoon_ambient",
+    "sounds": [
+      "lilcritters:raccoon_ambient"
+    ]
+  },
+  "raccoon_attack": {
+    "subtitle": "subtitle.lilcritters.raccoon_attack",
+    "sounds": [
+      "lilcritters:raccoon_attack"
+    ]
+  },
+  "raccoon_hurt": {
+    "subtitle": "subtitle.lilcritters.raccoon_hurt",
+    "sounds": [
+      "lilcritters:raccoon_hurt"
+    ]
+  },
+  "small_clawed_otter_ambient": {
+    "subtitle": "subtitle.lilcritters.small_clawed_otter_ambient",
+    "sounds": [
+      "lilcritters:small_clawed_otter_ambient"
+    ]
+  },
+  "small_clawed_otter_attack": {
+    "subtitle": "subtitle.lilcritters.small_clawed_otter_attack",
+    "sounds": [
+      "lilcritters:small_clawed_otter_attack"
+    ]
+  },
+  "small_clawed_otter_hurt": {
+    "subtitle": "subtitle.lilcritters.small_clawed_otter_hurt",
+    "sounds": [
+      "lilcritters:small_clawed_otter_hurt"
+    ]
+  },
   "squirrel_ambient": {
     "subtitle": "subtitle.lilcritters.squirrel_bark",
     "sounds": [
+      {
+        "name": "lilcritters:squirrel_ambient",
+        "volume": 0.5
+      },
       {
         "name": "lilcritters:squirrel_bark1",
         "volume": 0.5
@@ -39,6 +145,10 @@
   "squirrel_hurt": {
     "subtitle": "subtitle.lilcritters.squirrel_hurt",
     "sounds": [
+      {
+        "name": "lilcritters:squirrel_hurt",
+        "volume": 0.5
+      },
       {
         "name": "lilcritters:squirrel_hurt1",
         "volume": 0.5

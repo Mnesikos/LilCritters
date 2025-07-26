@@ -1,5 +1,8 @@
 package com.github.mnesikos.lilcritters.entity;
 
+import com.github.mnesikos.lilcritters.sounds.LCSounds;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
@@ -40,5 +43,15 @@ public class GuineaPigEntity extends ZawaLandEntity {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         return LCEntities.GUINEA_PIG.get().create(world);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return LCSounds.GUINEA_PIG_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return LCSounds.GUINEA_PIG_HURT.get();
     }
 }
