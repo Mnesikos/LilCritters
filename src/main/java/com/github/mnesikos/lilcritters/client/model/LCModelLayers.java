@@ -40,6 +40,7 @@ public class LCModelLayers {
     public static final ModelLayerLocation PACMAN_FROG_CHILD = register("pacman_frog", "child", ZawaFrogBaseModel.Tadpole::createBodyLayer);
     public static final ModelLayerLocation POND_SLIDER = register("pond_slider", PondSliderModel::createBodyLayer);
     public static final ModelLayerLocation PRAIRIE_DOG = register("prairie_dog", PrairieDogModel::createBodyLayer);
+    public static final ModelLayerLocation PRAIRIE_DOG_STANDING = register("prairie_dog", "standing", PrairieDogModel.Standing::createBodyLayer);
     public static final ModelLayerLocation PUMPKIN_TOADLET = register("pumpkin_toadlet", SmallFrogModel::createBodyLayer);
     public static final ModelLayerLocation RACCOON = register("raccoon", RaccoonModel::createBodyLayer);
     public static final ModelLayerLocation SKUNK = register("skunk", SkunkModel::createBodyLayer);

@@ -18,7 +18,7 @@ public class PrairieDogRenderer extends ZawaMobRenderer<PrairieDogEntity, Prairi
     public PrairieDogRenderer(EntityRendererProvider.Context context) {
         super(context, new PrairieDogModel(context.bakeLayer(LCModelLayers.PRAIRIE_DOG)), 0.2F);
         baseModel = adultModel;
-        standingModel = new PrairieDogModel.Standing(context.bakeLayer(LCModelLayers.PRAIRIE_DOG));
+        standingModel = new PrairieDogModel.Standing(context.bakeLayer(LCModelLayers.PRAIRIE_DOG_STANDING));
     }
 
     @Override
