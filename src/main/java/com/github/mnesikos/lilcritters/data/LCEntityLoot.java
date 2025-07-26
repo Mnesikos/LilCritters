@@ -36,6 +36,8 @@ public class LCEntityLoot extends VanillaEntityLoot {
         add(LCEntities.BOX_TURTLE.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(addItemWithLooting(Items.BONE, 1))));
         add(LCEntities.BULLFROG.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 1));
+        add(LCEntities.BURROWING_OWL.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 1)
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(addItemWithLooting(Items.FEATHER, 1))));
         add(LCEntities.CAPYBARA.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 2)
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(addItemWithLooting(Items.BONE, 1))));
         add(LCEntities.DART_FROG.get(), LootTable.lootTable());

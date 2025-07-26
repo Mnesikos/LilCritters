@@ -1,7 +1,6 @@
 package com.github.mnesikos.lilcritters.client.model;
 
 import com.github.mnesikos.lilcritters.LilCritters;
-import com.github.mnesikos.lilcritters.client.render.entity.BullfrogRenderer;
 import com.google.common.collect.Sets;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
@@ -26,6 +25,8 @@ public class LCModelLayers {
     public static final ModelLayerLocation BOX_TURTLE = register("box_turtle", BoxTurtleModel::createBodyLayer);
     public static final ModelLayerLocation BULLFROG_ADULT = register("bullfrog", "adult", LargeFrogModel::createBodyLayer);
     public static final ModelLayerLocation BULLFROG_CHILD = register("bullfrog", "child", ZawaFrogBaseModel.Tadpole::createBodyLayer);
+    public static final ModelLayerLocation BURROWING_OWL_ADULT = register("burrowing_owl", "adult", BurrowingOwlModel.Adult::createBodyLayer);
+    public static final ModelLayerLocation BURROWING_OWL_CHILD = register("burrowing_owl", "child", BurrowingOwlModel.Child::createBodyLayer);
     public static final ModelLayerLocation CAPYBARA_ADULT = register("capybara", "adult", CapybaraModel.Adult::createBodyLayer);
     public static final ModelLayerLocation CAPYBARA_CHILD = register("capybara", "child", CapybaraModel.Child::createBodyLayer);
     public static final ModelLayerLocation DART_FROG_ADULT = register("dart_frog", "adult", SmallFrogModel::createBodyLayer);

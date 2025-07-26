@@ -1,0 +1,25 @@
+{
+  "temperament": "defensive",
+  "kibble": "zawa:carnivore_kibble",
+  "size": "tiny",
+  "fertility": "medium",
+  "breeding_item": "zawa:small_meat",
+  "litter_size": {
+    "min": 2,
+    "max": 8
+  },
+  "diet": "zawa:small_carnivore",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:perching_stand",
+      "zawa:tire_swing",
+      "zawa:puzzle_feeder"
+    ],
+    "zawa:entities": [
+      "zawa:scented_ball",
+      "zawa:beef_ice_treat"
+    ]
+  },
+  "variant_count": 4
+}

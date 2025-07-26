@@ -32,6 +32,7 @@ public class LCItems {
     public static final RegistryObject<Item> BEARDED_DRAGON_EGG = ITEMS_REGISTRAR.register("bearded_dragon_egg", () -> new ZawaEggItem(LCEntities.BEARDED_DRAGON, new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> BOX_TURTLE_EGG = ITEMS_REGISTRAR.register("box_turtle_egg", () -> new ZawaEggItem(LCEntities.BOX_TURTLE, new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> BULLFROG_FROGSPAWN = ITEMS_REGISTRAR.register("bullfrog_frogspawn", () -> new ZawaAquaticEggItem(LCEntities.BULLFROG, new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> BURROWING_OWL_EGG = ITEMS_REGISTRAR.register("burrowing_owl_egg", () -> new ZawaEggItem(LCEntities.BURROWING_OWL, new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> DART_FROG_FROGSPAWN = ITEMS_REGISTRAR.register("dart_frog_frogspawn", () -> new ZawaAquaticEggItem(LCEntities.DART_FROG, new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> DWARF_CROCODILE_EGG = ITEMS_REGISTRAR.register("dwarf_crocodile_egg", () -> new ZawaEggItem(LCEntities.DWARF_CROCODILE, new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> PACMAN_FROG_FROGSPAWN = ITEMS_REGISTRAR.register("pacman_frog_frogspawn", () -> new ZawaAquaticEggItem(LCEntities.PACMAN_FROG, new Item.Properties().stacksTo(16)));

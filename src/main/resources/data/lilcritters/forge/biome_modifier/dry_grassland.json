@@ -42,6 +42,18 @@
       "maxCount": 1
     },
     {
+      "type": "lilcritters:burrowing_owl",
+      "weight": 5,
+      "minCount": 2,
+      "maxCount": 6
+    },
+    {
+      "type": "lilcritters:prairie_dog",
+      "weight": 15,
+      "minCount": 2,
+      "maxCount": 6
+    },
+    {
       "type": "lilcritters:skunk",
       "weight": 10,
       "minCount": 1,

@@ -37,6 +37,7 @@ public class LCTagsProviders {
                     LCEntities.BEARDED_DRAGON.get(),
                     LCEntities.BOX_TURTLE.get(),
                     LCEntities.BULLFROG.get(),
+                    LCEntities.BURROWING_OWL.get(),
                     LCEntities.CAPYBARA.get(),
                     LCEntities.DART_FROG.get(),
                     LCEntities.DWARF_CROCODILE.get(),
@@ -77,7 +78,9 @@ public class LCTagsProviders {
         protected void addTags(HolderLookup.Provider provider) {
             tag(Tags.Items.EGGS).add(
                     LCItems.BANDED_PENGUIN_EGG.get(),
+                    LCItems.BEARDED_DRAGON_EGG.get(),
                     LCItems.BOX_TURTLE_EGG.get(),
+                    LCItems.BURROWING_OWL_EGG.get(),
                     LCItems.DWARF_CROCODILE_EGG.get(),
                     LCItems.POND_SLIDER_EGG.get(),
                     LCItems.PUMPKIN_TOADLET_EGG.get(),
