@@ -14,7 +14,7 @@ public class BurrowingOwlRenderer extends ZawaMobRenderer<BurrowingOwlEntity, Bu
 
     @Override
     protected void scale(BurrowingOwlEntity entity, PoseStack matrixStack, float partialTickTime) {
-        float scale = entity.isBaby() ? 0.4F : 0.7F;
+        float scale = entity.isBaby() ? 0.5F : 0.7F;
         matrixStack.scale(scale, scale, scale);
         super.scale(entity, matrixStack, partialTickTime);
     }

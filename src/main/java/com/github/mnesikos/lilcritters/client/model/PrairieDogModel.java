@@ -133,4 +133,72 @@ public class PrairieDogModel extends ZawaBaseModel<PrairieDogEntity> {
     public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
     }
+
+    public static class Standing extends PrairieDogModel {
+        public Standing(ModelPart root) {
+            super(root);
+            this.Head.setPos(0.0F, 0.0F, -1.6F);
+            this.setRotateAngle(Head, 1.4582226433044843F, 0.0F, 0.0F);
+            this.Nose.setPos(0.0F, -1.0F, -0.7F);
+            this.setRotateAngle(Nose, 0.38920840987893F, 0.0F, 0.0F);
+            this.ThighLeft.setPos(2.0F, 0.9F, -0.5F);
+            this.setRotateAngle(ThighLeft, 1.117010721276371F, 0.0F, 0.0F);
+            this.ForeArmLeft.setPos(-0.1F, 2.0F, 0.5F);
+            this.setRotateAngle(ForeArmLeft, -0.8196066007575706F, 0.0F, 0.0F);
+            this.LegLeft.setPos(0.1F, 2.0F, -1.0F);
+            this.setRotateAngle(LegLeft, 0.7740534966278743F, 0.0F, 0.0F);
+            this.Neck.setPos(0.0F, 2.0F, -2.5F);
+            this.setRotateAngle(Neck, -0.5059709461584144F, 0.0F, 0.0F);
+            this.ArmRight.setPos(-1.4F, 3.0F, -2.0F);
+            this.setRotateAngle(ArmRight, 0.5759586531581287F, 0.0F, 0.0F);
+            this.HandLeft.setPos(-0.1F, 0.5F, -0.5F);
+            this.setRotateAngle(HandLeft, 0.7853981633974483F, 0.0F, 0.0F);
+            this.EarRight.setPos(-1.0F, -0.9F, -0.2F);
+            this.setRotateAngle(EarRight, 0.35028757554893974F, 0.46705011182842415F, 0.0F);
+            this.HandRight.setPos(0.1F, 0.5F, -0.5F);
+            this.setRotateAngle(HandRight, 0.7853981633974483F, 0.0F, 0.0F);
+            this.ThighRight.setPos(-2.0F, 0.9F, -0.5F);
+            this.setRotateAngle(ThighRight, 1.117010721276371F, 0.0F, 0.0F);
+            this.ForeArmRight.setPos(0.1F, 2.0F, 0.5F);
+            this.setRotateAngle(ForeArmRight, -0.8196066007575706F, 0.0F, 0.0F);
+            this.FootLeft.setPos(-0.1F, 1.5F, 0.4F);
+            this.setRotateAngle(FootLeft, -0.8196066007575706F, 0.0F, 0.0F);
+            this.FootRight.setPos(0.1F, 1.5F, 0.4F);
+            this.setRotateAngle(FootRight, -0.8196066007575706F, 0.0F, 0.0F);
+            this.Rear.setPos(0.0F, -2.1F, 1.9F);
+            this.setRotateAngle(Rear, -0.194604204939465F, 0.0F, 0.0F);
+            this.LegRight.setPos(0.1F, 2.0F, -1.0F);
+            this.setRotateAngle(LegRight, 0.7740534966278743F, 0.0F, 0.0F);
+            this.Tail1.setPos(0.0F, 0.0F, 1.4F);
+            this.setRotateAngle(Tail1, 0.5764822306284383F, 0.0F, 0.0F);
+            this.Body.setPos(0.0F, -2.3F, -2.0F);
+            this.setRotateAngle(Body, 0.11728612207217244F, 0.0F, 0.0F);
+            this.ArmLeft.setPos(1.4F, 3.0F, -2.0F);
+            this.setRotateAngle(ArmLeft, 0.5759586531581287F, 0.0F, 0.0F);
+            this.EarLeft.setPos(1.0F, -0.9F, -0.2F);
+            this.setRotateAngle(EarLeft, 0.35028757554893974F, -0.46705011182842415F, 0.0F);
+            this.Hips.setPos(0.0F, 20.5F, 0.0F);
+            this.setRotateAngle(Hips, -1.0936233066364858F, 0.0F, 0.0F);
+            this.TailBase.setPos(0.0F, 0.8F, 0.6F);
+            this.setRotateAngle(TailBase, 0.4886921905584123F, 0.0F, 0.0F);
+            this.Snout.setPos(0.0F, 0.9F, -0.8F);
+            this.setRotateAngle(Snout, 0.15568337060947474F, 0.0F, 0.0F);
+            this.Belly.setPos(0.0F, 3.8F, 0.2F);
+            this.setRotateAngle(Belly, -0.27366763203903305F, 0.0F, 0.0F);
+            this.Tail2.setPos(0.01F, 0.5F, 1.5F);
+            this.setRotateAngle(Tail2, 0.18203784630933073F, 0.0F, 0.0F);
+        }
+
+        @Override
+        public void setupAnim(PrairieDogEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        }
+
+        @Override
+        public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        }
+
+        @Override
+        public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        }
+    }
 }

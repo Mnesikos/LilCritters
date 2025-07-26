@@ -34,11 +34,6 @@ public class BurrowingOwlEntity extends ZawaLandEntity implements OviparousEntit
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
-        return super.getStandingEyeHeight(pose, size); //todo
-    }
-
-    @Override
     protected void customServerAiStep() {
         if (getMoveControl().hasWanted()) setSprinting(getMoveControl().getSpeedModifier() >= 1.33);
         super.customServerAiStep();

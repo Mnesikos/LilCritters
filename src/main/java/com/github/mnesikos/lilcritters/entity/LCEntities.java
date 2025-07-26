@@ -50,7 +50,7 @@ public class LCEntities {
     public static final RegistryObject<EntityType<BurrowingOwlEntity>> BURROWING_OWL = REGISTRY.builder(BurrowingOwlEntity::new, MobCategory.CREATURE)
             .attributes(BurrowingOwlEntity::registerBurrowingOwlAttributes)
             .spawn(ZawaSpawnCategory.DRY_GRASSLAND, 5, 2, 6)
-            .data(tBuilder -> tBuilder.sized(0.8F, 0.8F).clientTrackingRange(10)) // TODO
+            .data(tBuilder -> tBuilder.sized(0.4F, 0.6F).clientTrackingRange(10))
             .build("burrowing_owl");
 
     public static final RegistryObject<EntityType<CapybaraEntity>> CAPYBARA = REGISTRY.builder(CapybaraEntity::new, MobCategory.CREATURE)
@@ -104,7 +104,7 @@ public class LCEntities {
     public static final RegistryObject<EntityType<PrairieDogEntity>> PRAIRIE_DOG = REGISTRY.builder(PrairieDogEntity::new, MobCategory.CREATURE)
             .attributes(PrairieDogEntity::registerPrairieDogAttributes)
             .spawn(ZawaSpawnCategory.DRY_GRASSLAND, 15, 2, 6)
-            .data(tBuilder -> tBuilder.sized(0.6F, 0.6F).clientTrackingRange(10)) // TODO
+            .data(tBuilder -> tBuilder.sized(0.5F, 0.5F).clientTrackingRange(10))
             .build("prairie_dog");
 
     public static final RegistryObject<EntityType<PumpkinToadletEntity>> PUMPKIN_TOADLET = REGISTRY.builder(PumpkinToadletEntity::new, MobCategory.CREATURE)

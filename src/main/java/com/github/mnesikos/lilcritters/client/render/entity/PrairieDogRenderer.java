@@ -5,21 +5,33 @@ import com.github.mnesikos.lilcritters.client.model.LCModelLayers;
 import com.github.mnesikos.lilcritters.client.model.PrairieDogModel;
 import com.github.mnesikos.lilcritters.entity.PrairieDogEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import org.zawamod.zawa.client.renderer.entity.ZawaMobRenderer;
 import org.zawamod.zawa.resources.EntityStatsManager;
 
 public class PrairieDogRenderer extends ZawaMobRenderer<PrairieDogEntity, PrairieDogModel> {
+    private final PrairieDogModel baseModel;
+    private final PrairieDogModel standingModel;
+
     public PrairieDogRenderer(EntityRendererProvider.Context context) {
         super(context, new PrairieDogModel(context.bakeLayer(LCModelLayers.PRAIRIE_DOG)), 0.2F);
+        baseModel = adultModel;
+        standingModel = new PrairieDogModel.Standing(context.bakeLayer(LCModelLayers.PRAIRIE_DOG));
     }
 
     @Override
     protected void scale(PrairieDogEntity entity, PoseStack matrixStack, float partialTickTime) {
-        float scale = entity.isBaby() ? 0.4F : 0.8F;
+        float scale = entity.isBaby() ? 0.5F : 1.0F;
         matrixStack.scale(scale, scale, scale);
         super.scale(entity, matrixStack, partialTickTime);
+    }
+
+    @Override
+    public void render(PrairieDogEntity entity, float entityYaw, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int packedLight) {
+        if (!entity.isBaby()) adultModel = entity.getSitAmount(partialTicks) > 0.0F ? standingModel : baseModel;
+        super.render(entity, entityYaw, partialTicks, matrixStack, buffer, packedLight);
     }
 
     @Override
