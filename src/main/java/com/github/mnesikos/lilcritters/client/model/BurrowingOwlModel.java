@@ -8,6 +8,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import org.zawamod.zawa.client.model.ZawaBaseModel;
 
@@ -139,12 +140,53 @@ public abstract class BurrowingOwlModel extends ZawaBaseModel<BurrowingOwlEntity
 
         @Override
         public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+            float speed = 1.0F;
+            float degree = 1.0F;
+            this.Neck.xRot = Mth.cos(limbSwing * speed * 0.1F + (float) Math.PI) * degree * 0.1F * limbSwingAmount * 0.5F - 0.351F;
+            this.Head.xRot = Mth.cos(1.0F + limbSwing * speed * 0.1F + (float) Math.PI) * degree * -0.1F * limbSwingAmount * 0.5F - 0.234F;
+            this.Tail2.xRot = Mth.cos(limbSwing * speed * 0.1F + (float) Math.PI) * (degree * 0.1F) * limbSwingAmount - 0.23F;
         }
 
         @Override
         public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+            float speed = 0.8F;
+            float degree = 0.5F;
+            if (isSwimming) {
+                limbSwing = (float) entity.tickCount;
+                limbSwingAmount = 0.3F;
+                speed *= 0.3F;
+            }
 
+            if (entity.isSprinting() && !isSwimming) {
+                speed *= 0.5F;
+                degree *= 0.5F;
+                this.ThighLeft.xRot = Mth.cos((limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * 2.5F) * limbSwingAmount - 0.352F;
+                this.LegLeft.xRot = Mth.cos(1.0F + (limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * 2.0F) * limbSwingAmount - 0.3F;
+                this.FootLeft.xRot = Mth.cos((limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * -2.5F) * limbSwingAmount + 0.1F;
+                this.ThighRight.xRot = Mth.cos((limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * -2.5F) * limbSwingAmount - 0.352F;
+                this.LegRight.xRot = Mth.cos(1.0F + (limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * -2.0F) * limbSwingAmount - 0.3F;
+                this.FootRight.xRot = Mth.cos((limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * 2.5F) * limbSwingAmount + 0.1F;
+                this.Wing1Left.yRot = -1F;
+                this.Wing1Right.yRot = 1F;
+                this.Wing1Left.zRot = -0.4F;
+                this.Wing1Right.zRot = 0.4F;
+
+            } else {
+                this.ThighLeft.xRot = Mth.cos((limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * 2.5F) * limbSwingAmount - 0.352F;
+                this.LegLeft.xRot = Mth.cos(1.0F + (limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * 2.0F) * limbSwingAmount - 0.3F;
+                this.FootLeft.xRot = Mth.cos((limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * -2.5F) * limbSwingAmount + 0.1F;
+                this.ThighRight.xRot = Mth.cos((limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * -2.5F) * limbSwingAmount - 0.352F;
+                this.LegRight.xRot = Mth.cos(1.0F + (limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * -2.0F) * limbSwingAmount - 0.3F;
+                this.FootRight.xRot = Mth.cos((limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * 2.5F) * limbSwingAmount + 0.1F;
+            }
+
+            this.Body.xRot = Mth.cos((limbSwing * speed * 2.4F) + (float) Math.PI) * (degree * 0.2F) * limbSwingAmount + 0.665F;
+            this.Body.zRot = Mth.sin(1.0F + (limbSwing * speed * 1.2F) + (float) Math.PI) * (degree * -0.6F) * limbSwingAmount;
+            this.Body.y = Mth.sin(3.0F + (limbSwing * speed * 2.4F) + (float) Math.PI) * (degree * 2F) * limbSwingAmount + 16.0F;
+            this.Neck.xRot = Mth.cos((limbSwing * speed * 2.4F) + (float) Math.PI) * (degree * -0.2F) * limbSwingAmount - 0.351F;
+            this.Neck.y = Mth.sin((3.0F + limbSwing * speed * 2.4F) + (float) Math.PI) * (degree * -2F) * limbSwingAmount - 3.5F;
+            this.Tail1.xRot = Mth.cos(2.0F + (limbSwing * speed * 2.4F) + (float) Math.PI) * (degree * 0.1F) * limbSwingAmount;
+            this.Tail2.xRot = Mth.cos(2.0F + (limbSwing * speed * 2.4F) + (float) Math.PI) * (degree * 0.1F) * limbSwingAmount + 0.1F;
         }
     }
 
@@ -219,6 +261,9 @@ public abstract class BurrowingOwlModel extends ZawaBaseModel<BurrowingOwlEntity
         @Override
         public void setupAnim(BurrowingOwlEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
             super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+            this.Neck.yRot = (float) Math.toRadians(netHeadYaw) * 0.5F;
+            this.Head.yRot = (float) Math.toRadians(netHeadYaw) * 0.5F;
+            this.Head.xRot = (float) Math.toRadians(headPitch) - 0.0390F;
         }
 
         @Override
