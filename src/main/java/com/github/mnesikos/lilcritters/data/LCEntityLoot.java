@@ -46,6 +46,7 @@ public class LCEntityLoot extends VanillaEntityLoot {
         add(LCEntities.OPOSSUM.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 1));
         add(LCEntities.PACMAN_FROG.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 1));
         add(LCEntities.POND_SLIDER.get(), LootTable.lootTable());
+        add(LCEntities.PRAIRIE_DOG.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 1));
         add(LCEntities.PUMPKIN_TOADLET.get(), LootTable.lootTable());
         add(LCEntities.RACCOON.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 1));
         add(LCEntities.SKUNK.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 1));

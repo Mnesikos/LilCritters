@@ -44,6 +44,7 @@ public class LCTagsProviders {
                     LCEntities.OPOSSUM.get(),
                     LCEntities.PACMAN_FROG.get(),
                     LCEntities.POND_SLIDER.get(),
+                    LCEntities.PRAIRIE_DOG.get(),
                     LCEntities.PUMPKIN_TOADLET.get(),
                     LCEntities.RACCOON.get(),
                     LCEntities.SKUNK.get(),

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "lilcritters:item/prairie_dog_spawn_egg"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "temperament": "timid",
+  "kibble": "zawa:herbivore_kibble",
+  "size": "tiny",
+  "fertility": "high",
+  "breeding_item": "minecraft:carrot",
+  "litter_size": {
+    "min": 4,
+    "max": 5
+  },
+  "diet": "zawa:herbivore",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:puzzle_feeder",
+      "zawa:tire_swing"
+    ],
+    "zawa:entities": [
+      "zawa:apple_ice_treat",
+      "zawa:scented_ball"
+    ]
+  },
+  "variant_count": 7,
+  "captive_variants": [
+    "7"
+  ]
+}

@@ -95,6 +95,12 @@ public class LCEntities {
             .data(tBuilder -> tBuilder.sized(0.5F, 0.4F).clientTrackingRange(10))
             .build("pond_slider");
 
+    public static final RegistryObject<EntityType<PrairieDogEntity>> PRAIRIE_DOG = REGISTRY.builder(PrairieDogEntity::new, MobCategory.CREATURE)
+            .attributes(PrairieDogEntity::registerPrairieDogAttributes)
+//            .spawn(ZawaSpawnCategory.DEEP_RAINFOREST, 2, 1, 1)
+            .data(tBuilder -> tBuilder.sized(0.6F, 0.6F).clientTrackingRange(10))
+            .build("prairie_dog");
+
     public static final RegistryObject<EntityType<PumpkinToadletEntity>> PUMPKIN_TOADLET = REGISTRY.builder(PumpkinToadletEntity::new, MobCategory.CREATURE)
             .attributes(PumpkinToadletEntity::registerPumpkinToadletAttributes)
             .spawn(ZawaSpawnCategory.DEEP_RAINFOREST, 2, 1, 1)
@@ -157,6 +163,7 @@ public class LCEntities {
         SpawnPlacements.register(OPOSSUM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         SpawnPlacements.register(PACMAN_FROG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
         SpawnPlacements.register(POND_SLIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
+        SpawnPlacements.register(PRAIRIE_DOG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         SpawnPlacements.register(PUMPKIN_TOADLET.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
         SpawnPlacements.register(RACCOON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         SpawnPlacements.register(SKUNK.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
@@ -181,6 +188,7 @@ public class LCEntities {
         EntityRenderers.register(OPOSSUM.get(), OpossumRenderer::new);
         EntityRenderers.register(PACMAN_FROG.get(), PacmanFrogRenderer::new);
         EntityRenderers.register(POND_SLIDER.get(), PondSliderRenderer::new);
+        EntityRenderers.register(PRAIRIE_DOG.get(), PrairieDogRenderer::new);
         EntityRenderers.register(PUMPKIN_TOADLET.get(), PumpkinToadletRenderer::new);
         EntityRenderers.register(RACCOON.get(), RaccoonRenderer::new);
         EntityRenderers.register(SKUNK.get(), SkunkRenderer::new);
