@@ -3,7 +3,7 @@
   "kibble": "zawa:herbivore_kibble",
   "size": "tiny",
   "fertility": "high",
-  "breeding_item": "minecraft:carrot",
+  "breeding_item": "minecraft:dandelion",
   "litter_size": {
     "min": 4,
     "max": 5
@@ -22,6 +22,6 @@
   },
   "variant_count": 7,
   "captive_variants": [
-    "7"
+    "teaspoon"
   ]
 }
