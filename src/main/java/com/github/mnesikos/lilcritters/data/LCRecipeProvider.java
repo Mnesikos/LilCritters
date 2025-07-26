@@ -16,7 +16,6 @@ import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.zawamod.zawa.world.item.ZawaItems;
 
@@ -43,6 +42,11 @@ public class LCRecipeProvider extends RecipeProvider {
                             .put('G', Ingredient.of(Blocks.GLASS_PANE))
                             .put('D', Ingredient.of(color.getTag())).build());
         }
+
+        shapedRecipeResult(consumer,
+                LCBlocks.SMALL_ANIMAL_WATER_BOTTLE.get(), 1, ImmutableList.of("G ", "G ", "GN"), ImmutableMap.<Character, Ingredient>builder()
+                        .put('G', Ingredient.of(Blocks.GLASS_PANE))
+                        .put('N', Ingredient.of(Items.IRON_NUGGET)).build());
 
         shapedRecipeResult(consumer,
                 LCBlocks.PLUSHIES.get("opossum").get(), 1, ImmutableList.of("GLG", "WSW", "WPW"), ImmutableMap.<Character, Ingredient>builder()

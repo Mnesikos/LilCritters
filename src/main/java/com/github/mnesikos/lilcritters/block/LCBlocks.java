@@ -18,7 +18,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.zawamod.zawa.world.block.PlushBlock;
-import org.zawamod.zawa.world.block.ZawaEnrichmentBlock;
 import org.zawamod.zawa.world.block.ZawaFenceBlock;
 
 import java.util.HashMap;
@@ -40,9 +39,10 @@ public class LCBlocks {
     public static final Map<String, RegistryObject<Block>> IGLOO_HIDES = Util.make(new HashMap<>(), map -> {
         for (int i = 0; i < 16; i++) {
             DyeColor color = DyeColor.byId(i);
-            map.put(color.getName(), registerWithItem(color.getName() + "_igloo_hide", () -> new IglooHide(BlockBehaviour.Properties.of().mapColor(color.getMapColor()))));
+            map.put(color.getName(), registerWithItem(color.getName() + "_igloo_hide", () -> new IglooHide(BlockBehaviour.Properties.of().mapColor(color.getMapColor()).noOcclusion().instabreak())));
         }
     });
+    public static final RegistryObject<Block> SMALL_ANIMAL_WATER_BOTTLE = registerWithItem("small_animal_water_bottle", () -> new WaterBottle(BlockBehaviour.Properties.of().noOcclusion().noCollission().instabreak()));
 
     private static <T extends Block> RegistryObject<T> registerWithItem(String name, Supplier<T> block) {
         RegistryObject<T> registryObject = REGISTRAR.register(name, block);
@@ -58,5 +58,6 @@ public class LCBlocks {
         RenderType translucent = RenderType.translucent();
         for (int i = 0; i < 16; i++)
             ItemBlockRenderTypes.setRenderLayer(IGLOO_HIDES.get(DyeColor.byId(i).getName()).get(), translucent);
+        ItemBlockRenderTypes.setRenderLayer(SMALL_ANIMAL_WATER_BOTTLE.get(), translucent);
     }
 }

@@ -21,5 +21,6 @@ public class LCItemModels extends ItemModelProvider {
             String colorName = DyeColor.byId(i).getName();
             withExistingParent(colorName + "_igloo_hide", modLoc("block/" + colorName + "_igloo_hide"));
         }
+        withExistingParent("small_animal_water_bottle", modLoc("block/small_animal_water_bottle"));
     }
 }

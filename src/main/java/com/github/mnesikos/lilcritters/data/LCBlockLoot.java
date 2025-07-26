@@ -18,6 +18,7 @@ public class LCBlockLoot extends VanillaBlockLoot {
         for (String plush : PLUSHIES_LIST) dropSelf(LCBlocks.PLUSHIES.get(plush).get());
         dropSelf(LCBlocks.LOW_BARRIER_FENCE.get());
         for (int i = 0; i < 16; i++) dropSelf(LCBlocks.IGLOO_HIDES.get(DyeColor.byId(i).getName()).get());
+        dropSelf(LCBlocks.SMALL_ANIMAL_WATER_BOTTLE.get());
     }
 
     @Override
