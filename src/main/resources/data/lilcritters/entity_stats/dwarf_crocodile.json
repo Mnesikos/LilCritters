@@ -19,5 +19,8 @@
       "zawa:beef_ice_treat"
     ]
   },
-  "variant_count": 3
+  "variant_count": 4,
+  "captive_variants": [
+    "doc"
+  ]
 }
