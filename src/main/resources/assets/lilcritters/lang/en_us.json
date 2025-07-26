@@ -91,9 +91,9 @@
   
   "__comment": "Entity Variant and Scientific Names, and Informational Blurbs",
   "scientific.lilcritters.american_badger": "Taxidea taxus",
-  "variant.lilcritters.american_badger_0": "",
-  "variant.lilcritters.american_badger_1": "",
-  "variant.lilcritters.american_badger_2": "",
+  "variant.lilcritters.american_badger_0": "Tornado",
+  "variant.lilcritters.american_badger_1": "Blizzard",
+  "variant.lilcritters.american_badger_2": "Thunder",
   "taxonomic_class.lilcritters.american_badger": "Mammal",
   "range.lilcritters.american_badger": "North America",
   "conservation_status.lilcritters.american_badger": "Least Concern",
