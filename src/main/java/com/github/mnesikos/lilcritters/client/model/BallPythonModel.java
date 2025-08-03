@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import org.zawamod.zawa.client.model.ZawaBaseModel;
 
@@ -91,12 +92,41 @@ public class BallPythonModel extends ZawaBaseModel<BallPythonEntity> {
     }
 
     @Override
-    public void playIdleAnimation(Entity entity, float v, float v1, float v2, float v3, float v4) {
-
+    public void setupAnim(BallPythonEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        this.Head.xRot = (headPitch / (180F / (float) Math.PI)) + 0.174F;
+        this.Head.yRot = netHeadYaw / (180F / (float) Math.PI);
     }
 
     @Override
-    public void playMovementAnimation(Entity entity, float v, float v1, float v2, float v3, float v4) {
+    public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.Neck.yRot = (float) Math.toRadians(40);
+        this.Chest.yRot = (float) Math.toRadians(40);
+        this.Body.yRot = (float) Math.toRadians(-80);
+        this.TailBase.yRot = (float) Math.toRadians(-80);
+        this.Tail1.yRot = (float) Math.toRadians(-60);
+        this.Tail2.yRot = (float) Math.toRadians(60);
+        this.Tail3.yRot = (float) Math.toRadians(80);
+        this.Tail4.yRot = (float) Math.toRadians(60);
+        this.Tail5.yRot = (float) Math.toRadians(20);
+    }
 
+    @Override
+    public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        float speed = 2.0f;
+        float degree = 0.5f;
+        this.Base.z = Mth.cos(1F + limbSwing * speed * 0.3F) * degree * 8.0F * limbSwingAmount - 10.5F;
+        this.Base.yRot = Mth.cos(3F + limbSwing * speed * 0.3F) * degree * -2.0F * limbSwingAmount;
+        this.Head.yRot = Mth.cos(3F + limbSwing * speed * 0.3F) * degree * 2.0F * limbSwingAmount;
+
+        this.Neck.yRot = Mth.cos(4.0F + limbSwing * speed * 0.3F) * degree * 1.0F * limbSwingAmount;
+        this.Chest.yRot = Mth.cos(3.5F + limbSwing * speed * 0.3F) * degree * 1.0F * limbSwingAmount;
+        this.Body.yRot = Mth.cos(3.0F + limbSwing * speed * 0.3F) * degree * 1.0F * limbSwingAmount;
+        this.TailBase.yRot = Mth.cos(2.5F + limbSwing * speed * 0.3F) * degree * 1.0F * limbSwingAmount;
+        this.Tail1.yRot = Mth.cos(2.0F + limbSwing * speed * 0.3F) * degree * 1.0F * limbSwingAmount;
+        this.Tail2.yRot = Mth.cos(1.5F + limbSwing * speed * 0.3F) * degree * 1.0F * limbSwingAmount;
+        this.Tail3.yRot = Mth.cos(1.0F + limbSwing * speed * 0.3F) * degree * 1.0F * limbSwingAmount;
+        this.Tail4.yRot = Mth.cos(0.5F + limbSwing * speed * 0.3F) * degree * 1.0F * limbSwingAmount;
+        this.Tail5.yRot = Mth.cos(0.0F + limbSwing * speed * 0.3F) * degree * 1.0F * limbSwingAmount;
     }
 }

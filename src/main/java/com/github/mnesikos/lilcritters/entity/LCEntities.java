@@ -26,7 +26,7 @@ public class LCEntities {
     public static final RegistryObject<EntityType<BallPythonEntity>> BALL_PYTHON = REGISTRY.builder(BallPythonEntity::new, MobCategory.CREATURE)
             .attributes(BallPythonEntity::registerBallPythonAttributes)
 //            .spawn(ZawaSpawnCategory.COASTAL_DESERT, 5, 4, 8)
-            .data(tBuilder -> tBuilder.sized(0.6F, 0.8F).clientTrackingRange(10)) // todo
+            .data(tBuilder -> tBuilder.sized(0.8F, 0.4F).clientTrackingRange(10)) // todo
             .build("ball_python");
 
     public static final RegistryObject<EntityType<BandedPenguinEntity>> BANDED_PENGUIN = REGISTRY.builder(BandedPenguinEntity::new, MobCategory.CREATURE)
