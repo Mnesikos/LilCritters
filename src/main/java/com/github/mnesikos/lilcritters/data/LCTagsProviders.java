@@ -35,6 +35,7 @@ public class LCTagsProviders {
             );
             tag(ZawaEntityTypeTags.ZOO_ANIMALS).add(
                     LCEntities.AMERICAN_BADGER.get(),
+                    LCEntities.BALL_PYTHON.get(),
                     LCEntities.BANDED_PENGUIN.get(),
                     LCEntities.BEARDED_DRAGON.get(),
                     LCEntities.BOX_TURTLE.get(),
@@ -82,6 +83,7 @@ public class LCTagsProviders {
         @Override
         protected void addTags(HolderLookup.Provider provider) {
             tag(Tags.Items.EGGS).add(
+                    LCItems.BALL_PYTHON_EGG.get(),
                     LCItems.BANDED_PENGUIN_EGG.get(),
                     LCItems.BEARDED_DRAGON_EGG.get(),
                     LCItems.BOX_TURTLE_EGG.get(),

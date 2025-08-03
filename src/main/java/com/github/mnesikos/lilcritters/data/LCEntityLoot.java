@@ -29,6 +29,7 @@ public class LCEntityLoot extends VanillaEntityLoot {
     public void generate() {
         add(LCEntities.AMERICAN_BADGER.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 1)
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(addItemWithLooting(Items.BONE, 1))));
+        add(LCEntities.BALL_PYTHON.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 1));
         add(LCEntities.BANDED_PENGUIN.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(addItemWithLooting(Items.FEATHER, 1))));
         add(LCEntities.BEARDED_DRAGON.get(), createCookedItemTable(ZawaItems.SMALL_MEAT.get(), 1)

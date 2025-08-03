@@ -23,6 +23,12 @@ public class LCEntities {
             .data(tBuilder -> tBuilder.sized(0.8F, 0.6F).clientTrackingRange(10))
             .build("american_badger");
 
+    public static final RegistryObject<EntityType<BallPythonEntity>> BALL_PYTHON = REGISTRY.builder(BallPythonEntity::new, MobCategory.CREATURE)
+            .attributes(BallPythonEntity::registerBallPythonAttributes)
+//            .spawn(ZawaSpawnCategory.COASTAL_DESERT, 5, 4, 8)
+            .data(tBuilder -> tBuilder.sized(0.6F, 0.8F).clientTrackingRange(10)) // todo
+            .build("ball_python");
+
     public static final RegistryObject<EntityType<BandedPenguinEntity>> BANDED_PENGUIN = REGISTRY.builder(BandedPenguinEntity::new, MobCategory.CREATURE)
             .attributes(BandedPenguinEntity::registerBandedPenguinAttributes)
             .spawn(ZawaSpawnCategory.COASTAL_DESERT, 5, 4, 8)
@@ -175,6 +181,7 @@ public class LCEntities {
 
     public static void registerSpawnPlacements() {
         SpawnPlacements.register(AMERICAN_BADGER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
+        SpawnPlacements.register(BALL_PYTHON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         SpawnPlacements.register(BANDED_PENGUIN.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
         SpawnPlacements.register(BEARDED_DRAGON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
         SpawnPlacements.register(BOX_TURTLE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
@@ -204,6 +211,7 @@ public class LCEntities {
 
     public static void registerRenderers() {
         EntityRenderers.register(AMERICAN_BADGER.get(), AmericanBadgerRenderer::new);
+        EntityRenderers.register(BALL_PYTHON.get(), BallPythonRenderer::new);
         EntityRenderers.register(BANDED_PENGUIN.get(), BandedPenguinRenderer::new);
         EntityRenderers.register(BEARDED_DRAGON.get(), BeardedDragonRenderer::new);
         EntityRenderers.register(BOX_TURTLE.get(), BoxTurtleRenderer::new);
