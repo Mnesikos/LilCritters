@@ -1,0 +1,29 @@
+{
+  "temperament": "timid",
+  "kibble": "zawa:herbivore_kibble",
+  "size": "small",
+  "fertility": "medium",
+  "breeding_item": "minecraft:apple",
+  "litter_size": {
+    "min": 1,
+    "max": 2
+  },
+  "diet": "zawa:frugivore",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:puzzle_feeder",
+      "zawa:branch",
+      "zawa:rope",
+      "zawa:sprinkler",
+      "zawa:bamboo_feeder",
+      "zawa:black_bamboo_feeder",
+      "zawa:yellow_bamboo_feeder",
+      "zawa:pineapple_pinata"
+    ],
+    "zawa:entities": [
+      "zawa:fruit_ice_treat"
+    ]
+  },
+  "variant_count": 7
+}

@@ -32,6 +32,8 @@ public class LCModelLayers {
     public static final ModelLayerLocation DART_FROG_ADULT = register("dart_frog", "adult", SmallFrogModel::createBodyLayer);
     public static final ModelLayerLocation DART_FROG_CHILD = register("dart_frog", "child", ZawaFrogBaseModel.Tadpole::createBodyLayer);
     public static final ModelLayerLocation DWARF_CROCODILE = register("dwarf_crocodile", DwarfCrocodileModel::createBodyLayer);
+    public static final ModelLayerLocation FRUIT_BAT = register("fruit_bat", FruitBatModel.Adult::createBodyLayer);
+    public static final ModelLayerLocation FRUIT_BAT_RESTING = register("fruit_bat", "resting", FruitBatModel.Resting::createBodyLayer);
     public static final ModelLayerLocation GUINEA_PIG = register("guinea_pig", GuineaPigModel::createBodyLayer);
     public static final ModelLayerLocation MYSTERY_SNAIL = register("mystery_snail", MysterySnailModel::createBodyLayer);
     public static final ModelLayerLocation OPOSSUM_ADULT = register("opossum", "adult", OpossumModel.Adult::createBodyLayer);

@@ -71,6 +71,12 @@ public class LCEntities {
             .data(tBuilder -> tBuilder.sized(1.0F, 0.5F).clientTrackingRange(10))
             .build("dwarf_crocodile");
 
+    public static final RegistryObject<EntityType<FruitBatEntity>> FRUIT_BAT = REGISTRY.builder(FruitBatEntity::new, MobCategory.CREATURE)
+            .attributes(FruitBatEntity::registerFruitBatAttributes)
+//            .spawn(ZawaSpawnCategory.TROPICAL_ALPINE, 15, 2, 6)
+            .data(tBuilder -> tBuilder.sized(0.4F, 0.4F).clientTrackingRange(10)) // todo
+            .build("fruit_bat");
+
     public static final RegistryObject<EntityType<GuineaPigEntity>> GUINEA_PIG = REGISTRY.builder(GuineaPigEntity::new, MobCategory.CREATURE)
             .attributes(GuineaPigEntity::registerGuineaPigAttributes)
             .spawn(ZawaSpawnCategory.TROPICAL_ALPINE, 15, 2, 6)
@@ -177,6 +183,7 @@ public class LCEntities {
         SpawnPlacements.register(CAPYBARA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         SpawnPlacements.register(DART_FROG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
         SpawnPlacements.register(DWARF_CROCODILE.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
+        SpawnPlacements.register(FRUIT_BAT.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkFlyingSpawnRules);
         SpawnPlacements.register(GUINEA_PIG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         SpawnPlacements.register(MYSTERY_SNAIL.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseAmbientEntity::checkAquaticSpawnRules);
         SpawnPlacements.register(OPOSSUM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
@@ -205,6 +212,7 @@ public class LCEntities {
         EntityRenderers.register(CAPYBARA.get(), CapybaraRenderer::new);
         EntityRenderers.register(DART_FROG.get(), DartFrogRenderer::new);
         EntityRenderers.register(DWARF_CROCODILE.get(), DwarfCrocodileRenderer::new);
+        EntityRenderers.register(FRUIT_BAT.get(), FruitBatRenderer::new);
         EntityRenderers.register(GUINEA_PIG.get(), GuineaPigRenderer::new);
         EntityRenderers.register(MYSTERY_SNAIL.get(), MysterySnailRenderer::new);
         EntityRenderers.register(OPOSSUM.get(), OpossumRenderer::new);
