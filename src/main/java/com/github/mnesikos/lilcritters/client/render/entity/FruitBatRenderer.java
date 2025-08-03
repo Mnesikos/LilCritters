@@ -23,14 +23,14 @@ public class FruitBatRenderer extends ZawaMobRenderer<FruitBatEntity, FruitBatMo
 
     @Override
     protected void scale(FruitBatEntity entity, PoseStack matrixStack, float partialTickTime) {
-        float scale = entity.isBaby() ? 0.5F : 1.0F;
+        float scale = entity.isBaby() ? 0.2F : 0.6F;
         matrixStack.scale(scale, scale, scale);
         super.scale(entity, matrixStack, partialTickTime);
     }
 
     @Override
     public void render(FruitBatEntity entity, float entityYaw, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int packedLight) {
-//        if (entity.isResting()) model = restingModel;
+        adultModel = entity.isResting() ? restingModel : baseModel;
         super.render(entity, entityYaw, partialTicks, matrixStack, buffer, packedLight);
     }
 
