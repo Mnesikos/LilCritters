@@ -46,6 +46,8 @@ public class LCModelLayers {
     public static final ModelLayerLocation SKUNK = register("skunk", SkunkModel::createBodyLayer);
     public static final ModelLayerLocation SMALL_CLAWED_OTTER = register("small_clawed_otter", SmallClawedOtterModel::createBodyLayer);
     public static final ModelLayerLocation SNAPPING_TURTLE = register("snapping_turtle", SnappingTurtleModel::createBodyLayer);
+    public static final ModelLayerLocation SUGAR_GLIDER = register("sugar_glider", SugarGliderModel.Adult::createBodyLayer);
+    public static final ModelLayerLocation SUGAR_GLIDER_GLIDING = register("sugar_glider", "gliding", SugarGliderModel.Gliding::createBodyLayer);
     public static final ModelLayerLocation TOMATO_FROG_ADULT = register("tomato_frog", "adult", LargeFrogModel::createBodyLayer);
     public static final ModelLayerLocation TOMATO_FROG_CHILD = register("tomato_frog", "child", ZawaFrogBaseModel.Tadpole::createBodyLayer);
     public static final ModelLayerLocation TREE_MONITOR = register("tree_monitor", TreeMonitorModel::createBodyLayer);

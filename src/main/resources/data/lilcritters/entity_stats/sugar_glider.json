@@ -1,0 +1,36 @@
+{
+  "temperament": "timid",
+  "kibble": "zawa:omnivore_kibble",
+  "size": "tiny",
+  "fertility": "high",
+  "breeding_item": "zawa:mealworms",
+  "litter_size": {
+    "min": 1,
+    "max": 2
+  },
+  "diet": "zawa:omnivore",
+  "speed": "medium",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:puzzle_feeder",
+      "zawa:branch",
+      "zawa:rope",
+      "zawa:sprinkler",
+      "zawa:bamboo_feeder",
+      "zawa:black_bamboo_feeder",
+      "zawa:yellow_bamboo_feeder",
+      "zawa:pineapple_pinata",
+      "zawa:ball_pit",
+      "lilcritters:small_animal_water_bottle"
+    ],
+    "zawa:entities": [
+      "zawa:scented_ball"
+    ]
+  },
+  "variant_count": 7,
+  "captive_variants": [
+    "agave",
+    "cane",
+    "chocolate"
+  ]
+}

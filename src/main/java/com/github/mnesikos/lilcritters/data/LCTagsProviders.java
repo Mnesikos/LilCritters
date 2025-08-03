@@ -52,6 +52,7 @@ public class LCTagsProviders {
                     LCEntities.SKUNK.get(),
                     LCEntities.SMALL_CLAWED_OTTER.get(),
                     LCEntities.SNAPPING_TURTLE.get(),
+                    LCEntities.SUGAR_GLIDER.get(),
                     LCEntities.TOMATO_FROG.get(),
                     LCEntities.TREE_MONITOR.get(),
                     LCEntities.TREE_SQUIRREL.get(),
