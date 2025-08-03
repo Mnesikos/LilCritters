@@ -131,6 +131,12 @@ public class LCEntities {
             .data(tBuilder -> tBuilder.sized(0.6F, 0.4F).clientTrackingRange(10))
             .build("small_clawed_otter");
 
+    public static final RegistryObject<EntityType<SnappingTurtleEntity>> SNAPPING_TURTLE = REGISTRY.builder(SnappingTurtleEntity::new, MobCategory.CREATURE)
+            .attributes(SnappingTurtleEntity::registerSnappingTurtleAttributes)
+//            .spawn(ZawaSpawnCategory.FAST_FRESH_WATER, 5, 4, 6)
+            .data(tBuilder -> tBuilder.sized(0.6F, 0.4F).clientTrackingRange(10)) // todo
+            .build("snapping_turtle");
+
     public static final RegistryObject<EntityType<TomatoFrogEntity>> TOMATO_FROG = REGISTRY.builder(TomatoFrogEntity::new, MobCategory.CREATURE)
             .attributes(TomatoFrogEntity::registerTomatoFrogAttributes)
             .spawn(ZawaSpawnCategory.SLOW_FRESH_WATER, 5, 1, 1)
@@ -175,6 +181,7 @@ public class LCEntities {
         SpawnPlacements.register(RACCOON.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         SpawnPlacements.register(SKUNK.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkLandSpawnRules);
         SpawnPlacements.register(SMALL_CLAWED_OTTER.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
+        SpawnPlacements.register(SNAPPING_TURTLE.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ZawaBaseEntity::checkSemiAquaticSpawnRules);
         SpawnPlacements.register(TOMATO_FROG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
         SpawnPlacements.register(TREE_MONITOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
         SpawnPlacements.register(TREE_SQUIRREL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, ZawaBaseEntity::checkLandSpawnRulesWithLeaves);
@@ -201,6 +208,7 @@ public class LCEntities {
         EntityRenderers.register(RACCOON.get(), RaccoonRenderer::new);
         EntityRenderers.register(SKUNK.get(), SkunkRenderer::new);
         EntityRenderers.register(SMALL_CLAWED_OTTER.get(), SmallClawedOtterRenderer::new);
+        EntityRenderers.register(SNAPPING_TURTLE.get(), SnappingTurtleRenderer::new);
         EntityRenderers.register(TOMATO_FROG.get(), TomatoFrogRenderer::new);
         EntityRenderers.register(TREE_MONITOR.get(), TreeMonitorRenderer::new);
         EntityRenderers.register(TREE_SQUIRREL.get(), TreeSquirrelRenderer::new);

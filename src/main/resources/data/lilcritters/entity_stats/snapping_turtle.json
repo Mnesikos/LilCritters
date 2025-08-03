@@ -1,0 +1,23 @@
+{
+  "temperament": "territorial",
+  "kibble": "zawa:piscivore_kibble",
+  "size": "small",
+  "fertility": "medium",
+  "breeding_item": "zawa:duckweed",
+  "litter_size": {
+    "min": 3,
+    "max": 4
+  },
+  "diet": "zawa:scavenger",
+  "speed": "slow",
+  "enrichment": {
+    "zawa:blocks": [
+      "zawa:heat_lamp",
+      "zawa:heat_rock"
+    ],
+    "zawa:entities": [
+      "zawa:beef_ice_treat"
+    ]
+  },
+  "variant_count": 2
+}

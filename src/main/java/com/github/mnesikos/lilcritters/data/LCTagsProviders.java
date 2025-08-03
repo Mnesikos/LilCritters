@@ -29,6 +29,7 @@ public class LCTagsProviders {
                     LCEntities.BULLFROG.get(),
                     LCEntities.OPOSSUM.get(),
                     LCEntities.SKUNK.get(),
+                    LCEntities.SNAPPING_TURTLE.get(),
                     LCEntities.TREE_SQUIRREL.get()
             );
             tag(ZawaEntityTypeTags.ZOO_ANIMALS).add(
@@ -50,6 +51,7 @@ public class LCTagsProviders {
                     LCEntities.RACCOON.get(),
                     LCEntities.SKUNK.get(),
                     LCEntities.SMALL_CLAWED_OTTER.get(),
+                    LCEntities.SNAPPING_TURTLE.get(),
                     LCEntities.TOMATO_FROG.get(),
                     LCEntities.TREE_MONITOR.get(),
                     LCEntities.TREE_SQUIRREL.get(),
@@ -84,6 +86,7 @@ public class LCTagsProviders {
                     LCItems.DWARF_CROCODILE_EGG.get(),
                     LCItems.POND_SLIDER_EGG.get(),
                     LCItems.PUMPKIN_TOADLET_EGG.get(),
+                    LCItems.SNAPPING_TURTLE_EGG.get(),
                     LCItems.TREE_MONITOR_EGG.get()
             );
         }

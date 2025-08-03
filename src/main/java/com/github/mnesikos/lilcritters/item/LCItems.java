@@ -38,6 +38,7 @@ public class LCItems {
     public static final RegistryObject<Item> PACMAN_FROG_FROGSPAWN = ITEMS_REGISTRAR.register("pacman_frog_frogspawn", () -> new ZawaAquaticEggItem(LCEntities.PACMAN_FROG, new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> POND_SLIDER_EGG = ITEMS_REGISTRAR.register("pond_slider_egg", () -> new ZawaEggItem(LCEntities.POND_SLIDER, new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> PUMPKIN_TOADLET_EGG = ITEMS_REGISTRAR.register("pumpkin_toadlet_egg", () -> new ZawaEggItem(LCEntities.PUMPKIN_TOADLET, new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> SNAPPING_TURTLE_EGG = ITEMS_REGISTRAR.register("snapping_turtle_egg", () -> new ZawaEggItem(LCEntities.SNAPPING_TURTLE, new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> TOMATO_FROG_FROGSPAWN = ITEMS_REGISTRAR.register("tomato_frog_frogspawn", () -> new ZawaAquaticEggItem(LCEntities.TOMATO_FROG, new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> TREE_MONITOR_EGG = ITEMS_REGISTRAR.register("tree_monitor_egg", () -> new ZawaEggItem(LCEntities.TREE_MONITOR, new Item.Properties().stacksTo(16)));
 }
