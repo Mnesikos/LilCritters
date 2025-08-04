@@ -26,7 +26,7 @@ public class LCEntities {
     public static final RegistryObject<EntityType<BallPythonEntity>> BALL_PYTHON = REGISTRY.builder(BallPythonEntity::new, MobCategory.CREATURE)
             .attributes(BallPythonEntity::registerBallPythonAttributes)
 //            .spawn(ZawaSpawnCategory.COASTAL_DESERT, 5, 4, 8)
-            .data(tBuilder -> tBuilder.sized(0.8F, 0.4F).clientTrackingRange(10)) // todo
+            .data(tBuilder -> tBuilder.sized(0.8F, 0.4F).clientTrackingRange(10))
             .build("ball_python");
 
     public static final RegistryObject<EntityType<BandedPenguinEntity>> BANDED_PENGUIN = REGISTRY.builder(BandedPenguinEntity::new, MobCategory.CREATURE)
@@ -80,7 +80,7 @@ public class LCEntities {
     public static final RegistryObject<EntityType<FruitBatEntity>> FRUIT_BAT = REGISTRY.builder(FruitBatEntity::new, MobCategory.CREATURE)
             .attributes(FruitBatEntity::registerFruitBatAttributes)
 //            .spawn(ZawaSpawnCategory.TROPICAL_ALPINE, 15, 2, 6)
-            .data(tBuilder -> tBuilder.sized(0.4F, 0.4F).clientTrackingRange(10)) // todo
+            .data(tBuilder -> tBuilder.sized(0.4F, 0.7F).clientTrackingRange(10)) // todo
             .build("fruit_bat");
 
     public static final RegistryObject<EntityType<GuineaPigEntity>> GUINEA_PIG = REGISTRY.builder(GuineaPigEntity::new, MobCategory.CREATURE)
