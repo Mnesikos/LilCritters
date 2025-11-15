@@ -29,6 +29,12 @@
       "maxCount": 1
     },
     {
+      "type": "lilcritters:snapping_turtle",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
       "type": "lilcritters:tomato_frog",
       "weight": 5,
       "minCount": 1,

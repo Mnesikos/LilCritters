@@ -58,6 +58,12 @@
       "weight": 10,
       "minCount": 1,
       "maxCount": 3
+    },
+    {
+      "type": "lilcritters:sugar_glider",
+      "weight": 5,
+      "minCount": 3,
+      "maxCount": 4
     }
   ]
 }

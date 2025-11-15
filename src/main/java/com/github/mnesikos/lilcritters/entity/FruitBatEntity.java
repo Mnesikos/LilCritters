@@ -65,7 +65,15 @@ public class FruitBatEntity extends ZawaFlyingEntity implements SpeciesVariantsE
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
-        return super.getStandingEyeHeight(pose, size);
+        return isResting() ? size.height * 0.15F : super.getStandingEyeHeight(pose, size);
+    }
+
+    @Override
+    public float getScale() {
+        float scale = 0.6F;
+        if (getVariant() == 2) scale = 0.65F;
+        if (getVariant() >= 5) scale = 0.7F;
+        return isBaby() ? 0.5F : scale;
     }
 
     @Override
@@ -91,7 +99,7 @@ public class FruitBatEntity extends ZawaFlyingEntity implements SpeciesVariantsE
         super.tick();
         if (isResting()) {
             setDeltaMovement(Vec3.ZERO);
-            setPosRaw(getX(), (double) Mth.floor(getY()) + 0.8D - (double) getBbHeight(), getZ()); // todo resting positioning
+            setPosRaw(getX(), (double) Mth.floor(getY()) + 1.0D - (double) getBbHeight(), getZ()); // todo resting positioning
         } else setDeltaMovement(getDeltaMovement().multiply(1.0D, 0.6D, 1.0D));
     }
 
@@ -101,32 +109,24 @@ public class FruitBatEntity extends ZawaFlyingEntity implements SpeciesVariantsE
         BlockPos blockpos = blockPosition();
         BlockPos blockpos1 = blockpos.above();
         if (isResting()) {
-            boolean flag = isSilent();
+            boolean silent = isSilent();
             if (level().getBlockState(blockpos1).isRedstoneConductor(level(), blockpos)) {
-                if (random.nextInt(200) == 0) {
-                    yHeadRot = (float) random.nextInt(360);
-                }
+                if (random.nextInt(200) == 0) yHeadRot = (float) random.nextInt(360);
 
-                if (level().getNearestPlayer(RESTING_TARGETING, this) != null) {
+                if (!isTame() && level().getNearestPlayer(RESTING_TARGETING, this) != null) {
                     setResting(false);
-                    if (!flag) {
-                        level().levelEvent(null, 1025, blockpos, 0);
-                    }
+                    if (!silent) level().levelEvent(null, 1025, blockpos, 0);
                 }
             } else {
                 setResting(false);
-                if (!flag) {
-                    level().levelEvent(null, 1025, blockpos, 0);
-                }
+                if (!silent) level().levelEvent(null, 1025, blockpos, 0);
             }
         } else {
-            if (targetPosition != null && (!level().isEmptyBlock(targetPosition) || targetPosition.getY() <= level().getMinBuildHeight())) {
+            if (targetPosition != null && (!level().isEmptyBlock(targetPosition) || targetPosition.getY() <= level().getMinBuildHeight()))
                 targetPosition = null;
-            }
 
-            if (targetPosition == null || random.nextInt(30) == 0 || targetPosition.closerToCenterThan(position(), 2.0D)) {
+            if (targetPosition == null || random.nextInt(30) == 0 || targetPosition.closerToCenterThan(position(), 2.0D))
                 targetPosition = BlockPos.containing(getX() + (double) random.nextInt(7) - (double) random.nextInt(7), getY() + (double) random.nextInt(6) - 2.0D, getZ() + (double) random.nextInt(7) - (double) random.nextInt(7));
-            }
 
             double d2 = (double) targetPosition.getX() + 0.5D - getX();
             double d0 = (double) targetPosition.getY() + 0.1D - getY();
@@ -138,9 +138,8 @@ public class FruitBatEntity extends ZawaFlyingEntity implements SpeciesVariantsE
             float f1 = Mth.wrapDegrees(f - getYRot());
             zza = 0.5F;
             setYRot(getYRot() + f1);
-            if (random.nextInt(100) == 0 && level().getBlockState(blockpos1).isRedstoneConductor(level(), blockpos1)) {
+            if (random.nextInt(100) == 0 && level().getBlockState(blockpos1).isRedstoneConductor(level(), blockpos1))
                 setResting(true);
-            }
         }
     }
 

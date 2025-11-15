@@ -23,7 +23,7 @@ public class BurrowingOwlEntity extends ZawaLandEntity implements OviparousEntit
     }
 
     public static AttributeSupplier.Builder registerBurrowingOwlAttributes() {
-        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.225F).add(Attributes.MAX_HEALTH, 12.0F).add(Attributes.ATTACK_DAMAGE, 1.0F);
+        return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.225F).add(Attributes.MAX_HEALTH, 8.0F).add(Attributes.ATTACK_DAMAGE, 1.0F);
     }
 
     @Override

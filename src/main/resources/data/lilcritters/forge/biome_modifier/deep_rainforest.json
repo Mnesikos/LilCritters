@@ -16,6 +16,12 @@
       "maxCount": 1
     },
     {
+      "type": "lilcritters:fruit_bat",
+      "weight": 5,
+      "minCount": 3,
+      "maxCount": 4
+    },
+    {
       "type": "lilcritters:pacman_frog",
       "weight": 5,
       "minCount": 1,

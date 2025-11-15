@@ -12,17 +12,11 @@
   "speed": "medium",
   "enrichment": {
     "zawa:blocks": [
-      "zawa:puzzle_feeder",
       "zawa:branch",
-      "zawa:rope",
-      "zawa:sprinkler",
-      "zawa:bamboo_feeder",
-      "zawa:black_bamboo_feeder",
-      "zawa:yellow_bamboo_feeder",
-      "zawa:pineapple_pinata"
+      "zawa:rope"
     ],
     "zawa:entities": [
-      "zawa:fruit_ice_treat"
+      "zawa:apple_ice_treat"
     ]
   },
   "variant_count": 7
