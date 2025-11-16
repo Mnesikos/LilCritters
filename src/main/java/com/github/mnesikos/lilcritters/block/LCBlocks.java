@@ -36,6 +36,7 @@ public class LCBlocks {
 
     public static final RegistryObject<ZawaFenceBlock> LOW_BARRIER_FENCE = registerWithItem("low_barrier_fence", () -> new ZawaFenceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(2.0F, 3.0F).sound(SoundType.STONE)));
 
+    public static final RegistryObject<BurrowHide> BURROW_HIDE = registerWithItem("burrow_hide", () -> new BurrowHide(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT)));
     public static final Map<String, RegistryObject<Block>> IGLOO_HIDES = Util.make(new HashMap<>(), map -> {
         for (int i = 0; i < 16; i++) {
             DyeColor color = DyeColor.byId(i);

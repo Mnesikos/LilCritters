@@ -17,6 +17,7 @@ public class LCItemModels extends ItemModelProvider {
     protected void registerModels() {
         for (String plush : PLUSHIES_LIST) withExistingParent(plush + "_plush", modLoc("block/" + plush + "_plush"));
         withExistingParent("low_barrier_fence", modLoc("block/low_barrier_fence_inventory"));
+        withExistingParent("burrow_hide", modLoc("block/burrow_hide"));
         for (int i = 0; i < 16; i++) {
             String colorName = DyeColor.byId(i).getName();
             withExistingParent(colorName + "_igloo_hide", modLoc("block/" + colorName + "_igloo_hide"));

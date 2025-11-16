@@ -10,6 +10,8 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
@@ -34,6 +36,9 @@ public class LCRecipeProvider extends RecipeProvider {
                 LCBlocks.LOW_BARRIER_FENCE.get(), 3, ImmutableList.of("AGA", "AGA"), ImmutableMap.<Character, Ingredient>builder()
                         .put('A', Ingredient.of(Blocks.POLISHED_ANDESITE))
                         .put('G', Ingredient.of(Blocks.GLASS_PANE)).build());
+
+        shapedRecipeResult(consumer, LCBlocks.BURROW_HIDE.get(), 3, ImmutableList.of(" G ", "G G"), ImmutableMap.<Character, Ingredient>builder()
+                .put('G', Ingredient.of(ItemTags.DIRT)).build());
 
         for (int i = 0; i < 16; i++) {
             DyeColor color = DyeColor.byId(i);
