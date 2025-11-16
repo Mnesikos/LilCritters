@@ -155,6 +155,8 @@ public abstract class BurrowingOwlModel extends ZawaBaseModel<BurrowingOwlEntity
                 limbSwing = (float) entity.tickCount;
                 limbSwingAmount = 0.3F;
                 speed *= 0.3F;
+                this.Wing1Left.yRot = Mth.cos(limbSwing * speed * 1.2F) * (degree * 2.0F) * limbSwingAmount - 1F;
+                this.Wing1Right.yRot = Mth.cos(limbSwing * speed * 1.2F) * (degree * -2.0F) * limbSwingAmount + 1F;
             }
 
             if (entity.isSprinting() && !isSwimming) {

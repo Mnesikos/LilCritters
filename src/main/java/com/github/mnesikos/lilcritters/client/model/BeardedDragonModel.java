@@ -193,6 +193,12 @@ public class BeardedDragonModel extends ZawaBaseModel<BeardedDragonEntity> {
     public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         float speed = 5.0f;
         float degree = 0.7f;
+        if (isSwimming) {
+            limbSwing = (float) entity.tickCount;
+            limbSwingAmount = 0.3F;
+            speed = 2.0F;
+            degree = 1.0F;
+        }
         this.UpperArmLeft.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.349F;
         this.ArmLeft.xRot = Mth.cos(1.0F + limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount - 0.523F;
         this.HandLeft.xRot = Mth.cos(2.0F + limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 0.191F;
