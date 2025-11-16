@@ -8,6 +8,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import org.zawamod.zawa.client.model.ZawaBaseModel;
 
@@ -251,11 +252,31 @@ public class SnappingTurtleModel extends ZawaBaseModel<SnappingTurtleEntity> {
 
     @Override
     public void playIdleAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+        float speed = 1.0f;
+        float degree = 1.0f;
+        this.Neck.xRot = Mth.cos(limbSwing * speed * 0.1F) * degree * 0.1F * limbSwingAmount + 0.21F;
+        this.Head.xRot = Mth.cos(limbSwing * speed * 0.1F) * degree * -0.1F * limbSwingAmount - 0.27F;
+        this.Tail1.yRot = Mth.cos(limbSwing * speed * 0.05F) * degree * 0.1F * limbSwingAmount;
     }
 
     @Override
     public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+        float speed = 8.0f;
+        float degree = 2.0f;
+        this.ArmLeft.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.37F;
+        this.ForeArmLeft.xRot = Mth.cos(1.0F + limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 1.03F;
+        this.HandLeft.xRot = Mth.cos(2.0F + limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 0.14F;
+        this.LegLeft.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount - 1.18F;
+        this.FootLeft.xRot = Mth.cos(-2.0F + limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount - 0.19F;
+        this.ArmRight.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 0.37F;
+        this.ForeArmRight.xRot = Mth.cos(1.0F + limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount + 1.03F;
+        this.HandRight.xRot = Mth.cos(2.0F + limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount + 0.14F;
+        this.LegRight.xRot = Mth.cos(limbSwing * speed * 0.2F) * degree * 1.0F * limbSwingAmount - 1.18F;
+        this.FootRight.xRot = Mth.cos(-2.0F + limbSwing * speed * 0.2F) * degree * -1.0F * limbSwingAmount - 0.19F;
+        this.Neck.yRot = Mth.cos(1.0F + limbSwing * speed * 0.2F) * degree * -0.2F * limbSwingAmount;
+        this.Head.yRot = Mth.cos(2.0F + limbSwing * speed * 0.2F) * degree * 0.2F * limbSwingAmount;
+        this.Shell.y = Mth.cos(limbSwing * speed * 0.4F) * degree * 0.8F * limbSwingAmount + 20F;
+        this.Tail1.yRot = Mth.cos(1.0F + limbSwing * speed * 0.2F) * degree * -0.4F * limbSwingAmount;
+        this.Tail2.yRot = Mth.cos(2.0F + limbSwing * speed * 0.2F) * degree * 0.3F * limbSwingAmount;
     }
 }
