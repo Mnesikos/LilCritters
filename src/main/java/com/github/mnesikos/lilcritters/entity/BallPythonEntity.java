@@ -16,9 +16,10 @@ import org.zawamod.zawa.world.entity.OviparousEntity;
 import org.zawamod.zawa.world.entity.ai.goal.ZawaMeleeAttackGoal;
 import org.zawamod.zawa.world.entity.animal.ZawaBaseEntity;
 import org.zawamod.zawa.world.entity.animal.ZawaLandEntity;
+import org.zawamod.zawa.world.entity.animal.ZawaSemiAquaticEntity;
 
-public class BallPythonEntity extends ZawaLandEntity implements OviparousEntity {
-    public BallPythonEntity(EntityType<? extends ZawaBaseEntity> type, Level world) {
+public class BallPythonEntity extends ZawaSemiAquaticEntity implements OviparousEntity {
+    public BallPythonEntity(EntityType<? extends ZawaSemiAquaticEntity> type, Level world) {
         super(type, world);
     }
 
@@ -31,6 +32,16 @@ public class BallPythonEntity extends ZawaLandEntity implements OviparousEntity 
         super.registerGoals();
         this.goalSelector.addGoal(5, new ZawaMeleeAttackGoal(this, 1.5, 1.33, true));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
+    }
+
+    @Override
+    public float swimSpeedMultiplier() {
+        return 0.5F;
+    }
+
+    @Override
+    public boolean canBabySwim() {
+        return true;
     }
 
     @Override

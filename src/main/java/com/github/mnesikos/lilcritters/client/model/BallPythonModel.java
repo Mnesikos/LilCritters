@@ -115,6 +115,10 @@ public class BallPythonModel extends ZawaBaseModel<BallPythonEntity> {
     public void playMovementAnimation(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         float speed = 2.0f;
         float degree = 0.5f;
+        if (entity.isInWater()) {
+            speed = 4.0F;
+            degree = 1.0F;
+        }
         this.Base.z = Mth.cos(1F + limbSwing * speed * 0.3F) * degree * 8.0F * limbSwingAmount - 10.5F;
         this.Base.yRot = Mth.cos(3F + limbSwing * speed * 0.3F) * degree * -2.0F * limbSwingAmount;
         this.Head.yRot = Mth.cos(3F + limbSwing * speed * 0.3F) * degree * 2.0F * limbSwingAmount;
