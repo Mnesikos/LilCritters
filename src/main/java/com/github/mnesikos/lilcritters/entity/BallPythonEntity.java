@@ -35,7 +35,7 @@ public class BallPythonEntity extends ZawaLandEntity implements OviparousEntity 
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
-        return super.getStandingEyeHeight(pose, size); // todo
+        return size.height * 0.15F;
     }
 
     @Override

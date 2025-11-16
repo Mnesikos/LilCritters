@@ -80,7 +80,7 @@ public class LCEntities {
     public static final RegistryObject<EntityType<FruitBatEntity>> FRUIT_BAT = REGISTRY.builder(FruitBatEntity::new, MobCategory.CREATURE)
             .attributes(FruitBatEntity::registerFruitBatAttributes)
 //            .spawn(ZawaSpawnCategory.TROPICAL_ALPINE, 15, 2, 6)
-            .data(tBuilder -> tBuilder.sized(0.4F, 0.7F).clientTrackingRange(10)) // todo
+            .data(tBuilder -> tBuilder.sized(0.4F, 0.7F).clientTrackingRange(10))
             .build("fruit_bat");
 
     public static final RegistryObject<EntityType<GuineaPigEntity>> GUINEA_PIG = REGISTRY.builder(GuineaPigEntity::new, MobCategory.CREATURE)
@@ -146,13 +146,13 @@ public class LCEntities {
     public static final RegistryObject<EntityType<SnappingTurtleEntity>> SNAPPING_TURTLE = REGISTRY.builder(SnappingTurtleEntity::new, MobCategory.CREATURE)
             .attributes(SnappingTurtleEntity::registerSnappingTurtleAttributes)
 //            .spawn(ZawaSpawnCategory.FAST_FRESH_WATER, 5, 4, 6)
-            .data(tBuilder -> tBuilder.sized(0.6F, 0.4F).clientTrackingRange(10)) // todo
+            .data(tBuilder -> tBuilder.sized(0.8F, 0.5F).clientTrackingRange(10))
             .build("snapping_turtle");
 
     public static final RegistryObject<EntityType<SugarGliderEntity>> SUGAR_GLIDER = REGISTRY.builder(SugarGliderEntity::new, MobCategory.CREATURE)
             .attributes(SugarGliderEntity::registerSugarGliderAttributes)
 //            .spawn(ZawaSpawnCategory.FAST_FRESH_WATER, 5, 4, 6)
-            .data(tBuilder -> tBuilder.sized(0.6F, 0.4F).clientTrackingRange(10)) // todo
+            .data(tBuilder -> tBuilder.sized(0.5F, 0.4F).clientTrackingRange(10))
             .build("sugar_glider");
 
     public static final RegistryObject<EntityType<TomatoFrogEntity>> TOMATO_FROG = REGISTRY.builder(TomatoFrogEntity::new, MobCategory.CREATURE)

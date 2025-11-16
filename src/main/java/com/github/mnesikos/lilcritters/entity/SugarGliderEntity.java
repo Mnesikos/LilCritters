@@ -58,7 +58,7 @@ public class SugarGliderEntity extends ZawaLandEntity {
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
-        return super.getStandingEyeHeight(pose, size); //todo
+        return size.height * 0.65F;
     }
 
     @Override

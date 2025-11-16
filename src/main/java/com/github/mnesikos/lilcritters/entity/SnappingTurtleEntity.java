@@ -49,7 +49,7 @@ public class SnappingTurtleEntity extends ZawaSemiAquaticEntity implements Speci
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
-        return super.getStandingEyeHeight(pose, size);
+        return size.height * 0.5F;
     }
 
     @Override
