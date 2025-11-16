@@ -18,19 +18,19 @@
   },
   "variant_count": 17,
   "captive_variants": [
-    "yellow",
-    "black",
-    "silver_bullet",
-    "gray",
+    "yellow_belly",
+    "black_axanthic",
+    "axanthic",
     "stormtrooper",
+    "silver_bullet",
     "leucistic",
     "banana",
     "lavender_albino",
-    "yellow_belly",
+    "faded_albino",
     "albino",
     "pumpkin_pied",
     "pecan_pied",
-    "meringue_pied",
-    "apple_pied"
+    "apple_pied",
+    "meringue_pied"
   ]
 }
