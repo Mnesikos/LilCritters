@@ -22,5 +22,8 @@
       "zawa:scented_ball"
     ]
   },
-  "variant_count": 3
+  "variant_count": 4,
+  "captive_variants": [
+    "leucistic"
+  ]
 }
