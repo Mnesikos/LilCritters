@@ -8,7 +8,6 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.registries.RegistryObject;
-import org.zawamod.zawa.Zawa;
 import org.zawamod.zawa.config.ZawaSpawnCategory;
 import org.zawamod.zawa.world.entity.ZawaEntityRegistry;
 import org.zawamod.zawa.world.entity.ambient.ZawaBaseAmbientEntity;
@@ -25,7 +24,7 @@ public class LCEntities {
 
     public static final RegistryObject<EntityType<BallPythonEntity>> BALL_PYTHON = REGISTRY.builder(BallPythonEntity::new, MobCategory.CREATURE)
             .attributes(BallPythonEntity::registerBallPythonAttributes)
-//            .spawn(ZawaSpawnCategory.COASTAL_DESERT, 5, 4, 8)
+            .spawn(ZawaSpawnCategory.DRY_GRASSLAND, 10, 1, 1)
             .data(tBuilder -> tBuilder.sized(0.8F, 0.4F).clientTrackingRange(10))
             .build("ball_python");
 
@@ -79,7 +78,7 @@ public class LCEntities {
 
     public static final RegistryObject<EntityType<FruitBatEntity>> FRUIT_BAT = REGISTRY.builder(FruitBatEntity::new, MobCategory.CREATURE)
             .attributes(FruitBatEntity::registerFruitBatAttributes)
-//            .spawn(ZawaSpawnCategory.TROPICAL_ALPINE, 15, 2, 6)
+            .spawn(ZawaSpawnCategory.DEEP_RAINFOREST, 5, 3, 4)
             .data(tBuilder -> tBuilder.sized(0.4F, 0.7F).clientTrackingRange(10))
             .build("fruit_bat");
 
@@ -145,13 +144,13 @@ public class LCEntities {
 
     public static final RegistryObject<EntityType<SnappingTurtleEntity>> SNAPPING_TURTLE = REGISTRY.builder(SnappingTurtleEntity::new, MobCategory.CREATURE)
             .attributes(SnappingTurtleEntity::registerSnappingTurtleAttributes)
-//            .spawn(ZawaSpawnCategory.FAST_FRESH_WATER, 5, 4, 6)
+            .spawn(ZawaSpawnCategory.SLOW_FRESH_WATER, 5, 1, 1)
             .data(tBuilder -> tBuilder.sized(0.8F, 0.5F).clientTrackingRange(10))
             .build("snapping_turtle");
 
     public static final RegistryObject<EntityType<SugarGliderEntity>> SUGAR_GLIDER = REGISTRY.builder(SugarGliderEntity::new, MobCategory.CREATURE)
             .attributes(SugarGliderEntity::registerSugarGliderAttributes)
-//            .spawn(ZawaSpawnCategory.FAST_FRESH_WATER, 5, 4, 6)
+            .spawn(ZawaSpawnCategory.TEMPERATE_FOREST, 5, 3, 4)
             .data(tBuilder -> tBuilder.sized(0.5F, 0.4F).clientTrackingRange(10))
             .build("sugar_glider");
 

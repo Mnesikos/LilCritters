@@ -9,6 +9,7 @@ import com.github.mnesikos.lilcritters.sounds.LCSounds;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.util.Tuple;
@@ -71,6 +72,7 @@ public class LilCritters {
         dataGenerator.addProvider(event.includeClient(), new LCBlockStates(packOutput, event.getExistingFileHelper()));
         dataGenerator.addProvider(event.includeClient(), new LCItemModels(packOutput, event.getExistingFileHelper()));
 
+        dataGenerator.addProvider(event.includeServer(), (DataProvider.Factory<LCBiomeModifiers>) output -> new LCBiomeModifiers(output, event.getLookupProvider()));
         LCTagsProviders.LCBlockTagsProvider blockTagsProvider = new LCTagsProviders.LCBlockTagsProvider(packOutput, event.getLookupProvider(), event.getExistingFileHelper());
         dataGenerator.addProvider(event.includeServer(), blockTagsProvider);
         dataGenerator.addProvider(event.includeServer(), new LCTagsProviders.LCItemTagsProvider(packOutput, event.getLookupProvider(), blockTagsProvider, event.getExistingFileHelper()));
