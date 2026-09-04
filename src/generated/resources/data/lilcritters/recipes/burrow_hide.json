@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "lilcritters",
+  "key": {
+    "G": {
+      "tag": "minecraft:dirt"
+    }
+  },
+  "pattern": [
+    " G ",
+    "G G"
+  ],
+  "result": {
+    "count": 3,
+    "item": "lilcritters:burrow_hide"
+  },
+  "show_notification": false
+}

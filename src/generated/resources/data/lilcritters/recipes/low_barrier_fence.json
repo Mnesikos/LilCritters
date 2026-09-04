@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "lilcritters",
+  "key": {
+    "A": {
+      "item": "minecraft:polished_andesite"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "pattern": [
+    "AGA",
+    "AGA"
+  ],
+  "result": {
+    "count": 3,
+    "item": "lilcritters:low_barrier_fence"
+  },
+  "show_notification": false
+}

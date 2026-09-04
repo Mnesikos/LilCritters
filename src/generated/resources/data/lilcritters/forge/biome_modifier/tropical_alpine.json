@@ -1,0 +1,36 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      {
+        "type": "forge:or",
+        "values": [
+          "#minecraft:is_overworld"
+        ]
+      },
+      {
+        "type": "forge:or",
+        "values": [
+          "#minecraft:is_jungle"
+        ]
+      },
+      {
+        "type": "forge:or",
+        "values": [
+          "#forge:is_rare"
+        ]
+      },
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_forest"
+      }
+    ]
+  },
+  "spawners": {
+    "type": "lilcritters:guinea_pig",
+    "maxCount": 6,
+    "minCount": 2,
+    "weight": 15
+  }
+}

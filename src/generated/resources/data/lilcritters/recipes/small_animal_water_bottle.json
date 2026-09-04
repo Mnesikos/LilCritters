@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "lilcritters",
+  "key": {
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "pattern": [
+    "G ",
+    "G ",
+    "GN"
+  ],
+  "result": {
+    "item": "lilcritters:small_animal_water_bottle"
+  },
+  "show_notification": false
+}

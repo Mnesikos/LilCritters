@@ -1,0 +1,6 @@
+{
+  "parent": "lilcritters:block/igloo_hide",
+  "textures": {
+    "7": "lilcritters:block/cyan_igloo_hide"
+  }
+}

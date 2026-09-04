@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "lilcritters",
+  "key": {
+    "G": {
+      "item": "minecraft:gray_wool"
+    },
+    "L": {
+      "item": "minecraft:light_gray_wool"
+    },
+    "S": [
+      {
+        "item": "minecraft:bamboo"
+      },
+      {
+        "item": "zawa:black_bamboo"
+      },
+      {
+        "item": "zawa:yellow_bamboo"
+      }
+    ]
+  },
+  "pattern": [
+    "GLG",
+    "LSL",
+    "LGL"
+  ],
+  "result": {
+    "item": "lilcritters:squirrel_plush"
+  },
+  "show_notification": false
+}

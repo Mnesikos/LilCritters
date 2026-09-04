@@ -1,0 +1,24 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_overworld",
+      "#minecraft:is_river"
+    ]
+  },
+  "spawners": [
+    {
+      "type": "lilcritters:mystery_snail",
+      "maxCount": 6,
+      "minCount": 2,
+      "weight": 10
+    },
+    {
+      "type": "lilcritters:small_clawed_otter",
+      "maxCount": 6,
+      "minCount": 4,
+      "weight": 5
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      {
+        "type": "forge:or",
+        "values": [
+          "#minecraft:is_overworld"
+        ]
+      },
+      {
+        "type": "forge:or",
+        "values": [
+          "#minecraft:is_savanna"
+        ]
+      },
+      {
+        "type": "forge:not",
+        "value": "#forge:is_wet"
+      },
+      {
+        "type": "forge:not",
+        "value": "#forge:is_lush"
+      }
+    ]
+  },
+  "spawners": {
+    "type": "lilcritters:bearded_dragon",
+    "maxCount": 3,
+    "minCount": 1,
+    "weight": 5
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "lilcritters",
+  "key": {
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "P": {
+      "item": "minecraft:pink_wool"
+    },
+    "S": [
+      {
+        "item": "minecraft:bamboo"
+      },
+      {
+        "item": "zawa:black_bamboo"
+      },
+      {
+        "item": "zawa:yellow_bamboo"
+      }
+    ],
+    "W": {
+      "item": "minecraft:white_wool"
+    }
+  },
+  "pattern": [
+    "WBW",
+    "WSW",
+    "BPB"
+  ],
+  "result": {
+    "item": "lilcritters:skunk_plush"
+  },
+  "show_notification": false
+}

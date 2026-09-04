@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "lilcritters",
+  "key": {
+    "D": {
+      "tag": "forge:dyes/pink"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "pattern": [
+    " G ",
+    "GDG"
+  ],
+  "result": {
+    "item": "lilcritters:pink_igloo_hide"
+  },
+  "show_notification": false
+}

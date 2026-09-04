@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "lilcritters:block/black_igloo_hide",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "lilcritters:block/black_igloo_hide"
+    },
+    "facing=south": {
+      "model": "lilcritters:block/black_igloo_hide",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "lilcritters:block/black_igloo_hide",
+      "y": 270
+    }
+  }
+}
